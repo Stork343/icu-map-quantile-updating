@@ -1,0 +1,23 @@
+\begin{table}[!htbp]
+\caption{Where the primary stay-specific level update improves later lower-tail prediction.}
+\label{tab:model_gain_deciles}
+\centering
+\begin{tabular}{rrrrrrr}
+\hline
+Decile & Stays & Adm. q10 & Later MAP $<$65 & Pop. loss & Updated loss & Reduction\\
+\hline
+1 & 1207 & 52.0 & 42.4\% & 2.691 & 1.988 & 26.1\%\\
+2 & 1206 & 57.0 & 29.7\% & 1.905 & 1.744 & 8.4\%\\
+3 & 1206 & 61.0 & 22.8\% & 1.731 & 1.679 & 3.0\%\\
+4 & 1206 & 64.0 & 16.6\% & 1.760 & 1.761 & -0.1\%\\
+5 & 1206 & 66.0 & 12.4\% & 1.755 & 1.785 & -1.7\%\\
+6 & 1206 & 69.0 & 9.2\% & 1.846 & 1.867 & -1.1\%\\
+7 & 1206 & 72.0 & 5.9\% & 2.025 & 1.944 & 4.0\%\\
+8 & 1206 & 75.0 & 3.9\% & 2.298 & 2.080 & 9.5\%\\
+9 & 1206 & 81.0 & 2.1\% & 2.721 & 2.224 & 18.3\%\\
+10 & 1207 & 91.0 & 1.0\% & 3.514 & 2.498 & 28.9\%\\
+\hline
+\end{tabular}
+\par\smallskip
+\footnotesize{Deciles are ordered from lowest to highest admission window MAP 0.10 quantile. Later MAP $<$65 is the mean later observation level burden.}
+\end{table}

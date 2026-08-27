@@ -1,0 +1,7 @@
+model,index_information,assessment_loss,assessment_loss_se,n_stays
+Baseline covariates quantile,none,2.224679888116584,0.012764141941548205,12062
+Admission window q10 carry forward,raw admission window q10,2.1438683887743557,0.016009102320534256,12062
+Population spline quantile,none,2.2238445012439696,0.01280830078644303,12062
+Spline + unpenalized update,index residual q10,2.165861672263283,0.016249299686992586,12062
+Spline + penalized random-intercept update,profiled intercept,1.967757233677118,0.011692167363522868,12062
+Selected baseline-adjusted random-intercept update,profiled intercept,1.9570404343355001,0.011540977903913263,12062

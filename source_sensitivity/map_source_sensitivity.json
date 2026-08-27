@@ -1,0 +1,48 @@
+{
+  "sources": [
+    {
+      "source": "invasive",
+      "source_label": "Invasive MAP only",
+      "cache_schema_version": 3,
+      "analytic_stays": 23334,
+      "map_observations": 579088,
+      "split_window_eligible_stays": 20963,
+      "train_stays": 12578,
+      "tuning_stays": 4193,
+      "assessment_stays": 4192,
+      "selected_lambda": 0.1,
+      "population_loss": 1.8774858338108809,
+      "updated_loss": 1.7236078020150376,
+      "paired_reduction": 0.15387803179584336,
+      "paired_reduction_se": 0.011543556832871012,
+      "paired_reduction_ci_low": 0.13125266040341618,
+      "paired_reduction_ci_high": 0.17650340318827054,
+      "relative_loss_reduction_percent": 8.19596233562545,
+      "raw_q10_loss": 2.001814097136111,
+      "admission_q10_auc_later_map_below65": 0.7630434856914335,
+      "admission_later_q10_correlation": 0.5691174067693977
+    },
+    {
+      "source": "noninvasive",
+      "source_label": "Non-invasive MAP only",
+      "cache_schema_version": 3,
+      "analytic_stays": 47059,
+      "map_observations": 1014849,
+      "split_window_eligible_stays": 41481,
+      "train_stays": 24889,
+      "tuning_stays": 8296,
+      "assessment_stays": 8296,
+      "selected_lambda": 0.03,
+      "population_loss": 2.3770090244709343,
+      "updated_loss": 1.9929211423833366,
+      "paired_reduction": 0.3840878820875972,
+      "paired_reduction_se": 0.014909189889297738,
+      "paired_reduction_ci_low": 0.35486586990457364,
+      "paired_reduction_ci_high": 0.41330989427062076,
+      "relative_loss_reduction_percent": 16.158452834359203,
+      "raw_q10_loss": 2.1854110449014406,
+      "admission_q10_auc_later_map_below65": 0.8204831543763196,
+      "admission_later_q10_correlation": 0.703110619584824
+    }
+  ]
+}

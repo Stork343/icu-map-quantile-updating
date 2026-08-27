@@ -1,0 +1,6 @@
+scenario_key,scenario_label,method_a,method_b,estimand,n_effective_replicates,loss_difference_mean,loss_difference_mcse,loss_difference_mc_ci_lower,loss_difference_mc_ci_upper
+transient_nonpersistent,Transient non-persistence,tuned_level,population,mean paired stay-level assessment check-loss difference (A - B),200,0.0011515469939878265,0.00030572358987397317,0.0005523287578348392,0.001750765230140814
+transient_nonpersistent,Transient non-persistence,affine_calibrated_q10,population,mean paired stay-level assessment check-loss difference (A - B),200,0.030576186152506103,0.0018417838375971815,0.02696628983081563,0.03418608247419658
+transient_nonpersistent,Transient non-persistence,tuned_level,affine_calibrated_q10,mean paired stay-level assessment check-loss difference (A - B),200,-0.029424639158518274,0.0018789437543518638,-0.03310736891704793,-0.02574190939998862
+transient_nonpersistent,Transient non-persistence,tuned_level_slope,tuned_level,mean paired stay-level assessment check-loss difference (A - B),200,0.0012759191147532806,0.000530834950624017,0.0002354826115302073,0.002316355617976354
+transient_nonpersistent,Transient non-persistence,raw_index_q10,affine_calibrated_q10,mean paired stay-level assessment check-loss difference (A - B),200,0.7567311402683956,0.010036272614060334,0.7370600459448373,0.7764022345919539

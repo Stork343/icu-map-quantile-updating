@@ -1,0 +1,17 @@
+\begin{table*}[!htbp]
+\caption{Extended ADEMP simulation with strong comparators and Monte Carlo precision.}
+\label{tab:ademp_v2_summary}
+\centering
+\small
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lrrrrrr}
+\hline
+Scenario & Population & Calibrated q10 & Tuned level & Level + slope & $\Delta_{\mathrm{level-pop}}$ & $\Delta_{\mathrm{level-cal}}$\\
+\hline
+Transient non-persistence & 1.004 (0.002) & 1.034 (0.002) & 1.005 (0.002) & 1.006 (0.002) & +0.0012 (0.0003) & -0.0294 (0.0019)\\
+\hline
+\end{tabular}%
+}
+\par\smallskip
+\footnotesize{Entries are mean stay-level assessment check loss (Monte Carlo standard error) across 200 independent simulated datasets per scenario. Differences are paired within replicate; negative values in both $\Delta$ columns favor the tuned level update. All methods had 200/200 effective replicates (failure rate 0\%). Calibrated q10 is an affine transformation fitted on tuning stays by stay-weighted quantile loss. The 240-stay and 600-stay settings, dense and sparse observation regimes, serial dependence, informative monitoring, cluster-size informativeness, common-time misspecification, random shape, treatment feedback, transient non-persistence, pure null, weak persistent signal, Student-$t_3$ heavy tails, and integer rounding are prespecified data-generating mechanisms.}
+\end{table*}

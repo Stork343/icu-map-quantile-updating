@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: Please cite the accompanying manuscript and this software archive.
+title: ICU MAP penalized quantile updating reproducibility code
+type: software
+version: 1.0.0
+date-released: 2026-08-27
+repository-code: https://github.com/Stork343/icu-map-quantile-updating
+authors:
+  - family-names: Hou
+    given-names: Jian
+    orcid: https://orcid.org/0000-0002-9248-6874
+  - family-names: Meng
+    given-names: Tan
+    orcid: https://orcid.org/0009-0001-1812-1834
+  - family-names: Tian
+    given-names: Maozai
+    orcid: https://orcid.org/0000-0002-0515-4477
+

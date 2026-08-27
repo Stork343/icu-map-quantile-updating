@@ -1,0 +1,26 @@
+\begin{table}[!htbp]
+\caption{Paired stay-level check-loss comparisons against calibrated admission-window q10.}
+\label{tab:validation_extension_paired_comparisons}
+\centering
+\small
+\begin{tabular}{lrrrr}
+\hline
+Candidate & Mean loss & Paired difference & Descriptive interval & Better stays\\
+\hline
+inner selected calibrated rule & 1.8896 & 0.0000 & 0.0000 to 0.0000 & 0.0\%\\
+calibrated q10 & 1.8896 & 0.0000 & 0.0000 to 0.0000 & 0.0\%\\
+calibrated mean & 1.9260 & 0.0364 & 0.0314 to 0.0414 & 44.3\%\\
+calibrated min & 1.9379 & 0.0483 & 0.0447 to 0.0518 & 48.6\%\\
+primary level update & 1.9528 & 0.0632 & 0.0585 to 0.0679 & 54.4\%\\
+calibrated last & 2.0149 & 0.1253 & 0.1165 to 0.1341 & 42.4\%\\
+calibrated below65 burden & 2.0200 & 0.1305 & 0.1246 to 0.1363 & 44.2\%\\
+raw min & 2.0953 & 0.2057 & 0.1981 to 0.2133 & 42.1\%\\
+raw q10 & 2.1394 & 0.2498 & 0.2407 to 0.2589 & 51.7\%\\
+population & 2.2215 & 0.3319 & 0.3231 to 0.3407 & 34.2\%\\
+raw mean & 4.9448 & 3.0552 & 3.0227 to 3.0877 & 24.4\%\\
+raw last & 4.9775 & 3.0880 & 3.0410 to 3.1349 & 29.2\%\\
+\hline
+\end{tabular}
+\par\smallskip
+\footnotesize{Differences are candidate minus calibrated-q10 stay-level later check loss; negative values favor the candidate. Each descriptive interval is the estimate plus or minus 1.96 times its pooled stay-level standard error, conditional on the realized fold-trained rules; it does not propagate uncertainty from refitting, tuning, or rule selection. The independent unit is the ICU stay. The preferred scope is nested five-fold internal cross-fitting when available.}
+\end{table}

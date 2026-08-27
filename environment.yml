@@ -1,0 +1,14 @@
+name: icu-map-quantile-updating
+channels:
+  - conda-forge
+dependencies:
+  - python=3.12
+  - numpy=1.26.4
+  - pandas=2.2.2
+  - scipy=1.14.0
+  - matplotlib=3.9.2
+  - pyarrow>=14
+  - r-base=4.3
+  - r-data.table=1.17.8
+  - r-quantreg=6.1
+

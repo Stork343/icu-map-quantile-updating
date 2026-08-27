@@ -1,0 +1,12 @@
+{
+  "status": "complete",
+  "local_cache_available": true,
+  "fold_specific_population_refitting_available": true,
+  "inner_penalty_selection_available": true,
+  "inner_scalar_calibration_available": true,
+  "stay_is_independent_unit": true,
+  "limitations": [
+    "The source database and candidate ideas were previously inspected; nested cross-fitting prevents fold-level leakage but does not create an external cohort.",
+    "Operational threshold analyses are descriptive sensitivities and do not redefine the tau=0.10 check-loss target."
+  ]
+}

@@ -1,0 +1,89 @@
+{
+  "status": "ok",
+  "metadata": {
+    "data_summary": {
+      "fit_stays_requested": 0,
+      "fit_stays": 60310,
+      "fit_observations": 1551170,
+      "obs_per_stay_median": 25.0,
+      "obs_per_stay_iqr": [
+        22.0,
+        28.0
+      ],
+      "index_obs_per_stay_median": 13.0,
+      "late_obs_per_stay_median": 12.0,
+      "stay_fraction_with_any_map_below_65": 0.6386668877466424,
+      "map_below_65_observation_fraction": 0.155835272729617
+    },
+    "basis_dimension": 5,
+    "basis_Tmax": 24.0,
+    "age_standardization": {
+      "age_mean_training_split": 63.56367103299618,
+      "age_sd_training_split": 16.880473581509797
+    },
+    "assessment_stays": 12062
+  },
+  "tau": 0.1,
+  "lambda_b": 0.03,
+  "metrics": {
+    "dynamic_12h_auc_admission_window_q10": 0.802205327784798,
+    "dynamic_12h_auc_updated_vulnerability": 0.7800447069486804,
+    "dynamic_12h_risk_difference_any_later_low_percent": 70.39529701153091,
+    "dynamic_12h_loss_reduction_percent": 12.030470325673129,
+    "most_vs_least_vulnerable_decile": {
+      "admission_window_q10_medians": [
+        52.0,
+        91.0
+      ],
+      "later_map_below65_burden_percent": [
+        42.3905415609317,
+        1.0362045509543065
+      ],
+      "any_later_map_below65_percent": [
+        85.33554266777134,
+        7.373653686826843
+      ],
+      "hospital_mortality_percent": [
+        17.149958574979287,
+        7.042253521126761
+      ]
+    },
+    "surface_extreme_cells_with_at_least_25_stays": {
+      "highest_any_later_low": {
+        "admission_window_low_fraction_bin": ">0.50",
+        "admission_window_q10_bin": "<55",
+        "stays": 708,
+        "admission_window_q10_median": 51.0,
+        "admission_window_low_fraction_mean": 0.7336146558991339,
+        "later_map_below65_fraction": 0.5367640277847815,
+        "any_later_map_below65": 0.9194915254237288,
+        "hospital_mortality": 0.17231638418079095
+      },
+      "lowest_any_later_low": {
+        "admission_window_low_fraction_bin": "0",
+        "admission_window_q10_bin": ">=80",
+        "stays": 1813,
+        "admission_window_q10_median": 87.0,
+        "admission_window_low_fraction_mean": 0.0,
+        "later_map_below65_fraction": 0.011880892438477264,
+        "any_later_map_below65": 0.08714837286265857,
+        "hospital_mortality": 0.0694980694980695
+      }
+    }
+  },
+  "artifacts": {
+    "dynamic_signal_plot": "statistics-in-medicine-paper\\recovery_20260822\\empirical\\enhanced_dynamic_signal_plot.pdf",
+    "risk_surface_plot": "statistics-in-medicine-paper\\recovery_20260822\\empirical\\enhanced_risk_surface_plot.pdf",
+    "clinical_yield_plot": "statistics-in-medicine-paper\\recovery_20260822\\empirical\\enhanced_clinical_yield_plot.pdf",
+    "subgroup_signal_plot": "statistics-in-medicine-paper\\recovery_20260822\\empirical\\enhanced_subgroup_signal_plot.pdf",
+    "model_gain_plot": "statistics-in-medicine-paper\\recovery_20260822\\empirical\\enhanced_model_gain_plot.pdf",
+    "dynamic_signal_metrics_csv": "statistics-in-medicine-paper\\recovery_20260822\\empirical\\enhanced_dynamic_signal_metrics.csv",
+    "risk_surface_csv": "statistics-in-medicine-paper\\recovery_20260822\\empirical\\enhanced_risk_surface.csv",
+    "decile_summary_csv": "statistics-in-medicine-paper\\recovery_20260822\\empirical\\enhanced_admission_window_q10_decile_summary.csv",
+    "clinical_yield_curve_csv": "statistics-in-medicine-paper\\recovery_20260822\\empirical\\enhanced_clinical_yield_curve.csv",
+    "clinical_yield_thresholds_csv": "statistics-in-medicine-paper\\recovery_20260822\\empirical\\enhanced_clinical_yield_thresholds.csv",
+    "subgroup_signal_csv": "statistics-in-medicine-paper\\recovery_20260822\\empirical\\enhanced_subgroup_signal.csv",
+    "model_gain_deciles_csv": "statistics-in-medicine-paper\\recovery_20260822\\empirical\\enhanced_model_gain_deciles.csv",
+    "outcome_associations_csv": "statistics-in-medicine-paper\\recovery_20260822\\empirical\\enhanced_outcome_associations.csv"
+  }
+}

@@ -1,0 +1,2 @@
+scenario_key,label,description,n_stays,level_sd,index_shift_sd,serial_rho_15min,index_count_range,late_count_range
+transient_nonpersistent,Transient non-persistence,"A large index-only shift disappears later, providing a negative control under serial residual dependence.",600,0.0,6.0,0.6,"(6, 14)","(6, 14)"

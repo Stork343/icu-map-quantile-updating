@@ -1,0 +1,19 @@
+\begin{table}[!htbp]
+\caption{Relationship of the split-window assessment to adjacent longitudinal prediction methods.}
+\label{tab:prior_method_map}
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.10}
+\begin{tabular}{>{\raggedright\arraybackslash}p{0.16\textwidth}>{\raggedright\arraybackslash}p{0.20\textwidth}>{\raggedright\arraybackslash}p{0.23\textwidth}>{\raggedright\arraybackslash}p{0.31\textwidth}}
+\toprule
+Approach & Primary target & Use of longitudinal history & Relation to the present analysis\\
+\midrule
+Longitudinal quantile regression and quantile mixed models & Marginal or conditional longitudinal quantiles and covariate effects & Repeated outcomes are fitted jointly, often with fixed, penalized, or latent subject effects & Provides the quantile-regression foundation, but does not by itself impose a past-only update followed by protected later-window scoring.\\
+Landmark and joint-model dynamic prediction & Updated future event or outcome prediction & Available biomarker history is summarized or jointly modelled at a landmark & Provides the sequential prediction principle. Most established formulations target event probabilities or mean-model-based trajectories rather than later lower-tail check loss.\\
+Dynamic functional prediction & Future longitudinal trajectory under flexible subject-specific curves & Irregular history is represented through functional random effects or basis expansions & Provides richer shape prediction. It requires stronger trajectory structure than the scalar level question examined here.\\
+Quantile regression with outcome-dependent follow-up & Marginal longitudinal quantiles corrected for informative visit times & The visit process is explicitly modelled and used for weighting & Targets a reweighted marginal process. The present primary estimand instead includes routine-care monitoring in the observed-record target and treats intensity weighting as a distinct sensitivity estimand.\\
+Split-window penalized quantile assessment & Later observed-record lower-tail risk and component persistence & A finite index history produces a penalized residual update; later observations score the frozen rule with the stay as the independent unit & Contributes a transparent component-assessment protocol and empirical boundary, not a new random-effects distribution or a claim of universal predictive superiority.\\
+\bottomrule
+\end{tabular}
+\end{table}

@@ -1,0 +1,18 @@
+\begin{table}[!htbp]
+\caption{Assessment sensitivity of the primary stay-specific level update across quantiles and index-window definitions.}
+\label{tab:sensitivity_analysis}
+\centering
+\begin{tabular}{rrrrrr}
+\hline
+$\tau$ & Nominal window (h) & $\lambda_b$ & Pop. loss & Updated loss & Reduction\\
+\hline
+0.05 & 12 & 0.03 & 1.2974 & 1.1845 & 8.7\%\\
+0.10 & 6 & 0.1 & 2.2198 & 2.0545 & 7.4\%\\
+0.10 & 12 & 0.03 & 2.2247 & 1.9570 & 12.0\%\\
+0.10 & 18 & 0.03 & 2.2289 & 1.8912 & 15.1\%\\
+0.20 & 12 & 0.03 & 3.6541 & 3.0746 & 15.9\%\\
+\hline
+\end{tabular}
+\par\smallskip
+\footnotesize{Population loss is the corresponding baseline covariate quantile assessment loss. Updated loss adds the profiled stay-specific level offset. The penalty was selected on the tuning split for each quantile/window setting, and losses were then evaluated on the assessment split. Window values are nominal clock-time cut points; if a clock-time split did not leave the required index and later observations, the prespecified observation-count fallback was used. These sensitivity results are descriptive because assessment outcomes had been examined during earlier work.}
+\end{table}

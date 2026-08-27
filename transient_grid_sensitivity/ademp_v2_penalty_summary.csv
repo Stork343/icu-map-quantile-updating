@@ -1,0 +1,16 @@
+scenario_key,scenario_label,method,selected_penalty,selected_count,n_replicates,selected_proportion
+transient_nonpersistent,Transient non-persistence,tuned_level,0.3,5,200,0.025
+transient_nonpersistent,Transient non-persistence,tuned_level,1.0,6,200,0.03
+transient_nonpersistent,Transient non-persistence,tuned_level,3.0,13,200,0.065
+transient_nonpersistent,Transient non-persistence,tuned_level,10.0,10,200,0.05
+transient_nonpersistent,Transient non-persistence,tuned_level,30.0,4,200,0.02
+transient_nonpersistent,Transient non-persistence,tuned_level,100.0,2,200,0.01
+transient_nonpersistent,Transient non-persistence,tuned_level,300.0,160,200,0.8
+transient_nonpersistent,Transient non-persistence,tuned_level_slope,0.1,1,200,0.005
+transient_nonpersistent,Transient non-persistence,tuned_level_slope,0.3,23,200,0.115
+transient_nonpersistent,Transient non-persistence,tuned_level_slope,1.0,8,200,0.04
+transient_nonpersistent,Transient non-persistence,tuned_level_slope,3.0,9,200,0.045
+transient_nonpersistent,Transient non-persistence,tuned_level_slope,10.0,9,200,0.045
+transient_nonpersistent,Transient non-persistence,tuned_level_slope,30.0,1,200,0.005
+transient_nonpersistent,Transient non-persistence,tuned_level_slope,100.0,1,200,0.005
+transient_nonpersistent,Transient non-persistence,tuned_level_slope,300.0,148,200,0.74

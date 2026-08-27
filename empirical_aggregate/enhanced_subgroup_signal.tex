@@ -1,0 +1,22 @@
+\begin{table}[!htbp]
+\caption{Exploratory subgroup summaries of the admission-window lower-tail MAP signal.}
+\label{tab:subgroup_signal}
+\centering
+\begin{tabular}{lrrrrr}
+\hline
+Subgroup & Stays & Event rate & AUC & Risk difference & Update reduction\\
+\hline
+Overall & 12062 & 47.4\% & 0.802 & 70.4\% & 12.0\%\\
+Age <65 y & 5814 & 37.7\% & 0.787 & 64.7\% & 14.2\%\\
+Age >=65 y & 6248 & 56.5\% & 0.801 & 68.5\% & 9.9\%\\
+Female & 5283 & 50.0\% & 0.802 & 69.5\% & 11.3\%\\
+Male & 6779 & 45.4\% & 0.801 & 70.6\% & 12.6\%\\
+Elective/nonurgent & 3581 & 46.0\% & 0.801 & 70.5\% & 8.8\%\\
+Emergency/urgent & 8481 & 48.0\% & 0.803 & 70.0\% & 13.3\%\\
+Index obs <13 & 4920 & 41.7\% & 0.805 & 70.7\% & 14.8\%\\
+Index obs >=13 & 7142 & 51.3\% & 0.795 & 69.7\% & 10.0\%\\
+\hline
+\end{tabular}
+\par\smallskip
+\footnotesize{Risk difference compares the lowest and highest admission-window q10 quintiles within each subgroup for any later recorded MAP below 65 mmHg. Update reduction is the relative reduction in mean later check loss from the primary penalized level update. No multiplicity adjustment was applied.}
+\end{table}

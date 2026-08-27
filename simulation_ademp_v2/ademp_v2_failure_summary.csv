@@ -1,0 +1,99 @@
+scenario_key,scenario_label,method,n_attempted_replicates,n_effective_replicates,failure_count,failure_rate
+ideal_large_dense,"Ideal: large, dense",oracle,200,200,0,0.0
+ideal_large_dense,"Ideal: large, dense",population,200,200,0,0.0
+ideal_large_dense,"Ideal: large, dense",raw_index_q10,200,200,0,0.0
+ideal_large_dense,"Ideal: large, dense",affine_calibrated_q10,200,200,0,0.0
+ideal_large_dense,"Ideal: large, dense",unpenalized_level,200,200,0,0.0
+ideal_large_dense,"Ideal: large, dense",tuned_level,200,200,0,0.0
+ideal_large_dense,"Ideal: large, dense",tuned_level_slope,200,200,0,0.0
+ideal_small_dense,"Ideal: small, dense",oracle,200,200,0,0.0
+ideal_small_dense,"Ideal: small, dense",population,200,200,0,0.0
+ideal_small_dense,"Ideal: small, dense",raw_index_q10,200,200,0,0.0
+ideal_small_dense,"Ideal: small, dense",affine_calibrated_q10,200,200,0,0.0
+ideal_small_dense,"Ideal: small, dense",unpenalized_level,200,200,0,0.0
+ideal_small_dense,"Ideal: small, dense",tuned_level,200,200,0,0.0
+ideal_small_dense,"Ideal: small, dense",tuned_level_slope,200,200,0,0.0
+ideal_large_sparse,"Ideal: large, sparse",oracle,200,200,0,0.0
+ideal_large_sparse,"Ideal: large, sparse",population,200,200,0,0.0
+ideal_large_sparse,"Ideal: large, sparse",raw_index_q10,200,200,0,0.0
+ideal_large_sparse,"Ideal: large, sparse",affine_calibrated_q10,200,200,0,0.0
+ideal_large_sparse,"Ideal: large, sparse",unpenalized_level,200,200,0,0.0
+ideal_large_sparse,"Ideal: large, sparse",tuned_level,200,200,0,0.0
+ideal_large_sparse,"Ideal: large, sparse",tuned_level_slope,200,200,0,0.0
+serial_dependence,Serial dependence,oracle,200,200,0,0.0
+serial_dependence,Serial dependence,population,200,200,0,0.0
+serial_dependence,Serial dependence,raw_index_q10,200,200,0,0.0
+serial_dependence,Serial dependence,affine_calibrated_q10,200,200,0,0.0
+serial_dependence,Serial dependence,unpenalized_level,200,200,0,0.0
+serial_dependence,Serial dependence,tuned_level,200,200,0,0.0
+serial_dependence,Serial dependence,tuned_level_slope,200,200,0,0.0
+discrete_map_rounding,Integer MAP rounding,oracle,200,200,0,0.0
+discrete_map_rounding,Integer MAP rounding,population,200,200,0,0.0
+discrete_map_rounding,Integer MAP rounding,raw_index_q10,200,200,0,0.0
+discrete_map_rounding,Integer MAP rounding,affine_calibrated_q10,200,200,0,0.0
+discrete_map_rounding,Integer MAP rounding,unpenalized_level,200,200,0,0.0
+discrete_map_rounding,Integer MAP rounding,tuned_level,200,200,0,0.0
+discrete_map_rounding,Integer MAP rounding,tuned_level_slope,200,200,0,0.0
+informative_monitoring,Informative monitoring,oracle,200,200,0,0.0
+informative_monitoring,Informative monitoring,population,200,200,0,0.0
+informative_monitoring,Informative monitoring,raw_index_q10,200,200,0,0.0
+informative_monitoring,Informative monitoring,affine_calibrated_q10,200,200,0,0.0
+informative_monitoring,Informative monitoring,unpenalized_level,200,200,0,0.0
+informative_monitoring,Informative monitoring,tuned_level,200,200,0,0.0
+informative_monitoring,Informative monitoring,tuned_level_slope,200,200,0,0.0
+cluster_size_informative,Cluster size--level association,oracle,200,200,0,0.0
+cluster_size_informative,Cluster size--level association,population,200,200,0,0.0
+cluster_size_informative,Cluster size--level association,raw_index_q10,200,200,0,0.0
+cluster_size_informative,Cluster size--level association,affine_calibrated_q10,200,200,0,0.0
+cluster_size_informative,Cluster size--level association,unpenalized_level,200,200,0,0.0
+cluster_size_informative,Cluster size--level association,tuned_level,200,200,0,0.0
+cluster_size_informative,Cluster size--level association,tuned_level_slope,200,200,0,0.0
+common_time_misspecified,Misspecified common time,oracle,200,200,0,0.0
+common_time_misspecified,Misspecified common time,population,200,200,0,0.0
+common_time_misspecified,Misspecified common time,raw_index_q10,200,200,0,0.0
+common_time_misspecified,Misspecified common time,affine_calibrated_q10,200,200,0,0.0
+common_time_misspecified,Misspecified common time,unpenalized_level,200,200,0,0.0
+common_time_misspecified,Misspecified common time,tuned_level,200,200,0,0.0
+common_time_misspecified,Misspecified common time,tuned_level_slope,200,200,0,0.0
+level_plus_shape,Persistent level plus shape,oracle,200,200,0,0.0
+level_plus_shape,Persistent level plus shape,population,200,200,0,0.0
+level_plus_shape,Persistent level plus shape,raw_index_q10,200,200,0,0.0
+level_plus_shape,Persistent level plus shape,affine_calibrated_q10,200,200,0,0.0
+level_plus_shape,Persistent level plus shape,unpenalized_level,200,200,0,0.0
+level_plus_shape,Persistent level plus shape,tuned_level,200,200,0,0.0
+level_plus_shape,Persistent level plus shape,tuned_level_slope,200,200,0,0.0
+treatment_feedback,Treatment feedback,oracle,200,200,0,0.0
+treatment_feedback,Treatment feedback,population,200,200,0,0.0
+treatment_feedback,Treatment feedback,raw_index_q10,200,200,0,0.0
+treatment_feedback,Treatment feedback,affine_calibrated_q10,200,200,0,0.0
+treatment_feedback,Treatment feedback,unpenalized_level,200,200,0,0.0
+treatment_feedback,Treatment feedback,tuned_level,200,200,0,0.0
+treatment_feedback,Treatment feedback,tuned_level_slope,200,200,0,0.0
+transient_nonpersistent,Transient non-persistence,oracle,200,200,0,0.0
+transient_nonpersistent,Transient non-persistence,population,200,200,0,0.0
+transient_nonpersistent,Transient non-persistence,raw_index_q10,200,200,0,0.0
+transient_nonpersistent,Transient non-persistence,affine_calibrated_q10,200,200,0,0.0
+transient_nonpersistent,Transient non-persistence,unpenalized_level,200,200,0,0.0
+transient_nonpersistent,Transient non-persistence,tuned_level,200,200,0,0.0
+transient_nonpersistent,Transient non-persistence,tuned_level_slope,200,200,0,0.0
+null_serial,Pure null with serial dependence,oracle,200,200,0,0.0
+null_serial,Pure null with serial dependence,population,200,200,0,0.0
+null_serial,Pure null with serial dependence,raw_index_q10,200,200,0,0.0
+null_serial,Pure null with serial dependence,affine_calibrated_q10,200,200,0,0.0
+null_serial,Pure null with serial dependence,unpenalized_level,200,200,0,0.0
+null_serial,Pure null with serial dependence,tuned_level,200,200,0,0.0
+null_serial,Pure null with serial dependence,tuned_level_slope,200,200,0,0.0
+weak_level,Weak persistent level,oracle,200,200,0,0.0
+weak_level,Weak persistent level,population,200,200,0,0.0
+weak_level,Weak persistent level,raw_index_q10,200,200,0,0.0
+weak_level,Weak persistent level,affine_calibrated_q10,200,200,0,0.0
+weak_level,Weak persistent level,unpenalized_level,200,200,0,0.0
+weak_level,Weak persistent level,tuned_level,200,200,0,0.0
+weak_level,Weak persistent level,tuned_level_slope,200,200,0,0.0
+heavy_tail_t3,Heavy-tailed t3 residual,oracle,200,200,0,0.0
+heavy_tail_t3,Heavy-tailed t3 residual,population,200,200,0,0.0
+heavy_tail_t3,Heavy-tailed t3 residual,raw_index_q10,200,200,0,0.0
+heavy_tail_t3,Heavy-tailed t3 residual,affine_calibrated_q10,200,200,0,0.0
+heavy_tail_t3,Heavy-tailed t3 residual,unpenalized_level,200,200,0,0.0
+heavy_tail_t3,Heavy-tailed t3 residual,tuned_level,200,200,0,0.0
+heavy_tail_t3,Heavy-tailed t3 residual,tuned_level_slope,200,200,0,0.0

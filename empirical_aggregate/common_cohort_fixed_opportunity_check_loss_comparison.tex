@@ -1,0 +1,17 @@
+\begin{table}[!htbp]
+\caption{Paired check loss in the common fixed-opportunity cohort.}
+\label{tab:common_cohort_fixed_opportunity_check_loss}
+\centering
+\small
+\begin{tabular}{rrrrr}
+\hline
+$K$ & Stays & Calibrated q10 & Primary update & Primary minus calibrated (descriptive interval)\\
+\hline
+4 & 39491 & 1.7068 & 1.7527 & 0.0459 (0.0397 to 0.0521)\\
+8 & 39491 & 1.7631 & 1.8308 & 0.0677 (0.0619 to 0.0735)\\
+12 & 39491 & 1.8128 & 1.8929 & 0.0801 (0.0743 to 0.0858)\\
+\hline
+\end{tabular}
+\par\smallskip
+\footnotesize{All three rows compare the same stays with at least 12 later records using nested out-of-fold predictions. Loss is averaged within stay over exactly the first $K$ later records and then across stays. Differences are paired at the stay level; positive values favor calibrated q10. Each descriptive interval is the paired estimate plus or minus 1.96 times its stay-level standard error, conditional on the realized fold-trained rules; it does not propagate uncertainty from refitting, tuning, or rule selection.}
+\end{table}

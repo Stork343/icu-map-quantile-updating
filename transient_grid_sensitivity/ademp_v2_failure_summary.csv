@@ -1,0 +1,8 @@
+scenario_key,scenario_label,method,n_attempted_replicates,n_effective_replicates,failure_count,failure_rate
+transient_nonpersistent,Transient non-persistence,oracle,200,200,0,0.0
+transient_nonpersistent,Transient non-persistence,population,200,200,0,0.0
+transient_nonpersistent,Transient non-persistence,raw_index_q10,200,200,0,0.0
+transient_nonpersistent,Transient non-persistence,affine_calibrated_q10,200,200,0,0.0
+transient_nonpersistent,Transient non-persistence,unpenalized_level,200,200,0,0.0
+transient_nonpersistent,Transient non-persistence,tuned_level,200,200,0,0.0
+transient_nonpersistent,Transient non-persistence,tuned_level_slope,200,200,0,0.0
