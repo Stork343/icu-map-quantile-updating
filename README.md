@@ -1,6 +1,6 @@
-# ICU MAP penalized quantile updating
+# ICU MAP split window quantile prediction
 
-Reproducibility materials for the manuscript **Penalized Quantile Updating for Within Stay Persistence of Lower Tail Mean Arterial Pressure in Intensive Care**.
+Reproducibility materials for the manuscript **Assessing Lower Tail Persistence of Mean Arterial Pressure Within Intensive Care Stays Using Split Window Quantile Prediction**.
 
 Repository: <https://github.com/Stork343/icu-map-quantile-updating>
 
@@ -119,4 +119,3 @@ Empirical loss intervals are descriptive intervals based on stay-level standard 
 ## Citation
 
 Please use the metadata in `CITATION.cff` and cite the accompanying manuscript when it becomes available.
-
