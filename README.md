@@ -1,6 +1,6 @@
 # ICU MAP split window quantile prediction
 
-Reproducibility materials for the manuscript **Assessing Lower Tail Persistence of Mean Arterial Pressure Within Intensive Care Stays Using Split Window Quantile Prediction**.
+Reproducibility materials for the manuscript **Lower Tail Persistence of Mean Arterial Pressure in Intensive Care**.
 
 Repository: <https://github.com/Stork343/icu-map-quantile-updating>
 
