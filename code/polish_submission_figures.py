@@ -180,7 +180,7 @@ def plot_workflow(output_stem: Path) -> None:
         ax,
         (0.72, 0.56),
         (0.22, 0.13),
-        "Level update\nprofile scalar offset $\\hat b_i$",
+        "Profiled offset\nestimate scalar $\\hat b_i$",
         LIGHT_RED,
         RED,
     )
@@ -303,7 +303,7 @@ def plot_subgroup_forest(subgroups_csv: Path, output_stem: Path) -> None:
         {
             "values": loss,
             "title": "d  Predictive gain",
-            "xlabel": "Level-update loss reduction\n(%; positive favors update)",
+            "xlabel": "Profiled-offset loss reduction\n(%; positive favors offset rule)",
             "xlim": (7.0, 16.0),
             "xticks": [8, 10, 12, 14, 16],
         },

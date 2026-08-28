@@ -4,7 +4,7 @@
 \centering
 \begin{tabular}{rrrrrr}
 \hline
-Window (h) & Stays & AUC & Low q10 risk & High q10 risk & Update reduction\\
+Window (h) & Stays & AUC & Low q10 risk & High q10 risk & Loss reduction\\
 \hline
 1 & 851 & 0.777 & 91.6\% & 34.4\% & -3.0\%\\
 3 & 6332 & 0.789 & 90.8\% & 26.0\% & 2.5\%\\
@@ -14,5 +14,5 @@ Window (h) & Stays & AUC & Low q10 risk & High q10 risk & Update reduction\\
 \hline
 \end{tabular}
 \par\smallskip
-\footnotesize{Rows use strict clock-time splits requiring at least four observations by the window end and at least one later observation. The update reduction holds the primary 12-hour penalty $\lambda_b=0.03$ fixed; it is therefore distinct from the window sensitivity that reselects the penalty and permits a fallback split. Low and high q10 tail groups include all stays at or below the empirical 20th percentile and at or above the empirical 80th percentile, respectively. Boundary ties are retained, so these tail groups need not contain exactly 20\% of stays and are not identical to the mutually exclusive primary q10 strata.}
+\footnotesize{Rows use strict clock-time splits requiring at least four observations by the window end and at least one later observation. The loss reduction for the profiled offset rule holds the primary 12-hour penalty $\lambda_b=0.03$ fixed; it is therefore distinct from the window sensitivity that reselects the penalty and permits a fallback split. Low and high q10 tail groups include all stays at or below the empirical 20th percentile and at or above the empirical 80th percentile, respectively. Boundary ties are retained, so these tail groups need not contain exactly 20\% of stays and are not identical to the mutually exclusive primary q10 strata.}
 \end{table}

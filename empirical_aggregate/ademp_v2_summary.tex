@@ -6,7 +6,7 @@
 \resizebox{\textwidth}{!}{%
 \begin{tabular}{lrrrrrr}
 \hline
-Scenario & Population & Calibrated q10 & Tuned level & Level + slope & $\Delta_{\mathrm{level-pop}}$ & $\Delta_{\mathrm{level-cal}}$\\
+Scenario & Population & Calibrated q10 & Profiled offset & Level + slope & $\Delta_{\mathrm{offset-pop}}$ & $\Delta_{\mathrm{offset-cal}}$\\
 \hline
 Ideal: large, dense & 1.370 (0.004) & 1.061 (0.002) & 1.064 (0.002) & 1.154 (0.003) & -0.3060 (0.0045) & +0.0034 (0.0011)\\
 Ideal: small, dense & 1.383 (0.008) & 1.069 (0.004) & 1.073 (0.004) & 1.158 (0.004) & -0.3095 (0.0075) & +0.0043 (0.0020)\\
@@ -26,5 +26,5 @@ Heavy-tailed t3 residual & 1.670 (0.006) & 1.502 (0.006) & 1.482 (0.006) & 1.522
 \end{tabular}%
 }
 \par\smallskip
-\footnotesize{Entries are mean stay-level assessment check loss (Monte Carlo standard error) across 200 independent simulated datasets per scenario. Differences are paired within replicate; negative values in both $\Delta$ columns favor the tuned level update. All methods had 200/200 effective replicates (failure rate 0\%). Calibrated q10 is an affine transformation fitted on tuning stays by stay-weighted quantile loss. The 240-stay and 600-stay settings, dense and sparse observation regimes, serial dependence, informative monitoring, cluster-size informativeness, common-time misspecification, random shape, treatment feedback, transient non-persistence, pure null, weak persistent signal, Student-$t_3$ heavy tails, and integer rounding are prespecified data-generating mechanisms.}
+\footnotesize{Entries are mean stay-level assessment check loss (Monte Carlo standard error) across 200 independent simulated datasets per scenario. Differences are paired within replicate; negative values in both $\Delta$ columns favor the profiled offset rule. All methods had 200/200 effective replicates (failure rate 0\%). Calibrated q10 is an affine transformation fitted on tuning stays by stay-weighted quantile loss. The 240-stay and 600-stay settings, dense and sparse observation regimes, serial dependence, informative monitoring, cluster-size informativeness, common-time misspecification, random shape, treatment feedback, transient non-persistence, pure null, weak persistent signal, Student-$t_3$ heavy tails, and integer rounding are prespecified data-generating mechanisms.}
 \end{table*}

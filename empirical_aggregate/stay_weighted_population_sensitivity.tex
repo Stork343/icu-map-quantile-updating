@@ -3,16 +3,18 @@
 \label{tab:stay_weighted_population_sensitivity}
 \centering
 \small
+\resizebox{\textwidth}{!}{%
 \begin{tabular}{lrrrr}
 \hline
 Model & $\lambda_b$ & Assessment loss (SE) & Paired reduction & Descriptive interval\\
 \hline
 Stay-weighted population & -- & 2.2227 (0.0129) & 0.0000 & 0.0000--0.0000\\
-Stay-weighted population + primary level update & 0.03 & 1.9583 (0.0116) & 0.2645 & 0.2404--0.2886\\
+Stay-weighted population + primary offset & 0.03 & 1.9583 (0.0116) & 0.2645 & 0.2404--0.2886\\
 Stay-weighted spline population & -- & 2.2226 (0.0130) & 0.0002 & -0.0001--0.0005\\
-Stay-weighted spline + stay-specific level update & 0.03 & 1.9666 (0.0117) & 0.2561 & 0.2319--0.2804\\
+Stay-weighted spline + stay-specific offset & 0.03 & 1.9666 (0.0117) & 0.2561 & 0.2319--0.2804\\
 \hline
-\end{tabular}
+\end{tabular}%
+}
 \par\smallskip
 \footnotesize{The common quantile component was fitted with observation weights equal to the inverse number of training observations in each stay, so every training stay had total weight one. Assessment loss was averaged within stay and then across stays. Paired reductions and descriptive intervals use the stay-weighted baseline population model as the reference; each interval is the estimate plus or minus 1.96 times its stay-level standard error conditional on the realized fitted rules.}
 \end{table}

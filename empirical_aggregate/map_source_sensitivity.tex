@@ -4,14 +4,16 @@
 \centering
 \small
 \setlength{\tabcolsep}{4pt}
+\resizebox{\textwidth}{!}{%
 \begin{tabular}{lrrrrrrrr}
 \toprule
-MAP source & Analytic stays & Split-window stays & Assessment stays & $\lambda_b$ & Population loss & Level-update loss & Reduction, \% & AUC\\
+MAP source & Analytic stays & Split-window stays & Assessment stays & $\lambda_b$ & Population loss & Offset loss & Reduction, \% & AUC\\
 \midrule
 Invasive MAP only & 23,334 & 20,963 & 4,192 & 0.1 & 1.8775 & 1.7236 & 8.2 & 0.763\\
 Non-invasive MAP only & 47,059 & 41,481 & 8,296 & 0.03 & 2.3770 & 1.9929 & 16.2 & 0.820\\
 \bottomrule
-\end{tabular}
+\end{tabular}%
+}
 \par\smallskip
-\footnotesize{Each row uses a source-specific eligibility cohort and an independently generated stay split. The rows therefore assess within-source robustness and are not paired device comparisons. Level-updated loss uses the primary profiled stay-specific level offset. Reduction is relative to the source-specific population quantile model; AUC uses lower admission-window q10 as the risk score for any later recorded MAP below 65 mmHg.}
+\footnotesize{Each row uses a source-specific eligibility cohort and an independently generated stay split. The rows therefore assess within-source robustness and are not paired device comparisons. Offset loss uses the primary profiled stay-specific level term. Reduction is relative to the source-specific population quantile model; AUC uses lower admission-window q10 as the risk score for any later recorded MAP below 65 mmHg.}
 \end{table}

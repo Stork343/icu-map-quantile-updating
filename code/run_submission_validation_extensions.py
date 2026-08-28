@@ -89,7 +89,7 @@ MODEL_DISPLAY_ORDER = (
 
 MODEL_DISPLAY_LABELS: Mapping[str, str] = {
     "population": "Population rule",
-    "primary_level_update": "Primary level update",
+    "primary_level_update": "Primary profiled offset",
     "inner_selected_calibrated_rule": "Inner-selected calibrated rule",
     "calibrated_q10": "Calibrated q10",
     "calibrated_last": "Calibrated last MAP",
@@ -1006,7 +1006,7 @@ def write_common_cohort_fixed_opportunity_tex(
         "\\small",
         "\\begin{tabular}{rrrrr}",
         "\\hline",
-        "$K$ & Stays & Calibrated q10 & Primary update & Primary minus calibrated (descriptive interval)\\\\",
+        "$K$ & Stays & Calibrated q10 & Profiled offset & Offset minus calibrated (descriptive interval)\\\\",
         "\\hline",
     ]
     for _, row in losses.sort_values("first_k_later_records").iterrows():

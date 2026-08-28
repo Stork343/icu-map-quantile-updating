@@ -1,17 +1,19 @@
 \begin{table}[!htbp]
-\caption{Exploratory stay-specific landmark update structure comparison.}
+\caption{Exploratory comparison of stay-specific landmark structures.}
 \label{tab:random_effect_structure_comparison}
 \centering
+\resizebox{\textwidth}{!}{%
 \begin{tabular}{llrrrr}
 \hline
-Model & Update design & $\lambda_0$ & $\lambda_1$ & Assessment loss & SE\\
+Model & Stay-specific design & $\lambda_0$ & $\lambda_1$ & Assessment loss & SE\\
 \hline
 Population-only QR & none & -- & -- & 2.2247 & 0.0128\\
-Penalized stay-specific level update & 1 & 0.03 & 0 & 1.9570 & 0.0115\\
-Penalized stay-specific slope-only update & $(t-12)/12$ & 0 & 100 & 2.2249 & 0.0128\\
-Penalized stay-specific level + slope update & $\{1,(t-12)/12\}$ & 0.03 & 0.1 & 1.9061 & 0.0106\\
+Penalized stay-specific level & 1 & 0.03 & 0 & 1.9570 & 0.0115\\
+Penalized stay-specific slope only & $(t-12)/12$ & 0 & 100 & 2.2249 & 0.0128\\
+Penalized stay-specific level + slope & $\{1,(t-12)/12\}$ & 0.03 & 0.1 & 1.9061 & 0.0106\\
 \hline
-\end{tabular}
+\end{tabular}%
+}
 \par\smallskip
-\footnotesize{The population component is the baseline-covariate 0.10 quantile model fitted on training stays. Stay-specific updates are estimated only from index-window residuals, with penalties selected on tuning stays and losses reported on assessment stays. All assessment-set structure comparisons in this table are exploratory. The centered slope basis is $(t-12)/12$. The level-plus-slope row fixes $\lambda_0$ at the tuning-selected level-update value and tunes $\lambda_1$; its joint convex update is solved through the box-constrained Fenchel dual and accepted only when primal--dual and KKT certificates pass. It is an exploratory incremental slope sensitivity, not an exhaustive joint penalty-grid search or a replacement for the frozen primary level update.}
+\footnotesize{The population component is the baseline-covariate 0.10 quantile model fitted on training stays. Stay-specific coefficients are estimated only from index-window residuals, with penalties selected on tuning stays and losses reported on assessment stays. All assessment-set structure comparisons in this table are exploratory. The centered slope basis is $(t-12)/12$. The level-plus-slope row fixes $\lambda_0$ at the tuning-selected scalar-offset value and tunes $\lambda_1$; its joint convex estimate is obtained through the box-constrained Fenchel dual and accepted only when primal--dual and KKT certificates pass. It is an exploratory incremental slope sensitivity rather than an exhaustive joint penalty-grid search or a replacement for the frozen primary offset rule.}
 \end{table}

@@ -1,10 +1,11 @@
 \begin{table}[!htbp]
-\caption{Measurement-density sensitivity of the primary stay-specific level update in the assessment split.}
+\caption{Measurement-density sensitivity of the primary profiled offset in the assessment split.}
 \label{tab:measurement_density_sensitivity}
 \centering
+\resizebox{\textwidth}{!}{%
 \begin{tabular}{llrrrrr}
 \hline
-Density measure & Stratum & Stays & Index obs. & Later obs. & Update reduction & Updated below\\
+Density measure & Stratum & Stays & Index obs. & Later obs. & Loss reduction & Offset below\\
 \hline
 Index observations & Low & 4920 & 11 & 12 & 14.8\% & 12.4\%\\
 Index observations & Middle & 3612 & 13 & 12 & 12.9\% & 13.3\%\\
@@ -13,7 +14,8 @@ Later observations & Low & 4122 & 12 & 9 & 17.3\% & 11.3\%\\
 Later observations & Middle & 4670 & 13 & 12 & 13.4\% & 12.1\%\\
 Later observations & High & 3270 & 14 & 14 & 1.7\% & 15.2\%\\
 \hline
-\end{tabular}
+\end{tabular}%
+}
 \par\smallskip
-\footnotesize{Index and later observation strata are empirical thirds of the corresponding observation count in assessment stays. Updated below is the observation-level fraction of later MAP values below the primary level-updated fitted 0.10 quantile; the nominal target is 10\%.}
+\footnotesize{Index and later observation strata are empirical thirds of the corresponding observation count in assessment stays. Offset below is the observation-level fraction of later MAP values below the fitted 0.10 quantile from the primary offset rule; the nominal target is 10\%.}
 \end{table}

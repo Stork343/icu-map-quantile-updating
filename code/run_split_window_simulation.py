@@ -189,7 +189,7 @@ ADEMP_V2_SCENARIOS: Dict[str, Dict[str, object]] = {
     },
     "level_plus_shape": {
         "label": "Persistent level plus shape",
-        "description": "Persistent random intercepts coexist with stay-specific linear time shape, favoring a correctly targeted level-plus-slope update.",
+        "description": "Persistent random intercepts coexist with stay-specific linear time shape, favoring a correctly targeted level-plus-slope rule.",
         "n_stays": 600,
         "level_sd": 3.0,
         "slope_sd": 5.0,
@@ -221,7 +221,7 @@ ADEMP_V2_SCENARIOS: Dict[str, Dict[str, object]] = {
     },
     "null_serial": {
         "label": "Pure null with serial dependence",
-        "description": "No persistent level, index shift, or random shape is present; serial residual dependence tests whether tuning suppresses noise-only updates.",
+        "description": "No persistent level, index shift, or random shape is present; serial residual dependence tests whether tuning suppresses noise-only offsets.",
         "n_stays": 600,
         "level_sd": 0.0,
         "index_shift_sd": 0.0,
@@ -1206,16 +1206,16 @@ def write_ademp_v2_key_conclusions(
         [
             "## Directly supported summary",
             "",
-            f"- The tuned level update had lower loss than the population-only rule with a Monte Carlo 95% interval below zero in {len(better_population)} {'scenario' if len(better_population) == 1 else 'scenarios'}: "
+            f"- The profiled offset rule had lower loss than the population-only rule with a Monte Carlo 95% interval below zero in {len(better_population)} {'scenario' if len(better_population) == 1 else 'scenarios'}: "
             + (", ".join(better_population) if better_population else "none")
             + ".",
             f"- It had higher loss than the population-only rule with a Monte Carlo 95% interval above zero in {len(worse_population)} {'scenario' if len(worse_population) == 1 else 'scenarios'}: "
             + (", ".join(worse_population) if worse_population else "none")
             + ".",
-            f"- The tuned level update had lower loss than the tuning-calibrated affine q10 comparator in {len(better_affine)} {'scenario' if len(better_affine) == 1 else 'scenarios'}: "
+            f"- The profiled offset rule had lower loss than the tuning-calibrated affine q10 comparator in {len(better_affine)} {'scenario' if len(better_affine) == 1 else 'scenarios'}: "
             + (", ".join(better_affine) if better_affine else "none")
             + ".",
-            f"- The affine q10 comparator had lower loss than the tuned level update in {len(worse_affine)} {'scenario' if len(worse_affine) == 1 else 'scenarios'}: "
+            f"- The affine q10 comparator had lower loss than the profiled offset rule in {len(worse_affine)} {'scenario' if len(worse_affine) == 1 else 'scenarios'}: "
             + (", ".join(worse_affine) if worse_affine else "none")
             + ".",
             "",
@@ -1277,9 +1277,9 @@ def plot_ademp_v2_summary(
         figure_height = max(5.5, 1.30 + 0.42 * len(scenario_keys))
         fig, axes = plt.subplots(2, 2, figsize=(7.2047, figure_height), sharey=True)
         contrasts = [
-            ("tuned_level", "population", "A. Tuned level vs population", "negative favors tuned level"),
-            ("tuned_level", "affine_calibrated_q10", "B. Tuned level vs calibrated q10", "negative favors tuned level"),
-            ("tuned_level_slope", "tuned_level", "C. Level + slope vs tuned level", "negative favors level + slope"),
+            ("tuned_level", "population", "A. Profiled offset vs population", "negative favors profiled offset"),
+            ("tuned_level", "affine_calibrated_q10", "B. Profiled offset vs calibrated q10", "negative favors profiled offset"),
+            ("tuned_level_slope", "tuned_level", "C. Level + slope vs profiled offset", "negative favors level + slope"),
         ]
         for axis, (method_a, method_b, title, favor_text) in zip(axes.ravel()[:3], contrasts):
             local = paired[
@@ -1315,7 +1315,7 @@ def plot_ademp_v2_summary(
         calibration_methods = [
             ("population", "Population", "#7f7f7f", -0.22),
             ("affine_calibrated_q10", "Calibrated q10", "#2a9d8f", 0.0),
-            ("tuned_level", "Tuned level", "#264653", 0.22),
+            ("tuned_level", "Profiled offset", "#264653", 0.22),
         ]
         indexed_summary = summary.set_index(["scenario_key", "method"])
         for method, label, color, offset in calibration_methods:
@@ -1417,7 +1417,7 @@ def write_ademp_v2_summary_tex(
         "\\resizebox{\\textwidth}{!}{%",
         "\\begin{tabular}{lrrrrrr}",
         "\\hline",
-        "Scenario & Population & Calibrated q10 & Tuned level & Level + slope & $\\Delta_{\\mathrm{level-pop}}$ & $\\Delta_{\\mathrm{level-cal}}$\\\\",
+        "Scenario & Population & Calibrated q10 & Profiled offset & Level + slope & $\\Delta_{\\mathrm{offset-pop}}$ & $\\Delta_{\\mathrm{offset-cal}}$\\\\",
         "\\hline",
     ]
     for key in ADEMP_V2_SCENARIOS:
@@ -1441,7 +1441,7 @@ def write_ademp_v2_summary_tex(
             (
                 "\\footnotesize{Entries are mean stay-level assessment check loss (Monte Carlo standard error) across "
                 f"{int(n_rep)} independent simulated datasets per scenario. Differences are paired within replicate; "
-                "negative values in both $\\Delta$ columns favor the tuned level update. All methods had "
+                "negative values in both $\\Delta$ columns favor the profiled offset rule. All methods had "
                 f"{int(n_rep)}/{int(n_rep)} effective replicates (failure rate 0\\%). Calibrated q10 is an affine transformation fitted on tuning stays "
                 "by stay-weighted quantile loss. The 240-stay and 600-stay settings, dense and sparse observation regimes, serial "
                 "dependence, informative monitoring, cluster-size informativeness, common-time misspecification, random shape, "
@@ -1584,7 +1584,7 @@ def write_summary_tex(summary: pd.DataFrame, path: Path, n_rep: int, n_stays: in
         "\\small",
         "\\begin{tabular}{llrrrrr}",
         "\\hline",
-        "Scenario & $\\lambda_b$ & Pop. & Unpen. update & Tuned update & Reduction (\\%) & Offset $r$\\\\",
+        "Scenario & $\\lambda_b$ & Pop. & Unpen. offset & Profiled offset & Reduction (\\%) & Offset $r$\\\\",
         "\\hline",
     ]
     for row in summary.to_dict("records"):
@@ -1606,7 +1606,7 @@ def write_summary_tex(summary: pd.DataFrame, path: Path, n_rep: int, n_stays: in
                 "\\footnotesize{Each scenario used "
                 f"{n_rep} Monte Carlo replicates with {n_stays} stays per replicate. "
                 "Losses are mean stay level later check losses at $\\tau=0.10$; values in parentheses are Monte Carlo standard errors. "
-                "The selected penalty is reported as median [IQR] across replicates. Offset correlation compares the tuned update "
+                "The selected penalty is reported as median [IQR] across replicates. Offset correlation compares the profiled offset "
                 "with the true later latent offset when that offset has nonzero simulation variance.}"
             ),
             "\\end{table}",
@@ -1668,7 +1668,7 @@ def plot_simulation(replicates: pd.DataFrame, summary: pd.DataFrame, out_pdf: Pa
         ax.set_yticklabels(y_labels)
         ax.set_xlim(-1.5, 22.5)
         ax.set_xlabel("Loss reduction vs population (%)")
-        ax.set_title("A. Tuned update: zoomed scale")
+        ax.set_title("A. Profiled offset: zoomed scale")
         ax.grid(axis="x", color="#dddddd", linewidth=0.7)
 
         ax = axes[0, 1]
@@ -1698,7 +1698,7 @@ def plot_simulation(replicates: pd.DataFrame, summary: pd.DataFrame, out_pdf: Pa
         ax.set_yticklabels([])
         ax.set_xlim(-90.0, 25.0)
         ax.set_xlabel("Loss reduction vs population (%)")
-        ax.set_title("B. Unpenalized update: overfitting scale")
+        ax.set_title("B. Unpenalized offset: overfitting scale")
         ax.grid(axis="x", color="#dddddd", linewidth=0.7)
 
         ax = axes[1, 0]
@@ -1760,7 +1760,7 @@ def plot_simulation(replicates: pd.DataFrame, summary: pd.DataFrame, out_pdf: Pa
         ax.set_yticks(y_plot)
         ax.set_yticklabels([])
         ax.set_xlabel("Correlation with true later offset")
-        ax.set_title("D. Offset recovery by tuned update")
+        ax.set_title("D. Offset recovery by profiling")
         ax.grid(axis="x", color="#dddddd", linewidth=0.7)
 
         for ax in axes.ravel():

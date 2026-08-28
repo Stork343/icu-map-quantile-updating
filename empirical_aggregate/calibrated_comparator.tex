@@ -1,23 +1,25 @@
 \begin{table}[!htbp]
-\caption{Assessment check loss for the primary level update and tuning-calibrated admission-window q10 comparators.}
+\caption{Assessment check loss for the primary profiled offset and tuning-calibrated admission-window q10 comparators.}
 \label{tab:calibrated_comparator}
 \centering
+\resizebox{\textwidth}{!}{%
 \begin{tabular}{llrr}
 \hline
 Model & Index window information used & Assessment loss & SE\\
 \hline
 Baseline covariates quantile & none & 2.2247 & 0.0128\\
 Admission window q10 carry forward & raw admission window q10 & 2.1439 & 0.0160\\
-Primary penalized stay-specific level update & profiled level offset & 1.9570 & 0.0115\\
+Primary penalized stay-specific offset & profiled level offset & 1.9570 & 0.0115\\
 Calibrated admission window q10 & tuning-calibrated affine q10 & 1.8878 & 0.0103\\
-Calibrated primary level update & tuning-calibrated level-updated q10 & 1.9090 & 0.0101\\
+Calibrated primary offset & tuning-calibrated offset prediction & 1.9090 & 0.0101\\
 Hybrid q10 + level offset & q10 and profiled level offset & 1.8878 & 0.0103\\
 Hybrid q10 + level offset + count & q10, profiled level offset, log index count & 1.8878 & 0.0103\\
 q10 + index MAP<65 burden & q10 and index MAP<65 fraction & 1.8861 & 0.0102\\
 \hline
-\end{tabular}
+\end{tabular}%
+}
 \par\smallskip
-\footnotesize{Calibrated rows fit an affine transformation on tuning stays by stay-averaged later check loss, then evaluate that fixed transformation on assessment stays. For admission-window q10, the fitted transformation was $\widehat q= 19.67 + 0.667 q_{0.10,\mathrm{index}}$; for the updated q10 it was $\widehat q= 10.55 + 0.818 \widehat q_{0.10,\mathrm{updated}}$.
+\footnotesize{Calibrated rows fit an affine transformation on tuning stays by stay-averaged later check loss, then evaluate that fixed transformation on assessment stays. For admission-window q10, the fitted transformation was $\widehat q= 19.67 + 0.667 q_{0.10,\mathrm{index}}$; for the offset prediction it was $\widehat q= 10.55 + 0.818 \widehat q_{0.10,\mathrm{offset}}$.
 Hybrid rows are tuning-calibrated multivariable affine rules using only index-window summaries and the profiled stay-specific level offset.
 Paired mean loss differences (candidate minus calibrated admission-window q10; negative values favor the candidate) were 0.0000 (descriptive interval 0.0000 to 0.0000) for q10 plus the level offset and -0.0017 (descriptive interval -0.0035 to 0.0000) for q10 plus index MAP below 65 burden. These intervals are estimate plus or minus 1.96 times the stay-level standard error conditional on the realized fitted rules.
 }

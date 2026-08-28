@@ -361,7 +361,7 @@ def plot_dynamic_signal(dynamic: pd.DataFrame, output_stem: Path) -> None:
         color="#D1495B",
         marker="s",
         linewidth=1.8,
-        label="Updated offset",
+        label="Profiled offset",
     )
     ax.set_xlabel("Index window end (hours)")
     ax.set_ylabel("AUC for any later MAP <65")
@@ -420,7 +420,7 @@ def plot_dynamic_signal(dynamic: pd.DataFrame, output_stem: Path) -> None:
         color="#2F4858",
         marker="D",
         linewidth=1.9,
-        label="Update loss reduction",
+        label="Profiled offset",
         zorder=3,
     )
     ax.set_xlabel("Index window end (hours)")
@@ -618,7 +618,7 @@ def plot_representative_trajectories(trajectory_df: pd.DataFrame, output_stem: P
             color="#D1495B",
             linestyle="-",
             linewidth=1.2,
-            label="Updated q10" if label == labels[0] else None,
+            label="Profiled-offset q10" if label == labels[0] else None,
         )
         first = local.iloc[0]
         ax.set_title(
@@ -909,7 +909,7 @@ def outcome_association_table(stay_df: pd.DataFrame) -> pd.DataFrame:
     covariates = df[["age_z", "male", "emergency_or_urgent"]].to_numpy(dtype=float)
     scores = [
         ("10 mmHg lower admission window q10", -df["admission_window_q10"].to_numpy(dtype=float)),
-        ("10 mmHg higher updated vulnerability", df["updated_vulnerability_score"].to_numpy(dtype=float)),
+        ("10 mmHg higher offset vulnerability", df["updated_vulnerability_score"].to_numpy(dtype=float)),
     ]
     outcomes = [
         ("Any later MAP <65", "any_later_map_below65"),
@@ -944,7 +944,7 @@ def plot_subgroup_signal(subgroups: pd.DataFrame, output_stem: Path) -> None:
         ("Event rate\n%", "any_later_map_below65", 100.0, "{:.1f}"),
         ("AUC", "auc_admission_window_q10_low_is_risk", 1.0, "{:.3f}"),
         ("Risk difference\n(pp)", "risk_difference_any_later_map_below65", 100.0, "{:.1f}"),
-        ("Update loss\nreduction (%)", "loss_reduction_percent", 1.0, "{:.1f}"),
+        ("Loss reduction\n(%)", "loss_reduction_percent", 1.0, "{:.1f}"),
     ]
     values = np.column_stack(
         [df[col].to_numpy(dtype=float) * multiplier for _, col, multiplier, _ in metric_specs]
@@ -1006,7 +1006,7 @@ def plot_model_gain(gain: pd.DataFrame, output_stem: Path) -> None:
 
     ax = axes[0]
     ax.plot(x, gain["population_check_loss"], color="0.45", marker="o", linewidth=1.8, label="Population")
-    ax.plot(x, gain["updated_check_loss"], color="#20639B", marker="s", linewidth=1.8, label="Trajectory update")
+    ax.plot(x, gain["updated_check_loss"], color="#20639B", marker="s", linewidth=1.8, label="Profiled offset")
     ax.set_xticks(x)
     ax.set_xticklabels(xlabels)
     ax.set_ylabel("Stay level later check loss")
@@ -1031,7 +1031,7 @@ def plot_model_gain(gain: pd.DataFrame, output_stem: Path) -> None:
     ax.axhline(100.0, color="0.65", linestyle=":", linewidth=1.0)
     ax.set_xticks(x)
     ax.set_xticklabels(xlabels)
-    ax.set_ylabel("Share of net update improvement (%)")
+    ax.set_ylabel("Share of net improvement (%)")
     ax.set_xlabel("Admission window q10 decile (median q10)")
     ax.grid(axis="y", color="0.9", linewidth=0.7)
     add_panel_label(ax, "C")
@@ -1049,7 +1049,7 @@ def write_dynamic_signal_tex(dynamic: pd.DataFrame, path: Path) -> None:
         "\\centering",
         "\\begin{tabular}{rrrrrr}",
         "\\hline",
-        "Window (h) & Stays & AUC & Low q10 risk & High q10 risk & Update reduction\\\\",
+        "Window (h) & Stays & AUC & Low q10 risk & High q10 risk & Loss reduction\\\\",
         "\\hline",
     ]
     for _, row in rows.iterrows():
@@ -1114,7 +1114,7 @@ def write_subgroup_signal_tex(subgroups: pd.DataFrame, path: Path) -> None:
         "\\centering",
         "\\begin{tabular}{lrrrrr}",
         "\\hline",
-        "Subgroup & Stays & Event rate & AUC & Risk difference & Update reduction\\\\",
+        "Subgroup & Stays & Event rate & AUC & Risk difference & Loss reduction\\\\",
         "\\hline",
     ]
     for _, row in subgroups.iterrows():
@@ -1130,7 +1130,7 @@ def write_subgroup_signal_tex(subgroups: pd.DataFrame, path: Path) -> None:
             "\\hline",
             "\\end{tabular}",
             "\\par\\smallskip",
-            "\\footnotesize{Risk difference compares the lowest and highest admission-window q10 quintiles within each subgroup for any later recorded MAP below 65 mmHg. Update reduction is the relative reduction in mean later check loss from the primary penalized level update. No multiplicity adjustment was applied.}",
+            "\\footnotesize{Risk difference compares the lowest and highest admission-window q10 quintiles within each subgroup for any later recorded MAP below 65 mmHg. Loss reduction is relative to the population component and uses the primary profiled offset rule. No multiplicity adjustment was applied.}",
             "\\end{table}",
             "",
         ]
@@ -1141,12 +1141,12 @@ def write_subgroup_signal_tex(subgroups: pd.DataFrame, path: Path) -> None:
 def write_model_gain_tex(gain: pd.DataFrame, path: Path) -> None:
     lines = [
         "\\begin{table}[!htbp]",
-        "\\caption{Where the primary stay-specific level update improves later lower-tail prediction.}",
+        "\\caption{Where the primary profiled offset improves later lower-tail prediction.}",
         "\\label{tab:model_gain_deciles}",
         "\\centering",
         "\\begin{tabular}{rrrrrrr}",
         "\\hline",
-        "Decile & Stays & Adm. q10 & Later MAP $<$65 & Pop. loss & Updated loss & Reduction\\\\",
+        "Decile & Stays & Adm. q10 & Later MAP $<$65 & Pop. loss & Offset loss & Reduction\\\\",
         "\\hline",
     ]
     for _, row in gain.iterrows():
@@ -1172,7 +1172,7 @@ def write_model_gain_tex(gain: pd.DataFrame, path: Path) -> None:
 def write_outcome_associations_tex(associations: pd.DataFrame, path: Path) -> None:
     score_labels = {
         "10 mmHg lower admission window q10": "Lower adm. q10",
-        "10 mmHg higher updated vulnerability": "Updated vulnerability",
+        "10 mmHg higher offset vulnerability": "Offset vulnerability",
     }
     outcome_labels = {
         "Any later MAP <65": "Any later MAP $<$65",
@@ -1200,7 +1200,7 @@ def write_outcome_associations_tex(associations: pd.DataFrame, path: Path) -> No
             "\\hline",
             "\\end{tabular}",
             "\\par\\smallskip",
-            "\\footnotesize{AUCs are unadjusted score-only discrimination summaries. Adjusted odds ratios are per 10 mmHg and are from logistic regressions adjusted for age, sex, and emergency or urgent admission. The admission-window q10 score is coded so that larger values mean lower admission-window MAP 0.10 quantile; updated vulnerability is coded so that larger values mean a higher $-\\widehat b_i$. Associations are descriptive risk-concentration summaries under observed care.}",
+            "\\footnotesize{AUCs are unadjusted score-only discrimination summaries. Adjusted odds ratios are per 10 mmHg and are from logistic regressions adjusted for age, sex, and emergency or urgent admission. The admission-window q10 score is coded so that larger values mean lower admission-window MAP 0.10 quantile; offset vulnerability is coded so that larger values mean a higher $-\\widehat b_i$. Associations are descriptive risk-concentration summaries under observed care.}",
             "\\end{table}",
             "",
         ]
