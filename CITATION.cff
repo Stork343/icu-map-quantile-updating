@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 message: Please cite the accompanying manuscript and this software archive.
-title: ICU MAP split window quantile regression reproducibility code
+title: ICU MAP penalized quantile regression reproducibility code
 type: software
 version: 1.0.0
 date-released: 2026-08-27
