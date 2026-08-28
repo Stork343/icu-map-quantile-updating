@@ -439,7 +439,9 @@ def plot_dynamic_signal(dynamic: pd.DataFrame, output_stem: Path) -> None:
 
 def plot_risk_surface(surface: pd.DataFrame, deciles: pd.DataFrame, output_stem: Path) -> None:
     q_order = ["<55", "55-60", "60-65", "65-70", "70-75", "75-80", ">=80"]
+    q_labels = ["<55", "55 to 60", "60 to 65", "65 to 70", "70 to 75", "75 to 80", ">=80"]
     low_order = ["0", "0-0.10", "0.10-0.25", "0.25-0.50", ">0.50"]
+    low_labels = ["0", "0 to 0.10", "0.10 to 0.25", "0.25 to 0.50", ">0.50"]
     heat = (
         surface.pivot(index="admission_window_low_fraction_bin", columns="admission_window_q10_bin", values="any_later_map_below65")
         .reindex(index=low_order, columns=q_order)
@@ -459,9 +461,9 @@ def plot_risk_surface(surface: pd.DataFrame, deciles: pd.DataFrame, output_stem:
     cmap.set_bad(color="white")
     image = ax.imshow(masked, aspect="auto", cmap=cmap, vmin=0, vmax=100)
     ax.set_xticks(np.arange(len(q_order)))
-    ax.set_xticklabels(q_order)
+    ax.set_xticklabels(q_labels)
     ax.set_yticks(np.arange(len(low_order)))
-    ax.set_yticklabels(low_order)
+    ax.set_yticklabels(low_labels)
     ax.set_xlabel("Admission window MAP q10 (mmHg)")
     ax.set_ylabel("Admission window MAP <65 fraction")
     ax.set_title("Probability of any later MAP <65")
@@ -1044,7 +1046,7 @@ def write_dynamic_signal_tex(dynamic: pd.DataFrame, path: Path) -> None:
     rows = dynamic[dynamic["index_hours"].isin([1.0, 3.0, 6.0, 12.0, 18.0])]
     lines = [
         "\\begin{table}[!htbp]",
-        "\\caption{Exploratory dynamic-window summaries of the admission-window lower-tail MAP signal.}",
+        "\\caption{Persistence of the admission window lower tail MAP signal across landmarks.}",
         "\\label{tab:dynamic_signal_metrics}",
         "\\centering",
         "\\begin{tabular}{rrrrrr}",
@@ -1065,7 +1067,7 @@ def write_dynamic_signal_tex(dynamic: pd.DataFrame, path: Path) -> None:
             "\\hline",
             "\\end{tabular}",
             "\\par\\smallskip",
-            "\\footnotesize{Rows use strict clock-time splits requiring at least four observations by the window end and at least one later observation. Low and high q10 tail groups include all stays at or below the empirical 20th percentile and at or above the empirical 80th percentile, respectively. Boundary ties are retained, so these tail groups need not contain exactly 20\\% of stays and are not identical to the mutually exclusive primary q10 strata.}",
+            "\\footnotesize{Each row requires four observations by the landmark and one later observation. The profiled offset uses $\\lambda_b=0.03$. Low and high q10 groups contain stays at or below the empirical 20th percentile and at or above the empirical 80th percentile.}",
             "\\end{table}",
             "",
         ]
@@ -1076,7 +1078,7 @@ def write_dynamic_signal_tex(dynamic: pd.DataFrame, path: Path) -> None:
 def write_clinical_yield_tex(thresholds: pd.DataFrame, path: Path) -> None:
     lines = [
         "\\begin{table}[!htbp]",
-        "\\caption{Exploratory fixed-capacity risk-concentration summaries based on admission-window q10.}",
+        "\\caption{Risk concentration in fixed capacity groups defined by admission window q10.}",
         "\\label{tab:clinical_yield_thresholds}",
         "\\centering",
         "\\begin{tabular}{rrrrrrr}",
@@ -1098,7 +1100,7 @@ def write_clinical_yield_tex(thresholds: pd.DataFrame, path: Path) -> None:
             "\\hline",
             "\\end{tabular}",
             "\\par\\smallskip",
-            "\\footnotesize{Each flagged group contains exactly $\\lceil Np\\rceil$ stays after sorting by admission-window MAP 0.10 quantile, where $p$ is the nominal flagged fraction; ties at the cutoff are resolved reproducibly by ascending stay index. These fixed-capacity groups can therefore differ from cutpoint-defined tail groups that retain all boundary ties. Later MAP $<$65 is the mean later observation-level burden within the flagged group. Deaths captured is the fraction of all assessment hospital deaths contained in the flagged group.}",
+            "\\footnotesize{Each group contains $\\lceil Np\\rceil$ stays after sorting by admission window q10, where $p$ is the selected fraction. Stay index orders ties. Later MAP $<$65 is the mean fraction among later observations. Deaths captured is the fraction of assessment hospital deaths in the group.}",
             "\\end{table}",
             "",
         ]
@@ -1109,7 +1111,7 @@ def write_clinical_yield_tex(thresholds: pd.DataFrame, path: Path) -> None:
 def write_subgroup_signal_tex(subgroups: pd.DataFrame, path: Path) -> None:
     lines = [
         "\\begin{table}[!htbp]",
-        "\\caption{Exploratory subgroup summaries of the admission-window lower-tail MAP signal.}",
+        "\\caption{Admission window lower tail MAP signal across subgroups.}",
         "\\label{tab:subgroup_signal}",
         "\\centering",
         "\\begin{tabular}{lrrrrr}",
@@ -1130,7 +1132,7 @@ def write_subgroup_signal_tex(subgroups: pd.DataFrame, path: Path) -> None:
             "\\hline",
             "\\end{tabular}",
             "\\par\\smallskip",
-            "\\footnotesize{Risk difference compares the lowest and highest admission-window q10 quintiles within each subgroup for any later recorded MAP below 65 mmHg. Loss reduction is relative to the population component and uses the primary profiled offset rule. No multiplicity adjustment was applied.}",
+            "\\footnotesize{Risk difference compares the lowest and highest admission window q10 quintiles for any later MAP below 65 mmHg. Loss reduction compares the profiled offset with the population component.}",
             "\\end{table}",
             "",
         ]
@@ -1141,7 +1143,7 @@ def write_subgroup_signal_tex(subgroups: pd.DataFrame, path: Path) -> None:
 def write_model_gain_tex(gain: pd.DataFrame, path: Path) -> None:
     lines = [
         "\\begin{table}[!htbp]",
-        "\\caption{Where the primary profiled offset improves later lower-tail prediction.}",
+        "\\caption{Check loss reduction from the profiled offset by admission window q10 decile.}",
         "\\label{tab:model_gain_deciles}",
         "\\centering",
         "\\begin{tabular}{rrrrrrr}",
@@ -1180,7 +1182,7 @@ def write_outcome_associations_tex(associations: pd.DataFrame, path: Path) -> No
     }
     lines = [
         "\\begin{table}[!htbp]",
-        "\\caption{Covariate adjusted associations between admission window lower tail MAP summaries and assessment outcomes.}",
+        "\\caption{Associations of admission window MAP summaries with assessment outcomes.}",
         "\\label{tab:outcome_associations}",
         "\\centering",
         "\\begin{tabular}{llrrrr}",
@@ -1193,14 +1195,14 @@ def write_outcome_associations_tex(associations: pd.DataFrame, path: Path) -> No
             f"{outcome_labels.get(row['outcome'], row['outcome'])} & "
             f"{score_labels.get(row['score'], row['score'])} & {int(row['events'])} & "
             f"{float(row['auc']):.3f} & {float(row['adjusted_or_per_10']):.2f} & "
-            f"{float(row['ci_low']):.2f}--{float(row['ci_high']):.2f}\\\\"
+            f"{float(row['ci_low']):.2f} to {float(row['ci_high']):.2f}\\\\"
         )
     lines.extend(
         [
             "\\hline",
             "\\end{tabular}",
             "\\par\\smallskip",
-            "\\footnotesize{AUCs are unadjusted score-only discrimination summaries. Adjusted odds ratios are per 10 mmHg and are from logistic regressions adjusted for age, sex, and emergency or urgent admission. The admission-window q10 score is coded so that larger values mean lower admission-window MAP 0.10 quantile; offset vulnerability is coded so that larger values mean a higher $-\\widehat b_i$. Associations are descriptive risk-concentration summaries under observed care.}",
+            "\\footnotesize{AUCs use each score directly. Logistic regressions adjust for age, sex, and emergency or urgent admission, and odds ratios refer to 10 mmHg. Larger score values indicate lower q10 or larger $-\\widehat b_i$.}",
             "\\end{table}",
             "",
         ]

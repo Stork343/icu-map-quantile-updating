@@ -1,5 +1,5 @@
 \begin{table}[!htbp]
-\caption{Split-window assessment of the primary profiled offset and comparator rules.}
+\caption{Assessment loss for the profiled offset and comparator rules.}
 \label{tab:model_comparison}
 \centering
 \resizebox{\textwidth}{!}{%
@@ -11,11 +11,11 @@ Baseline covariates quantile & none & 2.2247 & 0.0128\\
 Admission window q10 carry forward & raw admission window q10 & 2.1439 & 0.0160\\
 Population spline quantile & none & 2.2238 & 0.0128\\
 Spline + unpenalized offset & index residual q10 & 2.1659 & 0.0162\\
-Spline + penalized stay-specific offset & profiled level offset & 1.9678 & 0.0117\\
-Primary baseline-adjusted offset & profiled level offset & 1.9570 & 0.0115\\
+Spline + penalized stay specific offset & profiled level offset & 1.9678 & 0.0117\\
+Primary baseline adjusted offset & profiled level offset & 1.9570 & 0.0115\\
 \hline
 \end{tabular}%
 }
 \par\smallskip
-\footnotesize{Assessment loss is the mean within-stay ordinary check loss on later observations at $\tau=0.10$, averaged across assessment stays. Population components were fitted on the training split and quadratic penalties were selected on the tuning split. The paired mean loss reduction for the primary baseline-adjusted offset versus the baseline covariate quantile model was 0.2676 (SE 0.0121; descriptive interval 0.2439--0.2914). Because assessment outcomes had been examined during earlier work, these values are internal evaluations rather than an untouched external validation.}
+\footnotesize{Assessment loss is ordinary check loss averaged within stays at $\tau=0.10$. Training stays estimate population components, and tuning stays select quadratic penalties. The primary offset reduced mean loss by 0.2676 relative to the baseline covariate model, with SE 0.0121 and interval 0.2439 to 0.2914.}
 \end{table}

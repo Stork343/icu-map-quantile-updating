@@ -113,7 +113,7 @@ def draw_mini_map_stream(ax: plt.Axes) -> None:
     ax.text(
         (x0 + split) / 2.0,
         y0 + 0.014,
-        "Index-window\nobservations",
+        "Index\nobservations",
         ha="center",
         va="bottom",
         linespacing=1.0,
@@ -143,7 +143,7 @@ def plot_workflow(output_stem: Path) -> None:
     ax.text(
         0.03,
         0.95,
-        "Split-window lower-tail MAP prediction protocol",
+        "Prediction protocol for lower tail MAP",
         fontsize=12,
         fontweight="bold",
         color=DARK,
@@ -172,7 +172,7 @@ def plot_workflow(output_stem: Path) -> None:
         ax,
         (0.42, 0.23),
         (0.21, 0.12),
-        "Assessment split\nscore the frozen rule",
+        "Assessment split\nscore the selected rule",
         LIGHT_GRAY,
         "#9CA3AF",
     )
@@ -188,7 +188,7 @@ def plot_workflow(output_stem: Path) -> None:
         ax,
         (0.72, 0.30),
         (0.22, 0.13),
-        "Later evaluation\nstay-level ordinary check loss",
+        "Later evaluation\nordinary check loss by stay",
         "white",
         DARK,
     )
@@ -201,7 +201,7 @@ def plot_workflow(output_stem: Path) -> None:
     arrow(ax, (0.83, 0.56), (0.83, 0.43), RED)
 
     ax.text(0.515, 0.61, "candidate model set", ha="center", color=GRAY, fontsize=7.5)
-    ax.text(0.835, 0.49, "split-window prediction", ha="center", color=GRAY, fontsize=7.5)
+    ax.text(0.835, 0.49, "prediction after the landmark", ha="center", color=GRAY, fontsize=7.5)
     ax.text(
         0.06,
         0.20,
@@ -213,7 +213,7 @@ def plot_workflow(output_stem: Path) -> None:
     ax.text(
         0.06,
         0.09,
-        "The reported loss is averaged within each assessment stay,\nthen averaged across stays.",
+        "Loss is averaged within assessment stays,\nthen averaged across stays.",
         fontsize=8.2,
         color=GRAY,
         linespacing=1.25,
@@ -281,7 +281,7 @@ def plot_subgroup_forest(subgroups_csv: Path, output_stem: Path) -> None:
     panel_specs = [
         {
             "values": event,
-            "title": "a  Later-event rate",
+            "title": "a  Later event rate",
             "xlabel": "Any later MAP < 65 mmHg\n(event rate, %)",
             "xlim": (34.0, 60.0),
             "xticks": [35, 45, 55],
@@ -296,14 +296,14 @@ def plot_subgroup_forest(subgroups_csv: Path, output_stem: Path) -> None:
         {
             "values": risk,
             "title": "c  Risk separation",
-            "xlabel": "Low-high q10 event-rate difference\n(percentage points)",
+            "xlabel": "Risk difference\n(percentage points)",
             "xlim": (58.0, 76.0),
             "xticks": [60, 65, 70, 75],
         },
         {
             "values": loss,
             "title": "d  Predictive gain",
-            "xlabel": "Profiled-offset loss reduction\n(%; positive favors offset rule)",
+            "xlabel": "Loss reduction\n(%)",
             "xlim": (7.0, 16.0),
             "xticks": [8, 10, 12, 14, 16],
         },
@@ -334,7 +334,7 @@ def plot_subgroup_forest(subgroups_csv: Path, output_stem: Path) -> None:
     axes[0].tick_params(axis="y", pad=3)
 
     fig.suptitle(
-        "Exploratory subgroup consistency of within-stay lower-tail MAP persistence",
+        "Subgroup consistency of lower tail MAP persistence within stays",
         x=0.025,
         y=0.978,
         ha="left",
@@ -345,7 +345,7 @@ def plot_subgroup_forest(subgroups_csv: Path, output_stem: Path) -> None:
     fig.text(
         0.025,
         0.925,
-        "Assessment-split estimates for a 12 h admission window. Lower q10 is coded as higher risk; panel c alone shows approximate normal 95% CIs; dashed lines mark overall estimates.",
+        "Estimates use the assessment sample at 12 hours. Lower q10 indicates greater risk. Panel c gives approximate normal 95% confidence intervals. Dashed lines mark overall estimates.",
         ha="left",
         va="top",
         fontsize=5.8,

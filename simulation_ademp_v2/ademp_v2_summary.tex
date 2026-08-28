@@ -1,12 +1,12 @@
 \begin{table*}[!htbp]
-\caption{Extended ADEMP simulation with strong comparators and Monte Carlo precision.}
+\caption{Monte Carlo check loss across ADEMP mechanisms.}
 \label{tab:ademp_v2_summary}
 \centering
 \small
 \resizebox{\textwidth}{!}{%
 \begin{tabular}{lrrrrrr}
 \hline
-Scenario & Population & Calibrated q10 & Profiled offset & Level + slope & $\Delta_{\mathrm{offset-pop}}$ & $\Delta_{\mathrm{offset-cal}}$\\
+Scenario & Population & Calibrated q10 & Profiled offset & Level with slope & $\Delta_{\mathrm{offset,pop}}$ & $\Delta_{\mathrm{offset,q10}}$\\
 \hline
 Ideal: large, dense & 1.370 (0.004) & 1.061 (0.002) & 1.064 (0.002) & 1.154 (0.003) & -0.3060 (0.0045) & +0.0034 (0.0011)\\
 Ideal: small, dense & 1.383 (0.008) & 1.069 (0.004) & 1.073 (0.004) & 1.158 (0.004) & -0.3095 (0.0075) & +0.0043 (0.0020)\\
@@ -14,17 +14,17 @@ Ideal: large, sparse & 1.372 (0.005) & 1.146 (0.003) & 1.204 (0.004) & 1.260 (0.
 Serial dependence & 1.370 (0.005) & 1.103 (0.003) & 1.135 (0.004) & 1.177 (0.003) & -0.2345 (0.0046) & +0.0322 (0.0022)\\
 Integer MAP rounding & 1.377 (0.005) & 1.089 (0.003) & 1.105 (0.003) & 1.177 (0.003) & -0.2718 (0.0050) & +0.0159 (0.0017)\\
 Informative monitoring & 1.504 (0.005) & 1.113 (0.003) & 1.182 (0.004) & 1.383 (0.004) & -0.3217 (0.0042) & +0.0699 (0.0033)\\
-Cluster size--level association & 1.387 (0.003) & 1.058 (0.002) & 1.084 (0.003) & 1.211 (0.002) & -0.3028 (0.0038) & +0.0264 (0.0015)\\
+Association of cluster size with level & 1.387 (0.003) & 1.058 (0.002) & 1.084 (0.003) & 1.211 (0.002) & -0.3028 (0.0038) & +0.0264 (0.0015)\\
 Misspecified common time & 1.437 (0.006) & 1.113 (0.003) & 1.310 (0.004) & 1.304 (0.004) & -0.1265 (0.0038) & +0.1976 (0.0037)\\
 Persistent level plus shape & 1.220 (0.003) & 1.254 (0.004) & 1.219 (0.003) & 1.211 (0.004) & -0.0017 (0.0009) & -0.0353 (0.0022)\\
 Treatment feedback & 1.272 (0.003) & 1.090 (0.003) & 1.119 (0.003) & 1.145 (0.002) & -0.1530 (0.0031) & +0.0287 (0.0016)\\
-Transient non-persistence & 1.004 (0.002) & 1.034 (0.002) & 1.006 (0.002) & 1.007 (0.002) & +0.0020 (0.0003) & -0.0285 (0.0019)\\
+Transient nonpersistence & 1.004 (0.002) & 1.034 (0.002) & 1.006 (0.002) & 1.007 (0.002) & +0.0020 (0.0003) & -0.0285 (0.0019)\\
 Pure null with serial dependence & 0.961 (0.003) & 1.019 (0.003) & 0.962 (0.003) & 0.962 (0.003) & +0.0009 (0.0004) & -0.0564 (0.0015)\\
 Weak persistent level & 1.064 (0.002) & 1.038 (0.002) & 1.025 (0.002) & 1.032 (0.002) & -0.0394 (0.0012) & -0.0131 (0.0010)\\
-Heavy-tailed t3 residual & 1.670 (0.006) & 1.502 (0.006) & 1.482 (0.006) & 1.522 (0.005) & -0.1875 (0.0035) & -0.0199 (0.0025)\\
+Heavy tailed t3 residual & 1.670 (0.006) & 1.502 (0.006) & 1.482 (0.006) & 1.522 (0.005) & -0.1875 (0.0035) & -0.0199 (0.0025)\\
 \hline
 \end{tabular}%
 }
 \par\smallskip
-\footnotesize{Entries are mean stay-level assessment check loss (Monte Carlo standard error) across 200 independent simulated datasets per scenario. Differences are paired within replicate; negative values in both $\Delta$ columns favor the profiled offset rule. All methods had 200/200 effective replicates (failure rate 0\%). Calibrated q10 is an affine transformation fitted on tuning stays by stay-weighted quantile loss. The 240-stay and 600-stay settings, dense and sparse observation regimes, serial dependence, informative monitoring, cluster-size informativeness, common-time misspecification, random shape, treatment feedback, transient non-persistence, pure null, weak persistent signal, Student-$t_3$ heavy tails, and integer rounding are prespecified data-generating mechanisms.}
+\footnotesize{Entries are mean check loss averaged within stays, with Monte Carlo standard errors in parentheses. Each scenario contains 200 independent datasets. Differences are paired within each replicate, and negative values favor the profiled offset. Affine q10 is calibrated on tuning stays.}
 \end{table*}

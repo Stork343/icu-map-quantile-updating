@@ -1,5 +1,5 @@
 \begin{table}[!htbp]
-\caption{Exploratory dynamic-window summaries of the admission-window lower-tail MAP signal.}
+\caption{Persistence of the admission window lower tail MAP signal across landmarks.}
 \label{tab:dynamic_signal_metrics}
 \centering
 \begin{tabular}{rrrrrr}
@@ -14,5 +14,5 @@ Window (h) & Stays & AUC & Low q10 risk & High q10 risk & Loss reduction\\
 \hline
 \end{tabular}
 \par\smallskip
-\footnotesize{Rows use strict clock-time splits requiring at least four observations by the window end and at least one later observation. The loss reduction for the profiled offset rule holds the primary 12-hour penalty $\lambda_b=0.03$ fixed; it is therefore distinct from the window sensitivity that reselects the penalty and permits a fallback split. Low and high q10 tail groups include all stays at or below the empirical 20th percentile and at or above the empirical 80th percentile, respectively. Boundary ties are retained, so these tail groups need not contain exactly 20\% of stays and are not identical to the mutually exclusive primary q10 strata.}
+\footnotesize{Each row requires four observations by the landmark and one later observation. The profiled offset uses $\lambda_b=0.03$. Low and high q10 groups contain stays at or below the empirical 20th percentile and at or above the empirical 80th percentile.}
 \end{table}

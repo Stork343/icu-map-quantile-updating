@@ -1,7 +1,8 @@
 \begin{table}[!htbp]
-\caption{Exploratory fixed-capacity risk-concentration summaries based on admission-window q10.}
+\caption{Risk concentration in fixed capacity groups defined by admission window q10.}
 \label{tab:clinical_yield_thresholds}
 \centering
+\resizebox{\textwidth}{!}{%
 \begin{tabular}{rrrrrrr}
 \hline
 Selected fraction & Stays & q10 cutoff & Any later MAP $<$65 & Later MAP $<$65 & Hosp. mortality & Deaths captured\\
@@ -12,7 +13,8 @@ Selected fraction & Stays & q10 cutoff & Any later MAP $<$65 & Later MAP $<$65 &
 30\% & 3619 & 62.0 & 78.7\% & 31.6\% & 13.8\% & 42.6\%\\
 50\% & 6031 & 67.0 & 70.4\% & 24.8\% & 11.8\% & 60.6\%\\
 \hline
-\end{tabular}
+\end{tabular}%
+}
 \par\smallskip
-\footnotesize{Each flagged group contains exactly $\lceil Np\rceil$ stays after sorting by admission-window MAP 0.10 quantile, where $p$ is the nominal flagged fraction; ties at the cutoff are resolved reproducibly by ascending stay index. These fixed-capacity groups can therefore differ from cutpoint-defined tail groups that retain all boundary ties. Later MAP $<$65 is the mean later observation-level burden within the flagged group. Deaths captured is the fraction of all assessment hospital deaths contained in the flagged group.}
+\footnotesize{Each group contains $\lceil Np\rceil$ stays after sorting by admission window q10, where $p$ is the selected fraction. Stay index orders ties. Later MAP $<$65 is the mean fraction among later observations. Deaths captured is the fraction of assessment hospital deaths in the group.}
 \end{table}

@@ -925,13 +925,13 @@ def write_fixed_opportunity_tex(thresholds: pd.DataFrame, path: Path, preferred_
         table = thresholds.copy()
     lines = [
         "\\begin{table*}[!htbp]",
-        "\\caption{Fixed later-observation opportunity sensitivity across operational MAP thresholds.}",
+        "\\caption{Fixed numbers of later observations across MAP thresholds.}",
         "\\label{tab:fixed_opportunity_threshold_sensitivity}",
         "\\centering",
         "\\scriptsize",
         "\\begin{tabular}{rrrrrrr}",
         "\\hline",
-        "$K$ & Threshold & Stays & Any event & Burden & q10 AUC & Low--high risk difference (95\\% CI)\\\\",
+        "$K$ & Threshold & Stays & Any event & Burden & q10 AUC & Risk difference (95\\% CI)\\\\",
         "\\hline",
     ]
     for _, row in table.sort_values(["first_k_later_records", "operational_threshold_mmhg"]).iterrows():
@@ -949,7 +949,7 @@ def write_fixed_opportunity_tex(thresholds: pd.DataFrame, path: Path, preferred_
             "\\hline",
             "\\end{tabular}",
             "\\par\\smallskip",
-            "\\footnotesize{Rows aggregate nested five-fold out-of-fold predictions across the eligible cohort. Each row includes only stays with at least $K$ observations after the 12-hour landmark and uses exactly the first $K$ later records. Low and high groups each use a fixed 20\\% capacity; admission-window q10 ties are resolved deterministically by deidentified stay index. Risk-difference confidence intervals use the independent-stay normal approximation. Thresholds of 60, 65, and 70 mmHg are operational sensitivities; they do not change the primary ordinary check-loss target at $\\tau=0.10$.}",
+            "\\footnotesize{Rows use cross fitted predictions and the first $K$ later records. Low and high admission q10 groups each contain 20\\% of stays. Risk difference intervals use the normal approximation with stay as the independent unit.}",
             "\\end{table*}",
         ]
     )
@@ -966,13 +966,13 @@ def write_common_cohort_fixed_opportunity_tex(
         raise ValueError("Common-cohort TeX outputs require nonempty result frames")
     threshold_lines = [
         "\\begin{table*}[!htbp]",
-        "\\caption{Fixed observation-opportunity sensitivity in the common cohort with at least 12 later MAP records.}",
+        "\\caption{Fixed observation opportunity in the common cohort with at least 12 later MAP records.}",
         "\\label{tab:common_cohort_fixed_opportunity_thresholds}",
         "\\centering",
         "\\scriptsize",
         "\\begin{tabular}{rrrrrrr}",
         "\\hline",
-        "$K$ & Threshold & Stays & Any event & Burden & q10 AUC & Low--high risk difference (95\\% CI)\\\\",
+        "$K$ & Threshold & Stays & Any event & Burden & q10 AUC & Risk difference (95\\% CI)\\\\",
         "\\hline",
     ]
     for _, row in thresholds.sort_values(
@@ -992,7 +992,7 @@ def write_common_cohort_fixed_opportunity_tex(
             "\\hline",
             "\\end{tabular}",
             "\\par\\smallskip",
-            "\\footnotesize{All rows use the same nested out-of-fold cohort of stays with at least 12 later observations; within each stay, only the first $K=4$, 8, or 12 later records are used. The fixed 20\\% low/high admission-q10 groups are defined once in this common cohort, with ties resolved by deidentified stay index. Risk-difference confidence intervals use the independent-stay normal approximation. Thresholds are operational sensitivities and do not alter the $\\tau=0.10$ check-loss target.}",
+            "\\footnotesize{All rows use the same cross fitted cohort and the first $K=4$, 8, or 12 later records. Low and high admission q10 groups each contain 20\\% of stays. Risk difference intervals use the normal approximation with stay as the independent unit.}",
             "\\end{table*}",
         ]
     )
@@ -1000,13 +1000,13 @@ def write_common_cohort_fixed_opportunity_tex(
 
     loss_lines = [
         "\\begin{table}[!htbp]",
-        "\\caption{Paired check loss in the common fixed-opportunity cohort.}",
+        "\\caption{Paired check loss in the common fixed opportunity cohort.}",
         "\\label{tab:common_cohort_fixed_opportunity_check_loss}",
         "\\centering",
         "\\small",
         "\\begin{tabular}{rrrrr}",
         "\\hline",
-        "$K$ & Stays & Calibrated q10 & Profiled offset & Offset minus calibrated (descriptive interval)\\\\",
+        "$K$ & Stays & Calibrated q10 & Profiled offset & Offset minus calibrated (interval)\\\\",
         "\\hline",
     ]
     for _, row in losses.sort_values("first_k_later_records").iterrows():
@@ -1023,7 +1023,7 @@ def write_common_cohort_fixed_opportunity_tex(
             "\\hline",
             "\\end{tabular}",
             "\\par\\smallskip",
-            "\\footnotesize{All three rows compare the same stays with at least 12 later records using nested out-of-fold predictions. Loss is averaged within stay over exactly the first $K$ later records and then across stays. Differences are paired at the stay level; positive values favor calibrated q10. Each descriptive interval is the paired estimate plus or minus 1.96 times its stay-level standard error, conditional on the realized fold-trained rules; it does not propagate uncertainty from refitting, tuning, or rule selection.}",
+            "\\footnotesize{All rows compare the same cross fitted stays with at least 12 later records. Loss is averaged over the first $K$ records within each stay and then across stays. Differences are paired by stay, and intervals equal the estimate plus or minus 1.96 standard errors.}",
             "\\end{table}",
         ]
     )
@@ -1074,13 +1074,13 @@ def write_paired_comparison_tex(comparisons: pd.DataFrame, path: Path, preferred
         table = comparisons.loc[comparisons["reference"] == "calibrated_q10"].copy()
     lines = [
         "\\begin{table}[!htbp]",
-        "\\caption{Paired stay-level check-loss comparisons against calibrated admission-window q10.}",
+        "\\caption{Paired check loss comparisons against calibrated admission window q10.}",
         "\\label{tab:validation_extension_paired_comparisons}",
         "\\centering",
         "\\small",
         "\\begin{tabular}{lrrrr}",
         "\\hline",
-        "Candidate & Mean loss & Paired difference & Descriptive interval & Better stays\\\\",
+        "Candidate & Mean loss & Paired difference & Interval & Better stays\\\\",
         "\\hline",
     ]
     for _, row in table.sort_values("candidate_mean_loss").iterrows():
@@ -1096,7 +1096,7 @@ def write_paired_comparison_tex(comparisons: pd.DataFrame, path: Path, preferred
             "\\hline",
             "\\end{tabular}",
             "\\par\\smallskip",
-            "\\footnotesize{Differences are candidate minus calibrated-q10 stay-level later check loss; negative values favor the candidate. Each descriptive interval is the estimate plus or minus 1.96 times its pooled stay-level standard error, conditional on the realized fold-trained rules; it does not propagate uncertainty from refitting, tuning, or rule selection. The independent unit is the ICU stay. The preferred scope is nested five-fold internal cross-fitting when available.}",
+            "\\footnotesize{Differences equal candidate loss minus calibrated q10 loss. Intervals equal the difference plus or minus 1.96 pooled standard errors. The ICU stay is the independent unit.}",
             "\\end{table}",
         ]
     )
@@ -1120,7 +1120,7 @@ def write_tie_aware_calibration_summary_tex(
         raise RuntimeError("Manuscript calibration summary is missing a required model")
     lines = [
         "\\begin{table*}[!htbp]",
-        "\\caption{Tie-aware calibration of later 0.10-quantile predictions under nested five-fold internal cross-fitting.}",
+        "\\caption{Calibration of later 0.10 quantiles from nested fivefold cross fitting.}",
         "\\label{tab:tie_aware_calibration_summary}",
         "\\centering",
         "\\scriptsize",
@@ -1145,7 +1145,7 @@ def write_tie_aware_calibration_summary_tex(
             "\\hline",
             "\\end{tabular}",
             "\\par\\smallskip",
-            "\\footnotesize{$L=P(Y<q)$ and $U=P(Y\\le q)$. The probability-mass calibration-bracket violation is $V=\\max\\{L-0.10,\\ 0.10-U,\\ 0\\}$, so outcome ties are not penalized when $L\\le0.10\\le U$. Stay-equal summaries are primary; observation-weighted summaries are sensitivity analyses. Mean decile $V$ is the unweighted mean stay-equal violation across ten deterministic equal-count prediction groups. Forecast ties at group boundaries are split by stable deidentified stay index; consequently, the mean-decile summary is descriptive and is not invariant to how those boundary ties are split. These quantities replace strict-below-only ACE/WCE summaries. The independent unit is the ICU stay.}",
+            "\\footnotesize{$L=P(Y<q)$, $U=P(Y\\le q)$, and $V=\\max\\{L-0.10,\\ 0.10-U,\\ 0\\}$. Stay columns give equal weight to each stay, and observation columns pool later observations. Mean decile $V$ averages the ten prediction groups. The ICU stay is the independent unit.}",
             "\\end{table*}",
         ]
     )

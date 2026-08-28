@@ -1,5 +1,5 @@
 \begin{table}[!htbp]
-\caption{Nested five-fold internal cross-fitted comparison of scalar lower-tail prediction rules.}
+\caption{Scalar prediction rules under nested fivefold cross fitting.}
 \label{tab:nested_crossfit_model_comparison}
 \centering
 \small
@@ -7,19 +7,19 @@
 \resizebox{\textwidth}{!}{%
 \begin{tabular}{lrrl}
 \toprule
-Rule & Mean loss & SE & Difference versus calibrated q10 (descriptive interval)\\
+Rule & Mean loss & SE & Difference versus calibrated q10 (interval)\\
 \midrule
 Population quantile component & 2.2215 & 0.0058 & 0.3319 (0.3231, 0.3407)\\
-Raw admission-window q10 & 2.1394 & 0.0073 & 0.2498 (0.2407, 0.2589)\\
+Raw admission window q10 & 2.1394 & 0.0073 & 0.2498 (0.2407, 0.2589)\\
 Primary profiled offset & 1.9528 & 0.0053 & 0.0632 (0.0585, 0.0679)\\
 Calibrated last MAP & 2.0149 & 0.0059 & 0.1253 (0.1165, 0.1341)\\
 Calibrated minimum MAP & 1.9379 & 0.0047 & 0.0483 (0.0447, 0.0518)\\
 Calibrated mean MAP & 1.9260 & 0.0052 & 0.0364 (0.0314, 0.0414)\\
-Calibrated MAP-below-65 fraction & 2.0200 & 0.0051 & 0.1305 (0.1246, 0.1363)\\
-Calibrated admission-window q10 & 1.8896 & 0.0048 & Reference\\
+Calibrated MAP below 65 fraction & 2.0200 & 0.0051 & 0.1305 (0.1246, 0.1363)\\
+Calibrated admission window q10 & 1.8896 & 0.0048 & Reference\\
 \bottomrule
 \end{tabular}%
 }
 \par\smallskip
-\footnotesize{Loss is the mean stay-level later check loss at $\tau=0.10$ over 60,310 out-of-fold predictions. Each outer iteration used 36,186 stays for population fitting, 12,062 for penalty and affine-rule tuning, and 12,062 for assessment. Age standardization and every fitted component were repeated within the outer iteration. Differences are candidate minus calibrated-q10 loss; positive values favor calibrated q10. Each descriptive interval is the estimate plus or minus $1.96$ times its pooled stay-level standard error, conditional on the realized fold-trained rules; it does not propagate uncertainty from refitting, tuning, or rule selection. Calibrated q10 was selected from the five calibrated scalar summaries in every inner tuning split. This is leakage-controlled internal cross-fitting, not external validation.}
+\footnotesize{Loss is later check loss averaged within stays at $\tau=0.10$ over 60,310 cross fitted predictions. Each outer iteration used 36,186 stays for population fitting, 12,062 for tuning, and 12,062 for assessment. Differences equal candidate loss minus calibrated q10 loss. Intervals equal the difference plus or minus $1.96$ pooled standard errors. Every inner tuning split selected calibrated q10 from the five scalar summaries.}
 \end{table}

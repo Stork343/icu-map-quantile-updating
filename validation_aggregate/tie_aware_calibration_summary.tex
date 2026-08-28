@@ -1,5 +1,5 @@
 \begin{table*}[!htbp]
-\caption{Tie-aware calibration of later 0.10-quantile predictions under nested five-fold internal cross-fitting.}
+\caption{Calibration of later 0.10 quantiles from nested fivefold cross fitting.}
 \label{tab:tie_aware_calibration_summary}
 \centering
 \scriptsize
@@ -14,5 +14,5 @@ Calibrated q10 & 0.0993 & 0.0994 & 0.0006 & 0.1043 & 0.1043 & 0.0043 & 0.0055\\
 \hline
 \end{tabular}
 \par\smallskip
-\footnotesize{$L=P(Y<q)$ and $U=P(Y\le q)$. The probability-mass calibration-bracket violation is $V=\max\{L-0.10,\ 0.10-U,\ 0\}$, so outcome ties are not penalized when $L\le0.10\le U$. Stay-equal summaries are primary; observation-weighted summaries are sensitivity analyses. Mean decile $V$ is the unweighted mean stay-equal violation across ten deterministic equal-count prediction groups. Forecast ties at group boundaries are split by stable deidentified stay index; consequently, the mean-decile summary is descriptive and is not invariant to how those boundary ties are split. These quantities replace strict-below-only ACE/WCE summaries. The independent unit is the ICU stay.}
+\footnotesize{$L=P(Y<q)$, $U=P(Y\le q)$, and $V=\max\{L-0.10,\ 0.10-U,\ 0\}$. Stay columns give equal weight to each stay, and observation columns pool later observations. Mean decile $V$ averages the ten prediction groups. The ICU stay is the independent unit.}
 \end{table*}

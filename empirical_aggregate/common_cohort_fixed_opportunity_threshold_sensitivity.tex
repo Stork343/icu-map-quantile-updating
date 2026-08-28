@@ -1,11 +1,11 @@
 \begin{table*}[!htbp]
-\caption{Fixed observation-opportunity sensitivity in the common cohort with at least 12 later MAP records.}
+\caption{Fixed observation opportunity sensitivity in the common cohort with at least 12 later MAP records.}
 \label{tab:common_cohort_fixed_opportunity_thresholds}
 \centering
 \scriptsize
 \begin{tabular}{rrrrrrr}
 \hline
-$K$ & Threshold & Stays & Any event & Burden & q10 AUC & Low--high risk difference (95\% CI)\\
+$K$ & Threshold & Stays & Any event & Burden & q10 AUC & Risk difference (95\% CI)\\
 \hline
 4 & 60 & 39491 & 16.7\% & 7.0\% & 0.804 & 42.0 (40.9 to 43.1) pp\\
 4 & 65 & 39491 & 33.5\% & 16.4\% & 0.799 & 63.0 (61.9 to 64.2) pp\\
@@ -19,5 +19,5 @@ $K$ & Threshold & Stays & Any event & Burden & q10 AUC & Low--high risk differen
 \hline
 \end{tabular}
 \par\smallskip
-\footnotesize{All rows use the same nested out-of-fold cohort of stays with at least 12 later observations; within each stay, only the first $K=4$, 8, or 12 later records are used. The fixed 20\% low/high admission-q10 groups are defined once in this common cohort, with ties resolved by deidentified stay index. Risk-difference confidence intervals use the independent-stay normal approximation. Thresholds are operational sensitivities and do not alter the $\tau=0.10$ check-loss target.}
+\footnotesize{All rows use the same cross fitted cohort of stays with at least 12 later observations and the first $K=4$, 8, or 12 later records. Low and high admission q10 groups each contain 20\% of stays. Risk difference intervals use the normal approximation with stay as the independent unit.}
 \end{table*}

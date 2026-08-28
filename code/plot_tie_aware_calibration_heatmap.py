@@ -126,7 +126,7 @@ def plot_calibration_heatmap(
         calibration_matrix(detail, scope, "stay_equal", tau),
         calibration_matrix(detail, scope, "observation_weighted", tau),
     )
-    panel_titles = ("a  Stay-equal aggregation", "b  Observation-weighted aggregation")
+    panel_titles = ("a  Equal weighting by stay", "b  Weighting by observations")
 
     width_mm = 183.0
     height_mm = 104.0
@@ -167,14 +167,14 @@ def plot_calibration_heatmap(
         if panel_index == 0:
             axis.tick_params(axis="x", labelbottom=False)
         else:
-            axis.set_xlabel("Predicted-quantile decile")
+            axis.set_xlabel("Decile of fitted quantile")
 
     if image is None:
         raise RuntimeError("No heatmap was rendered")
     colorbar = fig.colorbar(image, cax=colorbar_axis, ticks=[-20, -10, 0, 10, 20])
     colorbar.set_label("Signed bracket departure (percentage points)", rotation=270, labelpad=14)
     colorbar.outline.set_linewidth(0.6)
-    fig.suptitle("Tie-aware calibration across prediction deciles", x=0.19, ha="left", fontweight="bold")
+    fig.suptitle("Calibration with ties across prediction deciles", x=0.19, ha="left", fontweight="bold")
 
     output_stem.parent.mkdir(parents=True, exist_ok=True)
     save_cns_figure(fig, str(output_stem))

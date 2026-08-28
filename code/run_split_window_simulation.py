@@ -169,7 +169,7 @@ ADEMP_V2_SCENARIOS: Dict[str, Dict[str, object]] = {
         "late_count_range": (4, 22),
     },
     "cluster_size_informative": {
-        "label": "Cluster size--level association",
+        "label": "Association of cluster size with level",
         "description": "Cluster size is associated with the latent stay level even though observation times are otherwise non-informative.",
         "n_stays": 600,
         "level_sd": 5.5,
@@ -210,7 +210,7 @@ ADEMP_V2_SCENARIOS: Dict[str, Dict[str, object]] = {
         "late_count_range": (6, 14),
     },
     "transient_nonpersistent": {
-        "label": "Transient non-persistence",
+        "label": "Transient displacement",
         "description": "A large index-only shift disappears later, providing a negative control under serial residual dependence.",
         "n_stays": 600,
         "level_sd": 0.0,
@@ -239,7 +239,7 @@ ADEMP_V2_SCENARIOS: Dict[str, Dict[str, object]] = {
         "late_count_range": (8, 16),
     },
     "heavy_tail_t3": {
-        "label": "Heavy-tailed t3 residual",
+        "label": "Heavy tailed t3 residual",
         "description": "A persistent level is observed with independent Student-t3 marginal residuals centered at their exact 0.10 quantile.",
         "n_stays": 600,
         "level_sd": 5.5,
@@ -1306,7 +1306,7 @@ def plot_ademp_v2_summary(
             axis.scatter(means, y_position, c=colors, s=34, edgecolor="white", linewidth=0.5, zorder=3)
             axis.axvline(0.0, color="#222222", linestyle="--", linewidth=0.9)
             axis.set_title(title, loc="left")
-            axis.set_xlabel(f"Paired check-loss difference (A - B)\n{favor_text}")
+            axis.set_xlabel(f"Paired check loss difference (A minus B)\n{favor_text}")
             axis.grid(axis="x", color="#dddddd", linewidth=0.65)
             axis.set_yticks(y_position)
             axis.set_yticklabels(scenario_labels)
@@ -1347,8 +1347,8 @@ def plot_ademp_v2_summary(
             )
         axis.axvline(0.0, color="#222222", linewidth=0.8)
         axis.set_xlim(left=-0.003)
-        axis.set_title("D. Probability-mass calibration", loc="left")
-        axis.set_xlabel("Probability-mass bracket violation")
+        axis.set_title("D. Probability mass calibration", loc="left")
+        axis.set_xlabel("Probability mass bracket violation")
         axis.grid(axis="x", color="#dddddd", linewidth=0.65)
         axis.set_yticks(y_position)
         axis.set_yticklabels(scenario_labels)
@@ -1358,7 +1358,7 @@ def plot_ademp_v2_summary(
             axis.spines["top"].set_visible(False)
             axis.spines["right"].set_visible(False)
         fig.suptitle(
-            "ADEMP v2: performance against prespecified strong comparators",
+            "ADEMP v2 paired loss comparisons",
             fontsize=10.8,
             y=0.995,
         )
@@ -1410,14 +1410,14 @@ def write_ademp_v2_summary_tex(
 
     lines = [
         "\\begin{table*}[!htbp]",
-        "\\caption{Extended ADEMP simulation with strong comparators and Monte Carlo precision.}",
+        "\\caption{Monte Carlo check loss across ADEMP mechanisms.}",
         "\\label{tab:ademp_v2_summary}",
         "\\centering",
         "\\small",
         "\\resizebox{\\textwidth}{!}{%",
         "\\begin{tabular}{lrrrrrr}",
         "\\hline",
-        "Scenario & Population & Calibrated q10 & Profiled offset & Level + slope & $\\Delta_{\\mathrm{offset-pop}}$ & $\\Delta_{\\mathrm{offset-cal}}$\\\\",
+        "Scenario & Population & Calibrated q10 & Profiled offset & Level with slope & $\\Delta_{\\mathrm{offset,pop}}$ & $\\Delta_{\\mathrm{offset,q10}}$\\\\",
         "\\hline",
     ]
     for key in ADEMP_V2_SCENARIOS:
@@ -1439,14 +1439,9 @@ def write_ademp_v2_summary_tex(
             "}",
             "\\par\\smallskip",
             (
-                "\\footnotesize{Entries are mean stay-level assessment check loss (Monte Carlo standard error) across "
-                f"{int(n_rep)} independent simulated datasets per scenario. Differences are paired within replicate; "
-                "negative values in both $\\Delta$ columns favor the profiled offset rule. All methods had "
-                f"{int(n_rep)}/{int(n_rep)} effective replicates (failure rate 0\\%). Calibrated q10 is an affine transformation fitted on tuning stays "
-                "by stay-weighted quantile loss. The 240-stay and 600-stay settings, dense and sparse observation regimes, serial "
-                "dependence, informative monitoring, cluster-size informativeness, common-time misspecification, random shape, "
-                "treatment feedback, transient non-persistence, pure null, weak persistent signal, Student-$t_3$ heavy tails, "
-                "and integer rounding are prespecified data-generating mechanisms.}"
+                "\\footnotesize{Entries are mean check loss averaged within stays, with Monte Carlo standard errors in parentheses. "
+                f"Each scenario contains {int(n_rep)} independent datasets. Differences are paired within each replicate, and negative values favor the profiled offset. "
+                "Affine q10 is calibrated on tuning stays.}"
             ),
             "\\end{table*}",
         ]

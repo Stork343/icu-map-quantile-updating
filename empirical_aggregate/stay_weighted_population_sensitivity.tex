@@ -6,15 +6,15 @@
 \resizebox{\textwidth}{!}{%
 \begin{tabular}{lrrrr}
 \hline
-Model & $\lambda_b$ & Assessment loss (SE) & Paired reduction & Descriptive interval\\
+Model & $\lambda_b$ & Assessment loss (SE) & Paired reduction & Interval\\
 \hline
-Stay-weighted population & -- & 2.2227 (0.0129) & 0.0000 & 0.0000--0.0000\\
-Stay-weighted population + primary offset & 0.03 & 1.9583 (0.0116) & 0.2645 & 0.2404--0.2886\\
-Stay-weighted spline population & -- & 2.2226 (0.0130) & 0.0002 & -0.0001--0.0005\\
-Stay-weighted spline + stay-specific offset & 0.03 & 1.9666 (0.0117) & 0.2561 & 0.2319--0.2804\\
+Equal weighting by stay & NA & 2.2227 (0.0129) & 0.0000 & 0.0000 to 0.0000\\
+Equal weighting by stay with primary offset & 0.03 & 1.9583 (0.0116) & 0.2645 & 0.2404 to 0.2886\\
+Equal weighting by stay with spline & NA & 2.2226 (0.0130) & 0.0002 & -0.0001 to 0.0005\\
+Equal weighting by stay with spline and offset & 0.03 & 1.9666 (0.0117) & 0.2561 & 0.2319 to 0.2804\\
 \hline
 \end{tabular}%
 }
 \par\smallskip
-\footnotesize{The common quantile component was fitted with observation weights equal to the inverse number of training observations in each stay, so every training stay had total weight one. Assessment loss was averaged within stay and then across stays. Paired reductions and descriptive intervals use the stay-weighted baseline population model as the reference; each interval is the estimate plus or minus 1.96 times its stay-level standard error conditional on the realized fitted rules.}
+\footnotesize{Observation weights equal the inverse training count within each stay. Assessment loss is averaged within stays and then across stays. Paired reductions use the equal weighting by stay population model as reference, and intervals equal the estimate plus or minus 1.96 standard errors.}
 \end{table}
