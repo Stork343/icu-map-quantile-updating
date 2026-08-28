@@ -1,6 +1,6 @@
-# ICU MAP split window quantile regression
+# ICU MAP penalized quantile regression
 
-Reproducibility materials for the manuscript **Split Window Quantile Regression for Lower Tail Persistence of ICU Mean Arterial Pressure**.
+Reproducibility materials for the manuscript **Penalized Quantile Regression for Lower Tail Persistence in ICU Mean Arterial Pressure Trajectories**.
 
 Repository: <https://github.com/Stork343/icu-map-quantile-updating>
 
