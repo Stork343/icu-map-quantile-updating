@@ -1333,6 +1333,14 @@ def plot_tie_aware_decile_calibration(
     fig_main.savefig(main_output_stem.with_suffix(".svg"), bbox_inches="tight")
     fig_main.savefig(main_output_stem.with_suffix(".png"), dpi=600, bbox_inches="tight")
     plt.close(fig_main)
+    from plot_tie_aware_calibration_heatmap import plot_calibration_heatmap
+
+    plot_calibration_heatmap(
+        calibration_detail,
+        main_output_stem,
+        scope=preferred_scope,
+        tau=tau,
+    )
     return {
         "source_csv": str(source_path),
         "full_pdf": str(output_stem.with_suffix(".pdf")),
