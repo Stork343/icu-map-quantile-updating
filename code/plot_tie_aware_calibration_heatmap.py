@@ -1,5 +1,5 @@
 # Academic Figure Skill Asset Confirmation (verified against assets/figures/)
-# (a-b) tie-aware calibration heatmaps -> assets/figures/heatmap/plot_comparison.py -> param inherit
+# (a-c) tie-aware calibration heatmaps -> assets/figures/heatmap/plot_comparison.py -> param inherit
 # RULE: "native run" = load pre-rendered PNG via Image.open().ax.imshow().
 #       "param inherit" = drawing function below that copies Class A/B/C values.
 #       If a panel says "native run" and you write a drawing function, you broke the contract.
@@ -122,39 +122,54 @@ def plot_calibration_heatmap(
     scope: str = "nested_5fold_internal_crossfit",
     tau: float = 0.10,
 ) -> None:
-    matrices = (
-        calibration_matrix(detail, scope, "stay_equal", tau),
-        calibration_matrix(detail, scope, "observation_weighted", tau),
-    )
-    panel_titles = ("a  Equal weighting by stay", "b  Weighting by observations")
+    stay_equal = calibration_matrix(detail, scope, "stay_equal", tau)
+    observation_weighted = calibration_matrix(detail, scope, "observation_weighted", tau)
+    weighting_difference = observation_weighted - stay_equal
 
     width_mm = 183.0
-    height_mm = 104.0
+    height_mm = 122.0
     fig = plt.figure(figsize=(width_mm / 25.4, height_mm / 25.4))
     grid = fig.add_gridspec(
         2,
-        2,
-        width_ratios=(1.0, 0.035),
-        height_ratios=(1.0, 1.0),
-        left=0.19,
-        right=0.91,
-        bottom=0.16,
-        top=0.87,
-        hspace=0.55,
-        wspace=0.05,
+        3,
+        width_ratios=(1.0, 1.0, 0.035),
+        height_ratios=(1.0, 1.12),
+        left=0.18,
+        right=0.90,
+        bottom=0.13,
+        top=0.95,
+        hspace=0.48,
+        wspace=0.16,
     )
-    axes = (fig.add_subplot(grid[0, 0]), fig.add_subplot(grid[1, 0]))
-    colorbar_axis = fig.add_subplot(grid[:, 1])
+    absolute_axes = (fig.add_subplot(grid[0, 0]), fig.add_subplot(grid[0, 1]))
+    difference_axis = fig.add_subplot(grid[1, 0:2])
+    absolute_colorbar_axis = fig.add_subplot(grid[0, 2])
+    difference_colorbar_axis = fig.add_subplot(grid[1, 2])
 
-    cmap = LinearSegmentedColormap.from_list("calibration_departure", DIVERGING)
-    limit = 22.0
-    norm = TwoSlopeNorm(vmin=-limit, vcenter=0.0, vmax=limit)
-    image = None
-    for panel_index, (axis, matrix, panel_title) in enumerate(zip(axes, matrices, panel_titles)):
-        image = axis.imshow(matrix, aspect="auto", cmap=cmap, norm=norm, interpolation="nearest")
+    absolute_cmap = LinearSegmentedColormap.from_list("calibration_departure", DIVERGING)
+    absolute_limit = 22.0
+    absolute_norm = TwoSlopeNorm(vmin=-absolute_limit, vcenter=0.0, vmax=absolute_limit)
+    absolute_image = None
+    for panel_index, (axis, matrix, panel_title) in enumerate(
+        zip(
+            absolute_axes,
+            (stay_equal, observation_weighted),
+            ("a  Equal weighting by stay", "b  Weighting by observations"),
+        )
+    ):
+        absolute_image = axis.imshow(
+            matrix,
+            aspect="auto",
+            cmap=absolute_cmap,
+            norm=absolute_norm,
+            interpolation="nearest",
+        )
         axis.set_title(panel_title, loc="left", fontweight="bold", pad=5)
         axis.set_yticks(np.arange(len(MODEL_ORDER)))
-        axis.set_yticklabels([MODEL_LABELS[model] for model in MODEL_ORDER])
+        if panel_index == 0:
+            axis.set_yticklabels([MODEL_LABELS[model] for model in MODEL_ORDER])
+        else:
+            axis.set_yticklabels([])
         axis.set_xticks(np.arange(10))
         axis.set_xticklabels([str(value) for value in range(1, 11)])
         axis.set_xticks(np.arange(-0.5, 10, 1), minor=True)
@@ -164,17 +179,64 @@ def plot_calibration_heatmap(
         axis.tick_params(axis="both", length=0)
         for spine in axis.spines.values():
             spine.set_visible(False)
-        if panel_index == 0:
-            axis.tick_params(axis="x", labelbottom=False)
-        else:
-            axis.set_xlabel("Decile of fitted quantile")
 
-    if image is None:
-        raise RuntimeError("No heatmap was rendered")
-    colorbar = fig.colorbar(image, cax=colorbar_axis, ticks=[-20, -10, 0, 10, 20])
-    colorbar.set_label("Signed bracket departure (percentage points)", rotation=270, labelpad=14)
-    colorbar.outline.set_linewidth(0.6)
-    fig.suptitle("Calibration with ties across prediction deciles", x=0.19, ha="left", fontweight="bold")
+    if absolute_image is None:
+        raise RuntimeError("No absolute calibration heatmap was rendered")
+    absolute_colorbar = fig.colorbar(
+        absolute_image,
+        cax=absolute_colorbar_axis,
+        ticks=[-20, -10, 0, 10, 20],
+    )
+    absolute_colorbar.set_label(r"$D_{0.10}$ (percentage points)", rotation=270, labelpad=13)
+    absolute_colorbar.outline.set_linewidth(0.6)
+
+    difference_limit = np.ceil(np.max(np.abs(weighting_difference)) * 10.0) / 10.0
+    if difference_limit <= 0.0:
+        difference_limit = 0.1
+    difference_cmap = LinearSegmentedColormap.from_list(
+        "weighting_difference",
+        [CATEGORICAL[4], DIVERGING[1], CATEGORICAL[3]],
+    )
+    difference_norm = TwoSlopeNorm(
+        vmin=-difference_limit,
+        vcenter=0.0,
+        vmax=difference_limit,
+    )
+    difference_image = difference_axis.imshow(
+        weighting_difference,
+        aspect="auto",
+        cmap=difference_cmap,
+        norm=difference_norm,
+        interpolation="nearest",
+    )
+    difference_axis.set_title(
+        "c  Observation weighting minus equal weighting by stay",
+        loc="left",
+        fontweight="bold",
+        pad=5,
+    )
+    difference_axis.set_yticks(np.arange(len(MODEL_ORDER)))
+    difference_axis.set_yticklabels([MODEL_LABELS[model] for model in MODEL_ORDER])
+    difference_axis.set_xticks(np.arange(10))
+    difference_axis.set_xticklabels([str(value) for value in range(1, 11)])
+    difference_axis.set_xlabel("Decile of fitted quantile")
+    difference_axis.set_xticks(np.arange(-0.5, 10, 1), minor=True)
+    difference_axis.set_yticks(np.arange(-0.5, 4, 1), minor=True)
+    difference_axis.grid(which="minor", color="white", linewidth=1.0)
+    difference_axis.tick_params(which="minor", bottom=False, left=False)
+    difference_axis.tick_params(axis="both", length=0)
+    for spine in difference_axis.spines.values():
+        spine.set_visible(False)
+
+    difference_ticks = [-difference_limit, 0.0, difference_limit]
+    difference_colorbar = fig.colorbar(
+        difference_image,
+        cax=difference_colorbar_axis,
+        ticks=difference_ticks,
+    )
+    difference_colorbar.ax.set_yticklabels([f"{value:.1f}" for value in difference_ticks])
+    difference_colorbar.set_label(r"Difference in $D_{0.10}$ (percentage points)", rotation=270, labelpad=13)
+    difference_colorbar.outline.set_linewidth(0.6)
 
     output_stem.parent.mkdir(parents=True, exist_ok=True)
     save_cns_figure(fig, str(output_stem))
