@@ -1,0 +1,41 @@
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\setlength{\LTleft}{0pt}
+\setlength{\LTright}{0pt}
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.18\textwidth}*{2}{>{\centering\arraybackslash}p{0.09\textwidth}}>{\centering\arraybackslash}p{0.12\textwidth}>{\centering\arraybackslash}p{0.09\textwidth}>{\centering\arraybackslash}p{0.14\textwidth}>{\centering\arraybackslash}p{0.10\textwidth}}
+\caption{Realized simulation diagnostics and penalty behavior.}\label{tab:supp_ademp_diagnostics}\\
+\toprule
+Mechanism & Index count & Later count & Count-level correlation & Error lag 1 & Modal $\lambda_b$ (frequency) & Offset correlation\\
+\midrule
+\endfirsthead
+\multicolumn{7}{l}{\tablename\ \thetable\ continued}\\
+\toprule
+Mechanism & Index count & Later count & Count-level correlation & Error lag 1 & Modal $\lambda_b$ (frequency) & Offset correlation\\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+Large dense & 12.00 & 12.00 & 0.004 & 0.014 & 0.03 (87.5\%) & 0.879\\
+Small dense & 11.99 & 11.99 & -0.007 & 0.013 & 0.03 (64.5\%) & 0.867\\
+Large sparse & 3.50 & 6.00 & -0.001 & 0.015 & 0.03 (76.5\%) & 0.666\\
+Serial dependence & 10.02 & 10.01 & -0.002 & 0.502 & 0.10 (53.0\%) & 0.783\\
+Integer rounding & 9.99 & 9.99 & 0.003 & 0.221 & 0.03 (75.0\%) & 0.835\\
+Informative monitoring & 5.83 & 5.84 & -0.720 & 0.312 & 0.03 (97.0\%) & 0.684\\
+Cluster size association & 11.50 & 11.51 & -0.933 & 0.014 & 0.03 (73.5\%) & 0.833\\
+Omitted common time & 10.00 & 10.00 & -0.001 & 0.219 & 0.10 (58.5\%) & 0.709\\
+Persistent level with shape & 12.00 & 11.99 & 0.003 & 0.249 & 1.00 (43.5\%) & 0.121\\
+Treatment feedback & 10.00 & 10.01 & -0.002 & 0.256 & 0.03 (50.5\%) & 0.756\\
+Transient displacement & 10.01 & 9.99 &  & 0.255 & 10.00 (88.0\%) & \\
+Serial null & 9.99 & 10.00 &  & 0.503 & 10.00 (51.5\%) & \\
+Weak persistent level & 12.00 & 12.00 & -0.005 & 0.014 & 0.30 (67.5\%) & 0.657\\
+Heavy tailed residual & 12.00 & 12.00 & 0.004 & 0.008 & 0.03 (56.0\%) & 0.747\\
+\midrule
+\multicolumn{7}{l}{\textit{Transient penalty grid sensitivity}}\\
+Primary penalty grid & \multicolumn{3}{r}{Level minus population} & \multicolumn{3}{l}{+0.002032 (0.000298)}\\
+Extended penalty grid & \multicolumn{3}{r}{Level minus population} & \multicolumn{3}{l}{+0.001152 (0.000306)}\\
+Extended minus primary & \multicolumn{3}{r}{Paired change} & \multicolumn{3}{l}{-0.000881 (0.000068)}\\
+\end{longtable}
+\par\smallskip
+\footnotesize{Counts, correlations, and treatment fractions are means across 200 replicates. Blank offset correlations occur when the true persistent level has zero variance. Every method completed 200 replicates per mechanism. The primary penalty grid is $\{0,0.03,0.10,0.30,1,3,10\}$; the extended grid adds 30, 100, and 300. Transient sensitivity values are paired loss differences with MCSE in parentheses.}
+\endgroup

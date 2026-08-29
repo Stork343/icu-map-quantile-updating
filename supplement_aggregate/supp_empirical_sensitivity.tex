@@ -1,0 +1,36 @@
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\setlength{\LTleft}{0pt}
+\setlength{\LTright}{0pt}
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.20\textwidth}>{\raggedright\arraybackslash}p{0.24\textwidth}rrrrr}
+\caption{Empirical sensitivity to target, monitoring, weighting, and MAP source.}\label{tab:supp_empirical_sensitivity}\\
+\toprule
+Analysis & Setting & Stays & $\lambda_b$ & Population loss & Profiled loss & Reduction\\
+\midrule
+\endfirsthead
+\multicolumn{7}{l}{\tablename\ \thetable\ continued}\\
+\toprule
+Analysis & Setting & Stays & $\lambda_b$ & Population loss & Profiled loss & Reduction\\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+Quantile and landmark & Quantile 0.05, landmark 12 h & 12062 & 0.03 & 1.2974 & 1.1845 & 8.7\%\\
+Quantile and landmark & Quantile 0.10, landmark 6 h & 12062 & 0.10 & 2.2198 & 2.0545 & 7.4\%\\
+Quantile and landmark & Quantile 0.10, landmark 12 h & 12062 & 0.03 & 2.2247 & 1.9570 & 12.0\%\\
+Quantile and landmark & Quantile 0.10, landmark 18 h & 12062 & 0.03 & 2.2289 & 1.8912 & 15.1\%\\
+Quantile and landmark & Quantile 0.20, landmark 12 h & 12062 & 0.03 & 3.6541 & 3.0746 & 15.9\%\\
+Training weight & Equal total weight per stay & 12062 & 0.03 & 2.2227 & 1.9583 & 11.9\%\\
+MAP source & Invasive MAP only & 4192 & 0.10 & 1.8775 & 1.7236 & 8.2\%\\
+MAP source & Non-invasive MAP only & 8296 & 0.03 & 2.3770 & 1.9929 & 16.2\%\\
+Measurement density & Index observations, Low (median 11/12) & 4920 & 0.03 & 2.3093 & 1.9675 & 14.8\%\\
+Measurement density & Index observations, Middle (median 13/12) & 3612 & 0.03 & 2.2508 & 1.9600 & 12.9\%\\
+Measurement density & Index observations, High (median 18/12) & 3530 & 0.03 & 2.0799 & 1.9394 & 6.8\%\\
+Measurement density & Later observations, Low (median 12/9) & 4122 & 0.03 & 2.5012 & 2.0696 & 17.3\%\\
+Measurement density & Later observations, Middle (median 13/12) & 4670 & 0.03 & 2.1326 & 1.8468 & 13.4\%\\
+Measurement density & Later observations, High (median 14/14) & 3270 & 0.03 & 2.0076 & 1.9726 & 1.7\%\\
+\end{longtable}
+\par\smallskip
+\footnotesize{The measurement density setting reports median index/later counts in parentheses. Every row refits or reuses the population component and selects the stated penalty before assessment according to its analysis protocol.}
+\endgroup

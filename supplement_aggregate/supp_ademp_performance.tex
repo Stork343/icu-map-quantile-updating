@@ -1,0 +1,36 @@
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\setlength{\LTleft}{0pt}
+\setlength{\LTright}{0pt}
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.19\textwidth}*{4}{>{\centering\arraybackslash}p{0.185\textwidth}}}
+\caption{Complete paired Monte Carlo loss comparisons.}\label{tab:supp_ademp_performance}\\
+\toprule
+Mechanism & Level minus population & Calibrated q10 minus population & Level minus calibrated q10 & Level with slope minus level\\
+\midrule
+\endfirsthead
+\multicolumn{5}{l}{\tablename\ \thetable\ continued}\\
+\toprule
+Mechanism & Level minus population & Calibrated q10 minus population & Level minus calibrated q10 & Level with slope minus level\\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+Large dense & -0.3060 (0.0045) & -0.3094 (0.0044) & +0.0034 (0.0011) & +0.0896 (0.0023)\\
+Small dense & -0.3095 (0.0075) & -0.3138 (0.0073) & +0.0043 (0.0020) & +0.0846 (0.0038)\\
+Large sparse & -0.1676 (0.0045) & -0.2261 (0.0045) & +0.0585 (0.0026) & +0.0554 (0.0030)\\
+Serial dependence & -0.2345 (0.0046) & -0.2667 (0.0045) & +0.0322 (0.0022) & +0.0415 (0.0026)\\
+Integer rounding & -0.2718 (0.0050) & -0.2876 (0.0047) & +0.0159 (0.0017) & +0.0725 (0.0030)\\
+Informative monitoring & -0.3217 (0.0042) & -0.3916 (0.0051) & +0.0699 (0.0033) & +0.2001 (0.0034)\\
+Cluster size association & -0.3028 (0.0038) & -0.3292 (0.0036) & +0.0264 (0.0015) & +0.1269 (0.0027)\\
+Omitted common time & -0.1265 (0.0038) & -0.3240 (0.0054) & +0.1976 (0.0037) & -0.0066 (0.0019)\\
+Persistent level with shape & -0.0017 (0.0009) & +0.0336 (0.0022) & -0.0353 (0.0022) & -0.0076 (0.0011)\\
+Treatment feedback & -0.1530 (0.0031) & -0.1817 (0.0029) & +0.0287 (0.0016) & +0.0263 (0.0019)\\
+Transient displacement & +0.0020 (0.0003) & +0.0306 (0.0018) & -0.0285 (0.0019) & +0.0010 (0.0005)\\
+Serial null & +0.0009 (0.0004) & +0.0573 (0.0015) & -0.0564 (0.0015) & -0.0002 (0.0003)\\
+Weak persistent level & -0.0394 (0.0012) & -0.0263 (0.0015) & -0.0131 (0.0010) & +0.0077 (0.0007)\\
+Heavy tailed residual & -0.1875 (0.0035) & -0.1676 (0.0040) & -0.0199 (0.0025) & +0.0397 (0.0017)\\
+\end{longtable}
+\par\smallskip
+\footnotesize{Entries are Monte Carlo means with MCSE in parentheses across 200 independent replicates. Negative values favor the first rule named in the column heading.}
+\endgroup

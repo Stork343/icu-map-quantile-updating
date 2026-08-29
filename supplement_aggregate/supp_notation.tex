@@ -1,0 +1,23 @@
+\begin{table}[!htbp]
+\caption{Notation for the observed record prediction problem.}
+\label{tab:supp_notation}
+\centering
+\small
+\setlength{\tabcolsep}{5pt}
+\begin{tabular}{>{\raggedright\arraybackslash}p{0.18\textwidth}>{\raggedright\arraybackslash}p{0.72\textwidth}}
+\toprule
+Symbol & Definition\\
+\midrule
+$W_i$ & Complete retained record for ICU stay $i$, including MAP values, observation times, observation count, and baseline covariates.\\
+$\mathcal E_i,\mathcal L_i$ & Index observations available at the landmark and later observations reserved for tuning or assessment.\\
+$A_i$ & Eligibility indicator defined by the minimum total, index, and later observation counts.\\
+$z_{ij},\eta_\tau$ & Common design vector and its population quantile coefficient.\\
+$h_r(t),u_i$ & Stay specific basis indexed by $r$ and the corresponding profiled coefficient vector.\\
+$P_r$ & Positive definite quadratic penalty matrix for a stay specific basis.\\
+$\widetilde q_{ai}(t)$ & Base forecast for candidate $a$, constructed from training data, baseline covariates, and the index record of stay $i$.\\
+$(\alpha_a,\delta_a)$ & Tuning fitted intercept and slope in the affine calibration of candidate $a$.\\
+$\ell_i(a)$ & Later check loss averaged within stay $i$ for candidate $a$.\\
+$L(q),U(q),V_\tau(q)$ & Strict probability, inclusive probability, and distance of $\tau$ from the probability mass bracket at forecast $q$.\\
+\bottomrule
+\end{tabular}
+\end{table}

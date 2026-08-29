@@ -4,7 +4,7 @@ Reproducibility materials for the manuscript **Penalized Quantile Regression for
 
 Repository: <https://github.com/Stork343/icu-map-quantile-updating>
 
-Submission release: `v1.1.0`
+Submission release: `v1.2.0`
 
 ## What is included
 
@@ -14,6 +14,7 @@ Submission release: `v1.1.0`
 - `empirical_aggregate/`: aggregate CSV, JSON, TeX, and figure artifacts used in the MIMIC-IV application.
 - `validation_aggregate/`: aggregate nested cross fitting, fixed observation opportunity, comparator, and calibration outputs.
 - `source_sensitivity/`: aggregate invasive-only and noninvasive-only results.
+- `supplement_aggregate/`: source tables, source CSV files, and figures for the expanded mathematical, simulation, and MIMIC-IV supplement.
 
 ## Data boundary
 
@@ -44,6 +45,17 @@ python -m unittest discover -s code/tests -v
 ```
 
 The release was checked with 38 passing tests. They cover empirical quantile conventions, scalar and vector profiled updates, stable tie handling, data split isolation, fixed observation opportunity, probability mass calibration, informative monitoring, and deidentified export.
+
+## Regenerate expanded supplement artifacts
+
+The expanded supplemental tables and figures are generated from public aggregate files:
+
+```bash
+python code/generate_expanded_supplement_tables.py
+python code/plot_expanded_supplement_figures.py
+```
+
+These commands write LaTeX tables, aggregate source CSV files, vector PDFs, and PNG previews to `supplement_aggregate/`. They do not require row-level MIMIC-IV data.
 
 ## Reproduce a synthetic smoke run
 

@@ -1,0 +1,38 @@
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\setlength{\LTleft}{0pt}
+\setlength{\LTright}{0pt}
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.18\textwidth}*{7}{>{\centering\arraybackslash}p{0.10\textwidth}}}
+\caption{Clinical outcome gradients and adjusted associations.}\label{tab:supp_clinical_evidence}\\
+\toprule
+Vulnerability stratum & Stays & q10 & Later MAP $<65$ & Any later MAP $<65$ & Hospital death & ICU death & ICU stay $\ge3$ days\\
+\midrule
+\endfirsthead
+\multicolumn{8}{l}{\tablename\ \thetable\ continued}\\
+\toprule
+Vulnerability stratum & Stays & q10 & Later MAP $<65$ & Any later MAP $<65$ & Hospital death & ICU death & ICU stay $\ge3$ days\\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+Lowest vulnerability & 2268 & 85.0 & 1.5\% & 10.0\% & 6.7\% & 3.8\% & 31.3\%\\
+Second & 2434 & 74.0 & 4.5\% & 26.6\% & 7.9\% & 4.8\% & 30.9\%\\
+Third & 2208 & 68.0 & 10.5\% & 48.6\% & 8.8\% & 5.8\% & 31.5\%\\
+Fourth & 2597 & 63.0 & 18.4\% & 65.2\% & 10.6\% & 6.7\% & 34.2\%\\
+Highest vulnerability & 2555 & 55.0 & 35.5\% & 81.4\% & 14.2\% & 9.7\% & 35.5\%\\
+\midrule
+\multicolumn{8}{l}{\textit{Adjusted logistic associations}}\\
+Outcome and score & Events & \multicolumn{2}{c}{AUC} & \multicolumn{2}{c}{Odds ratio per 10 mmHg} & \multicolumn{2}{c}{95\% interval}\\
+Any later MAP below 65: 10 mmHg lower admission window q10 & 5720 & \multicolumn{2}{c}{0.802} & \multicolumn{2}{c}{3.24} & \multicolumn{2}{c}{3.08 to 3.41}\\
+Any later MAP below 65: 10 mmHg higher updated vulnerability & 5720 & \multicolumn{2}{c}{0.780} & \multicolumn{2}{c}{4.62} & \multicolumn{2}{c}{4.33 to 4.93}\\
+Hospital mortality: 10 mmHg lower admission window q10 & 1174 & \multicolumn{2}{c}{0.590} & \multicolumn{2}{c}{1.23} & \multicolumn{2}{c}{1.16 to 1.30}\\
+Hospital mortality: 10 mmHg higher updated vulnerability & 1174 & \multicolumn{2}{c}{0.566} & \multicolumn{2}{c}{1.34} & \multicolumn{2}{c}{1.24 to 1.44}\\
+ICU mortality: 10 mmHg lower admission window q10 & 752 & \multicolumn{2}{c}{0.606} & \multicolumn{2}{c}{1.33} & \multicolumn{2}{c}{1.24 to 1.42}\\
+ICU mortality: 10 mmHg higher updated vulnerability & 752 & \multicolumn{2}{c}{0.582} & \multicolumn{2}{c}{1.47} & \multicolumn{2}{c}{1.34 to 1.61}\\
+ICU stay at least 3 days: 10 mmHg lower admission window q10 & 3956 & \multicolumn{2}{c}{0.524} & \multicolumn{2}{c}{1.04} & \multicolumn{2}{c}{1.01 to 1.08}\\
+ICU stay at least 3 days: 10 mmHg higher updated vulnerability & 3956 & \multicolumn{2}{c}{0.517} & \multicolumn{2}{c}{1.07} & \multicolumn{2}{c}{1.02 to 1.12}\\
+\end{longtable}
+\par\smallskip
+\footnotesize{Strata order admission window q10 from high to low. Regressions adjust for age, sex, and emergency or urgent admission. Larger scores in the association panel denote lower q10 or larger negative profiled offsets.}
+\endgroup

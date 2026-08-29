@@ -1,0 +1,27 @@
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\setlength{\LTleft}{0pt}
+\setlength{\LTright}{0pt}
+\begin{longtable}{*{8}{>{\centering\arraybackslash}p{0.115\textwidth}}}
+\caption{Fold specific tuning and outer assessment results.}\label{tab:supp_fold_stability}\\
+\toprule
+Fold & $\lambda_b$ & q10 intercept & q10 slope & Tuning q10 loss & Population loss & Profiled loss & Calibrated q10 loss\\
+\midrule
+\endfirsthead
+\multicolumn{8}{l}{\tablename\ \thetable\ continued}\\
+\toprule
+Fold & $\lambda_b$ & q10 intercept & q10 slope & Tuning q10 loss & Population loss & Profiled loss & Calibrated q10 loss\\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+1 & 0.03 & 19.667 & 0.667 & 1.9009 & 2.2321 & 1.9562 & 1.8938\\
+2 & 0.03 & 19.667 & 0.667 & 1.8836 & 2.2452 & 1.9663 & 1.9013\\
+3 & 0.03 & 19.073 & 0.673 & 1.8836 & 2.2277 & 1.9544 & 1.8960\\
+4 & 0.03 & 19.667 & 0.667 & 1.8868 & 2.2247 & 1.9547 & 1.8918\\
+5 & 0.03 & 19.667 & 0.667 & 1.9010 & 2.1778 & 1.9325 & 1.8650\\
+\end{longtable}
+\par\smallskip
+\footnotesize{Each fold fits the population component on 36,186 stays, selects the penalty and affine summary on 12,062 inner tuning stays, and scores about 12,062 outer stays.}
+\endgroup
