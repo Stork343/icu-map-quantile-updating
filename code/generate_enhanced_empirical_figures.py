@@ -30,6 +30,8 @@ def public_export_frame(df: pd.DataFrame) -> pd.DataFrame:
 def set_plot_style() -> None:
     plt.rcParams.update(
         {
+            "font.family": "sans-serif",
+            "font.sans-serif": ["Arial", "Helvetica", "Liberation Sans"],
             "font.size": 9,
             "axes.titlesize": 10,
             "axes.labelsize": 9,
@@ -40,7 +42,9 @@ def set_plot_style() -> None:
             "axes.spines.right": False,
             "axes.grid": False,
             "figure.dpi": 140,
-            "savefig.dpi": 300,
+            "pdf.fonttype": 42,
+            "svg.fonttype": "none",
+            "savefig.dpi": 600,
         }
     )
 
@@ -323,8 +327,8 @@ def binomial_se(values: np.ndarray) -> float:
 
 def save_figure(fig: plt.Figure, output_stem: Path) -> None:
     output_stem.parent.mkdir(parents=True, exist_ok=True)
-    fig.savefig(output_stem.with_suffix(".pdf"), bbox_inches="tight")
-    fig.savefig(output_stem.with_suffix(".png"), bbox_inches="tight")
+    fig.savefig(output_stem.with_suffix(".pdf"), bbox_inches="tight", dpi=600)
+    fig.savefig(output_stem.with_suffix(".png"), bbox_inches="tight", dpi=600)
     plt.close(fig)
 
 

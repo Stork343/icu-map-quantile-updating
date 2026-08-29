@@ -4,6 +4,8 @@ Reproducibility materials for the manuscript **Penalized Quantile Regression for
 
 Repository: <https://github.com/Stork343/icu-map-quantile-updating>
 
+Submission release: `v1.1.0`
+
 ## What is included
 
 - `code/`: cohort construction, primary analysis, nested cross fitting, calibration, sensitivity analyses, figure generation, simulation, and regression tests.

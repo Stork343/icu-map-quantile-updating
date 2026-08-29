@@ -43,13 +43,13 @@ mpl.rcParams.update({
     "pdf.fonttype": 42,         # TrueType font embedding
     "svg.fonttype": "none",     # editable text in SVG
     "savefig.bbox": "tight",    # trim whitespace
-    "savefig.dpi": 300,
+    "savefig.dpi": 600,
 })
 
 def save_cns_figure(fig, filename):
-    """Standard Academic Figure Skill export: vector PDF + 300dpi PNG preview."""
-    fig.savefig(f"{filename}.pdf", bbox_inches="tight", dpi=300)
-    fig.savefig(f"{filename}.png", bbox_inches="tight", dpi=300)
+    """Export a vector PDF and a 600 dpi submission PNG."""
+    fig.savefig(f"{filename}.pdf", bbox_inches="tight", dpi=600)
+    fig.savefig(f"{filename}.png", bbox_inches="tight", dpi=600)
 
 
 import argparse
@@ -227,7 +227,7 @@ def plot_calibration_heatmap(
 
     output_stem.parent.mkdir(parents=True, exist_ok=True)
     save_cns_figure(fig, str(output_stem))
-    fig.savefig(output_stem.with_suffix(".svg"), bbox_inches="tight")
+    fig.savefig(output_stem.with_suffix(".svg"), bbox_inches="tight", dpi=600)
     plt.close(fig)
 
 

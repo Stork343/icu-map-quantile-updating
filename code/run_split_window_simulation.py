@@ -1461,7 +1461,7 @@ def plot_ademp_v2_summary(
         fig.subplots_adjust(left=0.235, right=0.992, top=0.925, bottom=0.155)
         fig.savefig(out_pdf, bbox_inches="tight", dpi=300)
         fig.savefig(out_svg, bbox_inches="tight", dpi=300)
-        fig.savefig(out_png, bbox_inches="tight", dpi=300)
+        fig.savefig(out_png, bbox_inches="tight", dpi=600)
         plt.close(fig)
 
 
