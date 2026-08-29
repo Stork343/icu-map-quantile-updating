@@ -1251,74 +1251,158 @@ def plot_ademp_v2_summary(
     out_svg: Path,
     out_png: Path,
 ) -> None:
-    """Four-panel, claim-aligned ADEMP-v2 summary with Monte Carlo intervals."""
+    """Aligned simulation contrasts with Monte Carlo intervals."""
 
     available_keys = set(summary["scenario_key"])
-    scenario_keys = [key for key in ADEMP_V2_SCENARIOS if key in available_keys]
-    scenario_labels = [str(ADEMP_V2_SCENARIOS[key]["label"]) for key in scenario_keys]
-    scenario_keys = list(reversed(scenario_keys))
-    scenario_labels = list(reversed(scenario_labels))
+    ordered_keys = [key for key in ADEMP_V2_SCENARIOS if key in available_keys]
+    if not ordered_keys:
+        raise ValueError("No ADEMP scenarios are available for plotting")
+    scenario_keys = list(reversed(ordered_keys))
     y_position = np.arange(len(scenario_keys), dtype=float)
 
-    with plt.rc_context(
-        {
-            "font.family": "sans-serif",
-            "font.sans-serif": ["Arial", "Liberation Sans", "DejaVu Sans"],
-            "font.size": 8.5,
-            "axes.titlesize": 10.2,
-            "axes.labelsize": 9.0,
-            "xtick.labelsize": 8.0,
-            "ytick.labelsize": 8.0,
-            "legend.fontsize": 8.0,
-            "pdf.fonttype": 42,
-            "svg.fonttype": "none",
-        }
-    ):
-        figure_height = max(5.5, 1.30 + 0.42 * len(scenario_keys))
-        fig, axes = plt.subplots(2, 2, figsize=(7.2047, figure_height), sharey=True)
-        contrasts = [
-            ("tuned_level", "population", "A. Profiled offset vs population", "negative favors profiled offset"),
-            ("tuned_level", "affine_calibrated_q10", "B. Profiled offset vs calibrated q10", "negative favors profiled offset"),
-            ("tuned_level_slope", "tuned_level", "C. Level + slope vs profiled offset", "negative favors level + slope"),
+    short_labels = {
+        "ideal_large_dense": "Large dense",
+        "ideal_small_dense": "Small dense",
+        "ideal_large_sparse": "Sparse",
+        "serial_dependence": "Serial dependence",
+        "discrete_map_rounding": "Integer rounding",
+        "informative_monitoring": "Informative monitoring",
+        "cluster_size_informative": "Informative cluster size",
+        "common_time_misspecified": "Omitted common time",
+        "level_plus_shape": "Persistent shape",
+        "treatment_feedback": "Treatment feedback",
+        "transient_nonpersistent": "Transient",
+        "null_serial": "Serial null",
+        "weak_level": "Weak persistence",
+        "heavy_tail_t3": "Heavy tail",
+    }
+    scenario_labels = [short_labels.get(key, str(ADEMP_V2_SCENARIOS[key]["label"])) for key in scenario_keys]
+
+    blue = "#2166AC"
+    orange = "#F1A340"
+    green = "#1B7837"
+    grey = "#999999"
+    dark = "#222222"
+    interval_grey = "#68717A"
+    grid_grey = "#E2E6EA"
+
+    style = {
+        "font.family": "sans-serif",
+        "font.sans-serif": ["Arial", "Helvetica", "Liberation Sans"],
+        "font.size": 8,
+        "axes.titlesize": 8,
+        "axes.labelsize": 8,
+        "xtick.labelsize": 7,
+        "ytick.labelsize": 7,
+        "legend.fontsize": 7,
+        "figure.titlesize": 9,
+        "axes.spines.top": False,
+        "axes.spines.right": False,
+        "axes.linewidth": 0.6,
+        "xtick.direction": "out",
+        "ytick.direction": "out",
+        "xtick.major.width": 0.6,
+        "ytick.major.width": 0.6,
+        "legend.frameon": False,
+        "pdf.fonttype": 42,
+        "svg.fonttype": "none",
+        "savefig.bbox": "tight",
+        "savefig.dpi": 300,
+    }
+
+    with plt.rc_context(style):
+        width_mm = 183.0
+        height_mm = 112.0
+        fig, axes = plt.subplots(
+            1,
+            4,
+            figsize=(width_mm / 25.4, height_mm / 25.4),
+            sharey=True,
+            gridspec_kw={"width_ratios": [1.35, 1.0, 1.0, 1.05], "wspace": 0.34},
+        )
+
+        contrast_specs = [
+            (
+                "tuned_level",
+                "population",
+                "a  Profiled offset\nversus population",
+                (-0.345, 0.020),
+                [-0.30, -0.20, -0.10, 0.00],
+            ),
+            (
+                "tuned_level",
+                "affine_calibrated_q10",
+                "b  Profiled offset\nversus calibrated q10",
+                (-0.068, 0.215),
+                [-0.05, 0.10, 0.20],
+            ),
+            (
+                "tuned_level_slope",
+                "tuned_level",
+                "c  Level with slope\nversus profiled offset",
+                (-0.016, 0.215),
+                [0.00, 0.10, 0.20],
+            ),
         ]
-        for axis, (method_a, method_b, title, favor_text) in zip(axes.ravel()[:3], contrasts):
+
+        for axis, (method_a, method_b, title, x_limits, x_ticks) in zip(axes[:3], contrast_specs):
             local = paired[
                 (paired["method_a"] == method_a) & (paired["method_b"] == method_b)
             ].set_index("scenario_key")
+            missing = [key for key in scenario_keys if key not in local.index]
+            if missing:
+                raise ValueError(f"Missing paired contrasts for scenarios: {missing}")
             means = np.asarray(
-                [float(local.loc[key, "loss_difference_mean"]) for key in scenario_keys], dtype=float
+                [float(local.loc[key, "loss_difference_mean"]) for key in scenario_keys],
+                dtype=float,
             )
-            errors = 1.96 * np.asarray(
-                [float(local.loc[key, "loss_difference_mcse"]) for key in scenario_keys], dtype=float
+            lower = np.asarray(
+                [float(local.loc[key, "loss_difference_mc_ci_lower"]) for key in scenario_keys],
+                dtype=float,
             )
-            colors = np.where(means <= 0.0, "#246a73", "#b85c32")
-            axis.axvspan(axis.get_xlim()[0], 0.0, color="#eaf3f2", alpha=0.55, zorder=0)
+            upper = np.asarray(
+                [float(local.loc[key, "loss_difference_mc_ci_upper"]) for key in scenario_keys],
+                dtype=float,
+            )
+            colors = np.where(upper < 0.0, blue, np.where(lower > 0.0, orange, grey))
             axis.errorbar(
                 means,
                 y_position,
-                xerr=errors,
+                xerr=np.vstack((means - lower, upper - means)),
                 fmt="none",
-                ecolor="#4a4a4a",
-                elinewidth=1.0,
-                capsize=2.2,
+                ecolor=interval_grey,
+                elinewidth=0.85,
+                capsize=1.8,
+                capthick=0.75,
                 zorder=2,
             )
-            axis.scatter(means, y_position, c=colors, s=34, edgecolor="white", linewidth=0.5, zorder=3)
-            axis.axvline(0.0, color="#222222", linestyle="--", linewidth=0.9)
-            axis.set_title(title, loc="left")
-            axis.set_xlabel(f"Paired check loss difference (A minus B)\n{favor_text}")
-            axis.grid(axis="x", color="#dddddd", linewidth=0.65)
-            axis.set_yticks(y_position)
-            axis.set_yticklabels(scenario_labels)
+            axis.scatter(
+                means,
+                y_position,
+                c=colors,
+                s=25,
+                edgecolor="white",
+                linewidth=0.45,
+                zorder=3,
+            )
+            axis.axvline(0.0, color=dark, linewidth=0.75, zorder=1)
+            axis.set_xlim(*x_limits)
+            axis.set_xticks(x_ticks)
+            axis.set_title(title, loc="left", fontweight="bold", pad=5)
+            axis.set_xlabel("Check loss difference", labelpad=4)
+            axis.grid(axis="x", color=grid_grey, linewidth=0.5, zorder=0)
 
-        axis = axes.ravel()[3]
+        calibration_axis = axes[3]
         calibration_methods = [
-            ("population", "Population", "#7f7f7f", -0.22),
-            ("affine_calibrated_q10", "Calibrated q10", "#2a9d8f", 0.0),
-            ("tuned_level", "Profiled offset", "#264653", 0.22),
+            ("population", "Population", grey, "s", -0.22),
+            ("affine_calibrated_q10", "Calibrated q10", green, "D", 0.0),
+            ("tuned_level", "Profiled offset", blue, "o", 0.22),
         ]
         indexed_summary = summary.set_index(["scenario_key", "method"])
-        for method, label, color, offset in calibration_methods:
+        for method, label, color, marker, offset in calibration_methods:
+            missing = [key for key in scenario_keys if (key, method) not in indexed_summary.index]
+            if missing:
+                raise ValueError(f"Missing calibration summaries for {method}: {missing}")
             means = np.asarray(
                 [
                     float(indexed_summary.loc[(key, method), "calibration_interval_violation_mean"])
@@ -1333,47 +1417,51 @@ def plot_ademp_v2_summary(
                 ],
                 dtype=float,
             )
-            axis.errorbar(
+            calibration_axis.errorbar(
                 means,
                 y_position + offset,
                 xerr=errors,
-                fmt="o",
+                fmt=marker,
                 color=color,
                 ecolor=color,
-                markersize=4.0,
-                elinewidth=0.9,
-                capsize=1.8,
+                markersize=3.4,
+                markeredgewidth=0.3,
+                markeredgecolor="white",
+                elinewidth=0.8,
+                capsize=1.5,
                 label=label,
+                zorder=3,
             )
-        axis.axvline(0.0, color="#222222", linewidth=0.8)
-        axis.set_xlim(left=-0.003)
-        axis.set_title("D. Probability mass calibration", loc="left")
-        axis.set_xlabel("Probability mass bracket violation")
-        axis.grid(axis="x", color="#dddddd", linewidth=0.65)
-        axis.set_yticks(y_position)
-        axis.set_yticklabels(scenario_labels)
-        axis.legend(loc="lower right", frameon=False)
+        calibration_axis.axvline(0.0, color=dark, linewidth=0.75, zorder=1)
+        calibration_axis.set_xlim(-0.004, 0.087)
+        calibration_axis.set_xticks([0.00, 0.04, 0.08])
+        calibration_axis.set_title("d  Probability mass\ncalibration", loc="left", fontweight="bold", pad=5)
+        calibration_axis.set_xlabel("Bracket violation", labelpad=4)
+        calibration_axis.grid(axis="x", color=grid_grey, linewidth=0.5, zorder=0)
+        calibration_axis.legend(
+            loc="upper right",
+            bbox_to_anchor=(1.01, 0.99),
+            borderaxespad=0.0,
+            handletextpad=0.35,
+            labelspacing=0.25,
+            fontsize=6.1,
+        )
 
-        for axis in axes.ravel():
-            axis.spines["top"].set_visible(False)
-            axis.spines["right"].set_visible(False)
-        fig.suptitle(
-            "ADEMP v2 paired loss comparisons",
-            fontsize=10.8,
-            y=0.995,
-        )
-        fig.text(
-            0.5,
-            0.014,
-            "Points are Monte Carlo means; horizontal bars are Monte Carlo 95% intervals (mean ± 1.96 MCSE).",
-            ha="center",
-            va="bottom",
-            fontsize=7.2,
-        )
-        fig.subplots_adjust(left=0.315, right=0.985, top=0.950, bottom=0.125, wspace=0.22, hspace=0.28)
-        fig.savefig(out_pdf, bbox_inches="tight")
-        fig.savefig(out_svg, bbox_inches="tight")
-        fig.savefig(out_png, dpi=600, bbox_inches="tight")
+        axes[0].set_yticks(y_position)
+        axes[0].set_yticklabels(scenario_labels)
+        axes[0].tick_params(axis="y", labelleft=True, pad=3, length=0)
+        for axis in axes[1:]:
+            axis.tick_params(axis="y", labelleft=False, length=0)
+        for axis in axes:
+            axis.tick_params(axis="x", length=2.5, width=0.6)
+            axis.set_axisbelow(True)
+            for separator in (3.5, 6.5):
+                axis.axhline(separator, color="#C9CFD5", linewidth=0.65, zorder=0)
+
+        fig.subplots_adjust(left=0.235, right=0.992, top=0.925, bottom=0.155)
+        fig.savefig(out_pdf, bbox_inches="tight", dpi=300)
+        fig.savefig(out_svg, bbox_inches="tight", dpi=300)
+        fig.savefig(out_png, bbox_inches="tight", dpi=300)
         plt.close(fig)
 
 
