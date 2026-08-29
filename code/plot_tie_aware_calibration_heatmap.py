@@ -1,5 +1,5 @@
 # Academic Figure Skill Asset Confirmation (verified against assets/figures/)
-# (a-c) tie-aware calibration heatmaps -> assets/figures/heatmap/plot_comparison.py -> param inherit
+# (a-b) tie-aware calibration heatmaps -> assets/figures/heatmap/plot_comparison.py -> param inherit
 # RULE: "native run" = load pre-rendered PNG via Image.open().ax.imshow().
 #       "param inherit" = drawing function below that copies Class A/B/C values.
 #       If a panel says "native run" and you write a drawing function, you broke the contract.
@@ -127,61 +127,48 @@ def plot_calibration_heatmap(
     weighting_difference = observation_weighted - stay_equal
 
     width_mm = 183.0
-    height_mm = 122.0
+    height_mm = 94.0
     fig = plt.figure(figsize=(width_mm / 25.4, height_mm / 25.4))
     grid = fig.add_gridspec(
         2,
-        3,
-        width_ratios=(1.0, 1.0, 0.035),
-        height_ratios=(1.0, 1.12),
+        2,
+        width_ratios=(1.0, 0.035),
+        height_ratios=(1.0, 1.0),
         left=0.18,
         right=0.90,
-        bottom=0.13,
+        bottom=0.15,
         top=0.95,
-        hspace=0.48,
-        wspace=0.16,
+        hspace=0.56,
+        wspace=0.05,
     )
-    absolute_axes = (fig.add_subplot(grid[0, 0]), fig.add_subplot(grid[0, 1]))
-    difference_axis = fig.add_subplot(grid[1, 0:2])
-    absolute_colorbar_axis = fig.add_subplot(grid[0, 2])
-    difference_colorbar_axis = fig.add_subplot(grid[1, 2])
+    absolute_axis = fig.add_subplot(grid[0, 0])
+    difference_axis = fig.add_subplot(grid[1, 0])
+    absolute_colorbar_axis = fig.add_subplot(grid[0, 1])
+    difference_colorbar_axis = fig.add_subplot(grid[1, 1])
 
     absolute_cmap = LinearSegmentedColormap.from_list("calibration_departure", DIVERGING)
     absolute_limit = 22.0
     absolute_norm = TwoSlopeNorm(vmin=-absolute_limit, vcenter=0.0, vmax=absolute_limit)
-    absolute_image = None
-    for panel_index, (axis, matrix, panel_title) in enumerate(
-        zip(
-            absolute_axes,
-            (stay_equal, observation_weighted),
-            ("a  Equal weighting by stay", "b  Weighting by observations"),
-        )
-    ):
-        absolute_image = axis.imshow(
-            matrix,
-            aspect="auto",
-            cmap=absolute_cmap,
-            norm=absolute_norm,
-            interpolation="nearest",
-        )
-        axis.set_title(panel_title, loc="left", fontweight="bold", pad=5)
-        axis.set_yticks(np.arange(len(MODEL_ORDER)))
-        if panel_index == 0:
-            axis.set_yticklabels([MODEL_LABELS[model] for model in MODEL_ORDER])
-        else:
-            axis.set_yticklabels([])
-        axis.set_xticks(np.arange(10))
-        axis.set_xticklabels([str(value) for value in range(1, 11)])
-        axis.set_xticks(np.arange(-0.5, 10, 1), minor=True)
-        axis.set_yticks(np.arange(-0.5, 4, 1), minor=True)
-        axis.grid(which="minor", color="white", linewidth=1.0)
-        axis.tick_params(which="minor", bottom=False, left=False)
-        axis.tick_params(axis="both", length=0)
-        for spine in axis.spines.values():
-            spine.set_visible(False)
+    absolute_image = absolute_axis.imshow(
+        stay_equal,
+        aspect="auto",
+        cmap=absolute_cmap,
+        norm=absolute_norm,
+        interpolation="nearest",
+    )
+    absolute_axis.set_title("a  Equal weighting by stay", loc="left", fontweight="bold", pad=5)
+    absolute_axis.set_yticks(np.arange(len(MODEL_ORDER)))
+    absolute_axis.set_yticklabels([MODEL_LABELS[model] for model in MODEL_ORDER])
+    absolute_axis.set_xticks(np.arange(10))
+    absolute_axis.set_xticklabels([])
+    absolute_axis.set_xticks(np.arange(-0.5, 10, 1), minor=True)
+    absolute_axis.set_yticks(np.arange(-0.5, 4, 1), minor=True)
+    absolute_axis.grid(which="minor", color="white", linewidth=1.0)
+    absolute_axis.tick_params(which="minor", bottom=False, left=False)
+    absolute_axis.tick_params(axis="both", length=0)
+    for spine in absolute_axis.spines.values():
+        spine.set_visible(False)
 
-    if absolute_image is None:
-        raise RuntimeError("No absolute calibration heatmap was rendered")
     absolute_colorbar = fig.colorbar(
         absolute_image,
         cax=absolute_colorbar_axis,
@@ -210,7 +197,7 @@ def plot_calibration_heatmap(
         interpolation="nearest",
     )
     difference_axis.set_title(
-        "c  Observation weighting minus equal weighting by stay",
+        "b  Difference under observation weighting",
         loc="left",
         fontweight="bold",
         pad=5,
