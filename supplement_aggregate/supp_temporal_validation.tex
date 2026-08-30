@@ -1,0 +1,46 @@
+\begin{table}[!htbp]
+\caption{Temporal assessment of the prediction family. Panel A gives loss by MIMIC-IV anchor year group, with differences defined as candidate minus population loss. Panel B gives the penalty and affine calibration selected from the tuning period. Panel C compares calibrated q10 with the profiled offset across the index q10 distribution.}
+\label{tab:supp_temporal_validation}
+\centering
+\footnotesize
+\textit{Panel A. Assessment loss by period.}\par\smallskip
+\begin{tabular}{llrrr}
+\toprule
+Assessment period & Rule & Stays & Mean loss & Difference (95\% CI)\\
+\midrule
+2017 to 2019 & Population component & 11,175 & 2.2946 & Reference\\
+2017 to 2019 & Profiled offset & 11,175 & 1.9076 & -0.3870 (-0.4092, -0.3649)\\
+2017 to 2019 & Calibrated q10 & 11,175 & 1.8663 & -0.4283 (-0.4464, -0.4102)\\
+\addlinespace
+2020 to 2022 & Population component & 7,891 & 2.3301 & Reference\\
+2020 to 2022 & Profiled offset & 7,891 & 1.9272 & -0.4030 (-0.4295, -0.3765)\\
+2020 to 2022 & Calibrated q10 & 7,891 & 1.8929 & -0.4373 (-0.4587, -0.4158)\\
+\addlinespace
+\bottomrule
+\end{tabular}
+\par\medskip
+\textit{Panel B. Tuning results from 2014 to 2016.}\par\smallskip
+\begin{tabular}{lrrr}
+\toprule
+Calibrated summary & Intercept & Slope & Tuning loss\\
+\midrule
+last & 35.3158 & 0.3684 & 1.9629\\
+min & 26.1481 & 0.5926 & 1.8900\\
+mean & 18.0116 & 0.5896 & 1.8786\\
+q10 $^{*}$ & 20.6471 & 0.6471 & 1.8432\\
+below65 burden & 66.9588 & -21.7732 & 1.9577\\
+\bottomrule
+\end{tabular}
+\begin{flushleft}\footnotesize The profiled offset selected $\lambda_b=0.03$. $^{*}$Selected calibrated summary.\end{flushleft}
+\par\medskip
+\textit{Panel C. Calibrated q10 minus profile loss by index q10.}\par\smallskip
+\begin{tabular}{lrrrr}
+\toprule
+Index stratum & Stays & Median q10 & Mean difference (simultaneous 95\% CI) & q10 better (\%)\\
+\midrule
+Lower q10 third & 6,356 & 60.0 & 0.0187 (0.0100, 0.0275) & 41.5\\
+Middle q10 third & 6,355 & 69.0 & -0.0401 (-0.0554, -0.0248) & 38.9\\
+Upper q10 third & 6,355 & 82.0 & -0.0938 (-0.1193, -0.0683) & 45.6\\
+\bottomrule
+\end{tabular}
+\end{table}

@@ -1,6 +1,6 @@
-# ICU MAP penalized quantile regression
+# ICU MAP quantile profiling
 
-Reproducibility materials for the manuscript **Penalized Quantile Regression for Lower Tail Persistence in ICU Mean Arterial Pressure Trajectories**.
+Reproducibility materials for the manuscript **Quantile Profiling for Lower Tail Persistence in ICU Mean Arterial Pressure**.
 
 Repository: <https://github.com/Stork343/icu-map-quantile-updating>
 
@@ -12,10 +12,10 @@ Development changes are recorded in Git history. A new release is created only f
 
 - `code/`: cohort construction, primary analysis, nested cross fitting, calibration, sensitivity analyses, figure generation, simulation, and regression tests.
 - `simulation_ademp_v2/`: complete synthetic results for the 14 mechanism ADEMP simulation with 200 replicates per mechanism.
-- `transient_grid_sensitivity/`: synthetic post hoc penalty grid sensitivity for the transient mechanism.
+- `transient_grid_sensitivity/`: synthetic penalty range sensitivity for the transient mechanism.
 - `empirical_aggregate/`: aggregate CSV, JSON, TeX, and figure artifacts used in the MIMIC-IV application.
-- `validation_aggregate/`: aggregate nested cross fitting, fixed observation opportunity, comparator, and calibration outputs.
-- `source_sensitivity/`: aggregate invasive-only and noninvasive-only results.
+- `validation_aggregate/`: aggregate nested cross fitting, temporal assessment, fixed observation opportunity, comparator, and calibration outputs.
+- `source_sensitivity/`: aggregate invasive and noninvasive results.
 - `supplement_aggregate/`: source tables, source CSV files, and figures for the expanded mathematical, simulation, and MIMIC-IV supplement.
 
 Figure 1 is supplied as an editable draw.io file, a standalone SVG, a vector PDF, and a 300 dpi PNG. Its Times New Roman typography matches the manuscript body. The training, tuning, and held-out assessment lanes use solid connectors for records or predictions and dashed connectors for fitted quantities frozen before assessment.
@@ -48,7 +48,7 @@ From the repository root, run
 python -m unittest discover -s code/tests -v
 ```
 
-The release was checked with 38 passing tests. They cover empirical quantile conventions, scalar and vector profiled updates, stable tie handling, data split isolation, fixed observation opportunity, probability mass calibration, informative monitoring, and deidentified export.
+The release was checked with 41 passing tests. They cover empirical quantile conventions, scalar and vector profiles, stable tie handling, sample separation, temporal allocation, q10 profile stratification, fixed observation opportunity, probability mass calibration, informative monitoring, and deidentified export.
 
 ## Regenerate expanded supplement artifacts
 
@@ -130,9 +130,22 @@ python code/run_submission_validation_extensions.py \
 
 The empirical analysis is computationally intensive. The aggregate outputs needed to inspect the reported manuscript results are already included in this repository.
 
+## Reproduce the temporal assessment
+
+The temporal analysis fits the population component on the 2008 to 2013 anchor year groups, tunes the prediction family on 2014 to 2016, and assesses the frozen rules on 2017 to 2022. It writes aggregate loss summaries, paired confidence intervals, 2,000 replicate stay bootstrap intervals, and manuscript tables.
+
+```bash
+python code/run_temporal_validation.py \
+  --obs-cache local_runs/mimic_cache/mimic_map_observations.parquet \
+  --stays-cache local_runs/mimic_cache/mimic_map_stays.parquet \
+  --patients-file /path/to/mimiciv/3.1/hosp/patients.csv.gz \
+  --output-dir local_runs/temporal_validation \
+  --work-dir local_runs/temporal_validation/work
+```
+
 ## Reported uncertainty
 
-The historical assessment split reports conditional stay-level uncertainty after training and tuning have frozen the prediction rule. Nested cross fitted losses are reported as point estimates of internal prediction risk. Monte Carlo intervals quantify simulation error across independent replicates.
+The historical and temporal assessment samples report conditional stay level uncertainty after fitting and tuning have frozen the prediction rules. Temporal comparisons include paired normal intervals and paired stay bootstrap intervals. Nested cross fitted losses estimate complete cohort prediction risk. Monte Carlo intervals quantify simulation error across independent replicates.
 
 ## Citation
 

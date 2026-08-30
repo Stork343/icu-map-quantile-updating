@@ -74,6 +74,39 @@ SCENARIO_GROUP = {
 
 def tex(value: object) -> str:
     text = str(value)
+    phrase_replacements = {
+        "non-informative": "noninformative",
+        "sample-size": "sample size",
+        "Gaussian-copula": "Gaussian copula",
+        "15-minute": "15 minute",
+        "stay-specific": "stay specific",
+        "level-plus-slope": "level plus slope",
+        "MAP-raising": "MAP raising",
+        "index-only": "index period",
+        "noise-only": "noise",
+        "lower-tail": "lower tail",
+        "Student-t3": "Student t3",
+        "Population-only": "Population",
+        "slope-only": "slope",
+        "Non-invasive MAP only": "Noninvasive MAP",
+        "only two to five": "two to five",
+        "Cluster size is associated with the latent stay level even though observation times are otherwise noninformative.":
+            "Cluster size is associated with the latent stay level under noninformative observation times.",
+        "favoring a correctly targeted level plus slope rule": "favoring a targeted level plus slope update",
+        "favoring a correctly targeted level plus slope update": "favoring a targeted level plus slope update",
+        "An early low lower tail triggers a later MAP raising intervention whose effect decays over time.":
+            "An early low lower tail triggers a later intervention that raises MAP and decays over time.",
+        "No persistent level, index shift, or random shape is present; serial residual dependence tests whether tuning suppresses noise offsets.":
+            "Serial residual dependence tests whether tuning suppresses updates when persistent level, index shift, and random shape are absent.",
+        "No persistent level, index shift, or random shape is present; serial residual dependence tests whether tuning suppresses noise updates.":
+            "Serial residual dependence tests whether tuning suppresses updates when persistent level, index shift, and random shape are absent.",
+        "A small but persistent stay specific lower tail level": "A small persistent stay specific lower tail level",
+        "Penalized stay specific level update": "Penalized stay specific level",
+        "Penalized stay specific slope update": "Penalized stay specific slope",
+        "Penalized stay specific level + slope update": "Penalized stay specific level plus slope",
+    }
+    for old, new in phrase_replacements.items():
+        text = text.replace(old, new)
     replacements = {
         "\\": r"\textbackslash{}",
         "&": r"\&",
@@ -216,12 +249,12 @@ def generate_diagnostic_table() -> None:
         r"\begin{longtable}{>{\raggedright\arraybackslash}p{0.18\textwidth}*{2}{>{\centering\arraybackslash}p{0.09\textwidth}}>{\centering\arraybackslash}p{0.12\textwidth}>{\centering\arraybackslash}p{0.09\textwidth}>{\centering\arraybackslash}p{0.14\textwidth}>{\centering\arraybackslash}p{0.10\textwidth}}",
         r"\caption{Realized simulation diagnostics and penalty behavior.}\label{tab:supp_ademp_diagnostics}\\",
         r"\toprule",
-        r"Mechanism & Index count & Later count & Count-level correlation & Error lag 1 & Modal $\lambda_b$ (frequency) & Offset correlation\\",
+        r"Mechanism & Index count & Later count & Count level correlation & Error lag 1 & Modal $\lambda_b$ (frequency) & Offset correlation\\",
         r"\midrule",
         r"\endfirsthead",
         r"\multicolumn{7}{l}{\tablename\ \thetable\ continued}\\",
         r"\toprule",
-        r"Mechanism & Index count & Later count & Count-level correlation & Error lag 1 & Modal $\lambda_b$ (frequency) & Offset correlation\\",
+        r"Mechanism & Index count & Later count & Count level correlation & Error lag 1 & Modal $\lambda_b$ (frequency) & Offset correlation\\",
         r"\midrule",
         r"\endhead",
         r"\bottomrule",

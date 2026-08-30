@@ -18,19 +18,19 @@ Group & Mechanism & Stays & Index/later counts & Defining feature\\
 \endfoot
 \bottomrule
 \endlastfoot
-Sample size and density & Large dense & 600 & (8, 16) / (8, 16) & Correct common component, independent errors, persistent level, and dense non-informative observation.\\
-Sample size and density & Small dense & 240 & (8, 16) / (8, 16) & The ideal mechanism with 240 stays to isolate sample-size sensitivity.\\
-Sample size and density & Large sparse & 600 & (2, 5) / (4, 8) & The ideal mechanism with only two to five index observations to isolate observation sparsity.\\
-Observation process & Serial dependence & 600 & (6, 14) / (6, 14) & A persistent level is observed with a Gaussian-copula AR(1) residual process on a 15-minute latent grid.\\
+Sample size and density & Large dense & 600 & (8, 16) / (8, 16) & Correct common component, independent errors, persistent level, and dense noninformative observation.\\
+Sample size and density & Small dense & 240 & (8, 16) / (8, 16) & The ideal mechanism with 240 stays to isolate sample size sensitivity.\\
+Sample size and density & Large sparse & 600 & (2, 5) / (4, 8) & The ideal mechanism with two to five index observations to isolate observation sparsity.\\
+Observation process & Serial dependence & 600 & (6, 14) / (6, 14) & A persistent level is observed with a Gaussian copula AR(1) residual process on a 15 minute latent grid.\\
 Observation process & Integer rounding & 600 & (6, 14) / (6, 14) & Observed and oracle MAP quantiles are rounded to integer mmHg, creating ties that require interval calibration.\\
 Observation process & Informative monitoring & 600 & (4, 22) / (4, 22) & Observation probability increases for lower latent levels and after a recently observed low MAP.\\
-Observation process & Cluster size association & 600 & (3, 20) / (3, 20) & Cluster size is associated with the latent stay level even though observation times are otherwise non-informative.\\
+Observation process & Cluster size association & 600 & (3, 20) / (3, 20) & Cluster size is associated with the latent stay level under noninformative observation times.\\
 Trajectory structure & Omitted common time & 600 & (6, 14) / (6, 14) & The true common quantile contains nonlinear circadian and quadratic time structure omitted from the fitted common component.\\
-Trajectory structure & Persistent level with shape & 600 & (8, 16) / (8, 16) & Persistent random intercepts coexist with stay-specific linear time shape, favoring a correctly targeted level-plus-slope update.\\
-Trajectory structure & Treatment feedback & 600 & (6, 14) / (6, 14) & An early low lower tail triggers a later MAP-raising intervention whose effect decays over time.\\
-Signal controls & Transient displacement & 600 & (6, 14) / (6, 14) & A large index-only shift disappears later, providing a negative control under serial residual dependence.\\
-Signal controls & Serial null & 600 & (6, 14) / (6, 14) & No persistent level, index shift, or random shape is present; serial residual dependence tests whether tuning suppresses noise-only updates.\\
-Signal controls & Weak persistent level & 600 & (8, 16) / (8, 16) & A small but persistent stay-specific lower-tail level tests power and shrinkage under a weak signal.\\
-Signal controls & Heavy tailed residual & 600 & (8, 16) / (8, 16) & A persistent level is observed with independent Student-t3 marginal residuals centered at their exact 0.10 quantile.\\
+Trajectory structure & Persistent level with shape & 600 & (8, 16) / (8, 16) & Persistent random intercepts coexist with stay specific linear time shape, favoring a targeted level plus slope update.\\
+Trajectory structure & Treatment feedback & 600 & (6, 14) / (6, 14) & An early low lower tail triggers a later intervention that raises MAP and decays over time.\\
+Signal controls & Transient displacement & 600 & (6, 14) / (6, 14) & A large index period shift disappears later, providing a negative control under serial residual dependence.\\
+Signal controls & Serial null & 600 & (6, 14) / (6, 14) & Serial residual dependence tests whether tuning suppresses updates when persistent level, index shift, and random shape are absent.\\
+Signal controls & Weak persistent level & 600 & (8, 16) / (8, 16) & A small persistent stay specific lower tail level tests power and shrinkage under a weak signal.\\
+Signal controls & Heavy tailed residual & 600 & (8, 16) / (8, 16) & A persistent level is observed with independent Student t3 marginal residuals centered at their exact 0.10 quantile.\\
 \end{longtable}
 \endgroup
