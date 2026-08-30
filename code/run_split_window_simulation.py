@@ -1541,9 +1541,6 @@ def sync_ademp_v2_manuscript_assets(paths: Mapping[str, Path], template_dir: Pat
     if template_dir is None:
         return
     targets = [template_dir]
-    submission = template_dir / "revised_quantile_adaptive_basis_mimic_submission_20260531"
-    if submission.exists():
-        targets.append(submission)
     for target in targets:
         figure_dir = target / "figures"
         table_dir = target / "tables"
@@ -2630,9 +2627,6 @@ def main() -> None:
     template_targets = []
     if args.template_dir is not None:
         template_targets.append(args.template_dir)
-        submission_dir = args.template_dir / "revised_quantile_adaptive_basis_mimic_submission_20260531"
-        if submission_dir.exists():
-            template_targets.append(submission_dir)
         for template_target in template_targets:
             (template_target / "tables").mkdir(parents=True, exist_ok=True)
             (template_target / "figures").mkdir(parents=True, exist_ok=True)
