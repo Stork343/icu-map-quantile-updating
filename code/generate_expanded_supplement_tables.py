@@ -12,11 +12,7 @@ import pandas as pd
 PAPER_ROOT = Path(__file__).resolve().parents[1]
 RECOVERY_ROOT = PAPER_ROOT / "recovery_20260822"
 ARCHIVE_PUBLIC_ROOT = RECOVERY_ROOT / "github_release" / "icu-map-quantile-updating"
-ARCHIVE_MANUSCRIPT_ROOT = (
-    RECOVERY_ROOT
-    / "revision_sim_benchmark_20260827"
-    / "WileyNJDv5_Template"
-)
+ARCHIVE_MANUSCRIPT_ROOT = PAPER_ROOT / "manuscript"
 PRIVATE_LAYOUT = ARCHIVE_PUBLIC_ROOT.exists() and ARCHIVE_MANUSCRIPT_ROOT.exists()
 PUBLIC_ROOT = ARCHIVE_PUBLIC_ROOT if PRIVATE_LAYOUT else PAPER_ROOT
 MANUSCRIPT_ROOT = ARCHIVE_MANUSCRIPT_ROOT if PRIVATE_LAYOUT else PAPER_ROOT
