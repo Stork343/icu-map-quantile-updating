@@ -4,7 +4,7 @@ Reproducibility materials for the manuscript **Penalized Quantile Regression for
 
 Repository: <https://github.com/Stork343/icu-map-quantile-updating>
 
-Submission release: `v1.2.0`
+Submission release: `v1.2.1`
 
 ## What is included
 
@@ -15,6 +15,8 @@ Submission release: `v1.2.0`
 - `validation_aggregate/`: aggregate nested cross fitting, fixed observation opportunity, comparator, and calibration outputs.
 - `source_sensitivity/`: aggregate invasive-only and noninvasive-only results.
 - `supplement_aggregate/`: source tables, source CSV files, and figures for the expanded mathematical, simulation, and MIMIC-IV supplement.
+
+Figure 1 is supplied as an editable draw.io file, a standalone SVG, a vector PDF, and a 300 dpi PNG. Its Times New Roman typography matches the manuscript body. The training, tuning, and held-out assessment lanes use solid connectors for records or predictions and dashed connectors for fitted quantities frozen before assessment.
 
 ## Data boundary
 

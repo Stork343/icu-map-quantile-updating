@@ -1,312 +1,65 @@
-<?xml version="1.0" encoding="utf-8" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
-  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="583.56pt" height="219.528pt" viewBox="0 0 583.56 219.528" xmlns="http://www.w3.org/2000/svg" version="1.1">
- <metadata>
-  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-   <cc:Work>
-    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2026-08-28T13:32:54.958730</dc:date>
-    <dc:format>image/svg+xml</dc:format>
-    <dc:creator>
-     <cc:Agent>
-      <dc:title>Matplotlib v3.9.2, https://matplotlib.org/</dc:title>
-     </cc:Agent>
-    </dc:creator>
-   </cc:Work>
-  </rdf:RDF>
- </metadata>
- <defs>
-  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
- </defs>
- <g id="figure_1">
-  <g id="patch_1">
-   <path d="M 0 219.528
-L 583.56 219.528
-L 583.56 0
-L 0 0
-z
-" style="fill: #ffffff"/>
-  </g>
-  <g id="axes_1">
-   <g id="patch_2">
-    <path d="M 41.3496 121.661424
-L 200.7144 121.661424
-Q 210.95928 121.661424 210.95928 117.96912
-L 210.95928 54.37944
-Q 210.95928 50.687136 200.7144 50.687136
-L 41.3496 50.687136
-Q 31.10472 50.687136 31.10472 54.37944
-L 31.10472 117.96912
-Q 31.10472 121.661424 41.3496 121.661424
-z
-" clip-path="url(#pa199f6582b)" style="fill: #ffffff; stroke: #cbd5e1; stroke-linejoin: miter"/>
-   </g>
-   <g id="patch_3">
-    <path d="M 246.2472 78.584544
-L 365.7708 78.584544
-Q 376.01568 78.584544 376.01568 74.89224
-L 376.01568 50.27688
-Q 376.01568 46.584576 365.7708 46.584576
-L 246.2472 46.584576
-Q 236.00232 46.584576 236.00232 50.27688
-L 236.00232 74.89224
-Q 236.00232 78.584544 246.2472 78.584544
-z
-" clip-path="url(#pa199f6582b)" style="fill: #e8f1f8; stroke: #2b6c9e; stroke-linejoin: miter"/>
-   </g>
-   <g id="patch_4">
-    <path d="M 246.2472 123.712704
-L 365.7708 123.712704
-Q 376.01568 123.712704 376.01568 120.0204
-L 376.01568 95.40504
-Q 376.01568 91.712736 365.7708 91.712736
-L 246.2472 91.712736
-Q 236.00232 91.712736 236.00232 95.40504
-L 236.00232 120.0204
-Q 236.00232 123.712704 246.2472 123.712704
-z
-" clip-path="url(#pa199f6582b)" style="fill: #e6f4f1; stroke: #2f9c95; stroke-linejoin: miter"/>
-   </g>
-   <g id="patch_5">
-    <path d="M 246.2472 168.840864
-L 365.7708 168.840864
-Q 376.01568 168.840864 376.01568 165.14856
-L 376.01568 140.5332
-Q 376.01568 136.840896 365.7708 136.840896
-L 246.2472 136.840896
-Q 236.00232 136.840896 236.00232 140.5332
-L 236.00232 165.14856
-Q 236.00232 168.840864 246.2472 168.840864
-z
-" clip-path="url(#pa199f6582b)" style="fill: #f3f4f6; stroke: #9ca3af; stroke-linejoin: miter"/>
-   </g>
-   <g id="patch_6">
-    <path d="M 416.9952 101.148624
-L 542.2104 101.148624
-Q 552.45528 101.148624 552.45528 97.45632
-L 552.45528 70.78968
-Q 552.45528 67.097376 542.2104 67.097376
-L 416.9952 67.097376
-Q 406.75032 67.097376 406.75032 70.78968
-L 406.75032 97.45632
-Q 406.75032 101.148624 416.9952 101.148624
-z
-" clip-path="url(#pa199f6582b)" style="fill: #f8e8ea; stroke: #c94c5a; stroke-linejoin: miter"/>
-   </g>
-   <g id="patch_7">
-    <path d="M 416.9952 154.481904
-L 542.2104 154.481904
-Q 552.45528 154.481904 552.45528 150.7896
-L 552.45528 124.12296
-Q 552.45528 120.430656 542.2104 120.430656
-L 416.9952 120.430656
-Q 406.75032 120.430656 406.75032 124.12296
-L 406.75032 150.7896
-Q 406.75032 154.481904 416.9952 154.481904
-z
-" clip-path="url(#pa199f6582b)" style="fill: #ffffff; stroke: #2f3a45; stroke-linejoin: miter"/>
-   </g>
-   <g id="patch_8">
-    <path d="M 203.401791 83.816886
-Q 223.481654 73.866177 242.559743 64.411904
-" clip-path="url(#pa199f6582b)" style="fill: none; stroke: #2b6c9e; stroke-linecap: round"/>
-    <path d="M 238.087635 64.395979
-L 242.559743 64.411904
-L 239.863738 67.980035
-z
-" clip-path="url(#pa199f6582b)" style="fill: #2b6c9e; stroke: #2b6c9e; stroke-linecap: round"/>
-   </g>
-   <g id="patch_9">
-    <path d="M 203.574096 94.255577
-Q 223.479442 100.532812 242.318518 106.473794
-" clip-path="url(#pa199f6582b)" style="fill: none; stroke: #2f9c95; stroke-linecap: round"/>
-    <path d="M 239.105219 103.363375
-L 242.318518 106.473794
-L 237.902203 107.178182
-z
-" clip-path="url(#pa199f6582b)" style="fill: #2f9c95; stroke: #2f9c95; stroke-linecap: round"/>
-   </g>
-   <g id="patch_10">
-    <path d="M 202.707016 103.803094
-Q 223.481881 127.201097 243.514431 149.763058
-" clip-path="url(#pa199f6582b)" style="fill: none; stroke: #6b7280; stroke-linecap: round"/>
-    <path d="M 242.354204 145.444045
-L 243.514431 149.763058
-L 239.363085 148.099832
-z
-" clip-path="url(#pa199f6582b)" style="fill: #6b7280; stroke: #6b7280; stroke-linecap: round"/>
-   </g>
-   <g id="patch_11">
-    <path d="M 368.556502 63.700094
-Q 391.381878 72.840511 413.169347 81.565298
-" clip-path="url(#pa199f6582b)" style="fill: none; stroke: #2b6c9e; stroke-linecap: round"/>
-    <path d="M 410.199518 78.22163
-L 413.169347 81.565298
-L 408.712516 81.934961
-z
-" clip-path="url(#pa199f6582b)" style="fill: #2b6c9e; stroke: #2b6c9e; stroke-linecap: round"/>
-   </g>
-   <g id="patch_12">
-    <path d="M 368.518984 106.502159
-Q 391.38571 96.429486 413.229269 86.807513
-" clip-path="url(#pa199f6582b)" style="fill: none; stroke: #2f9c95; stroke-linecap: round"/>
-    <path d="M 408.762441 86.589689
-L 413.229269 86.807513
-L 410.374913 90.250281
-z
-" clip-path="url(#pa199f6582b)" style="fill: #2f9c95; stroke: #2f9c95; stroke-linecap: round"/>
-   </g>
-   <g id="patch_13">
-    <path d="M 479.6028 100.454364
-Q 479.6028 110.787705 479.6028 120.003013
-" clip-path="url(#pa199f6582b)" style="fill: none; stroke: #c94c5a; stroke-linecap: round"/>
-    <path d="M 481.6028 116.003013
-L 479.6028 120.003013
-L 477.6028 116.003013
-z
-" clip-path="url(#pa199f6582b)" style="fill: #c94c5a; stroke: #c94c5a; stroke-linecap: round"/>
-   </g>
-   <g id="line2d_1">
-    <path d="M 55.5786 65.66148
-L 63.760275 77.727833
-L 71.94195 87.380915
-L 80.123625 72.901292
-L 88.3053 94.620727
-L 96.486975 106.68708
-L 104.66865 99.447268
-L 112.850325 82.554374
-L 121.032 77.727833
-L 129.213675 92.207456
-L 137.39535 97.033998
-L 145.577025 87.380915
-L 153.7587 75.314562
-L 161.940375 70.488021
-L 170.12205 84.967645
-L 178.303725 89.794186
-L 186.4854 80.141104
-" style="fill: none; stroke: #2b6c9e; stroke-width: 1.5; stroke-linecap: square"/>
-    <defs>
-     <path id="mc451585970" d="M 0 1.3
-C 0.344764 1.3 0.675454 1.163024 0.919239 0.919239
-C 1.163024 0.675454 1.3 0.344764 1.3 0
-C 1.3 -0.344764 1.163024 -0.675454 0.919239 -0.919239
-C 0.675454 -1.163024 0.344764 -1.3 0 -1.3
-C -0.344764 -1.3 -0.675454 -1.163024 -0.919239 -0.919239
-C -1.163024 -0.675454 -1.3 -0.344764 -1.3 0
-C -1.3 0.344764 -1.163024 0.675454 -0.919239 0.919239
-C -0.675454 1.163024 -0.344764 1.3 0 1.3
-z
-" style="stroke: #2b6c9e"/>
-    </defs>
-    <g>
-     <use xlink:href="#mc451585970" x="55.5786" y="65.66148" style="fill: #2b6c9e; stroke: #2b6c9e"/>
-     <use xlink:href="#mc451585970" x="63.760275" y="77.727833" style="fill: #2b6c9e; stroke: #2b6c9e"/>
-     <use xlink:href="#mc451585970" x="71.94195" y="87.380915" style="fill: #2b6c9e; stroke: #2b6c9e"/>
-     <use xlink:href="#mc451585970" x="80.123625" y="72.901292" style="fill: #2b6c9e; stroke: #2b6c9e"/>
-     <use xlink:href="#mc451585970" x="88.3053" y="94.620727" style="fill: #2b6c9e; stroke: #2b6c9e"/>
-     <use xlink:href="#mc451585970" x="96.486975" y="106.68708" style="fill: #2b6c9e; stroke: #2b6c9e"/>
-     <use xlink:href="#mc451585970" x="104.66865" y="99.447268" style="fill: #2b6c9e; stroke: #2b6c9e"/>
-     <use xlink:href="#mc451585970" x="112.850325" y="82.554374" style="fill: #2b6c9e; stroke: #2b6c9e"/>
-     <use xlink:href="#mc451585970" x="121.032" y="77.727833" style="fill: #2b6c9e; stroke: #2b6c9e"/>
-     <use xlink:href="#mc451585970" x="129.213675" y="92.207456" style="fill: #2b6c9e; stroke: #2b6c9e"/>
-     <use xlink:href="#mc451585970" x="137.39535" y="97.033998" style="fill: #2b6c9e; stroke: #2b6c9e"/>
-     <use xlink:href="#mc451585970" x="145.577025" y="87.380915" style="fill: #2b6c9e; stroke: #2b6c9e"/>
-     <use xlink:href="#mc451585970" x="153.7587" y="75.314562" style="fill: #2b6c9e; stroke: #2b6c9e"/>
-     <use xlink:href="#mc451585970" x="161.940375" y="70.488021" style="fill: #2b6c9e; stroke: #2b6c9e"/>
-     <use xlink:href="#mc451585970" x="170.12205" y="84.967645" style="fill: #2b6c9e; stroke: #2b6c9e"/>
-     <use xlink:href="#mc451585970" x="178.303725" y="89.794186" style="fill: #2b6c9e; stroke: #2b6c9e"/>
-     <use xlink:href="#mc451585970" x="186.4854" y="80.141104" style="fill: #2b6c9e; stroke: #2b6c9e"/>
-    </g>
-   </g>
-   <g id="line2d_2">
-    <path d="M 124.219296 110.78964
-L 124.219296 61.55892
-" clip-path="url(#pa199f6582b)" style="fill: none; stroke-dasharray: 1.2,1.98; stroke-dashoffset: 0; stroke: #c94c5a; stroke-width: 1.2"/>
-   </g>
-   <g id="text_1">
-    <text style="fill: #2f3a45; font: 700 12px 'Arial', 'DejaVu Sans', 'Liberation Sans', sans-serif; text-anchor: start" x="24.2748" y="26.192025" transform="rotate(-0 24.2748 26.192025)">Prediction protocol for lower tail MAP</text>
-   </g>
-   <g id="text_2">
-    <text style="fill: #c94c5a; font: 7.5px 'Arial', 'DejaVu Sans', 'Liberation Sans', sans-serif; text-anchor: start" x="127.634256" y="68.978559" transform="rotate(-0 127.634256 68.978559)">12 h</text>
-   </g>
-   <g id="text_3">
-    <text style="fill: #6b7280; font: 6.8px 'Arial', 'DejaVu Sans', 'Liberation Sans', sans-serif" transform="translate(74.467729 107.527015)">Index</text>
-    <text style="fill: #6b7280; font: 6.8px 'Arial', 'DejaVu Sans', 'Liberation Sans', sans-serif" transform="translate(63.508042 113.745828)">observations</text>
-   </g>
-   <g id="text_4">
-    <text style="fill: #6b7280; font: 6.8px 'Arial', 'DejaVu Sans', 'Liberation Sans', sans-serif" transform="translate(154.718036 107.527015)">Later</text>
-    <text style="fill: #6b7280; font: 6.8px 'Arial', 'DejaVu Sans', 'Liberation Sans', sans-serif" transform="translate(144.327317 113.745828)">assessment</text>
-   </g>
-   <g id="text_5">
-    <text style="fill: #2f3a45; font: 700 7px 'Arial', 'DejaVu Sans', 'Liberation Sans', sans-serif; text-anchor: middle" x="121.032" y="47.19996" transform="rotate(-0 121.032 47.19996)">Observed ICU MAP stream</text>
-   </g>
-   <g id="text_6">
-    <text style="fill: #2f3a45; font: 7px 'Arial', 'DejaVu Sans', 'Liberation Sans', sans-serif" transform="translate(286.300172 60.472665)">Training split</text>
-    <text style="fill: #2f3a45; font: 7px 'Arial', 'DejaVu Sans', 'Liberation Sans', sans-serif" transform="translate(261.062984 68.315673)">fit population q10 component</text>
-   </g>
-   <g id="text_7">
-    <text style="fill: #2f3a45; font: 7px 'Arial', 'DejaVu Sans', 'Liberation Sans', sans-serif" transform="translate(288.243219 105.61313)">Tuning split</text>
-    <text style="fill: #2f3a45; font: 7px 'Arial', 'DejaVu Sans', 'Liberation Sans', sans-serif" transform="translate(269.239312 113.349497)">select quadratic penalty</text>
-   </g>
-   <g id="text_8">
-    <text style="fill: #2f3a45; font: 7px 'Arial', 'DejaVu Sans', 'Liberation Sans', sans-serif" transform="translate(279.751344 150.823321)">Assessment split</text>
-    <text style="fill: #2f3a45; font: 7px 'Arial', 'DejaVu Sans', 'Liberation Sans', sans-serif" transform="translate(270.797906 158.477657)">score the selected rule</text>
-   </g>
-   <g id="text_9">
-    <text style="fill: #2f3a45; font: 7px 'Arial', 'DejaVu Sans', 'Liberation Sans', sans-serif" transform="translate(458.265378 80.419016)">Profiled offset</text>
-    <!-- estimate scalar $\hat b_i$ -->
-    <g style="fill: #2f3a45" transform="translate(452.0578 91.446203)">
-     <text>
-      <tspan style="font: 7px 'Arial'" x="0 3.893066 7.393066 9.337891 10.893066 16.724121 20.617188 22.562012 26.455078 28.399902 31.899902 35.399902 39.292969 40.848145 44.741211 47.072266" y="-0.140625">estimate scalar </tspan>
-      <tspan style="font: 7px 'DejaVu Sans'" x="52.821777" y="-2.40625">̂</tspan>
-      <tspan style="font: oblique 7px 'DejaVu Sans'" x="49.01709" y="-0.140625">b</tspan>
-      <tspan style="font: oblique 4.9px 'DejaVu Sans'" x="53.527441" y="1.0078125">i</tspan>
-     </text>
-    </g>
-   </g>
-   <g id="text_10">
-    <text style="fill: #2f3a45; font: 7px 'Arial', 'DejaVu Sans', 'Liberation Sans', sans-serif" transform="translate(454.698112 135.397706)">Later evaluation</text>
-    <text style="fill: #2f3a45; font: 7px 'Arial', 'DejaVu Sans', 'Liberation Sans', sans-serif" transform="translate(437.588034 143.052042)">ordinary check loss by stay</text>
-   </g>
-   <g id="text_11">
-    <text style="fill: #6b7280; font: 7.5px 'Arial', 'DejaVu Sans', 'Liberation Sans', sans-serif; text-anchor: middle" x="300.3174" y="87.19992" transform="rotate(-0 300.3174 87.19992)">candidate model set</text>
-   </g>
-   <g id="text_12">
-    <text style="fill: #6b7280; font: 7.5px 'Arial', 'DejaVu Sans', 'Liberation Sans', sans-serif; text-anchor: middle" x="482.4486" y="111.81528" transform="rotate(-0 482.4486 111.81528)">prediction after the landmark</text>
-   </g>
-   <g id="text_13">
-    <g id="patch_14">
-     <path d="M 41.3496 175.8924
-L 165.5496 175.8924
-Q 168.2496 175.8924 168.2496 173.1924
-L 168.2496 164.4624
-Q 168.2496 161.7624 165.5496 161.7624
-L 41.3496 161.7624
-Q 38.6496 161.7624 38.6496 164.4624
-L 38.6496 173.1924
-Q 38.6496 175.8924 41.3496 175.8924
-z
-" style="fill: #ffffff; stroke: #cbd5e1; stroke-linejoin: miter"/>
-    </g>
-    <!-- $\rho_{0.10}(u)=u\{0.10-I(u&lt;0)\}$ -->
-    <g style="fill: #2f3a45" transform="translate(41.3496 171.3024)">
-     <text>
-      <tspan style="font: oblique 9px 'DejaVu Sans'" x="0 23.497559 43.760742 86.277832 92.443359" y="-0.15625">ρuuIu</tspan>
-      <tspan style="font: 6.3px 'DejaVu Sans'" x="5.712891 9.721143 11.72373 15.731982" y="1.3203125">0.10</tspan>
-      <tspan style="font: 9px 'DejaVu Sans'" x="19.986328 29.20166 34.466309 49.464844 55.190918 60.916992 63.777832 69.503906 76.983398 88.932129 99.900879 109.195312 114.921387 118.432617" y="-0.15625">()={0.10−(&lt;0)}</tspan>
-     </text>
-    </g>
-   </g>
-   <g id="text_14">
-    <text style="fill: #6b7280; font: 8.2px 'Arial', 'DejaVu Sans', 'Liberation Sans', sans-serif" transform="translate(41.3496 184.803878)">Loss is averaged within assessment stays,</text>
-    <text style="fill: #6b7280; font: 8.2px 'Arial', 'DejaVu Sans', 'Liberation Sans', sans-serif" transform="translate(41.3496 193.86648)">then averaged across stays.</text>
-   </g>
-  </g>
- </g>
- <defs>
-  <clipPath id="pa199f6582b">
-   <rect x="7.2" y="7.2" width="569.16" height="205.128"/>
-  </clipPath>
- </defs>
+<svg xmlns="http://www.w3.org/2000/svg" width="1288" height="656" viewBox="0 0 1288 656" data-drawio="PG14R3JhcGhNb2RlbCBkeD0iMTEyMCIgZHk9IjcyMCIgZ3JpZD0iMSIgZ3JpZFNpemU9IjgiIGd1aWRlcz0iMSIgdG9vbHRpcHM9IjEiIGNvbm5lY3Q9IjEiIGFycm93cz0iMSIgZm9sZD0iMSIgcGFnZT0iMSIgcGFnZVNjYWxlPSIxIiBwYWdlV2lkdGg9IjEyODgiIHBhZ2VIZWlnaHQ9IjY1NiIgbWF0aD0iMSIgYmFja2dyb3VuZD0iI0ZGRkZGRiI+PHJvb3Q+PG14Q2VsbCBpZD0iMCIvPjxteENlbGwgaWQ9IjEiIHBhcmVudD0iMCIvPjxteENlbGwgaWQ9IjIiIHZhbHVlPSIxICBUUkFJTklORyIgc3R5bGU9InJvdW5kZWQ9MTthcmNTaXplPTg7aHRtbD0xO3doaXRlU3BhY2U9d3JhcDtmaWxsQ29sb3I9I0YzRjdGQjtzdHJva2VDb2xvcj0jOUNCQkQwO3N0cm9rZVdpZHRoPTEuNTtmb250Q29sb3I9IzIxMjEyMTtmb250U2l6ZT0yMjtmb250RmFtaWx5PVRpbWVzIE5ldyBSb21hbjtmb250U3R5bGU9MTt2ZXJ0aWNhbEFsaWduPXRvcDthbGlnbj1sZWZ0O3NwYWNpbmdMZWZ0PTEyO3NwYWNpbmdUb3A9MTAiIHZlcnRleD0iMSIgcGFyZW50PSIxIj48bXhHZW9tZXRyeSB4PSIyNCIgeT0iOCIgd2lkdGg9IjkwNCIgaGVpZ2h0PSIxNTIiIGFzPSJnZW9tZXRyeSIvPjwvbXhDZWxsPjxteENlbGwgaWQ9IjMiIHZhbHVlPSIyICBUVU5JTkciIHN0eWxlPSJyb3VuZGVkPTE7YXJjU2l6ZT04O2h0bWw9MTt3aGl0ZVNwYWNlPXdyYXA7ZmlsbENvbG9yPSNGRkY5RUM7c3Ryb2tlQ29sb3I9I0Q2QjY1RjtzdHJva2VXaWR0aD0xLjU7Zm9udENvbG9yPSMyMTIxMjE7Zm9udFNpemU9MjI7Zm9udEZhbWlseT1UaW1lcyBOZXcgUm9tYW47Zm9udFN0eWxlPTE7dmVydGljYWxBbGlnbj10b3A7YWxpZ249bGVmdDtzcGFjaW5nTGVmdD0xMjtzcGFjaW5nVG9wPTEwIiB2ZXJ0ZXg9IjEiIHBhcmVudD0iMSI+PG14R2VvbWV0cnkgeD0iMjQiIHk9IjE1MiIgd2lkdGg9IjExNjgiIGhlaWdodD0iMTY4IiBhcz0iZ2VvbWV0cnkiLz48L214Q2VsbD48bXhDZWxsIGlkPSI0IiB2YWx1ZT0iMyAgSEVMRC1PVVQgQVNTRVNTTUVOVCIgc3R5bGU9InJvdW5kZWQ9MTthcmNTaXplPTg7aHRtbD0xO3doaXRlU3BhY2U9d3JhcDtmaWxsQ29sb3I9I0ZCRjJGNDtzdHJva2VDb2xvcj0jQ0I4Qzk5O3N0cm9rZVdpZHRoPTEuNTtmb250Q29sb3I9IzIxMjEyMTtmb250U2l6ZT0yMjtmb250RmFtaWx5PVRpbWVzIE5ldyBSb21hbjtmb250U3R5bGU9MTt2ZXJ0aWNhbEFsaWduPXRvcDthbGlnbj1sZWZ0O3NwYWNpbmdMZWZ0PTEyO3NwYWNpbmdUb3A9MTAiIHZlcnRleD0iMSIgcGFyZW50PSIxIj48bXhHZW9tZXRyeSB4PSIyNCIgeT0iMzA0IiB3aWR0aD0iMTE4NCIgaGVpZ2h0PSIyNzIiIGFzPSJnZW9tZXRyeSIvPjwvbXhDZWxsPjxteENlbGwgaWQ9IjUiIHZhbHVlPSJUcmFpbmluZyBzdGF5cyZsdDticiZndDtvdXRlciBmaXQgNjAlIiBzdHlsZT0icm91bmRlZD0xO2FyY1NpemU9NjtodG1sPTE7d2hpdGVTcGFjZT13cmFwO2ZpbGxDb2xvcj0jRkZGRkZGO3N0cm9rZUNvbG9yPSMwMDQ0ODg7c3Ryb2tlV2lkdGg9MS41O2ZvbnRDb2xvcj0jMUYyOTM3O2ZvbnRTaXplPTIwO2ZvbnRGYW1pbHk9VGltZXMgTmV3IFJvbWFuO3ZlcnRpY2FsQWxpZ249bWlkZGxlO2FsaWduPWNlbnRlciIgdmVydGV4PSIxIiBwYXJlbnQ9IjIiPjxteEdlb21ldHJ5IHg9IjI0IiB5PSI2NCIgd2lkdGg9IjIwMCIgaGVpZ2h0PSI2NCIgYXM9Imdlb21ldHJ5Ii8+PC9teENlbGw+PG14Q2VsbCBpZD0iNiIgdmFsdWU9IkZpdCBjb21tb24gcnVsZSZsdDticiZndDtjb3ZhcmlhdGVzICsgSUNVIHRpbWUiIHN0eWxlPSJyb3VuZGVkPTE7YXJjU2l6ZT02O2h0bWw9MTt3aGl0ZVNwYWNlPXdyYXA7ZmlsbENvbG9yPSNFQUYyRjg7c3Ryb2tlQ29sb3I9IzAwNDQ4ODtzdHJva2VXaWR0aD0xLjU7Zm9udENvbG9yPSMxRjI5Mzc7Zm9udFNpemU9MjA7Zm9udEZhbWlseT1UaW1lcyBOZXcgUm9tYW47dmVydGljYWxBbGlnbj1taWRkbGU7YWxpZ249Y2VudGVyIiB2ZXJ0ZXg9IjEiIHBhcmVudD0iMiI+PG14R2VvbWV0cnkgeD0iMjgwIiB5PSI2NCIgd2lkdGg9IjI5NiIgaGVpZ2h0PSI2NCIgYXM9Imdlb21ldHJ5Ii8+PC9teENlbGw+PG14Q2VsbCBpZD0iNyIgdmFsdWU9IlBvcHVsYXRpb24gcXVhbnRpbGUmbHQ7YnImZ3Q7Y29tbW9uIHJ1bGUiIHN0eWxlPSJyb3VuZGVkPTE7YXJjU2l6ZT02O2h0bWw9MTt3aGl0ZVNwYWNlPXdyYXA7ZmlsbENvbG9yPSNGRkZGRkY7c3Ryb2tlQ29sb3I9IzAwNDQ4ODtzdHJva2VXaWR0aD0xLjU7Zm9udENvbG9yPSMxRjI5Mzc7Zm9udFNpemU9MjA7Zm9udEZhbWlseT1UaW1lcyBOZXcgUm9tYW47dmVydGljYWxBbGlnbj1taWRkbGU7YWxpZ249Y2VudGVyIiB2ZXJ0ZXg9IjEiIHBhcmVudD0iMiI+PG14R2VvbWV0cnkgeD0iNjQwIiB5PSI2NCIgd2lkdGg9IjI0MCIgaGVpZ2h0PSI2NCIgYXM9Imdlb21ldHJ5Ii8+PC9teENlbGw+PG14Q2VsbCBpZD0iOCIgdmFsdWU9IlR1bmluZyBzdGF5cyZsdDticiZndDtvdXRlciBmaXQgMjAlIiBzdHlsZT0icm91bmRlZD0xO2FyY1NpemU9NjtodG1sPTE7d2hpdGVTcGFjZT13cmFwO2ZpbGxDb2xvcj0jRkZGRkZGO3N0cm9rZUNvbG9yPSNEREFBMzM7c3Ryb2tlV2lkdGg9MS41O2ZvbnRDb2xvcj0jMUYyOTM3O2ZvbnRTaXplPTIwO2ZvbnRGYW1pbHk9VGltZXMgTmV3IFJvbWFuO3ZlcnRpY2FsQWxpZ249bWlkZGxlO2FsaWduPWNlbnRlciIgdmVydGV4PSIxIiBwYXJlbnQ9IjMiPjxteEdlb21ldHJ5IHg9IjI0IiB5PSI3MiIgd2lkdGg9IjIwMCIgaGVpZ2h0PSI2NCIgYXM9Imdlb21ldHJ5Ii8+PC9teENlbGw+PG14Q2VsbCBpZD0iOSIgdmFsdWU9IlByb2ZpbGVzJmx0O2JyJmd0O2xldmVsLCBzbG9wZSwgc3VtbWFyeSIgc3R5bGU9InJvdW5kZWQ9MTthcmNTaXplPTY7aHRtbD0xO3doaXRlU3BhY2U9d3JhcDtmaWxsQ29sb3I9I0ZGRjRENjtzdHJva2VDb2xvcj0jRERBQTMzO3N0cm9rZVdpZHRoPTEuNTtmb250Q29sb3I9IzFGMjkzNztmb250U2l6ZT0yMDtmb250RmFtaWx5PVRpbWVzIE5ldyBSb21hbjt2ZXJ0aWNhbEFsaWduPW1pZGRsZTthbGlnbj1jZW50ZXIiIHZlcnRleD0iMSIgcGFyZW50PSIzIj48bXhHZW9tZXRyeSB4PSIyODAiIHk9IjY0IiB3aWR0aD0iMjk2IiBoZWlnaHQ9IjgwIiBhcz0iZ2VvbWV0cnkiLz48L214Q2VsbD48bXhDZWxsIGlkPSIxMCIgdmFsdWU9IlR1bmUgYW5kIGZyZWV6ZSZsdDticiZndDtiYXNpcywgzrssIGNhbGlicmF0aW9uIiBzdHlsZT0icm91bmRlZD0xO2FyY1NpemU9NjtodG1sPTE7d2hpdGVTcGFjZT13cmFwO2ZpbGxDb2xvcj0jRkZGNEQ2O3N0cm9rZUNvbG9yPSNEREFBMzM7c3Ryb2tlV2lkdGg9MS41O2ZvbnRDb2xvcj0jMUYyOTM3O2ZvbnRTaXplPTIwO2ZvbnRGYW1pbHk9VGltZXMgTmV3IFJvbWFuO3ZlcnRpY2FsQWxpZ249bWlkZGxlO2FsaWduPWNlbnRlciIgdmVydGV4PSIxIiBwYXJlbnQ9IjMiPjxteEdlb21ldHJ5IHg9IjYzMiIgeT0iNjQiIHdpZHRoPSIyODgiIGhlaWdodD0iODAiIGFzPSJnZW9tZXRyeSIvPjwvbXhDZWxsPjxteENlbGwgaWQ9IjExIiB2YWx1ZT0iRnJvemVuIHJ1bGUiIHN0eWxlPSJyb3VuZGVkPTE7YXJjU2l6ZT02O2h0bWw9MTt3aGl0ZVNwYWNlPXdyYXA7ZmlsbENvbG9yPSNGRkZGRkY7c3Ryb2tlQ29sb3I9I0REQUEzMztzdHJva2VXaWR0aD0xLjU7Zm9udENvbG9yPSMxRjI5Mzc7Zm9udFNpemU9MjA7Zm9udEZhbWlseT1UaW1lcyBOZXcgUm9tYW47dmVydGljYWxBbGlnbj1taWRkbGU7YWxpZ249Y2VudGVyIiB2ZXJ0ZXg9IjEiIHBhcmVudD0iMyI+PG14R2VvbWV0cnkgeD0iOTY4IiB5PSI4MCIgd2lkdGg9IjE3NiIgaGVpZ2h0PSI0OCIgYXM9Imdlb21ldHJ5Ii8+PC9teENlbGw+PG14Q2VsbCBpZD0iMTIiIHZhbHVlPSJIZWxkLW91dCBzdGF5Jmx0O2JyJmd0OzIwJSBvdXRlciBmb2xkIiBzdHlsZT0icm91bmRlZD0xO2FyY1NpemU9NjtodG1sPTE7d2hpdGVTcGFjZT13cmFwO2ZpbGxDb2xvcj0jRkZGRkZGO3N0cm9rZUNvbG9yPSNCQjU1NjY7c3Ryb2tlV2lkdGg9MS41O2ZvbnRDb2xvcj0jMUYyOTM3O2ZvbnRTaXplPTIwO2ZvbnRGYW1pbHk9VGltZXMgTmV3IFJvbWFuO3ZlcnRpY2FsQWxpZ249bWlkZGxlO2FsaWduPWNlbnRlciIgdmVydGV4PSIxIiBwYXJlbnQ9IjQiPjxteEdlb21ldHJ5IHg9IjI0IiB5PSIxMDQiIHdpZHRoPSIxNzYiIGhlaWdodD0iNjQiIGFzPSJnZW9tZXRyeSIvPjwvbXhDZWxsPjxteENlbGwgaWQ9IjEzIiB2YWx1ZT0iSW5kZXggd2luZG93Jmx0O2JyJmd0O2Vhcmx5IE1BUCIgc3R5bGU9InJvdW5kZWQ9MTthcmNTaXplPTY7aHRtbD0xO3doaXRlU3BhY2U9d3JhcDtmaWxsQ29sb3I9I0ZBRTdFQTtzdHJva2VDb2xvcj0jQkI1NTY2O3N0cm9rZVdpZHRoPTEuNTtmb250Q29sb3I9IzFGMjkzNztmb250U2l6ZT0yMDtmb250RmFtaWx5PVRpbWVzIE5ldyBSb21hbjt2ZXJ0aWNhbEFsaWduPW1pZGRsZTthbGlnbj1jZW50ZXIiIHZlcnRleD0iMSIgcGFyZW50PSI0Ij48bXhHZW9tZXRyeSB4PSIyNDgiIHk9IjY0IiB3aWR0aD0iMTkyIiBoZWlnaHQ9IjY0IiBhcz0iZ2VvbWV0cnkiLz48L214Q2VsbD48bXhDZWxsIGlkPSIxNCIgdmFsdWU9IkxhdGVyIHdpbmRvdyZsdDticiZndDtyZXNlcnZlZCBNQVAiIHN0eWxlPSJyb3VuZGVkPTE7YXJjU2l6ZT02O2h0bWw9MTt3aGl0ZVNwYWNlPXdyYXA7ZmlsbENvbG9yPSNGRkZGRkY7c3Ryb2tlQ29sb3I9IzZCNzI4MDtzdHJva2VXaWR0aD0xLjM7Zm9udENvbG9yPSMxRjI5Mzc7Zm9udFNpemU9MjA7Zm9udEZhbWlseT1UaW1lcyBOZXcgUm9tYW47dmVydGljYWxBbGlnbj1taWRkbGU7YWxpZ249Y2VudGVyIiB2ZXJ0ZXg9IjEiIHBhcmVudD0iNCI+PG14R2VvbWV0cnkgeD0iMjQ4IiB5PSIxODQiIHdpZHRoPSIxOTIiIGhlaWdodD0iNjQiIGFzPSJnZW9tZXRyeSIvPjwvbXhDZWxsPjxteENlbGwgaWQ9IjE1IiB2YWx1ZT0iU3RheS1zcGVjaWZpYyBwcm9maWxlClwoXHdpZGVoYXQgdV9pKHIsUF9yKVwpIiBzdHlsZT0icm91bmRlZD0xO2FyY1NpemU9NjtodG1sPTE7d2hpdGVTcGFjZT13cmFwO2ZpbGxDb2xvcj0jRkFFN0VBO3N0cm9rZUNvbG9yPSNCQjU1NjY7c3Ryb2tlV2lkdGg9MS41O2ZvbnRDb2xvcj0jMUYyOTM3O2ZvbnRTaXplPTIwO2ZvbnRGYW1pbHk9VGltZXMgTmV3IFJvbWFuO3ZlcnRpY2FsQWxpZ249bWlkZGxlO2FsaWduPWNlbnRlciIgdmVydGV4PSIxIiBwYXJlbnQ9IjQiPjxteEdlb21ldHJ5IHg9IjQ4OCIgeT0iNjQiIHdpZHRoPSIyMDgiIGhlaWdodD0iNjQiIGFzPSJnZW9tZXRyeSIvPjwvbXhDZWxsPjxteENlbGwgaWQ9IjE2IiB2YWx1ZT0iTGF0ZXIgcXVhbnRpbGUgZm9yZWNhc3QKXChcd2lkZWhhdCBxX3tcdGF1IGl9KHQpXCkiIHN0eWxlPSJyb3VuZGVkPTE7YXJjU2l6ZT02O2h0bWw9MTt3aGl0ZVNwYWNlPXdyYXA7ZmlsbENvbG9yPSNGQUU3RUE7c3Ryb2tlQ29sb3I9I0JCNTU2NjtzdHJva2VXaWR0aD0xLjU7Zm9udENvbG9yPSMxRjI5Mzc7Zm9udFNpemU9MjA7Zm9udEZhbWlseT1UaW1lcyBOZXcgUm9tYW47dmVydGljYWxBbGlnbj1taWRkbGU7YWxpZ249Y2VudGVyIiB2ZXJ0ZXg9IjEiIHBhcmVudD0iNCI+PG14R2VvbWV0cnkgeD0iNzM2IiB5PSI2NCIgd2lkdGg9IjIwOCIgaGVpZ2h0PSI2NCIgYXM9Imdlb21ldHJ5Ii8+PC9teENlbGw+PG14Q2VsbCBpZD0iMTciIHZhbHVlPSJTdGF5LXdlaWdodGVkIGNoZWNrIGxvc3MKXChcZWxsX2lcKSIgc3R5bGU9InJvdW5kZWQ9MTthcmNTaXplPTY7aHRtbD0xO3doaXRlU3BhY2U9d3JhcDtmaWxsQ29sb3I9I0ZGRkZGRjtzdHJva2VDb2xvcj0jQkI1NTY2O3N0cm9rZVdpZHRoPTEuNTtmb250Q29sb3I9IzFGMjkzNztmb250U2l6ZT0yMDtmb250RmFtaWx5PVRpbWVzIE5ldyBSb21hbjt2ZXJ0aWNhbEFsaWduPW1pZGRsZTthbGlnbj1jZW50ZXIiIHZlcnRleD0iMSIgcGFyZW50PSI0Ij48bXhHZW9tZXRyeSB4PSI3MzYiIHk9IjE4NCIgd2lkdGg9IjIwOCIgaGVpZ2h0PSI2NCIgYXM9Imdlb21ldHJ5Ii8+PC9teENlbGw+PG14Q2VsbCBpZD0iMTgiIHZhbHVlPSJGb2xkIG1lYW4mbHQ7YnImZ3Q7c3RheSBsb3NzIiBzdHlsZT0icm91bmRlZD0xO2FyY1NpemU9NjtodG1sPTE7d2hpdGVTcGFjZT13cmFwO2ZpbGxDb2xvcj0jRjREOERFO3N0cm9rZUNvbG9yPSNCQjU1NjY7c3Ryb2tlV2lkdGg9MS44O2ZvbnRDb2xvcj0jMUYyOTM3O2ZvbnRTaXplPTIwO2ZvbnRGYW1pbHk9VGltZXMgTmV3IFJvbWFuO3ZlcnRpY2FsQWxpZ249bWlkZGxlO2FsaWduPWNlbnRlcjtmb250U3R5bGU9MSIgdmVydGV4PSIxIiBwYXJlbnQ9IjQiPjxteEdlb21ldHJ5IHg9Ijk3NiIgeT0iMTIwIiB3aWR0aD0iMTg0IiBoZWlnaHQ9IjgwIiBhcz0iZ2VvbWV0cnkiLz48L214Q2VsbD48bXhDZWxsIGlkPSIxOSIgdmFsdWU9IiIgc3R5bGU9ImVkZ2VTdHlsZT1vcnRob2dvbmFsRWRnZVN0eWxlO3JvdW5kZWQ9MDtvcnRob2dvbmFsTG9vcD0xO2pldHR5U2l6ZT1hdXRvO2h0bWw9MTtzdHJva2VDb2xvcj0jNDI0MjQyO3N0cm9rZVdpZHRoPTEuNTtlbmRBcnJvdz1vcGVuO2VuZEZpbGw9MDtlbmRTaXplPTEyO2V4aXRYPTE7ZXhpdFk9MC41O2V4aXREeD0wO2V4aXREeT0wO2VudHJ5WD0wO2VudHJ5WT0wLjU7ZW50cnlEeD0wO2VudHJ5RHk9MDtqdW1wU3R5bGU9YXJjO2p1bXBTaXplPTgiIGVkZ2U9IjEiIHBhcmVudD0iMSIgc291cmNlPSI1IiB0YXJnZXQ9IjYiPjxteEdlb21ldHJ5IHJlbGF0aXZlPSIxIiBhcz0iZ2VvbWV0cnkiPjwvbXhHZW9tZXRyeT48L214Q2VsbD48bXhDZWxsIGlkPSIyMCIgdmFsdWU9IiIgc3R5bGU9ImVkZ2VTdHlsZT1vcnRob2dvbmFsRWRnZVN0eWxlO3JvdW5kZWQ9MDtvcnRob2dvbmFsTG9vcD0xO2pldHR5U2l6ZT1hdXRvO2h0bWw9MTtzdHJva2VDb2xvcj0jNDI0MjQyO3N0cm9rZVdpZHRoPTEuNTtlbmRBcnJvdz1vcGVuO2VuZEZpbGw9MDtlbmRTaXplPTEyO2V4aXRYPTE7ZXhpdFk9MC41O2V4aXREeD0wO2V4aXREeT0wO2VudHJ5WD0wO2VudHJ5WT0wLjU7ZW50cnlEeD0wO2VudHJ5RHk9MDtqdW1wU3R5bGU9YXJjO2p1bXBTaXplPTgiIGVkZ2U9IjEiIHBhcmVudD0iMSIgc291cmNlPSI2IiB0YXJnZXQ9IjciPjxteEdlb21ldHJ5IHJlbGF0aXZlPSIxIiBhcz0iZ2VvbWV0cnkiPjwvbXhHZW9tZXRyeT48L214Q2VsbD48bXhDZWxsIGlkPSIyMSIgdmFsdWU9IiIgc3R5bGU9ImVkZ2VTdHlsZT1vcnRob2dvbmFsRWRnZVN0eWxlO3JvdW5kZWQ9MDtvcnRob2dvbmFsTG9vcD0xO2pldHR5U2l6ZT1hdXRvO2h0bWw9MTtzdHJva2VDb2xvcj0jNDI0MjQyO3N0cm9rZVdpZHRoPTEuNTtlbmRBcnJvdz1vcGVuO2VuZEZpbGw9MDtlbmRTaXplPTEyO2V4aXRYPTE7ZXhpdFk9MC41O2V4aXREeD0wO2V4aXREeT0wO2VudHJ5WD0wO2VudHJ5WT0wLjU7ZW50cnlEeD0wO2VudHJ5RHk9MDtqdW1wU3R5bGU9YXJjO2p1bXBTaXplPTgiIGVkZ2U9IjEiIHBhcmVudD0iMSIgc291cmNlPSI4IiB0YXJnZXQ9IjkiPjxteEdlb21ldHJ5IHJlbGF0aXZlPSIxIiBhcz0iZ2VvbWV0cnkiPjwvbXhHZW9tZXRyeT48L214Q2VsbD48bXhDZWxsIGlkPSIyMiIgdmFsdWU9IiIgc3R5bGU9ImVkZ2VTdHlsZT1vcnRob2dvbmFsRWRnZVN0eWxlO3JvdW5kZWQ9MDtvcnRob2dvbmFsTG9vcD0xO2pldHR5U2l6ZT1hdXRvO2h0bWw9MTtzdHJva2VDb2xvcj0jNDI0MjQyO3N0cm9rZVdpZHRoPTEuNTtlbmRBcnJvdz1vcGVuO2VuZEZpbGw9MDtlbmRTaXplPTEyO2Rhc2hlZD0xO2Rhc2hQYXR0ZXJuPTYgNDtqdW1wU3R5bGU9YXJjO2p1bXBTaXplPTgiIGVkZ2U9IjEiIHBhcmVudD0iMSIgc291cmNlPSI3IiB0YXJnZXQ9IjkiPjxteEdlb21ldHJ5IHJlbGF0aXZlPSIxIiBhcz0iZ2VvbWV0cnkiPjxBcnJheSBhcz0icG9pbnRzIj48bXhQb2ludCB4PSI3OTIiIHk9IjE3NiIvPjxteFBvaW50IHg9IjQ1MiIgeT0iMTc2Ii8+PC9BcnJheT48L214R2VvbWV0cnk+PC9teENlbGw+PG14Q2VsbCBpZD0iMjMiIHZhbHVlPSIiIHN0eWxlPSJlZGdlU3R5bGU9b3J0aG9nb25hbEVkZ2VTdHlsZTtyb3VuZGVkPTA7b3J0aG9nb25hbExvb3A9MTtqZXR0eVNpemU9YXV0bztodG1sPTE7c3Ryb2tlQ29sb3I9IzQyNDI0MjtzdHJva2VXaWR0aD0xLjU7ZW5kQXJyb3c9b3BlbjtlbmRGaWxsPTA7ZW5kU2l6ZT0xMjtleGl0WD0xO2V4aXRZPTAuNTtleGl0RHg9MDtleGl0RHk9MDtlbnRyeVg9MDtlbnRyeVk9MC41O2VudHJ5RHg9MDtlbnRyeUR5PTA7anVtcFN0eWxlPWFyYztqdW1wU2l6ZT04IiBlZGdlPSIxIiBwYXJlbnQ9IjEiIHNvdXJjZT0iOSIgdGFyZ2V0PSIxMCI+PG14R2VvbWV0cnkgcmVsYXRpdmU9IjEiIGFzPSJnZW9tZXRyeSI+PC9teEdlb21ldHJ5PjwvbXhDZWxsPjxteENlbGwgaWQ9IjI0IiB2YWx1ZT0iIiBzdHlsZT0iZWRnZVN0eWxlPW9ydGhvZ29uYWxFZGdlU3R5bGU7cm91bmRlZD0wO29ydGhvZ29uYWxMb29wPTE7amV0dHlTaXplPWF1dG87aHRtbD0xO3N0cm9rZUNvbG9yPSM0MjQyNDI7c3Ryb2tlV2lkdGg9MS41O2VuZEFycm93PW9wZW47ZW5kRmlsbD0wO2VuZFNpemU9MTI7ZXhpdFg9MTtleGl0WT0wLjU7ZXhpdER4PTA7ZXhpdER5PTA7ZW50cnlYPTA7ZW50cnlZPTAuNTtlbnRyeUR4PTA7ZW50cnlEeT0wO2p1bXBTdHlsZT1hcmM7anVtcFNpemU9OCIgZWRnZT0iMSIgcGFyZW50PSIxIiBzb3VyY2U9IjEwIiB0YXJnZXQ9IjExIj48bXhHZW9tZXRyeSByZWxhdGl2ZT0iMSIgYXM9Imdlb21ldHJ5Ij48L214R2VvbWV0cnk+PC9teENlbGw+PG14Q2VsbCBpZD0iMjUiIHZhbHVlPSIiIHN0eWxlPSJlZGdlU3R5bGU9b3J0aG9nb25hbEVkZ2VTdHlsZTtyb3VuZGVkPTA7b3J0aG9nb25hbExvb3A9MTtqZXR0eVNpemU9YXV0bztodG1sPTE7c3Ryb2tlQ29sb3I9IzQyNDI0MjtzdHJva2VXaWR0aD0xLjU7ZW5kQXJyb3c9b3BlbjtlbmRGaWxsPTA7ZW5kU2l6ZT0xMjtleGl0WD0xO2V4aXRZPTAuMjU7ZXhpdER4PTA7ZXhpdER5PTA7ZW50cnlYPTA7ZW50cnlZPTAuODc1O2VudHJ5RHg9MDtlbnRyeUR5PTA7anVtcFN0eWxlPWFyYztqdW1wU2l6ZT04IiBlZGdlPSIxIiBwYXJlbnQ9IjEiIHNvdXJjZT0iMTIiIHRhcmdldD0iMTMiPjxteEdlb21ldHJ5IHJlbGF0aXZlPSIxIiBhcz0iZ2VvbWV0cnkiPjwvbXhHZW9tZXRyeT48L214Q2VsbD48bXhDZWxsIGlkPSIyNiIgdmFsdWU9IiIgc3R5bGU9ImVkZ2VTdHlsZT1vcnRob2dvbmFsRWRnZVN0eWxlO3JvdW5kZWQ9MDtvcnRob2dvbmFsTG9vcD0xO2pldHR5U2l6ZT1hdXRvO2h0bWw9MTtzdHJva2VDb2xvcj0jNDI0MjQyO3N0cm9rZVdpZHRoPTEuNTtlbmRBcnJvdz1vcGVuO2VuZEZpbGw9MDtlbmRTaXplPTEyO2V4aXRYPTE7ZXhpdFk9MC43NTtleGl0RHg9MDtleGl0RHk9MDtlbnRyeVg9MDtlbnRyeVk9MC41O2VudHJ5RHg9MDtlbnRyeUR5PTA7anVtcFN0eWxlPWFyYztqdW1wU2l6ZT04IiBlZGdlPSIxIiBwYXJlbnQ9IjEiIHNvdXJjZT0iMTIiIHRhcmdldD0iMTQiPjxteEdlb21ldHJ5IHJlbGF0aXZlPSIxIiBhcz0iZ2VvbWV0cnkiPjwvbXhHZW9tZXRyeT48L214Q2VsbD48bXhDZWxsIGlkPSIyNyIgdmFsdWU9IiIgc3R5bGU9ImVkZ2VTdHlsZT1vcnRob2dvbmFsRWRnZVN0eWxlO3JvdW5kZWQ9MDtvcnRob2dvbmFsTG9vcD0xO2pldHR5U2l6ZT1hdXRvO2h0bWw9MTtzdHJva2VDb2xvcj0jNDI0MjQyO3N0cm9rZVdpZHRoPTEuNTtlbmRBcnJvdz1vcGVuO2VuZEZpbGw9MDtlbmRTaXplPTEyO2V4aXRYPTE7ZXhpdFk9MC41O2V4aXREeD0wO2V4aXREeT0wO2VudHJ5WD0wO2VudHJ5WT0wLjU7ZW50cnlEeD0wO2VudHJ5RHk9MDtqdW1wU3R5bGU9YXJjO2p1bXBTaXplPTgiIGVkZ2U9IjEiIHBhcmVudD0iMSIgc291cmNlPSIxMyIgdGFyZ2V0PSIxNSI+PG14R2VvbWV0cnkgcmVsYXRpdmU9IjEiIGFzPSJnZW9tZXRyeSI+PC9teEdlb21ldHJ5PjwvbXhDZWxsPjxteENlbGwgaWQ9IjI4IiB2YWx1ZT0iIiBzdHlsZT0iZWRnZVN0eWxlPW9ydGhvZ29uYWxFZGdlU3R5bGU7cm91bmRlZD0wO29ydGhvZ29uYWxMb29wPTE7amV0dHlTaXplPWF1dG87aHRtbD0xO3N0cm9rZUNvbG9yPSM0MjQyNDI7c3Ryb2tlV2lkdGg9MS41O2VuZEFycm93PW9wZW47ZW5kRmlsbD0wO2VuZFNpemU9MTI7ZGFzaGVkPTE7ZGFzaFBhdHRlcm49NiA0O2p1bXBTdHlsZT1hcmM7anVtcFNpemU9OCIgZWRnZT0iMSIgcGFyZW50PSIxIiBzb3VyY2U9IjExIiB0YXJnZXQ9IjE1Ij48bXhHZW9tZXRyeSByZWxhdGl2ZT0iMSIgYXM9Imdlb21ldHJ5Ij48QXJyYXkgYXM9InBvaW50cyI+PG14UG9pbnQgeD0iMTA4MCIgeT0iMzM2Ii8+PG14UG9pbnQgeD0iNjE2IiB5PSIzMzYiLz48L0FycmF5PjwvbXhHZW9tZXRyeT48L214Q2VsbD48bXhDZWxsIGlkPSIyOSIgdmFsdWU9IiIgc3R5bGU9ImVkZ2VTdHlsZT1vcnRob2dvbmFsRWRnZVN0eWxlO3JvdW5kZWQ9MDtvcnRob2dvbmFsTG9vcD0xO2pldHR5U2l6ZT1hdXRvO2h0bWw9MTtzdHJva2VDb2xvcj0jNDI0MjQyO3N0cm9rZVdpZHRoPTEuNTtlbmRBcnJvdz1vcGVuO2VuZEZpbGw9MDtlbmRTaXplPTEyO2V4aXRYPTE7ZXhpdFk9MC41O2V4aXREeD0wO2V4aXREeT0wO2VudHJ5WD0wO2VudHJ5WT0wLjU7ZW50cnlEeD0wO2VudHJ5RHk9MDtqdW1wU3R5bGU9YXJjO2p1bXBTaXplPTgiIGVkZ2U9IjEiIHBhcmVudD0iMSIgc291cmNlPSIxNSIgdGFyZ2V0PSIxNiI+PG14R2VvbWV0cnkgcmVsYXRpdmU9IjEiIGFzPSJnZW9tZXRyeSI+PC9teEdlb21ldHJ5PjwvbXhDZWxsPjxteENlbGwgaWQ9IjMwIiB2YWx1ZT0iIiBzdHlsZT0iZWRnZVN0eWxlPW9ydGhvZ29uYWxFZGdlU3R5bGU7cm91bmRlZD0wO29ydGhvZ29uYWxMb29wPTE7amV0dHlTaXplPWF1dG87aHRtbD0xO3N0cm9rZUNvbG9yPSM0MjQyNDI7c3Ryb2tlV2lkdGg9MS41O2VuZEFycm93PW9wZW47ZW5kRmlsbD0wO2VuZFNpemU9MTI7ZXhpdFg9MC41O2V4aXRZPTE7ZXhpdER4PTA7ZXhpdER5PTA7ZW50cnlYPTAuNTtlbnRyeVk9MDtlbnRyeUR4PTA7ZW50cnlEeT0wO2p1bXBTdHlsZT1hcmM7anVtcFNpemU9OCIgZWRnZT0iMSIgcGFyZW50PSIxIiBzb3VyY2U9IjE2IiB0YXJnZXQ9IjE3Ij48bXhHZW9tZXRyeSByZWxhdGl2ZT0iMSIgYXM9Imdlb21ldHJ5Ij48L214R2VvbWV0cnk+PC9teENlbGw+PG14Q2VsbCBpZD0iMzEiIHZhbHVlPSIiIHN0eWxlPSJlZGdlU3R5bGU9b3J0aG9nb25hbEVkZ2VTdHlsZTtyb3VuZGVkPTA7b3J0aG9nb25hbExvb3A9MTtqZXR0eVNpemU9YXV0bztodG1sPTE7c3Ryb2tlQ29sb3I9IzQyNDI0MjtzdHJva2VXaWR0aD0xLjU7ZW5kQXJyb3c9b3BlbjtlbmRGaWxsPTA7ZW5kU2l6ZT0xMjtleGl0WD0xO2V4aXRZPTAuNTtleGl0RHg9MDtleGl0RHk9MDtlbnRyeVg9MDtlbnRyeVk9MC41O2VudHJ5RHg9MDtlbnRyeUR5PTA7anVtcFN0eWxlPWFyYztqdW1wU2l6ZT04IiBlZGdlPSIxIiBwYXJlbnQ9IjEiIHNvdXJjZT0iMTQiIHRhcmdldD0iMTciPjxteEdlb21ldHJ5IHJlbGF0aXZlPSIxIiBhcz0iZ2VvbWV0cnkiPjwvbXhHZW9tZXRyeT48L214Q2VsbD48bXhDZWxsIGlkPSIzMiIgdmFsdWU9IiIgc3R5bGU9ImVkZ2VTdHlsZT1vcnRob2dvbmFsRWRnZVN0eWxlO3JvdW5kZWQ9MDtvcnRob2dvbmFsTG9vcD0xO2pldHR5U2l6ZT1hdXRvO2h0bWw9MTtzdHJva2VDb2xvcj0jNDI0MjQyO3N0cm9rZVdpZHRoPTEuNTtlbmRBcnJvdz1vcGVuO2VuZEZpbGw9MDtlbmRTaXplPTEyO2V4aXRYPTE7ZXhpdFk9MC4xMjU7ZXhpdER4PTA7ZXhpdER5PTA7ZW50cnlYPTA7ZW50cnlZPTAuOTtlbnRyeUR4PTA7ZW50cnlEeT0wO2p1bXBTdHlsZT1hcmM7anVtcFNpemU9OCIgZWRnZT0iMSIgcGFyZW50PSIxIiBzb3VyY2U9IjE3IiB0YXJnZXQ9IjE4Ij48bXhHZW9tZXRyeSByZWxhdGl2ZT0iMSIgYXM9Imdlb21ldHJ5Ij48L214R2VvbWV0cnk+PC9teENlbGw+PC9yb290PjwvbXhHcmFwaE1vZGVsPg==">
+<defs>
+<marker id="arrow-block" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+  <path d="M 0 0 L 10 5 L 0 10 Z" fill="currentColor"/>
+</marker>
+<marker id="arrow-open" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+  <path d="M 0 0 L 10 5 L 0 10" fill="none" stroke="currentColor" stroke-width="1.5"/>
+</marker>
+<marker id="arrow-classic" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+  <path d="M 0 0 L 10 5 L 0 10 L 3 5 Z" fill="currentColor"/>
+</marker>
+<marker id="arrow-diamond" viewBox="0 0 12 12" refX="12" refY="6" markerWidth="10" markerHeight="10" orient="auto-start-reverse">
+  <path d="M 0 6 L 6 0 L 12 6 L 6 12 Z" fill="currentColor"/>
+</marker>
+</defs>
+<rect width="100%" height="100%" fill="#FFFFFF"/>
+<rect x="24" y="8" width="904" height="152" rx="8" fill="#F3F7FB" stroke="#9CBBD0" stroke-width="1.5"/>
+<text x="36" y="18" text-anchor="start" dominant-baseline="hanging" font-family="Times New Roman" font-size="22" fill="#212121" font-weight="700">1  TRAINING</text>
+<rect x="24" y="152" width="1168" height="168" rx="8" fill="#FFF9EC" stroke="#D6B65F" stroke-width="1.5"/>
+<text x="36" y="162" text-anchor="start" dominant-baseline="hanging" font-family="Times New Roman" font-size="22" fill="#212121" font-weight="700">2  TUNING</text>
+<rect x="24" y="304" width="1184" height="272" rx="8" fill="#FBF2F4" stroke="#CB8C99" stroke-width="1.5"/>
+<text x="36" y="314" text-anchor="start" dominant-baseline="hanging" font-family="Times New Roman" font-size="22" fill="#212121" font-weight="700">3  HELD-OUT ASSESSMENT</text>
+<rect x="48" y="72" width="200" height="64" rx="6" fill="#FFFFFF" stroke="#004488" stroke-width="1.5"/>
+<text x="148" y="104" text-anchor="middle" dominant-baseline="central" font-family="Times New Roman" font-size="20" fill="#1F2937"><tspan x="148" dy="-14">Training stays</tspan><tspan x="148" dy="28">outer fit 60%</tspan></text>
+<rect x="304" y="72" width="296" height="64" rx="6" fill="#EAF2F8" stroke="#004488" stroke-width="1.5"/>
+<text x="452" y="104" text-anchor="middle" dominant-baseline="central" font-family="Times New Roman" font-size="20" fill="#1F2937"><tspan x="452" dy="-14">Fit common rule</tspan><tspan x="452" dy="28">covariates + ICU time</tspan></text>
+<rect x="664" y="72" width="240" height="64" rx="6" fill="#FFFFFF" stroke="#004488" stroke-width="1.5"/>
+<text x="784" y="104" text-anchor="middle" dominant-baseline="central" font-family="Times New Roman" font-size="20" fill="#1F2937"><tspan x="784" dy="-14">Population quantile</tspan><tspan x="784" dy="28">common rule</tspan></text>
+<rect x="48" y="224" width="200" height="64" rx="6" fill="#FFFFFF" stroke="#DDAA33" stroke-width="1.5"/>
+<text x="148" y="256" text-anchor="middle" dominant-baseline="central" font-family="Times New Roman" font-size="20" fill="#1F2937"><tspan x="148" dy="-14">Tuning stays</tspan><tspan x="148" dy="28">outer fit 20%</tspan></text>
+<rect x="304" y="216" width="296" height="80" rx="6" fill="#FFF4D6" stroke="#DDAA33" stroke-width="1.5"/>
+<text x="452" y="256" text-anchor="middle" dominant-baseline="central" font-family="Times New Roman" font-size="20" fill="#1F2937"><tspan x="452" dy="-14">Profiles</tspan><tspan x="452" dy="28">level, slope, summary</tspan></text>
+<rect x="656" y="216" width="288" height="80" rx="6" fill="#FFF4D6" stroke="#DDAA33" stroke-width="1.5"/>
+<text x="800" y="256" text-anchor="middle" dominant-baseline="central" font-family="Times New Roman" font-size="20" fill="#1F2937"><tspan x="800" dy="-14">Tune and freeze</tspan><tspan x="800" dy="28">basis, λ, calibration</tspan></text>
+<rect x="992" y="232" width="176" height="48" rx="6" fill="#FFFFFF" stroke="#DDAA33" stroke-width="1.5"/>
+<text x="1080" y="256" text-anchor="middle" dominant-baseline="central" font-family="Times New Roman" font-size="20" fill="#1F2937">Frozen rule</text>
+<rect x="48" y="408" width="176" height="64" rx="6" fill="#FFFFFF" stroke="#BB5566" stroke-width="1.5"/>
+<text x="136" y="440" text-anchor="middle" dominant-baseline="central" font-family="Times New Roman" font-size="20" fill="#1F2937"><tspan x="136" dy="-14">Held-out stay</tspan><tspan x="136" dy="28">20% outer fold</tspan></text>
+<rect x="272" y="368" width="192" height="64" rx="6" fill="#FAE7EA" stroke="#BB5566" stroke-width="1.5"/>
+<text x="368" y="400" text-anchor="middle" dominant-baseline="central" font-family="Times New Roman" font-size="20" fill="#1F2937"><tspan x="368" dy="-14">Index window</tspan><tspan x="368" dy="28">early MAP</tspan></text>
+<rect x="272" y="488" width="192" height="64" rx="6" fill="#FFFFFF" stroke="#6B7280" stroke-width="1.3"/>
+<text x="368" y="520" text-anchor="middle" dominant-baseline="central" font-family="Times New Roman" font-size="20" fill="#1F2937"><tspan x="368" dy="-14">Later window</tspan><tspan x="368" dy="28">reserved MAP</tspan></text>
+<rect x="512" y="368" width="208" height="64" rx="6" fill="#FAE7EA" stroke="#BB5566" stroke-width="1.5"/>
+<text x="616" y="400" text-anchor="middle" dominant-baseline="central" font-family="Times New Roman" font-size="20" fill="#1F2937"><tspan x="616" dy="-14">Stay-specific profile</tspan><tspan x="616" dy="28">\(\widehat u_i(r,P_r)\)</tspan></text>
+<rect x="760" y="368" width="208" height="64" rx="6" fill="#FAE7EA" stroke="#BB5566" stroke-width="1.5"/>
+<text x="864" y="400" text-anchor="middle" dominant-baseline="central" font-family="Times New Roman" font-size="20" fill="#1F2937"><tspan x="864" dy="-14">Later quantile forecast</tspan><tspan x="864" dy="28">\(\widehat q_{\tau i}(t)\)</tspan></text>
+<rect x="760" y="488" width="208" height="64" rx="6" fill="#FFFFFF" stroke="#BB5566" stroke-width="1.5"/>
+<text x="864" y="520" text-anchor="middle" dominant-baseline="central" font-family="Times New Roman" font-size="20" fill="#1F2937"><tspan x="864" dy="-14">Stay-weighted check loss</tspan><tspan x="864" dy="28">\(\ell_i\)</tspan></text>
+<rect x="1000" y="424" width="184" height="80" rx="6" fill="#F4D8DE" stroke="#BB5566" stroke-width="1.8"/>
+<text x="1092" y="464" text-anchor="middle" dominant-baseline="central" font-family="Times New Roman" font-size="20" fill="#1F2937" font-weight="700"><tspan x="1092" dy="-14">Fold mean</tspan><tspan x="1092" dy="28">stay loss</tspan></text>
+<line x1="248" y1="104" x2="304" y2="104" stroke="#424242" stroke-width="1.5" marker-end="url(#arrow-open)" style="color: #424242" fill="none"/>
+<line x1="600" y1="104" x2="664" y2="104" stroke="#424242" stroke-width="1.5" marker-end="url(#arrow-open)" style="color: #424242" fill="none"/>
+<line x1="248" y1="256" x2="304" y2="256" stroke="#424242" stroke-width="1.5" marker-end="url(#arrow-open)" style="color: #424242" fill="none"/>
+<path d="M 787.56 136 L 792 176 L 452 176 L 452 216" stroke="#424242" stroke-width="1.5" stroke-dasharray="6 4" marker-end="url(#arrow-open)" style="color: #424242" fill="none"/>
+<line x1="600" y1="256" x2="656" y2="256" stroke="#424242" stroke-width="1.5" marker-end="url(#arrow-open)" style="color: #424242" fill="none"/>
+<line x1="944" y1="256" x2="992" y2="256" stroke="#424242" stroke-width="1.5" marker-end="url(#arrow-open)" style="color: #424242" fill="none"/>
+<line x1="224" y1="424" x2="272" y2="424" stroke="#424242" stroke-width="1.5" marker-end="url(#arrow-open)" style="color: #424242" fill="none"/>
+<path d="M 224 456 L 248 456 L 248 520 L 272 520" stroke="#424242" stroke-width="1.5" marker-end="url(#arrow-open)" style="color: #424242" fill="none"/>
+<line x1="464" y1="400" x2="512" y2="400" stroke="#424242" stroke-width="1.5" marker-end="url(#arrow-open)" style="color: #424242" fill="none"/>
+<path d="M 1080 280 L 1080 336 L 616 336 L 616 368" stroke="#424242" stroke-width="1.5" stroke-dasharray="6 4" marker-end="url(#arrow-open)" style="color: #424242" fill="none"/>
+<line x1="720" y1="400" x2="760" y2="400" stroke="#424242" stroke-width="1.5" marker-end="url(#arrow-open)" style="color: #424242" fill="none"/>
+<line x1="864" y1="432" x2="864" y2="488" stroke="#424242" stroke-width="1.5" marker-end="url(#arrow-open)" style="color: #424242" fill="none"/>
+<line x1="464" y1="520" x2="760" y2="520" stroke="#424242" stroke-width="1.5" marker-end="url(#arrow-open)" style="color: #424242" fill="none"/>
+<line x1="968" y1="496" x2="1000" y2="496" stroke="#424242" stroke-width="1.5" marker-end="url(#arrow-open)" style="color: #424242" fill="none"/>
 </svg>

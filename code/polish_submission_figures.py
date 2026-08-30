@@ -134,7 +134,14 @@ def draw_mini_map_stream(ax: plt.Axes) -> None:
 
 
 def plot_workflow(output_stem: Path) -> None:
+    """Legacy fallback for Figure 1 when the editable draw.io master is absent."""
     set_style()
+    plt.rcParams.update(
+        {
+            "font.family": "serif",
+            "font.serif": ["Times New Roman", "Times", "Nimbus Roman"],
+        }
+    )
     fig, ax = plt.subplots(figsize=(10.2, 3.7))
     ax.set_xlim(0, 1)
     ax.set_ylim(0, 1)
@@ -373,7 +380,11 @@ def main() -> None:
     args = parser.parse_args()
     artifact_dir = args.artifact_dir
     if args.only in {"all", "workflow"}:
-        plot_workflow(artifact_dir / "enhanced_workflow_schematic")
+        workflow_stem = artifact_dir / "enhanced_workflow_schematic"
+        if workflow_stem.with_suffix(".drawio").exists():
+            print(f"Preserving editable Figure 1 master: {workflow_stem.with_suffix('.drawio')}")
+        else:
+            plot_workflow(workflow_stem)
     if args.only in {"all", "subgroup"}:
         plot_subgroup_forest(
             args.subgroups_csv or artifact_dir / "enhanced_subgroup_signal.csv",

@@ -1,0 +1,200 @@
+{
+  "version": 1,
+  "title": "Cross fitted lower tail forecasting workflow",
+  "type": "academic-diagram",
+  "source": "generated",
+  "profile": "academic-paper",
+  "theme": "academic-color",
+  "layout": "horizontal",
+  "counts": {
+    "nodes": 14,
+    "edges": 14,
+    "modules": 3
+  },
+  "nodes": [
+    {
+      "id": "train_stays",
+      "label": "Training stays\nouter fit 60%",
+      "type": "process",
+      "module": "training"
+    },
+    {
+      "id": "common_model",
+      "label": "Fit common rule\ncovariates + ICU time",
+      "type": "process",
+      "module": "training"
+    },
+    {
+      "id": "train_output",
+      "label": "Population quantile\ncommon rule",
+      "type": "process",
+      "module": "training"
+    },
+    {
+      "id": "tune_stays",
+      "label": "Tuning stays\nouter fit 20%",
+      "type": "process",
+      "module": "tuning"
+    },
+    {
+      "id": "candidate_profiles",
+      "label": "Profiles\nlevel, slope, summary",
+      "type": "process",
+      "module": "tuning"
+    },
+    {
+      "id": "select_rule",
+      "label": "Tune and freeze\nbasis, λ, calibration",
+      "type": "process",
+      "module": "tuning"
+    },
+    {
+      "id": "frozen_rule",
+      "label": "Frozen rule",
+      "type": "process",
+      "module": "tuning"
+    },
+    {
+      "id": "heldout_stay",
+      "label": "Held-out stay\n20% outer fold",
+      "type": "process",
+      "module": "assessment"
+    },
+    {
+      "id": "index_window",
+      "label": "Index window\nearly MAP",
+      "type": "process",
+      "module": "assessment"
+    },
+    {
+      "id": "later_window",
+      "label": "Later window\nreserved MAP",
+      "type": "process",
+      "module": "assessment"
+    },
+    {
+      "id": "stay_profile",
+      "label": "Stay-specific profile\n\\(\\widehat u_i(r,P_r)\\)",
+      "type": "process",
+      "module": "assessment"
+    },
+    {
+      "id": "forecast",
+      "label": "Later quantile forecast\n\\(\\widehat q_{\\tau i}(t)\\)",
+      "type": "process",
+      "module": "assessment"
+    },
+    {
+      "id": "stay_loss",
+      "label": "Stay-weighted check loss\n\\(\\ell_i\\)",
+      "type": "process",
+      "module": "assessment"
+    },
+    {
+      "id": "aggregate",
+      "label": "Fold mean\nstay loss",
+      "type": "process",
+      "module": "assessment"
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge-1",
+      "from": "train_stays",
+      "to": "common_model",
+      "type": "primary"
+    },
+    {
+      "id": "edge-2",
+      "from": "common_model",
+      "to": "train_output",
+      "type": "primary"
+    },
+    {
+      "id": "edge-3",
+      "from": "tune_stays",
+      "to": "candidate_profiles",
+      "type": "primary"
+    },
+    {
+      "id": "edge-4",
+      "from": "train_output",
+      "to": "candidate_profiles",
+      "type": "data"
+    },
+    {
+      "id": "edge-5",
+      "from": "candidate_profiles",
+      "to": "select_rule",
+      "type": "primary"
+    },
+    {
+      "id": "edge-6",
+      "from": "select_rule",
+      "to": "frozen_rule",
+      "type": "primary"
+    },
+    {
+      "id": "edge-7",
+      "from": "heldout_stay",
+      "to": "index_window",
+      "type": "primary"
+    },
+    {
+      "id": "edge-8",
+      "from": "heldout_stay",
+      "to": "later_window",
+      "type": "primary"
+    },
+    {
+      "id": "edge-9",
+      "from": "index_window",
+      "to": "stay_profile",
+      "type": "primary"
+    },
+    {
+      "id": "edge-10",
+      "from": "frozen_rule",
+      "to": "stay_profile",
+      "type": "data"
+    },
+    {
+      "id": "edge-11",
+      "from": "stay_profile",
+      "to": "forecast",
+      "type": "primary"
+    },
+    {
+      "id": "edge-12",
+      "from": "forecast",
+      "to": "stay_loss",
+      "type": "primary"
+    },
+    {
+      "id": "edge-13",
+      "from": "later_window",
+      "to": "stay_loss",
+      "type": "primary"
+    },
+    {
+      "id": "edge-14",
+      "from": "stay_loss",
+      "to": "aggregate",
+      "type": "primary"
+    }
+  ],
+  "modules": [
+    {
+      "id": "training",
+      "label": "1  TRAINING"
+    },
+    {
+      "id": "tuning",
+      "label": "2  TUNING"
+    },
+    {
+      "id": "assessment",
+      "label": "3  HELD-OUT ASSESSMENT"
+    }
+  ]
+}
