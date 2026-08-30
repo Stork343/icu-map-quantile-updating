@@ -3,33 +3,33 @@
 \setlength{\tabcolsep}{1.5pt}
 \setlength{\LTleft}{0pt}
 \setlength{\LTright}{0pt}
-\begin{longtable}{>{\raggedright\arraybackslash}p{0.16\textwidth}>{\raggedright\arraybackslash}p{0.27\textwidth}>{\raggedright\arraybackslash}p{0.16\textwidth}*{4}{>{\centering\arraybackslash}p{0.085\textwidth}}}
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.17\textwidth}>{\raggedright\arraybackslash}p{0.29\textwidth}>{\raggedright\arraybackslash}p{0.18\textwidth}*{3}{>{\centering\arraybackslash}p{0.10\textwidth}}}
 \caption{Stay specific structures and complete scalar rule comparisons.}\label{tab:supp_candidate_evaluation}\\
 \toprule
-Scope & Rule & Penalty (level, slope) or calibration & Stays & Mean loss & SE & Difference\\
+Scope & Rule & Penalty (level, slope) or calibration & Stays & Mean loss & Difference\\
 \midrule
 \endfirsthead
-\multicolumn{7}{l}{\tablename\ \thetable\ continued}\\
+\multicolumn{6}{l}{\tablename\ \thetable\ continued}\\
 \toprule
-Scope & Rule & Penalty (level, slope) or calibration & Stays & Mean loss & SE & Difference\\
+Scope & Rule & Penalty (level, slope) or calibration & Stays & Mean loss & Difference\\
 \midrule
 \endhead
 \bottomrule
 \endlastfoot
-\multicolumn{7}{l}{\textit{Historical structure comparison; difference versus population}}\\
-Historical split & Population-only QR &  & 12062 & 2.2247 & 0.0128 & +0.0000\\
-Historical split & Penalized stay-specific level update & $(0.03,0.00)$ & 12062 & 1.9570 & 0.0115 & -0.2676\\
-Historical split & Penalized stay-specific slope-only update & $(0.00,100.00)$ & 12062 & 2.2249 & 0.0128 & +0.0002\\
-Historical split & Penalized stay-specific level + slope update & $(0.03,0.10)$ & 12062 & 1.9061 & 0.0106 & -0.3186\\
-\midrule\multicolumn{7}{l}{\textit{Nested fivefold scalar comparison; difference versus calibrated q10}}\\
-Nested cross fitting & Population quantile component & Inner tuning & 60310 & 2.2215 & 0.0058 & +0.3319\\
-Nested cross fitting & Raw admission window q10 & Inner tuning & 60310 & 2.1394 & 0.0073 & +0.2498\\
-Nested cross fitting & Primary profiled offset & Inner tuning & 60310 & 1.9528 & 0.0053 & +0.0632\\
-Nested cross fitting & Calibrated last MAP & Inner tuning & 60310 & 2.0149 & 0.0059 & +0.1253\\
-Nested cross fitting & Calibrated minimum MAP & Inner tuning & 60310 & 1.9379 & 0.0047 & +0.0483\\
-Nested cross fitting & Calibrated mean MAP & Inner tuning & 60310 & 1.9260 & 0.0052 & +0.0364\\
-Nested cross fitting & Calibrated fraction below 65 & Inner tuning & 60310 & 2.0200 & 0.0051 & +0.1305\\
-Nested cross fitting & Calibrated admission window q10 & Inner tuning & 60310 & 1.8896 & 0.0048 & Reference\\
+\multicolumn{6}{l}{\textit{Historical structure comparison; difference versus population}}\\
+Historical split & Population-only QR &  & 12062 & 2.2247 & +0.0000\\
+Historical split & Penalized stay-specific level update & $(0.03,0.00)$ & 12062 & 1.9570 & -0.2676\\
+Historical split & Penalized stay-specific slope-only update & $(0.00,100.00)$ & 12062 & 2.2249 & +0.0002\\
+Historical split & Penalized stay-specific level + slope update & $(0.03,0.10)$ & 12062 & 1.9061 & -0.3186\\
+\midrule\multicolumn{6}{l}{\textit{Nested fivefold scalar comparison; difference versus calibrated q10}}\\
+Nested cross fitting & Population quantile component & Inner tuning & 60310 & 2.2215 & +0.3319\\
+Nested cross fitting & Raw admission window q10 & Inner tuning & 60310 & 2.1394 & +0.2498\\
+Nested cross fitting & Primary profiled offset & Inner tuning & 60310 & 1.9528 & +0.0632\\
+Nested cross fitting & Calibrated last MAP & Inner tuning & 60310 & 2.0149 & +0.1253\\
+Nested cross fitting & Calibrated minimum MAP & Inner tuning & 60310 & 1.9379 & +0.0483\\
+Nested cross fitting & Calibrated mean MAP & Inner tuning & 60310 & 1.9260 & +0.0364\\
+Nested cross fitting & Calibrated fraction below 65 & Inner tuning & 60310 & 2.0200 & +0.1305\\
+Nested cross fitting & Calibrated admission window q10 & Inner tuning & 60310 & 1.8896 & Reference\\
 \end{longtable}
 \par\smallskip
 \footnotesize{Historical structure comparisons use the original assessment split. Nested results contain one out of fold prediction for every eligible stay. Differences in the nested panel equal candidate loss minus calibrated q10 loss.}

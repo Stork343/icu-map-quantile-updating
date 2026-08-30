@@ -22,8 +22,8 @@
     "analytic_stays_in_frozen_oof_file": 60310,
     "analytic_cache_stays": 60310,
     "rehydration": "later outcomes from local analytic cache joined by deidentified global stay_index; frozen OOF calibrated-q10 and primary scalar predictions were not refitted",
-    "risk_difference_interval_interpretation": "approximate independent-stay normal 95% interval",
-    "paired_check_loss_interval_interpretation": "descriptive estimate plus or minus 1.96 stay-level SE, conditional on realized fold-trained rules; does not propagate refitting, tuning, or rule-selection variation"
+    "risk_difference_interval_interpretation": "diagnostic pooled stay calculation; not used for cross fitted inference",
+    "paired_check_loss_interval_interpretation": "diagnostic pooled stay calculation; not used for cross fitted inference"
   },
   "threshold_sensitivity": [
     {
@@ -53,7 +53,7 @@
       "low_minus_high_q10_burden_difference_ci95_high": 0.2130897689870805,
       "extreme_group_rule": "fixed 20% capacity defined once in common cohort; q10 ties resolved by stable deidentified stay index",
       "threshold_role": "operational sensitivity only; check loss retains tau=0.10 MAP target",
-      "risk_difference_interval_interpretation": "approximate independent-stay normal 95% interval"
+      "risk_difference_interval_interpretation": "diagnostic pooled stay calculation; not used for cross fitted inference"
     },
     {
       "scope": "nested_5fold_internal_crossfit_common_late12_cohort",
@@ -82,7 +82,7 @@
       "low_minus_high_q10_burden_difference_ci95_high": 0.391965457616654,
       "extreme_group_rule": "fixed 20% capacity defined once in common cohort; q10 ties resolved by stable deidentified stay index",
       "threshold_role": "operational sensitivity only; check loss retains tau=0.10 MAP target",
-      "risk_difference_interval_interpretation": "approximate independent-stay normal 95% interval"
+      "risk_difference_interval_interpretation": "diagnostic pooled stay calculation; not used for cross fitted inference"
     },
     {
       "scope": "nested_5fold_internal_crossfit_common_late12_cohort",
@@ -111,7 +111,7 @@
       "low_minus_high_q10_burden_difference_ci95_high": 0.5675542753690623,
       "extreme_group_rule": "fixed 20% capacity defined once in common cohort; q10 ties resolved by stable deidentified stay index",
       "threshold_role": "operational sensitivity only; check loss retains tau=0.10 MAP target",
-      "risk_difference_interval_interpretation": "approximate independent-stay normal 95% interval"
+      "risk_difference_interval_interpretation": "diagnostic pooled stay calculation; not used for cross fitted inference"
     },
     {
       "scope": "nested_5fold_internal_crossfit_common_late12_cohort",
@@ -140,7 +140,7 @@
       "low_minus_high_q10_burden_difference_ci95_high": 0.1982286341147548,
       "extreme_group_rule": "fixed 20% capacity defined once in common cohort; q10 ties resolved by stable deidentified stay index",
       "threshold_role": "operational sensitivity only; check loss retains tau=0.10 MAP target",
-      "risk_difference_interval_interpretation": "approximate independent-stay normal 95% interval"
+      "risk_difference_interval_interpretation": "diagnostic pooled stay calculation; not used for cross fitted inference"
     },
     {
       "scope": "nested_5fold_internal_crossfit_common_late12_cohort",
@@ -169,7 +169,7 @@
       "low_minus_high_q10_burden_difference_ci95_high": 0.3709533916874635,
       "extreme_group_rule": "fixed 20% capacity defined once in common cohort; q10 ties resolved by stable deidentified stay index",
       "threshold_role": "operational sensitivity only; check loss retains tau=0.10 MAP target",
-      "risk_difference_interval_interpretation": "approximate independent-stay normal 95% interval"
+      "risk_difference_interval_interpretation": "diagnostic pooled stay calculation; not used for cross fitted inference"
     },
     {
       "scope": "nested_5fold_internal_crossfit_common_late12_cohort",
@@ -198,7 +198,7 @@
       "low_minus_high_q10_burden_difference_ci95_high": 0.5397924076241336,
       "extreme_group_rule": "fixed 20% capacity defined once in common cohort; q10 ties resolved by stable deidentified stay index",
       "threshold_role": "operational sensitivity only; check loss retains tau=0.10 MAP target",
-      "risk_difference_interval_interpretation": "approximate independent-stay normal 95% interval"
+      "risk_difference_interval_interpretation": "diagnostic pooled stay calculation; not used for cross fitted inference"
     },
     {
       "scope": "nested_5fold_internal_crossfit_common_late12_cohort",
@@ -227,7 +227,7 @@
       "low_minus_high_q10_burden_difference_ci95_high": 0.189904797775326,
       "extreme_group_rule": "fixed 20% capacity defined once in common cohort; q10 ties resolved by stable deidentified stay index",
       "threshold_role": "operational sensitivity only; check loss retains tau=0.10 MAP target",
-      "risk_difference_interval_interpretation": "approximate independent-stay normal 95% interval"
+      "risk_difference_interval_interpretation": "diagnostic pooled stay calculation; not used for cross fitted inference"
     },
     {
       "scope": "nested_5fold_internal_crossfit_common_late12_cohort",
@@ -256,7 +256,7 @@
       "low_minus_high_q10_burden_difference_ci95_high": 0.3560090258126829,
       "extreme_group_rule": "fixed 20% capacity defined once in common cohort; q10 ties resolved by stable deidentified stay index",
       "threshold_role": "operational sensitivity only; check loss retains tau=0.10 MAP target",
-      "risk_difference_interval_interpretation": "approximate independent-stay normal 95% interval"
+      "risk_difference_interval_interpretation": "diagnostic pooled stay calculation; not used for cross fitted inference"
     },
     {
       "scope": "nested_5fold_internal_crossfit_common_late12_cohort",
@@ -285,7 +285,7 @@
       "low_minus_high_q10_burden_difference_ci95_high": 0.5197896171906765,
       "extreme_group_rule": "fixed 20% capacity defined once in common cohort; q10 ties resolved by stable deidentified stay index",
       "threshold_role": "operational sensitivity only; check loss retains tau=0.10 MAP target",
-      "risk_difference_interval_interpretation": "approximate independent-stay normal 95% interval"
+      "risk_difference_interval_interpretation": "diagnostic pooled stay calculation; not used for cross fitted inference"
     }
   ],
   "paired_check_loss": [
@@ -307,7 +307,7 @@
       "equal_loss_stay_fraction": 0.0001266111265858,
       "difference_direction": "positive favors calibrated q10",
       "check_loss_target": "tau=0.10 MAP quantile; independent of operational threshold",
-      "paired_interval_interpretation": "descriptive estimate plus or minus 1.96 stay-level SE, conditional on realized fold-trained rules; does not propagate refitting, tuning, or rule-selection variation"
+      "paired_interval_interpretation": "diagnostic pooled stay calculation; not used for cross fitted inference"
     },
     {
       "scope": "nested_5fold_internal_crossfit_common_late12_cohort",
@@ -327,7 +327,7 @@
       "equal_loss_stay_fraction": 0.0001012889012686,
       "difference_direction": "positive favors calibrated q10",
       "check_loss_target": "tau=0.10 MAP quantile; independent of operational threshold",
-      "paired_interval_interpretation": "descriptive estimate plus or minus 1.96 stay-level SE, conditional on realized fold-trained rules; does not propagate refitting, tuning, or rule-selection variation"
+      "paired_interval_interpretation": "diagnostic pooled stay calculation; not used for cross fitted inference"
     },
     {
       "scope": "nested_5fold_internal_crossfit_common_late12_cohort",
@@ -347,7 +347,7 @@
       "equal_loss_stay_fraction": 0.0001012889012686,
       "difference_direction": "positive favors calibrated q10",
       "check_loss_target": "tau=0.10 MAP quantile; independent of operational threshold",
-      "paired_interval_interpretation": "descriptive estimate plus or minus 1.96 stay-level SE, conditional on realized fold-trained rules; does not propagate refitting, tuning, or rule-selection variation"
+      "paired_interval_interpretation": "diagnostic pooled stay calculation; not used for cross fitted inference"
     }
   ]
 }

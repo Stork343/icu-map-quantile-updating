@@ -132,7 +132,7 @@ The empirical analysis is computationally intensive. The aggregate outputs neede
 
 ## Reported uncertainty
 
-Empirical loss intervals are descriptive intervals based on stay-level standard errors conditional on the realized fitted or fold-trained rules unless a table states otherwise. Monte Carlo intervals quantify simulation error across independent replicates.
+The historical assessment split reports conditional stay-level uncertainty after training and tuning have frozen the prediction rule. Nested cross fitted losses are reported as point estimates of internal prediction risk. Monte Carlo intervals quantify simulation error across independent replicates.
 
 ## Citation
 

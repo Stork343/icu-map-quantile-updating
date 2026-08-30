@@ -663,7 +663,7 @@ def fixed_opportunity_analysis(
                     "low_minus_high_q10_risk_difference_se": risk_difference["se"],
                     "low_minus_high_q10_risk_difference_ci95_low": risk_difference["ci95_low"],
                     "low_minus_high_q10_risk_difference_ci95_high": risk_difference["ci95_high"],
-                    "risk_difference_interval_interpretation": "approximate independent-stay normal 95% interval",
+                    "risk_difference_interval_interpretation": "diagnostic pooled stay calculation; not used for cross fitted inference",
                     "low_minus_high_q10_burden_difference": burden_difference["difference"],
                     "low_minus_high_q10_burden_difference_se": burden_difference["se"],
                     "low_minus_high_q10_burden_difference_ci95_low": burden_difference["ci95_low"],
@@ -770,7 +770,7 @@ def common_cohort_fixed_opportunity_analysis(
                     "low_minus_high_q10_risk_difference_se": risk_difference["se"],
                     "low_minus_high_q10_risk_difference_ci95_low": risk_difference["ci95_low"],
                     "low_minus_high_q10_risk_difference_ci95_high": risk_difference["ci95_high"],
-                    "risk_difference_interval_interpretation": "approximate independent-stay normal 95% interval",
+                    "risk_difference_interval_interpretation": "diagnostic pooled stay calculation; not used for cross fitted inference",
                     "low_minus_high_q10_burden_difference": burden_difference["difference"],
                     "low_minus_high_q10_burden_difference_se": burden_difference["se"],
                     "low_minus_high_q10_burden_difference_ci95_low": burden_difference["ci95_low"],
@@ -815,7 +815,7 @@ def common_cohort_fixed_opportunity_analysis(
                 "paired_difference_se": paired_se,
                 "paired_difference_ci95_low": float(paired_mean - 1.96 * paired_se),
                 "paired_difference_ci95_high": float(paired_mean + 1.96 * paired_se),
-                "paired_interval_interpretation": "descriptive estimate plus or minus 1.96 stay-level SE, conditional on realized fold-trained rules; does not propagate refitting, tuning, or rule-selection variation",
+                "paired_interval_interpretation": "diagnostic pooled stay calculation; not used for cross fitted inference",
                 "primary_better_stay_fraction": float(np.mean(primary_array < calibrated_array)),
                 "equal_loss_stay_fraction": float(np.mean(primary_array == calibrated_array)),
                 "difference_direction": "positive favors calibrated q10",
@@ -833,8 +833,8 @@ def common_cohort_fixed_opportunity_analysis(
         "independent_unit": "ICU stay",
         "prediction_boundary": "nested out-of-fold predictions only",
         "grouping_rule": "one fixed 20% low/high admission-q10 grouping across all K and thresholds; deterministic deidentified-index tie break",
-        "risk_difference_interval_interpretation": "approximate independent-stay normal 95% interval",
-        "paired_check_loss_interval_interpretation": "descriptive estimate plus or minus 1.96 stay-level SE, conditional on realized fold-trained rules; does not propagate refitting, tuning, or rule-selection variation",
+        "risk_difference_interval_interpretation": "diagnostic pooled stay calculation; not used for cross fitted inference",
+        "paired_check_loss_interval_interpretation": "diagnostic pooled stay calculation; not used for cross fitted inference",
     }
     return pd.DataFrame(threshold_rows), pd.DataFrame(loss_rows), metadata
 
@@ -931,7 +931,7 @@ def write_fixed_opportunity_tex(thresholds: pd.DataFrame, path: Path, preferred_
         "\\scriptsize",
         "\\begin{tabular}{rrrrrrr}",
         "\\hline",
-        "$K$ & Threshold & Stays & Any event & Burden & q10 AUC & Risk difference (95\\% CI)\\\\",
+        "$K$ & Threshold & Stays & Any event & Burden & q10 AUC & Risk difference, pp\\\\",
         "\\hline",
     ]
     for _, row in table.sort_values(["first_k_later_records", "operational_threshold_mmhg"]).iterrows():
@@ -940,16 +940,14 @@ def write_fixed_opportunity_tex(thresholds: pd.DataFrame, path: Path, preferred_
             f"{int(row['n_eligible_stays'])} & {100.0 * float(row['any_event_rate']):.1f}\\% & "
             f"{100.0 * float(row['mean_within_stay_burden']):.1f}\\% & "
             f"{float(row['admission_q10_auc_for_any_event']):.3f} & "
-            f"{100.0 * float(row['low_minus_high_q10_risk_difference']):.1f} "
-            f"({100.0 * float(row['low_minus_high_q10_risk_difference_ci95_low']):.1f} to "
-            f"{100.0 * float(row['low_minus_high_q10_risk_difference_ci95_high']):.1f}) pp\\\\"
+            f"{100.0 * float(row['low_minus_high_q10_risk_difference']):.1f}\\\\"
         )
     lines.extend(
         [
             "\\hline",
             "\\end{tabular}",
             "\\par\\smallskip",
-            "\\footnotesize{Rows use cross fitted predictions and the first $K$ later records. Low and high admission q10 groups each contain 20\\% of stays. Risk difference intervals use the normal approximation with stay as the independent unit.}",
+            "\\footnotesize{Rows use cross fitted predictions and the first $K$ later records. Low and high admission q10 groups each contain 20\\% of stays.}",
             "\\end{table*}",
         ]
     )
@@ -972,7 +970,7 @@ def write_common_cohort_fixed_opportunity_tex(
         "\\scriptsize",
         "\\begin{tabular}{rrrrrrr}",
         "\\hline",
-        "$K$ & Threshold & Stays & Any event & Burden & q10 AUC & Risk difference (95\\% CI)\\\\",
+        "$K$ & Threshold & Stays & Any event & Burden & q10 AUC & Risk difference, pp\\\\",
         "\\hline",
     ]
     for _, row in thresholds.sort_values(
@@ -983,16 +981,14 @@ def write_common_cohort_fixed_opportunity_tex(
             f"{int(row['n_common_cohort_stays'])} & {100.0 * float(row['any_event_rate']):.1f}\\% & "
             f"{100.0 * float(row['mean_within_stay_burden']):.1f}\\% & "
             f"{float(row['admission_q10_auc_for_any_event']):.3f} & "
-            f"{100.0 * float(row['low_minus_high_q10_risk_difference']):.1f} "
-            f"({100.0 * float(row['low_minus_high_q10_risk_difference_ci95_low']):.1f} to "
-            f"{100.0 * float(row['low_minus_high_q10_risk_difference_ci95_high']):.1f}) pp\\\\"
+            f"{100.0 * float(row['low_minus_high_q10_risk_difference']):.1f}\\\\"
         )
     threshold_lines.extend(
         [
             "\\hline",
             "\\end{tabular}",
             "\\par\\smallskip",
-            "\\footnotesize{All rows use the same cross fitted cohort and the first $K=4$, 8, or 12 later records. Low and high admission q10 groups each contain 20\\% of stays. Risk difference intervals use the normal approximation with stay as the independent unit.}",
+            "\\footnotesize{All rows use the same cross fitted cohort and the first $K=4$, 8, or 12 later records. Low and high admission q10 groups each contain 20\\% of stays.}",
             "\\end{table*}",
         ]
     )
@@ -1006,7 +1002,7 @@ def write_common_cohort_fixed_opportunity_tex(
         "\\small",
         "\\begin{tabular}{rrrrr}",
         "\\hline",
-        "$K$ & Stays & Calibrated q10 & Profiled offset & Offset minus calibrated (interval)\\\\",
+        "$K$ & Stays & Calibrated q10 & Profiled offset & Offset minus calibrated\\\\",
         "\\hline",
     ]
     for _, row in losses.sort_values("first_k_later_records").iterrows():
@@ -1014,16 +1010,14 @@ def write_common_cohort_fixed_opportunity_tex(
             f"{int(row['first_k_later_records'])} & {int(row['n_common_cohort_stays'])} & "
             f"{float(row['calibrated_q10_mean_stay_level_check_loss']):.4f} & "
             f"{float(row['primary_level_update_mean_stay_level_check_loss']):.4f} & "
-            f"{float(row['paired_difference_primary_minus_calibrated_q10']):.4f} "
-            f"({float(row['paired_difference_ci95_low']):.4f} to "
-            f"{float(row['paired_difference_ci95_high']):.4f})\\\\"
+            f"{float(row['paired_difference_primary_minus_calibrated_q10']):.4f}\\\\"
         )
     loss_lines.extend(
         [
             "\\hline",
             "\\end{tabular}",
             "\\par\\smallskip",
-            "\\footnotesize{All rows compare the same cross fitted stays with at least 12 later records. Loss is averaged over the first $K$ records within each stay and then across stays. Differences are paired by stay, and intervals equal the estimate plus or minus 1.96 standard errors.}",
+            "\\footnotesize{All rows compare the same cross fitted stays with at least 12 later records. Loss is averaged over the first $K$ records within each stay and then across stays. Differences are paired by stay.}",
             "\\end{table}",
         ]
     )
@@ -1078,9 +1072,9 @@ def write_paired_comparison_tex(comparisons: pd.DataFrame, path: Path, preferred
         "\\label{tab:validation_extension_paired_comparisons}",
         "\\centering",
         "\\small",
-        "\\begin{tabular}{lrrrr}",
+        "\\begin{tabular}{lrrr}",
         "\\hline",
-        "Candidate & Mean loss & Paired difference & Interval & Better stays\\\\",
+        "Candidate & Mean loss & Paired difference & Better stays\\\\",
         "\\hline",
     ]
     for _, row in table.sort_values("candidate_mean_loss").iterrows():
@@ -1088,7 +1082,6 @@ def write_paired_comparison_tex(comparisons: pd.DataFrame, path: Path, preferred
         lines.append(
             f"{label} & {float(row['candidate_mean_loss']):.4f} & "
             f"{float(row['paired_difference_candidate_minus_reference']):.4f} & "
-            f"{float(row['paired_difference_ci95_low']):.4f} to {float(row['paired_difference_ci95_high']):.4f} & "
             f"{100.0 * float(row['candidate_better_stay_fraction']):.1f}\\%\\\\"
         )
     lines.extend(
@@ -1096,7 +1089,7 @@ def write_paired_comparison_tex(comparisons: pd.DataFrame, path: Path, preferred
             "\\hline",
             "\\end{tabular}",
             "\\par\\smallskip",
-            "\\footnotesize{Differences equal candidate loss minus calibrated q10 loss. Intervals equal the difference plus or minus 1.96 pooled standard errors. The ICU stay is the independent unit.}",
+            "\\footnotesize{Differences equal candidate loss minus calibrated q10 loss.}",
             "\\end{table}",
         ]
     )
@@ -1658,10 +1651,10 @@ def main() -> None:
             common_loss_frame = pd.read_csv(common_loss_csv)
             common_threshold_frame[
                 "risk_difference_interval_interpretation"
-            ] = "approximate independent-stay normal 95% interval"
+            ] = "diagnostic pooled stay calculation; not used for cross fitted inference"
             common_loss_frame[
                 "paired_interval_interpretation"
-            ] = "descriptive estimate plus or minus 1.96 stay-level SE, conditional on realized fold-trained rules; does not propagate refitting, tuning, or rule-selection variation"
+            ] = "diagnostic pooled stay calculation; not used for cross fitted inference"
             common_json_path = args.output_dir / "common_cohort_fixed_opportunity_results.json"
             common_metadata = (
                 json.loads(common_json_path.read_text(encoding="utf-8")).get("metadata", {})
@@ -1670,10 +1663,10 @@ def main() -> None:
             )
             common_metadata[
                 "risk_difference_interval_interpretation"
-            ] = "approximate independent-stay normal 95% interval"
+            ] = "diagnostic pooled stay calculation; not used for cross fitted inference"
             common_metadata[
                 "paired_check_loss_interval_interpretation"
-            ] = "descriptive estimate plus or minus 1.96 stay-level SE, conditional on realized fold-trained rules; does not propagate refitting, tuning, or rule-selection variation"
+            ] = "diagnostic pooled stay calculation; not used for cross fitted inference"
             refreshed_common_payload, refreshed_common_artifacts = write_common_cohort_fixed_opportunity_artifacts(
                 common_threshold_frame,
                 common_loss_frame,

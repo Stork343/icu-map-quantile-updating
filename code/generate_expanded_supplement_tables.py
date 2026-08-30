@@ -421,20 +421,20 @@ def generate_candidate_table() -> None:
         r"\setlength{\tabcolsep}{1.5pt}",
         r"\setlength{\LTleft}{0pt}",
         r"\setlength{\LTright}{0pt}",
-        r"\begin{longtable}{>{\raggedright\arraybackslash}p{0.16\textwidth}>{\raggedright\arraybackslash}p{0.27\textwidth}>{\raggedright\arraybackslash}p{0.16\textwidth}*{4}{>{\centering\arraybackslash}p{0.085\textwidth}}}",
+        r"\begin{longtable}{>{\raggedright\arraybackslash}p{0.17\textwidth}>{\raggedright\arraybackslash}p{0.29\textwidth}>{\raggedright\arraybackslash}p{0.18\textwidth}*{3}{>{\centering\arraybackslash}p{0.10\textwidth}}}",
         r"\caption{Stay specific structures and complete scalar rule comparisons.}\label{tab:supp_candidate_evaluation}\\",
         r"\toprule",
-        r"Scope & Rule & Penalty (level, slope) or calibration & Stays & Mean loss & SE & Difference\\",
+        r"Scope & Rule & Penalty (level, slope) or calibration & Stays & Mean loss & Difference\\",
         r"\midrule",
         r"\endfirsthead",
-        r"\multicolumn{7}{l}{\tablename\ \thetable\ continued}\\",
+        r"\multicolumn{6}{l}{\tablename\ \thetable\ continued}\\",
         r"\toprule",
-        r"Scope & Rule & Penalty (level, slope) or calibration & Stays & Mean loss & SE & Difference\\",
+        r"Scope & Rule & Penalty (level, slope) or calibration & Stays & Mean loss & Difference\\",
         r"\midrule",
         r"\endhead",
         r"\bottomrule",
         r"\endlastfoot",
-        r"\multicolumn{7}{l}{\textit{Historical structure comparison; difference versus population}}\\",
+        r"\multicolumn{6}{l}{\textit{Historical structure comparison; difference versus population}}\\",
     ]
     pop_loss = float(random_effects.iloc[0]["assessment_loss"])
     for _, row in random_effects.iterrows():
@@ -443,11 +443,10 @@ def generate_candidate_table() -> None:
             penalty = f"$({row['lambda_intercept']:.2f},{row['lambda_slope']:.2f})$"
         lines.append(
             f"Historical split & {tex(row['model'])} & {penalty} & {int(row['n_stays'])} & "
-            f"{row['assessment_loss']:.4f} & {row['assessment_loss_se']:.4f} & "
-            f"{row['assessment_loss'] - pop_loss:+.4f}\\\\"
+            f"{row['assessment_loss']:.4f} & {row['assessment_loss'] - pop_loss:+.4f}\\\\"
         )
 
-    lines.append(r"\midrule\multicolumn{7}{l}{\textit{Nested fivefold scalar comparison; difference versus calibrated q10}}\\")
+    lines.append(r"\midrule\multicolumn{6}{l}{\textit{Nested fivefold scalar comparison; difference versus calibrated q10}}\\")
     scope = "nested_5fold_internal_crossfit"
     selected_models = [
         "population",
@@ -482,7 +481,7 @@ def generate_candidate_table() -> None:
             difference = f"{pr['paired_difference_candidate_minus_reference']:+.4f}"
         lines.append(
             f"Nested cross fitting & {tex(display[model])} & Inner tuning & {int(row['n_stays'])} & "
-            f"{row['mean_stay_level_check_loss']:.4f} & {row['se_stay_level_check_loss']:.4f} & {difference}\\\\"
+            f"{row['mean_stay_level_check_loss']:.4f} & {difference}\\\\"
         )
     lines.extend(
         [
