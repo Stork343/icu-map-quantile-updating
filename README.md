@@ -4,7 +4,9 @@ Reproducibility materials for the manuscript **Penalized Quantile Regression for
 
 Repository: <https://github.com/Stork343/icu-map-quantile-updating>
 
-Submission release: `v1.2.1`
+Submission release: `v1.0.0`
+
+Development changes are recorded in Git history. A new release is created only for a distinct manuscript submission milestone.
 
 ## What is included
 
