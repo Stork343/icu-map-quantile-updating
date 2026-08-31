@@ -11,13 +11,14 @@ Symbol & Definition\\
 $W_i$ & Complete retained record for ICU stay $i$, including MAP values, observation times, observation count, and baseline covariates.\\
 $\mathcal E_i,\mathcal L_i$ & Index observations available at the landmark and later observations reserved for tuning or assessment.\\
 $A_i$ & Eligibility indicator defined by the minimum total, index, and later observation counts.\\
-$z_{ij},\eta_\tau$ & Common design vector and its population quantile coefficient.\\
+$P_F,P_T,P_V$ & Eligible stay laws in the fitting, tuning, and evaluation phases. They coincide under random splitting and may differ in the temporal allocation.\\
+$z_{ij},\eta_{F,\tau}^{\circ}$ & Common design vector and the pseudo true population quantile coefficient under the fitting law.\\
 $h_r(t),u_i$ & Stay specific basis indexed by $r$ and the corresponding profiled coefficient vector.\\
 $P_r$ & Positive definite quadratic penalty matrix for a stay specific basis.\\
 $\widetilde q_{ai}(t)$ & Base forecast for candidate $a$, constructed from training data, baseline covariates, and the index record of stay $i$.\\
 $(\alpha_a,\delta_a)$ & Tuning fitted intercept and slope in the affine calibration of candidate $a$.\\
 $\ell_i(a)$ & Later check loss averaged within stay $i$ for candidate $a$.\\
-$\boldsymbol\ell_{\mathcal D},\mathbf R_{\mathcal D},\Sigma_{\mathcal D}$ & Loss vector, conditional risk vector, and stay level covariance matrix for prediction rules frozen by fitting and tuning data $\mathcal D$.\\
+$\boldsymbol\ell_{\mathcal D},\mathbf R_{V,\mathcal D},\Sigma_{V,\mathcal D}$ & Loss vector, conditional evaluation risk vector, and stay level covariance matrix for rules frozen by fitting and tuning data $\mathcal D$.\\
 $L(q),U(q),V_\tau(q)$ & Strict probability, inclusive probability, and distance of $\tau$ from the probability mass bracket at forecast $q$.\\
 \bottomrule
 \end{tabular}
