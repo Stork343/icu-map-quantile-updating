@@ -1,0 +1,24 @@
+{
+  "status": "passed",
+  "horizons": [
+    4.0,
+    8.0,
+    12.0
+  ],
+  "completed_partitions": 18,
+  "complete_nested_coverage": {
+    "4": 59969,
+    "8": 60241,
+    "12": 60310
+  },
+  "random_slope_exact_cohort_match": true,
+  "random_slope_late_observation_counts_match": true,
+  "random_slope_actual_fitting_inputs_verified": true,
+  "all_metrics_finite_and_within_bounds": true,
+  "public_files_contain_no_stay_identifiers": true,
+  "max_adaptive_tuning_kkt": 1.4210854715202004e-14,
+  "max_adaptive_tuning_stationarity": 1.0378364834195963e-12,
+  "all_tuning_rules": 3600,
+  "rounding_precision_sensitivity_rows": 36,
+  "parallel_likelihood_equivalence_verified": true
+}

@@ -1,0 +1,159 @@
+meta:
+  profile: academic-paper
+  figureType: workflow
+  theme: academic-color
+  palette: tol-high-contrast
+  layout: horizontal
+  source: generated
+  canvas: 1080x776
+  routing: orthogonal
+  font:
+    primary: Times New Roman
+    formula: Times New Roman
+    cjk: Times New Roman,SimSun
+  print: {widthPt: 460, minPt: 8}
+  title: Learning and applying component specific quantile retention
+  description: Independent fitting and tuning records determine the common component and retention functions before a new stay is profiled and assessed.
+  legend: Solid arrows carry records or forecasts. Dashed arrows carry fitted quantities.
+
+nodes:
+  - id: fit_heading
+    type: text
+    label: A  Common fit
+    bounds: {x: 24, y: 24, width: 272, height: 48}
+    style: {fontSize: 28, fontStyle: 1, align: left, fontColor: '#1D2833'}
+  - id: fit_sample
+    type: text
+    label: Fitting stays F
+    bounds: {x: 24, y: 72, width: 264, height: 40}
+    style: {fontSize: 22, align: left, fontColor: '#5D6770'}
+  - id: learn_heading
+    type: text
+    label: B  Penalty learning
+    bounds: {x: 384, y: 24, width: 664, height: 48}
+    style: {fontSize: 28, fontStyle: 1, align: left, fontColor: '#1D2833'}
+  - id: tuning_sample
+    type: text
+    label: Tuning stays T
+    bounds: {x: 384, y: 72, width: 664, height: 40}
+    style: {fontSize: 22, align: left, fontColor: '#5D6770'}
+  - id: population
+    type: process
+    label: "Common quantile\ncomponent"
+    bounds: {x: 24, y: 176, width: 264, height: 96}
+    style: {fontSize: 24, fillColor: '#EEF3F8', strokeColor: '#004488', strokeWidth: 1.5, fontColor: '#1D2833'}
+  - id: component_functions
+    type: process
+    label: "Level penalty\nSlope penalty"
+    bounds: {x: 384, y: 176, width: 320, height: 96}
+    style: {fontSize: 24, fillColor: '#EEF3F8', strokeColor: '#004488', strokeWidth: 1.5, fontColor: '#1D2833'}
+  - id: affine_map
+    type: process
+    label: "Affine map\nPer horizon"
+    bounds: {x: 744, y: 176, width: 304, height: 96}
+    style: {fontSize: 24, fillColor: '#FCF9EE', strokeColor: '#8D7133', strokeWidth: 1.5, fontColor: '#1D2833'}
+  - id: branch_note
+    type: text
+    label: "Later check loss\nGrouped threefold CV"
+    bounds: {x: 384, y: 288, width: 320, height: 80}
+    style: {fontSize: 22, align: left, fontColor: '#5D6770'}
+  - id: prediction_heading
+    type: text
+    label: C  Prediction
+    bounds: {x: 24, y: 376, width: 256, height: 48}
+    style: {fontSize: 28, fontStyle: 1, align: left, fontColor: '#1D2833'}
+  - id: assessment_sample
+    type: text
+    label: Assessment stays A
+    bounds: {x: 24, y: 424, width: 264, height: 40}
+    style: {fontSize: 22, align: left, fontColor: '#5D6770'}
+  - id: early_record
+    type: process
+    label: "MAP + covariates\nEarly history"
+    bounds: {x: 24, y: 472, width: 264, height: 120}
+    style: {fontSize: 22, fillColor: '#FFFFFF', strokeColor: '#6E7C87', strokeWidth: 1.5, fontColor: '#1D2833'}
+  - id: individual_profile
+    type: process
+    label: "Individual profile\nLevel + slope"
+    bounds: {x: 384, y: 472, width: 320, height: 120}
+    style: {fontSize: 24, fillColor: '#EEF3F8', strokeColor: '#004488', strokeWidth: 1.5, fontColor: '#1D2833'}
+  - id: forecast
+    type: process
+    label: "Future quantiles\nDirect / calibrated"
+    bounds: {x: 744, y: 472, width: 304, height: 120}
+    style: {fontSize: 22, fillColor: '#FCF9EE', strokeColor: '#8D7133', strokeWidth: 1.5, fontColor: '#1D2833'}
+  - id: later_record
+    type: process
+    label: "Later MAP\nAssessment only"
+    bounds: {x: 384, y: 664, width: 320, height: 72}
+    style: {fontSize: 22, fillColor: '#FFFFFF', strokeColor: '#6E7C87', strokeWidth: 1.5, fontColor: '#1D2833'}
+  - id: assessment_loss
+    type: process
+    label: "Stay weighted loss\nTail bracket"
+    bounds: {x: 744, y: 664, width: 304, height: 72}
+    style: {fontSize: 22, fillColor: '#FFFFFF', strokeColor: '#004488', strokeWidth: 1.5, fontColor: '#1D2833'}
+  - id: legend
+    type: text
+    label: "Solid  record flow\nDashed  fitted rules"
+    bounds: {x: 24, y: 664, width: 320, height: 72}
+    style: {fontSize: 22, align: left, fontColor: '#5D6770'}
+  - id: fitting_inputs
+    type: text
+    label: Baseline + ICU time
+    bounds: {x: 24, y: 120, width: 264, height: 48}
+    style: {fontSize: 22, fontColor: '#5D6770'}
+  - id: retention_inputs
+    type: text
+    label: History + horizon
+    bounds: {x: 384, y: 120, width: 320, height: 48}
+    style: {fontSize: 22, fontColor: '#5D6770'}
+  - id: calibration_inputs
+    type: text
+    label: Refit then calibrate
+    bounds: {x: 744, y: 120, width: 304, height: 48}
+    style: {fontSize: 22, fontColor: '#5D6770'}
+  - id: branch_choice
+    type: text
+    label: Functions / constants
+    bounds: {x: 384, y: 376, width: 320, height: 48}
+    style: {fontSize: 22, fontColor: '#5D6770'}
+
+edges:
+  - from: population
+    to: component_functions
+    type: data
+    style: {strokeColor: '#004488', strokeWidth: 1.7, exitX: 1, exitY: 0.5, entryX: 0, entryY: 0.5}
+  - from: population
+    to: individual_profile
+    type: data
+    style: {strokeColor: '#004488', strokeWidth: 1.7}
+    waypoints: [{x: 156, y: 344}, {x: 352, y: 344}, {x: 352, y: 432}, {x: 464, y: 432}]
+  - from: component_functions
+    to: affine_map
+    type: data
+    style: {strokeColor: '#6E7C87', strokeWidth: 1.7, exitX: 1, exitY: 0.5, entryX: 0, entryY: 0.5}
+  - from: component_functions
+    to: individual_profile
+    type: data
+    style: {strokeColor: '#004488', strokeWidth: 1.7}
+    waypoints: [{x: 728, y: 248}, {x: 728, y: 424}, {x: 624, y: 424}]
+  - from: affine_map
+    to: forecast
+    type: data
+    style: {strokeColor: '#8D7133', strokeWidth: 1.7, exitX: 0.5, exitY: 1, entryX: 0.5, entryY: 0}
+  - from: early_record
+    to: individual_profile
+    type: primary
+    style: {strokeColor: '#485660', strokeWidth: 1.7, exitX: 1, exitY: 0.5, entryX: 0, entryY: 0.5}
+  - from: individual_profile
+    to: forecast
+    type: primary
+    style: {strokeColor: '#485660', strokeWidth: 1.7, exitX: 1, exitY: 0.5, entryX: 0, entryY: 0.5}
+  - from: forecast
+    to: assessment_loss
+    type: primary
+    style: {strokeColor: '#485660', strokeWidth: 1.7, exitX: 0.5, exitY: 1, entryX: 0.5, entryY: 0}
+  - from: later_record
+    to: assessment_loss
+    type: primary
+    style: {strokeColor: '#485660', strokeWidth: 1.7, exitX: 1, exitY: 0.5, entryX: 0, entryY: 0.5}

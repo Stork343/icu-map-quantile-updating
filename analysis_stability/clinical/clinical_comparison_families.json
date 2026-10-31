@@ -1,0 +1,32 @@
+[
+  {
+    "comparison_family": "original_complete_family_temporal",
+    "source_role": "original_complete_family_temporal",
+    "comparisons": 42,
+    "definition": "complete saved 12 hour original-family comparisons including the published random-intercept comparator"
+  },
+  {
+    "comparison_family": "adaptive_horizon_temporal",
+    "source_role": "adaptive_horizon_temporal",
+    "comparisons": 255,
+    "definition": "complete saved adaptive-family candidates against five references across three horizons"
+  },
+  {
+    "comparison_family": "component_learning_temporal",
+    "source_role": "component_learning_temporal",
+    "comparisons": 120,
+    "definition": "complete saved learned and constant component comparisons against six original references and matched branches across three horizons"
+  },
+  {
+    "comparison_family": "quadrature61_temporal",
+    "source_role": "quadrature61_temporal",
+    "comparisons": 6,
+    "definition": "all six saved quadrature sensitivity comparisons across three horizons and two random-slope forms"
+  },
+  {
+    "comparison_family": "index_count_interactions_exploratory",
+    "source_role": "index_count_interactions_exploratory",
+    "comparisons": 4,
+    "definition": "four additional count interactions from two quadrature orders and two random-slope forms"
+  }
+]

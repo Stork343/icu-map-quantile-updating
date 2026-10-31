@@ -11,7 +11,7 @@ import split_window_data as data_utils
 
 
 MAP_SOURCE_CHOICES = ("combined", "invasive", "noninvasive")
-CACHE_SCHEMA_VERSION = 3
+CACHE_SCHEMA_VERSION = 4
 REQUIRED_SOURCE_FILES = (
     "hosp/admissions.csv.gz",
     "hosp/patients.csv.gz",
@@ -60,7 +60,13 @@ def _write_frame(df: pd.DataFrame, path: Path) -> Path:
         return fallback
 
 
-def _selected_stays(data_root: Path, analysis_hours: float, candidate_stays: int, seed: int) -> pd.DataFrame:
+def _selected_stays(
+    data_root: Path,
+    analysis_hours: float,
+    candidate_stays: int,
+    seed: int,
+    age_definition: str,
+) -> pd.DataFrame:
     paths = data_utils.MimicPaths.from_root(data_root)
     patients = data_utils._load_patients(paths.patients_path)
     admissions = data_utils._load_admissions(paths.admissions_path)
@@ -70,6 +76,7 @@ def _selected_stays(data_root: Path, analysis_hours: float, candidate_stays: int
         admissions,
         analysis_hours=analysis_hours,
         keep_one_stay_per_subject=True,
+        age_definition=age_definition,
     )
     stays = pd.DataFrame(list(candidates.values()))
     if stays.empty:
@@ -242,7 +249,10 @@ def build_map_cache(
     chunksize: int,
     progress_every: int,
     refresh: bool,
+    age_definition: str = "anchor_age",
 ) -> Tuple[pd.DataFrame, pd.DataFrame, Dict[str, object]]:
+    if age_definition not in data_utils.AGE_DEFINITION_CHOICES:
+        raise ValueError(f"age_definition must be one of {data_utils.AGE_DEFINITION_CHOICES}")
     obs_path = cache_dir / "mimic_map_observations.parquet"
     stays_path = cache_dir / "mimic_map_stays.parquet"
     manifest_path = cache_dir / "mimic_map_full_cache_metadata.json"
@@ -254,6 +264,7 @@ def build_map_cache(
         "min_obs_per_stay": int(min_obs_per_stay),
         "duplicate_window_minutes": int(duplicate_window_minutes),
         "map_source": str(map_source),
+        "age_definition": str(age_definition),
         "source_files": _source_file_manifest(data_root),
         "algorithm_files": {
             Path(__file__).name: _sha256(Path(__file__)),
@@ -298,7 +309,7 @@ def build_map_cache(
                 "Use --refresh-cache or a new cache directory."
             )
     else:
-        stays = _selected_stays(data_root, analysis_hours, candidate_stays, seed)
+        stays = _selected_stays(data_root, analysis_hours, candidate_stays, seed, age_definition)
         obs = _read_map_observations(
             data_root,
             stays,
@@ -321,6 +332,20 @@ def build_map_cache(
         late_count=("time_hours", lambda x: int(np.sum(np.asarray(x) > 12.0))),
     )
     split_eligible = int(((counts["index_count"] >= 4) & (counts["late_count"] >= 1)).sum())
+    age_summary = {
+        "age_definition": str(age_definition),
+        "high_age_coded_stays": int(stays["high_age_coded"].astype(bool).sum()),
+        "age_proxy_available_stays": int(stays["age_at_icu_proxy"].notna().sum()),
+        "age_year_delta_min": (
+            int(stays["age_year_delta"].dropna().min()) if stays["age_year_delta"].notna().any() else None
+        ),
+        "age_year_delta_max": (
+            int(stays["age_year_delta"].dropna().max()) if stays["age_year_delta"].notna().any() else None
+        ),
+        "age_changed_stays": int(
+            np.sum(~np.isclose(stays["age"].to_numpy(dtype=float), stays["anchor_age"].to_numpy(dtype=float)))
+        ),
+    }
     metadata = {
         "analysis_type": "revised_mimic_map_cache",
         **expected_manifest,
@@ -331,6 +356,7 @@ def build_map_cache(
         "bucket_aggregation": "arithmetic mean within selected source and bucket",
         "retained_cache_stays": int(stays.shape[0]),
         "retained_cache_observations": int(obs.shape[0]),
+        "age_summary": age_summary,
         "split_window_eligible_stays_12h": split_eligible,
         "map_below_65_observation_fraction": float(np.mean(obs["map_value"].to_numpy(dtype=float) < 65.0)),
         "obs_cache": str(obs_path if obs_path.exists() else obs_path.with_suffix(".csv.gz")),
@@ -356,6 +382,7 @@ def main() -> None:
     parser.add_argument("--min-obs", type=int, default=8)
     parser.add_argument("--duplicate-minutes", type=int, default=5)
     parser.add_argument("--map-source", choices=MAP_SOURCE_CHOICES, default="combined")
+    parser.add_argument("--age-definition", choices=data_utils.AGE_DEFINITION_CHOICES, default="anchor_age")
     parser.add_argument("--chunksize", type=int, default=1_000_000)
     parser.add_argument("--progress-every", type=int, default=10)
     parser.add_argument("--refresh-cache", action="store_true")
@@ -373,6 +400,7 @@ def main() -> None:
         chunksize=args.chunksize,
         progress_every=args.progress_every,
         refresh=args.refresh_cache,
+        age_definition=args.age_definition,
     )
     args.metadata_output.parent.mkdir(parents=True, exist_ok=True)
     args.metadata_output.write_text(json.dumps(data_utils.to_serializable(meta), ensure_ascii=False, indent=2), encoding="utf-8")

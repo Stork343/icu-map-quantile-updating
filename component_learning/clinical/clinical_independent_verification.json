@@ -1,0 +1,55 @@
+{
+  "status": "passed",
+  "clinical_partitions": 6,
+  "horizon_comparisons": 18,
+  "model_summary_cells": 252,
+  "temporal_paired_comparisons": 120,
+  "inner_validation_and_selection_replayed": true,
+  "assessment_predictions_replayed": true,
+  "original_assessment_membership_and_scores_matched": true,
+  "public_identifier_columns": 0,
+  "partition_checks": [
+    {
+      "partition": "fold_1",
+      "fits_checked": 13,
+      "optimization_profile_evaluations_checked": 70724205,
+      "assessment_records_checked": 36117,
+      "selected_kind": "continuous"
+    },
+    {
+      "partition": "fold_2",
+      "fits_checked": 13,
+      "optimization_profile_evaluations_checked": 76104440,
+      "assessment_records_checked": 36109,
+      "selected_kind": "continuous"
+    },
+    {
+      "partition": "fold_3",
+      "fits_checked": 13,
+      "optimization_profile_evaluations_checked": 71823300,
+      "assessment_records_checked": 36112,
+      "selected_kind": "continuous"
+    },
+    {
+      "partition": "fold_4",
+      "fits_checked": 13,
+      "optimization_profile_evaluations_checked": 63859672,
+      "assessment_records_checked": 36081,
+      "selected_kind": "continuous"
+    },
+    {
+      "partition": "fold_5",
+      "fits_checked": 13,
+      "optimization_profile_evaluations_checked": 66870629,
+      "assessment_records_checked": 36101,
+      "selected_kind": "continuous"
+    },
+    {
+      "partition": "temporal",
+      "fits_checked": 13,
+      "optimization_profile_evaluations_checked": 60625457,
+      "assessment_records_checked": 65824,
+      "selected_kind": "continuous"
+    }
+  ]
+}

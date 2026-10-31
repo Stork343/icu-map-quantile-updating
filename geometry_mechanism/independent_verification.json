@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "replicates_checked": 800,
+  "planned_comparisons_checked": 432,
+  "stay_scores_checked": 30528000,
+  "qp_fits_checked": 13290280,
+  "maximum_original_replay_error": 2.1316282072803006e-14,
+  "frozen_selection_and_calibration_checked": true,
+  "all_coverage_groups_reported": true,
+  "pointwise_and_simultaneous_intervals_checked": true,
+  "visual_inspection": false
+}

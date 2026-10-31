@@ -58,6 +58,7 @@ def save_cns_figure(fig, filename):
     fig.savefig(f"{filename}.png", bbox_inches="tight", dpi=300)
 
 
+import argparse
 from pathlib import Path
 
 import numpy as np
@@ -75,6 +76,10 @@ PUBLIC_ROOT = ARCHIVE_PUBLIC_ROOT if PRIVATE_LAYOUT else PAPER_ROOT
 MANUSCRIPT_ROOT = ARCHIVE_MANUSCRIPT_ROOT if PRIVATE_LAYOUT else PAPER_ROOT
 FIGURE_ROOT = MANUSCRIPT_ROOT / "figures" if PRIVATE_LAYOUT else PAPER_ROOT / "supplement_aggregate"
 TABLE_ROOT = MANUSCRIPT_ROOT / "tables" if PRIVATE_LAYOUT else PAPER_ROOT / "supplement_aggregate"
+SIMULATION_ROOT = PUBLIC_ROOT
+EMPIRICAL_ROOT = PUBLIC_ROOT / "empirical_aggregate"
+SOURCE_ROOT = PUBLIC_ROOT / "source_sensitivity"
+FIGURE_OUTPUT_ROOT = FIGURE_ROOT
 
 SCENARIO_ORDER = [
     "ideal_large_dense",
@@ -125,9 +130,9 @@ def panel_label(ax: plt.Axes, label: str) -> None:
 
 def load_simulation_data() -> tuple[pd.DataFrame, pd.DataFrame]:
     penalties = pd.read_csv(
-        PUBLIC_ROOT / "simulation_ademp_v2" / "ademp_v2_penalty_summary.csv"
+        SIMULATION_ROOT / "simulation_ademp_v2" / "ademp_v2_penalty_summary.csv"
     )
-    summary = pd.read_csv(PUBLIC_ROOT / "simulation_ademp_v2" / "ademp_v2_summary.csv")
+    summary = pd.read_csv(SIMULATION_ROOT / "simulation_ademp_v2" / "ademp_v2_summary.csv")
     penalties = penalties.loc[penalties["method"].eq("tuned_level")].copy()
     return penalties, summary
 
@@ -217,16 +222,17 @@ def plot_simulation_diagnostics() -> None:
     panel_label(ax_c, "c")
 
     fig.subplots_adjust(left=0.22, right=0.985, top=0.92, bottom=0.13)
-    FIGURE_ROOT.mkdir(parents=True, exist_ok=True)
-    save_cns_figure(fig, str(FIGURE_ROOT / "supp_simulation_tuning_diagnostics"))
+    FIGURE_OUTPUT_ROOT.mkdir(parents=True, exist_ok=True)
+    save_cns_figure(fig, str(FIGURE_OUTPUT_ROOT / "supp_simulation_tuning_diagnostics"))
     plt.close(fig)
 
 
 def plot_empirical_validation() -> None:
-    sensitivity = pd.read_csv(PUBLIC_ROOT / "empirical_aggregate" / "sensitivity_analysis.csv")
-    weighted = pd.read_csv(PUBLIC_ROOT / "empirical_aggregate" / "stay_weighted_population_sensitivity.csv")
-    sources = pd.read_csv(PUBLIC_ROOT / "source_sensitivity" / "map_source_sensitivity.csv")
-    density = pd.read_csv(PUBLIC_ROOT / "empirical_aggregate" / "measurement_density_sensitivity.csv")
+    sensitivity_path = EMPIRICAL_ROOT / "table7" / "landmark_table7.csv"
+    sensitivity = pd.read_csv(sensitivity_path if sensitivity_path.exists() else EMPIRICAL_ROOT / "sensitivity_analysis.csv")
+    weighted = pd.read_csv(EMPIRICAL_ROOT / "stay_weighted_population_sensitivity.csv")
+    sources = pd.read_csv(SOURCE_ROOT / "map_source_sensitivity.csv")
+    density = pd.read_csv(EMPIRICAL_ROOT / "measurement_density_sensitivity.csv")
     folds = pd.read_csv(TABLE_ROOT / "supp_fold_stability_source.csv")
 
     landmark = sensitivity.loc[sensitivity["tau"].eq(0.10)].sort_values("index_hours")
@@ -351,14 +357,30 @@ def plot_empirical_validation() -> None:
         ax.set_axisbelow(True)
 
     fig.subplots_adjust(left=0.16, right=0.985, top=0.92, bottom=0.11, wspace=0.42, hspace=0.48)
-    save_cns_figure(fig, str(FIGURE_ROOT / "supp_empirical_method_validation"))
+    save_cns_figure(fig, str(FIGURE_OUTPUT_ROOT / "supp_empirical_method_validation"))
     plt.close(fig)
 
 
 def main() -> None:
+    parser = argparse.ArgumentParser(description="Generate expanded supplement figures from aggregate results.")
+    parser.add_argument("--run-root", type=Path, default=None)
+    parser.add_argument("--simulation-root", type=Path, default=None)
+    parser.add_argument("--output-dir", type=Path, default=None)
+    args = parser.parse_args()
+    global TABLE_ROOT, SIMULATION_ROOT, EMPIRICAL_ROOT, SOURCE_ROOT, FIGURE_OUTPUT_ROOT
+    if args.run_root is not None:
+        run_root = args.run_root
+        TABLE_ROOT = args.output_dir or (run_root / "supplement_tables")
+        SIMULATION_ROOT = args.simulation_root or ARCHIVE_PUBLIC_ROOT
+        EMPIRICAL_ROOT = run_root / "empirical"
+        SOURCE_ROOT = run_root / "source_sensitivity"
+        FIGURE_OUTPUT_ROOT = run_root / "supplement_figures"
+    elif args.output_dir is not None:
+        FIGURE_OUTPUT_ROOT = args.output_dir
+    FIGURE_OUTPUT_ROOT.mkdir(parents=True, exist_ok=True)
     plot_simulation_diagnostics()
     plot_empirical_validation()
-    print(f"Wrote expanded supplement figures to {FIGURE_ROOT}")
+    print(f"Wrote expanded supplement figures to {FIGURE_OUTPUT_ROOT}")
 
 
 if __name__ == "__main__":

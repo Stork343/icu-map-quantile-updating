@@ -1,0 +1,13 @@
+{
+  "status": "passed",
+  "replicates_checked": 800,
+  "fresh_master_seed": 20261022,
+  "paired_intervals_checked": 192,
+  "assessment_stay_scores_checked": 3168000,
+  "recorded_profile_solves": 866849040,
+  "all_baseline_tuning_rules_checked": 278400,
+  "all_inner_validation_predictions_replayed": true,
+  "frozen_parameters_retrained": false,
+  "final_scoring": "raw retained Y compared with actual returned prediction",
+  "visual_inspection": false
+}

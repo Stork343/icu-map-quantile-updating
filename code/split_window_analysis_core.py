@@ -112,13 +112,24 @@ def equal_stay_observation_weights(design: pd.DataFrame) -> np.ndarray:
     return weights
 
 
-def split_indices_for_hours(t: np.ndarray, index_hours: float, min_index_obs: int = 4) -> Tuple[np.ndarray, np.ndarray]:
-    return data_utils._within_stay_split_indices(
+def split_indices_for_hours(
+    t: np.ndarray,
+    index_hours: float,
+    min_index_obs: int = 4,
+    min_late_obs: int = 1,
+) -> Tuple[np.ndarray, np.ndarray]:
+    """Split a stay by the fixed clock landmark ``index_hours``."""
+    return data_utils.clock_split_indices(
         np.asarray(t, dtype=float),
-        index_fraction=0.5,
         index_hours=float(index_hours),
         min_index_obs=int(min_index_obs),
+        min_late_obs=int(min_late_obs),
     )
+
+
+def split_indices_by_count(t: np.ndarray, index_fraction: float = 0.5) -> Tuple[np.ndarray, np.ndarray]:
+    """Explicit count-based split for simulations or approved diagnostics."""
+    return data_utils.count_split_indices(np.asarray(t, dtype=float), index_fraction=float(index_fraction))
 
 
 def profiled_intercept(residual_index: np.ndarray, tau: float, lambda_b: float) -> float:
@@ -178,7 +189,7 @@ def validation_losses(
     update_losses: List[float] = []
 
     for i, (y_i, t_i, b_i) in enumerate(zip(y_list, t_list, b_list)):
-        index_idx, late_idx = split_indices_for_hours(t_i, index_hours)
+        index_idx, late_idx = split_indices_for_hours(t_i, index_hours, min_index_obs=0, min_late_obs=1)
         fitted = float(x[i] @ beta) + b_i @ theta
         residual = y_i - fitted
         pop_late = check_loss(residual[late_idx], tau)
@@ -227,7 +238,7 @@ def admission_window_q10_strata(dataset: Dict[str, object], index_hours: float =
     x = np.asarray(enriched["X"], dtype=float)
     records = []
     for i, (y_i, t_i) in enumerate(zip(y_list, t_list)):
-        index_idx, late_idx = split_indices_for_hours(t_i, index_hours)
+        index_idx, late_idx = split_indices_for_hours(t_i, index_hours, min_index_obs=0, min_late_obs=1)
         y_index = y_i[index_idx]
         y_late = y_i[late_idx]
         if y_index.size == 0 or y_late.size == 0:

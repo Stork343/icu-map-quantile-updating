@@ -1,0 +1,60 @@
+{
+  "selection_uses_assessment_or_reference_outcomes": false,
+  "iteration_budgets": [
+    300,
+    500
+  ],
+  "deterministic_starts": 2,
+  "selected_jobs": 211,
+  "all_fullfit_iteration_limit_jobs": 203,
+  "fullfit_iteration_limit_selected_continuous": 182,
+  "successful_control_jobs": 8,
+  "complete_cv_controls": 15,
+  "cv_control_rule": "First replicate in each setting, original fullfit termination status, and originally selected branch stratum.",
+  "original_complete_learning_seconds_selected_total": 1348.7613943740362,
+  "original_complete_learning_seconds_selected_median": 5.223927834002097,
+  "original_fullfit_seconds_selected_median": 0.5554457920006826,
+  "approximate_8x_iteration_budget_seconds_serial": 10725.649677551613,
+  "jobs_by_setting_and_branch": [
+    {
+      "setting": "information_limit",
+      "selected_kind": "constant",
+      "count": 17
+    },
+    {
+      "setting": "information_limit",
+      "selected_kind": "continuous",
+      "count": 41
+    },
+    {
+      "setting": "informative_recovery",
+      "selected_kind": "constant",
+      "count": 1
+    },
+    {
+      "setting": "informative_recovery",
+      "selected_kind": "continuous",
+      "count": 45
+    },
+    {
+      "setting": "serial_integer_stress",
+      "selected_kind": "constant",
+      "count": 3
+    },
+    {
+      "setting": "serial_integer_stress",
+      "selected_kind": "continuous",
+      "count": 48
+    },
+    {
+      "setting": "weaker_recovery",
+      "selected_kind": "constant",
+      "count": 4
+    },
+    {
+      "setting": "weaker_recovery",
+      "selected_kind": "continuous",
+      "count": 52
+    }
+  ]
+}

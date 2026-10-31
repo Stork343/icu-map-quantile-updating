@@ -1,0 +1,93 @@
+{
+  "lqmm_version": "1.5.8",
+  "full_data_stays": 20855,
+  "full_data_observations": 549234,
+  "nodes_per_dimension": 61,
+  "quadrature_nodes": 3721,
+  "workers": 8,
+  "official_namespace_likelihood_checks": [
+    {
+      "point": 1,
+      "objective_kind": "theta",
+      "sigma": 1.46290710255633,
+      "serial": 2141499.73591319,
+      "parallel": 2141499.73591318,
+      "absolute_difference": 5.12227416038513e-09,
+      "serial_seconds": 6.663,
+      "parallel_seconds": 0.98
+    },
+    {
+      "point": 2,
+      "objective_kind": "sigma",
+      "sigma": 1.44827803153077,
+      "serial": 2141501.65088442,
+      "parallel": 2141501.65088443,
+      "absolute_difference": 2.3283064365387e-09,
+      "serial_seconds": 6.645,
+      "parallel_seconds": 0.886000000000001
+    },
+    {
+      "point": 3,
+      "objective_kind": "theta",
+      "sigma": 1.4775361735819,
+      "serial": 2141549.69397427,
+      "parallel": 2141549.69397428,
+      "absolute_difference": 1.44354999065399e-08,
+      "serial_seconds": 6.617,
+      "parallel_seconds": 0.873999999999999
+    },
+    {
+      "point": 4,
+      "objective_kind": "sigma",
+      "sigma": 1.46437000965889,
+      "serial": 2141502.43715808,
+      "parallel": 2141502.43715807,
+      "absolute_difference": 5.58793544769287e-09,
+      "serial_seconds": 6.754,
+      "parallel_seconds": 0.872
+    },
+    {
+      "point": 5,
+      "objective_kind": "theta",
+      "sigma": 1.46144419545378,
+      "serial": 2141497.66768252,
+      "parallel": 2141497.66768251,
+      "absolute_difference": 6.51925802230835e-09,
+      "serial_seconds": 6.643,
+      "parallel_seconds": 0.878
+    }
+  ],
+  "real_clinical_subset_comparison": {
+    "stays": 64,
+    "observations": 1747,
+    "max_theta_difference": 0,
+    "scale_difference": 1.0413891970984e-13,
+    "log_likelihood_difference": 1.81898940354586e-12,
+    "max_blp_difference": 1.21858079182857e-12,
+    "serial_convergence": {
+      "low_loop": 327,
+      "upp_loop": 9
+    },
+    "parallel_convergence": {
+      "low_loop": 327,
+      "upp_loop": 9
+    }
+  },
+  "equivalence_tolerance": 1e-07,
+  "equivalence_passed": true,
+  "unchanged_control": {
+    "method": "df",
+    "LP_tol_ll": 1e-05,
+    "LP_tol_theta": 1e-05,
+    "check_theta": false,
+    "LP_step": 15.3913488976635,
+    "beta": 0.5,
+    "gamma": 1,
+    "reset_step": false,
+    "LP_max_iter": 5000,
+    "UP_tol": 1e-05,
+    "UP_max_iter": 60,
+    "startQR": false,
+    "verbose": true
+  }
+}

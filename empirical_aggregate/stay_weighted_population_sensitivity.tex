@@ -1,20 +1,18 @@
 \begin{table}[!htbp]
-\caption{Sensitivity to equal weighting of training stays in the common population quantile fit.}
+\caption{Stay-weighted population quantile fitting sensitivity analysis.}
 \label{tab:stay_weighted_population_sensitivity}
 \centering
 \small
-\resizebox{\textwidth}{!}{%
 \begin{tabular}{lrrrr}
 \hline
-Model & $\lambda_b$ & Assessment loss (SE) & Paired reduction & Interval\\
+Model & $\lambda_b$ & Assessment loss (SE) & Paired reduction & Descriptive interval\\
 \hline
-Equal weighting by stay & NA & 2.2227 (0.0129) & 0.0000 & 0.0000 to 0.0000\\
-Equal weighting by stay with primary offset & 0.03 & 1.9583 (0.0116) & 0.2645 & 0.2404 to 0.2886\\
-Equal weighting by stay with spline & NA & 2.2226 (0.0130) & 0.0002 & -0.0001 to 0.0005\\
-Equal weighting by stay with spline and offset & 0.03 & 1.9666 (0.0117) & 0.2561 & 0.2319 to 0.2804\\
+Stay-weighted population & -- & 2.2236 (0.0129) & 0.0000 & 0.0000--0.0000\\
+Stay-weighted population + level update & 0.03 & 1.9588 (0.0116) & 0.2648 & 0.2407--0.2889\\
+Stay-weighted spline population & -- & 2.2235 (0.0130) & 0.0001 & -0.0001--0.0004\\
+Stay-weighted spline + level update & 0.03 & 1.9669 (0.0117) & 0.2567 & 0.2325--0.2809\\
 \hline
-\end{tabular}%
-}
+\end{tabular}
 \par\smallskip
-\footnotesize{Observation weights equal the inverse training count within each stay. Assessment loss is averaged within stays and then across stays. Paired reductions use the equal weighting by stay population model as reference, and intervals equal the estimate plus or minus 1.96 standard errors.}
+\footnotesize{The common quantile component was fitted with observation weights equal to the inverse number of training observations in each stay, so every training stay had total weight one. Assessment loss was averaged within stay and then across stays. Paired reductions and descriptive intervals use the stay-weighted baseline population model as the reference; each interval is the estimate plus or minus 1.96 times its stay-level standard error conditional on the realized fitted rules.}
 \end{table}

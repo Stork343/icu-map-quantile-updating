@@ -1,0 +1,13 @@
+{
+  "status": "complete",
+  "completed_replicates": 800,
+  "planned_replicates": 800,
+  "paired_comparisons": 192,
+  "comparison_count": 192,
+  "all_profiles_certified": true,
+  "maximum_history_replay_error": 2.220446049250313e-16,
+  "maximum_history_probability_error": 9.71445146547012e-17,
+  "constant_penalties_within_horizon": true,
+  "successful_full_tuning_fits": 799,
+  "all_history_coefficients_zero": true
+}

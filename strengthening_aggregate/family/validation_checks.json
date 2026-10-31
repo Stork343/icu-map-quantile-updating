@@ -1,0 +1,79 @@
+{
+  "local_real_solver_regression": [
+    {
+      "input": "nested/fold_1/tuning_profiles/solver_diagnostics/vector_2_1.npz",
+      "certified": true,
+      "duality_gap": 0.0,
+      "projected_kkt_violation": 5.551115123125783e-17,
+      "solver_status": "solved",
+      "polishing_status": 1
+    },
+    {
+      "input": "nested/fold_4/tuning_profiles/solver_diagnostics/vector_0_5.npz",
+      "certified": true,
+      "duality_gap": 3.552713678800501e-15,
+      "projected_kkt_violation": 5.329070518200751e-15,
+      "solver_status": "solved",
+      "polishing_status": 1
+    }
+  ],
+  "fold_1": {
+    "population_reuse_verified": true,
+    "complete_grid_rows": 56,
+    "selected_model": "calibrated_level_with_slope",
+    "all_candidate_solver_settings_verified": true,
+    "tuning_vector_profiles": 578976,
+    "maximum_iterations": 220825
+  },
+  "fold_2": {
+    "population_reuse_verified": true,
+    "complete_grid_rows": 56,
+    "selected_model": "calibrated_q10",
+    "all_candidate_solver_settings_verified": true,
+    "tuning_vector_profiles": 578976,
+    "maximum_iterations": 366100
+  },
+  "fold_3": {
+    "population_reuse_verified": true,
+    "complete_grid_rows": 56,
+    "selected_model": "calibrated_q10",
+    "all_candidate_solver_settings_verified": true,
+    "tuning_vector_profiles": 578976,
+    "maximum_iterations": 246175
+  },
+  "fold_4": {
+    "population_reuse_verified": true,
+    "complete_grid_rows": 56,
+    "selected_model": "calibrated_q10",
+    "all_candidate_solver_settings_verified": true,
+    "tuning_vector_profiles": 578976,
+    "maximum_iterations": 398225
+  },
+  "fold_5": {
+    "population_reuse_verified": true,
+    "complete_grid_rows": 56,
+    "selected_model": "calibrated_q10",
+    "all_candidate_solver_settings_verified": true,
+    "tuning_vector_profiles": 578976,
+    "maximum_iterations": 424950
+  },
+  "existing_component_maximum_loss_difference": {
+    "population": 1.0658141036401503e-14,
+    "scalar_profile": 1.0658141036401503e-14,
+    "raw_q10": 1.0658141036401503e-14,
+    "calibrated_last": 7.105427357601002e-15,
+    "calibrated_min": 1.0658141036401503e-14,
+    "calibrated_mean": 7.105427357601002e-15,
+    "calibrated_q10": 5.329070518200751e-15,
+    "calibrated_below65_burden": 1.0658141036401503e-14
+  },
+  "temporal": {
+    "population_reuse_verified": true,
+    "n_assessment_stays": 22005,
+    "paired_normal_intervals_verified": 36,
+    "all_candidate_solver_settings_verified": true,
+    "tuning_vector_profiles": 509376,
+    "maximum_iterations": 539225
+  },
+  "public_aggregate_fields": true
+}

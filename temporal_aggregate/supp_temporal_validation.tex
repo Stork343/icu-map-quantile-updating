@@ -1,0 +1,42 @@
+\begin{table}[!htbp]
+\caption{Temporal assessment of the prediction family. Panel A gives loss by MIMIC-IV anchor year group, with differences defined as candidate minus population loss. Panel B gives the penalty and affine calibration selected from the tuning period. Panel C compares calibrated q10 with the profiled offset across the index q10 distribution.}
+\label{tab:supp_temporal_validation}
+\centering
+\footnotesize
+\textit{Panel A. Assessment loss by period.}\par\smallskip
+\begin{tabular}{llrrr}
+\toprule
+Assessment period & Rule & Stays & Mean loss & Difference (95\% CI)\\
+\midrule
+2017 to 2022 & Population component & 22,005 & 2.3220 & Reference\\
+2017 to 2022 & Profiled offset & 22,005 & 2.0484 & -0.2737 (-0.2818, -0.2655)\\
+2017 to 2022 & Calibrated q10 & 22,005 & 1.8904 & -0.4316 (-0.4440, -0.4192)\\
+\addlinespace
+\bottomrule
+\end{tabular}
+\par\medskip
+\textit{Panel B. Tuning results from 2014 to 2016.}\par\smallskip
+\begin{tabular}{lrrr}
+\toprule
+Calibrated summary & Intercept & Slope & Tuning loss\\
+\midrule
+last & 35.7179 & 0.3590 & 1.9558\\
+min & 26.7895 & 0.5789 & 1.8863\\
+mean & 18.6573 & 0.5773 & 1.8788\\
+q10 $^{*}$ & 21.4211 & 0.6316 & 1.8419\\
+below65 burden & 66.1842 & -20.1316 & 1.9431\\
+\bottomrule
+\end{tabular}
+\begin{flushleft}\footnotesize The profiled offset selected $\lambda_b=0.1$. $^{*}$Selected calibrated summary.\end{flushleft}
+\par\medskip
+\textit{Panel C. Calibrated q10 minus profile loss by index q10.}\par\smallskip
+\begin{tabular}{lrrrr}
+\toprule
+Index stratum & Stays & Median q10 & Mean difference (simultaneous 95\% CI) & q10 better (\%)\\
+\midrule
+Lower q10 third & 7,335 & 60.0 & 0.0359 (0.0284, 0.0433) & 37.5\\
+Middle q10 third & 7,335 & 69.0 & -0.0236 (-0.0327, -0.0145) & 49.5\\
+Upper q10 third & 7,335 & 82.0 & -0.4862 (-0.5112, -0.4611) & 82.2\\
+\bottomrule
+\end{tabular}
+\end{table}

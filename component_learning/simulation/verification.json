@@ -1,0 +1,11 @@
+{
+  "status": "complete",
+  "replicates_checked": 800,
+  "planned_comparisons": 192,
+  "all_profiles_certified": true,
+  "recorded_profile_solves": 866849040,
+  "maximum_constant_replay_error": 7.993605777301127e-15,
+  "assessment_used_for_learning": false,
+  "fresh_master_seed": 20261022,
+  "visual_inspection": false
+}

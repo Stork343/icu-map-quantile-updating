@@ -1,0 +1,9 @@
+{
+  "n_mechanisms": 14,
+  "n_replicates_per_mechanism": 200,
+  "n_replayed_independent_assessments": 2800,
+  "n_normal_intervals_replayed": 8400,
+  "n_percentile_bootstrap_intervals": 8400,
+  "bootstrap_replicates_per_interval": 2000,
+  "all_assessment_means_and_standard_errors_verified": true
+}

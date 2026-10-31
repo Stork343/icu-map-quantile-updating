@@ -1,0 +1,120 @@
+{
+  "cache": {
+    "schema_version": 4,
+    "age_definition": "icu_proxy",
+    "retained_stays": 62957,
+    "retained_observations": 1583414,
+    "cache_age_fields": [
+      "anchor_age",
+      "anchor_year",
+      "age_at_icu_proxy",
+      "age_year_delta",
+      "high_age_coded",
+      "age",
+      "age_definition"
+    ],
+    "age_value_min": 18.0,
+    "age_value_max": 103.0,
+    "age_value_mean": 64.57007163619613,
+    "high_age_coded_stays": 2532,
+    "proxy_available_stays": 62957,
+    "age_year_delta_min": 0,
+    "age_year_delta_max": 15,
+    "age_changed_stays": 16981,
+    "map_content_unchanged_vs_schema3": true,
+    "legacy_stay_set_unchanged": true,
+    "observation_digest_legacy": "cffc2134ce5038f0131cd18992e6b6cbaaa1400ab208d71f0d729954723e113b",
+    "observation_digest_schema4": "cffc2134ce5038f0131cd18992e6b6cbaaa1400ab208d71f0d729954723e113b"
+  },
+  "landmark_queues": {
+    "6": {
+      "base_stays": 62957,
+      "eligible_stays": 58995,
+      "excluded_total_lt8": 0,
+      "excluded_index_lt4": 3690,
+      "excluded_later_lt1": 272,
+      "index_count_min": 4,
+      "later_count_min": 1,
+      "total_count_min": 8,
+      "same_base_queue": true,
+      "split_rule": "t<=h index; t>h later"
+    },
+    "12": {
+      "base_stays": 62957,
+      "eligible_stays": 60310,
+      "excluded_total_lt8": 0,
+      "excluded_index_lt4": 209,
+      "excluded_later_lt1": 2438,
+      "index_count_min": 4,
+      "later_count_min": 1,
+      "total_count_min": 8,
+      "same_base_queue": true,
+      "split_rule": "t<=h index; t>h later"
+    },
+    "18": {
+      "base_stays": 62957,
+      "eligible_stays": 55230,
+      "excluded_total_lt8": 0,
+      "excluded_index_lt4": 44,
+      "excluded_later_lt1": 7683,
+      "index_count_min": 4,
+      "later_count_min": 1,
+      "total_count_min": 8,
+      "same_base_queue": true,
+      "split_rule": "t<=h index; t>h later"
+    },
+    "figure3_strict_clock": {
+      "1": 4400,
+      "2": 11670,
+      "3": 32865,
+      "4": 49647,
+      "6": 58995,
+      "8": 61161,
+      "10": 61090,
+      "12": 60310,
+      "16": 57327,
+      "18": 55230
+    }
+  },
+  "temporal_assignment": {
+    "rule": "aligned_full_containment",
+    "status_counts": {
+      "assigned": 55801,
+      "boundary_uncertain": 5929,
+      "out_of_range": 1227
+    },
+    "phase_counts": {
+      "assessment": 22979,
+      "fit": 21788,
+      "tuning": 11034,
+      "None": 7156
+    },
+    "assigned_stays": 55801,
+    "boundary_uncertain_stays": 5929,
+    "out_of_range_stays": 1227,
+    "other_unassigned_stays": 0,
+    "assigned_sum_identity": true,
+    "uses_map_outcomes": false
+  },
+  "fixed_assignment": {
+    "seed": 20260522,
+    "train_stays": 37774,
+    "tuning_stays": 12591,
+    "assessment_stays": 12592,
+    "existing_stay_ids_unchanged": true,
+    "new_stay_ids": 0,
+    "assignment_reused_without_reshuffle": true
+  },
+  "checks": {
+    "schema4_age_provenance": "PASS",
+    "proxy_formula": "PASS",
+    "map_observation_equivalence": "PASS",
+    "strict_clock_disjointness": "PASS by deterministic t<=h/t>h construction",
+    "no_zero_loss_fallback": "PASS by empty qualification and caller filtering",
+    "temporal_status_accounting": "PASS",
+    "boundary_objects_retained_in_base_queue": "PASS"
+  },
+  "code_commit": "9ae92ca",
+  "config_sha256": "0d923ee78735b0f875ca5fbd2a8cf5ee7f9b3fc5768a809be7b89528ad454d68",
+  "cache_metadata": "recovery_20260822/gate1_approved_run/cache/mimic_map_full_cache_metadata.json"
+}

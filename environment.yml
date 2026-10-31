@@ -8,6 +8,7 @@ dependencies:
   - scipy=1.14.0
   - matplotlib=3.9.2
   - pyarrow>=14
+  - osqp=1.1.0
   - r-base=4.3
   - r-data.table=1.17.8
   - r-quantreg=6.1

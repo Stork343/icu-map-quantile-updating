@@ -1,0 +1,62 @@
+{
+  "source": "MIMIC-IV 3.1 local source; aggregate-only preflight",
+  "patients": {
+    "count": 364627,
+    "anchor_age_91": 8445,
+    "anchor_year_missing": 0
+  },
+  "anchor_age": {
+    "adult_first_stays": 65355,
+    "age_min": 18.0,
+    "age_max": 91.0,
+    "age_mean": 63.41542345650677,
+    "age_median": 65.0,
+    "high_age_coded_stays": 2654,
+    "proxy_available_stays": 65355,
+    "age_year_delta_min": 0,
+    "age_year_delta_max": 15,
+    "age_changed_stays": 0
+  },
+  "icu_proxy": {
+    "adult_first_stays": 65355,
+    "age_min": 18.0,
+    "age_max": 103.0,
+    "age_mean": 64.53737281003748,
+    "age_median": 66.0,
+    "high_age_coded_stays": 2654,
+    "proxy_available_stays": 65355,
+    "age_year_delta_min": 0,
+    "age_year_delta_max": 15,
+    "age_changed_stays": 17646
+  },
+  "adult_first_stays_set_difference": {
+    "anchor_age_only": 0,
+    "icu_proxy_only": 0,
+    "intersection": 65355
+  },
+  "temporal_assignment_preflight": {
+    "stay_count": 65355,
+    "status_counts": {
+      "assigned": 57921,
+      "boundary_uncertain": 6126,
+      "out_of_range": 1308
+    },
+    "phase_counts": {
+      "assessment": 24102,
+      "fit": 22453,
+      "tuning": 11366,
+      "None": 7434
+    },
+    "assigned_phase_sum": 57921
+  },
+  "legacy_cache_queue_diagnostic": {
+    "cache_stays": 62957,
+    "eligible_by_horizon": {
+      "6": 58995,
+      "12": 60310,
+      "18": 55230
+    },
+    "strict_rule": "t<=h index, t>h later; total >=8, index >=4, later >=1 will be checked on approved schema 4 cache"
+  },
+  "code_commit": "9ae92ca"
+}

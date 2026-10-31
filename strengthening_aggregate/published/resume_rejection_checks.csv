@@ -1,0 +1,5 @@
+changed_option,requested_value,exit_code,rejected_before_fitting_or_scoring
+--seed,42,1,True
+--tau,0.2,1,True
+--index-hours,6,1,True
+--nodes,11,1,True

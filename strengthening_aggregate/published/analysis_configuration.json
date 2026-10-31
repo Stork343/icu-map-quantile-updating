@@ -1,0 +1,28 @@
+{
+  "seed": 20260522,
+  "tau": 0.1,
+  "index_hours": 12.0,
+  "nodes": 321,
+  "pilot_fit_stays": 0,
+  "outer_folds": 5,
+  "predictors": [
+    "x_intercept",
+    "age_z",
+    "male",
+    "emergency_or_urgent"
+  ],
+  "age_definition": "icu_proxy",
+  "cache_schema_version": 4,
+  "analysis_hours": 24.0,
+  "qualification": [
+    8,
+    4,
+    1
+  ],
+  "temporal_assignment": "aligned_full_containment",
+  "temporal_periods": [
+    "2008 - 2013",
+    "2014 - 2016",
+    "2017 - 2022"
+  ]
+}

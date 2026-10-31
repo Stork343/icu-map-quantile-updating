@@ -1,0 +1,17 @@
+term,estimate
+x_intercept,65.6200785447473
+age_z,-3.18699975391436
+male,2.42043755097061
+emergency_or_urgent,-0.45520992254957
+time_u,0.133391643014317
+variance_level,89.1349929899761
+covariance_level_slope,9.09870092582087
+variance_slope,67.8941480479031
+residual_scale,1.45547167106597
+residual_mean,12.9375259650308
+residual_variance,214.455084435303
+log_likelihood,-2141310.06307065
+lower_iterations,189.0
+upper_iterations,4.0
+nodes_per_dimension,61.0
+quadrature_nodes,3721.0

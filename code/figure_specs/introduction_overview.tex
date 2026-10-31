@@ -1,0 +1,304 @@
+\RequirePackage{fix-cm}
+\documentclass[tikz,border=0pt]{standalone}
+\usepackage{fontspec}
+\usepackage{amsmath,amssymb}
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\usetikzlibrary{arrows.meta,calc,positioning}
+\pgfplotsset{compat=1.18}
+\setsansfont{Arial}
+\setmainfont{Arial}
+\renewcommand{\familydefault}{\sfdefault}
+\DeclareMathSizes{8.5}{8.5}{6.5}{6.5}
+\DeclareMathSizes{9}{9}{6.5}{6.5}
+\definecolor{ink}{HTML}{263645}
+\definecolor{muted}{HTML}{687583}
+\definecolor{rule}{HTML}{CBD5DF}
+\definecolor{blue}{HTML}{587A9F}
+\definecolor{bluepale}{HTML}{E8F0F8}
+\definecolor{teal}{HTML}{167F90}
+\definecolor{tealpale}{HTML}{EDF6F7}
+\definecolor{rust}{HTML}{B16C40}
+\definecolor{rustpale}{HTML}{FAF1E9}
+\tikzset{
+  every node/.style={font=\fontsize{8.5}{10}\selectfont,text=ink,inner sep=0pt},
+  note/.style={font=\fontsize{8.5}{10}\selectfont,text=muted},
+  title/.style={font=\fontsize{9.5}{11}\selectfont\bfseries},
+  flow/.style={-{Stealth[length=1.7mm,width=1.3mm]},line width=.85pt,draw=ink},
+  learnedflow/.style={-{Stealth[length=1.3mm,width=1mm]},line width=.65pt,draw=blue,dash pattern=on 1.6pt off 1.2pt},
+  icon/.style={draw=blue,line width=1pt,line cap=round,line join=round},
+  paper/.style={draw=rule,line width=.75pt,fill=white,rounded corners=1.4mm},
+}
+\newwrite\geometryfile
+\newcommand{\featuretext}[2]{\pgfplotstablegetelem{#1}{#2}\of\featuretable\pgfplotsretval}
+\immediate\openout\geometryfile=introduction_plot_geometry.csv
+\immediate\write\geometryfile{panel,left_pt,bottom_pt,right_pt,top_pt}
+\begin{document}
+\pgfplotstableread[col sep=comma]{introduction_feature_summary.csv}\featuretable
+\pgfplotstablegetelem{0}{count}\of\featuretable
+\pgfmathtruncatemacro{\countA}{\pgfplotsretval}
+\pgfplotstablegetelem{1}{count}\of\featuretable
+\pgfmathtruncatemacro{\countB}{\pgfplotsretval}
+\begin{tikzpicture}[x=1mm,y=1mm]
+\path[use as bounding box] (0,-24) rectangle (183,104);
+\fill[white] (0,-24) rectangle (183,104);
+
+% ICU 场景采用自主绘制的矢量形状，监护器内嵌实际 MAP 记录。
+\path[fill=blue!5] (2,44) .. controls (0,64) and (2,90) .. (18,93) .. controls (36,92) and (45,81) .. (44,60) .. controls (45,43) and (21,37) .. (2,44);
+\node[title,anchor=west] at (4,96.5) {ICU MAP monitoring};
+\path[fill=blue!10,rounded corners=1.5mm] (7,49.5) rectangle (42,54.5);
+\path[fill=white,rounded corners=.8mm] (8,54) rectangle (18,57);
+\draw[icon] (5,48.5) -- (43,48.5);
+\draw[icon] (5,48.5) -- (5,64);
+\draw[icon] (43,48.5) -- (43,57);
+\draw[icon] (9,48.5) -- (9,44.5);
+\draw[icon] (38,48.5) -- (38,44.5);
+\draw[icon,fill=white] (9,43.3) circle (1.2);
+\draw[icon,fill=white] (38,43.3) circle (1.2);
+\draw[icon,fill=white] (13,60) circle (3.1);
+\path[fill=blue!19] (16,58.7) .. controls (20,63) and (28,61) .. (33,57.8) -- (40,55.4) -- (16,55.4) -- cycle;
+\draw[icon] (16,58.7) .. controls (20,63) and (28,61) .. (33,57.8) -- (40,55.4);
+\draw[icon] (23,60.6) .. controls (20,66) and (19,69) .. (19,72);
+\path[fill=blue!12,rounded corners=2mm] (9,71) rectangle (40,91);
+\path[icon,fill=white,rounded corners=1.6mm] (8,72) rectangle (39,91);
+\node[text=blue,anchor=west,font=\fontsize{9.5}{11}\selectfont\bfseries] at (12,87) {MAP};
+\fill[teal] (35,87.2) circle (.8);
+\begin{axis}[
+  at={(12mm,76mm)},anchor=south west,width=22mm,height=7mm,scale only axis,
+  xmin=8,xmax=12,ymin=60,ymax=90,hide axis,name=monitorRecord,clip=false,
+]
+\addplot[teal!80,line width=.8pt] table[x=time,y=map,col sep=comma] {introduction_A_early.csv};
+\end{axis}
+\draw[blue,line width=.8pt] (21,72) -- (21,69);
+\draw[blue,line width=.8pt] (16,69) -- (26,69);
+
+% 叠放记录页形成早期历史对象，缩略记录保持共同物理尺度。
+\path[fill=blue!7] (48,88.5) -- (48,88.6)
+  .. controls (48,89.4) and (48.6,90) .. (49.4,90) -- (90.6,90)
+  .. controls (91.4,90) and (92,89.4) .. (92,88.6) -- (92,88.5) -- cycle;
+\path[fill=blue!7] (90,28) -- (90.6,28)
+  .. controls (91.4,28) and (92,28.6) .. (92,29.4)
+  -- (92,88.5) -- (90,88.5) -- cycle;
+\draw[rule,line width=.75pt] (48,88.5) -- (48,88.6)
+  .. controls (48,89.4) and (48.6,90) .. (49.4,90) -- (90.6,90)
+  .. controls (91.4,90) and (92,89.4) .. (92,88.6) -- (92,29.4)
+  .. controls (92,28.6) and (91.4,28) .. (90.6,28) -- (90,28);
+\path[fill=blue!3] (46.35,88)
+  .. controls (46.6,88.3) and (47,88.5) .. (47.4,88.5) -- (88.6,88.5)
+  .. controls (89.1,88.5) and (89.5,88.3) .. (89.65,88) -- cycle;
+\path[fill=blue!3] (89,25.55)
+  .. controls (89.6,25.7) and (90,26.2) .. (90,26.9)
+  -- (90,87.1) .. controls (90,87.5) and (89.9,87.8) .. (89.65,88)
+  -- (89,88) -- cycle;
+\draw[rule,line width=.75pt] (46.35,88)
+  .. controls (46.6,88.3) and (47,88.5) .. (47.4,88.5) -- (88.6,88.5)
+  .. controls (89.4,88.5) and (90,87.9) .. (90,87.1) -- (90,26.9)
+  .. controls (90,26.2) and (89.6,25.7) .. (89,25.55);
+\path[fill=blue!9,rounded corners=1.4mm] (45,22) rectangle (90,87);
+\path[paper] (44,23) rectangle (89,88);
+\path[fill=bluepale,rounded corners=1.4mm] (44.4,78) rectangle (88.6,87.6);
+\path[fill=bluepale] (44.4,78) rectangle (88.6,80);
+\node[title,anchor=west] at (48,83.2) {Early MAP records};
+\node[note,anchor=west] at (48,76.5) {12 h landmark};
+\path[fill=tealpale,rounded corners=.7mm] (47,56.5) rectangle (85,74);
+\path[fill=rustpale,rounded corners=.7mm] (47,38.5) rectangle (85,56);
+\node[text=teal,anchor=west,font=\fontsize{9}{10.5}\selectfont\bfseries] at (48,72) {History A};
+\node[note,anchor=east] at (83,72) {16 readings};
+\node[text=rust,anchor=west,font=\fontsize{9}{10.5}\selectfont\bfseries] at (48,54) {History B};
+\node[note,anchor=east] at (83,54) {10 readings};
+\foreach \x in {48,54,60,66,72,78,83}{
+  \draw[white,line width=.55pt] (\x,58) -- (\x,68.5);
+  \draw[white,line width=.55pt] (\x,40) -- (\x,50.5);
+}
+\begin{axis}[
+  at={(48mm,58mm)},anchor=south west,width=35mm,height=10.5mm,scale only axis,
+  xmin=0,xmax=12,ymin=60,ymax=90,hide axis,name=earlyA,clip=false,
+]
+\addplot[teal!65,line width=.65pt] table[x=time,y=map,col sep=comma] {introduction_A_early.csv};
+\addplot[teal,only marks,mark=*,mark size=1pt] table[x=time,y=map,col sep=comma] {introduction_A_early.csv};
+\addplot[teal!75,only marks,mark=|,mark size=1.3pt,line width=.5pt] table[x=time,y expr={60},col sep=comma] {introduction_A_early.csv};
+\end{axis}
+\begin{axis}[
+  at={(48mm,40mm)},anchor=south west,width=35mm,height=10.5mm,scale only axis,
+  xmin=0,xmax=12,ymin=60,ymax=90,hide axis,name=earlyB,clip=false,
+]
+\addplot[rust!65,line width=.65pt] table[x=time,y=map,col sep=comma] {introduction_B_early.csv};
+\addplot[rust,only marks,mark=triangle*,mark size=1.15pt] table[x=time,y=map,col sep=comma] {introduction_B_early.csv};
+\addplot[rust!75,only marks,mark=|,mark size=1.3pt,line width=.5pt] table[x=time,y expr={60},col sep=comma] {introduction_B_early.csv};
+\end{axis}
+\node[note,anchor=west] at (48,36.8) {0 h};
+\node[note,anchor=east] at (83,36.8) {12 h};
+\node[note,anchor=west] at (48,31.5) {Forecast};
+\node[note,anchor=west] at (48,27.4) {horizon};
+\draw[blue!65,line width=.6pt] (64.5,25) -- (64.5,33.2);
+\path[fill=blue!20] (64.5,31.8) rectangle (67.9,33.2);
+\path[fill=blue!35] (64.5,28.4) rectangle (71.3,29.8);
+\path[fill=blue!50] (64.5,25) rectangle (74.7,26.4);
+\node[note,anchor=east] at (83.5,32.5) {4 h};
+\node[note,anchor=east] at (83.5,29.1) {8 h};
+\node[note,anchor=east] at (83.5,25.7) {12 h};
+
+\node[note,anchor=west] at (3,34.5) {Use MAP recorded by 12 h};
+\node[note,anchor=west] at (3,30.1) {to forecast the later record};
+\node[title,anchor=west] at (94,97) {Learn separate penalties};
+\node[title,anchor=west] at (94,92.5) {for level and slope};
+
+% 两项共享惩罚在同一个个体分位数拟合内控制 level 与 slope。
+\path[fill=blue!8] (118.8,61.2) circle (21.2);
+\draw[blue,line width=1.1pt,fill=bluepale] (118,62) circle (21);
+\node[title] at (118,75) {Quantile profiling};
+\node[note] at (118,71.5) {Two penalty functions};
+\node[note] at (118,67.5) {History and horizon};
+\node[note] at (110,62.5) {Level penalty};
+\node[note] at (110,52.5) {Slope penalty};
+\draw[blue!70,line width=1.1pt] (105,58.5) -- (115,58.5);
+\draw[blue,fill=white,line width=.85pt] (110,58.5) circle (1);
+\draw[blue!70,line width=1.1pt] (105,48.5) -- (115,48.5);
+\draw[blue,fill=white,line width=.85pt] (110,48.5) circle (1);
+\draw[rule,line width=.5pt] (122,59.5) -- (133,59.5);
+\draw[blue,line width=1.3pt] (122,63) -- (133,63);
+\draw[rule,line width=.5pt] (122,47.5) -- (133,47.5);
+\draw[blue,line width=1.3pt] (122,47.5) -- (133,54);
+\draw[flow] (89.4,62) -- (96.5,62);
+\draw[flow,draw=muted] (92.6,30) .. controls (99,30) and (104,37) .. (108,43.5);
+
+% 独立调参记录通过未来损失学习共享参数，间断箭头分别进入两个控制项。
+\node[font=\fontsize{8.5}{10}\selectfont\bfseries] at (130.75,35.5) {Grouped CV};
+\path[paper,fill=blue!8,rounded corners=.7mm,line width=.55pt] (119.5,27.7) rectangle (142,31.8);
+\path[paper,fill=blue!4,rounded corners=.7mm,line width=.55pt] (119.5,22.7) rectangle (142,26.8);
+\node[note] at (130.75,29.8) {Learned};
+\node[note] at (130.75,24.8) {Constant};
+\node[note] at (130.75,19.5) {Later MAP loss};
+\node[note] at (130.75,15.9) {3 horizons};
+\draw[draw=blue,dash pattern=on 1.6pt off 1.2pt,line width=.65pt,rounded corners=.8mm]
+  (130.75,37.6) .. controls (129,40) and (125,43) .. (122,43)
+  -- (120.5,43) -- (120.5,58.5);
+\draw[learnedflow] (120.5,58.5) -- (115,58.5);
+\draw[learnedflow] (120.5,48.5) -- (115,48.5);
+
+% 共享人群分量供个体拟合和最终预测组合使用。
+\foreach \x/\y in {8/22,15/23.5,22/22}{
+  \draw[icon,fill=white] (\x,\y) circle (1.6);
+  \draw[icon] (\x-2.5,\y-5) .. controls (\x-2.2,\y-1.7) and (\x+2.2,\y-1.7) .. (\x+2.5,\y-5);
+}
+\draw[blue,line width=1.3pt] (28,18.5) -- (41,18.5);
+\node[note,anchor=west] at (4,14.3) {Population quantile};
+\node[note,anchor=west] at (4,9.9) {Age, sex, admission type};
+\draw[flow,draw=blue,rounded corners=.7mm] (41,18.5) -- (43,18.5) -- (43,11.5) -- (144,11.5) -- (144,55.7);
+\draw[flow,draw=blue] (118,11.5) -- (118,40.5);
+\fill[blue] (118,11.5) circle (.45);
+\draw[flow] (139,58) -- (141.7,58);
+\draw[draw=ink,line width=.8pt,fill=white] (144,58) circle (2.3);
+\draw[draw=ink,line width=.8pt] (143.05,58) -- (144.95,58);
+\draw[draw=ink,line width=.8pt] (144,57.05) -- (144,58.95);
+\draw[flow] (146.3,58) -- (149,58);
+
+% 未来预测报告保留两条实际曲线。
+\path[fill=blue!9,rounded corners=1mm] (150,35) rectangle (181,87);
+\path[draw=blue!65,line width=.85pt,fill=white] (149,36) -- (180,36) -- (180,83) -- (175,88) -- (149,88) -- cycle;
+\path[draw=blue!65,line width=.7pt,fill=bluepale] (175,88) -- (175,83) -- (180,83) -- cycle;
+\node[title,anchor=west] at (152,81.4) {Direct forecast};
+\node[title,anchor=west] at (152,76.4) {0.10 quantile};
+\node[note,anchor=west] at (152,72.1) {MAP [mmHg]};
+\path[fill=tealpale,rounded corners=.7mm] (151,43) rectangle (178.5,70.5);
+\foreach \y in {46,53,60,67}{\draw[white,line width=.55pt] (152,\y) -- (177,\y);}
+\begin{axis}[
+  at={(152mm,44mm)},anchor=south west,width=23mm,height=25mm,scale only axis,
+  xmin=12,xmax=24,ymin=62,ymax=76,hide axis,name=futureQuantiles,clip=false,
+]
+\addplot[teal,line width=1.2pt] table[x=time,y=profile,col sep=comma] {introduction_A_forecast.csv};
+\addplot[rust,line width=1.2pt] table[x=time,y=profile,col sep=comma] {introduction_B_forecast.csv};
+\end{axis}
+\node[text=rust,font=\fontsize{9}{10.5}\selectfont\bfseries,anchor=west] at (176,64.1) {B};
+\node[text=teal,font=\fontsize{9}{10.5}\selectfont\bfseries,anchor=west] at (176,50.8) {A};
+\draw[icon,line width=.75pt] (153,40) circle (1.3);
+\draw[icon,line width=.75pt] (153,40.8) -- (153,40) -- (153.8,40);
+\node[note,anchor=west] at (157,40) {Next 12 h};
+
+% 后续记录用于计算预测损失与严格和非严格下尾概率。
+\draw[flow,draw=blue,line width=.7pt] (164.5,35.2) -- (164.5,33.5);
+\path[fill=blue!9,rounded corners=1mm] (150,11) rectangle (181,31);
+\path[paper,draw=blue!55,rounded corners=1mm] (149,12) rectangle (180,32);
+\path[draw=blue!55,fill=bluepale,line width=.6pt,rounded corners=.5mm] (161.5,31) rectangle (167.5,33);
+\node[font=\fontsize{8.5}{10}\selectfont\bfseries] at (164.5,28.9) {Held out stays};
+\draw[rule,line width=.5pt] (152,25.5) -- (177,25.5);
+\node[note] at (164.5,23) {Observed later MAP};
+\node[note] at (164.5,19.1) {Stay weighted loss};
+\node at (164.5,14.8) {$[P(Y{<}q),P(Y{\le}q)]$};
+
+% 底部特征区使用 A 与 B 的观测数量和实际计算值。
+\path[fill=blue!3,rounded corners=1.2mm] (3,-13.8) rectangle (180,6.7);
+\foreach \x in {41.5,82,130.5}{\draw[rule,line width=.4pt] (\x,-11.9) -- (\x,4.8);}
+\node[anchor=west,font=\fontsize{8.5}{10}\selectfont\bfseries] at (5,4.1) {Early record features};
+\node[note,anchor=west] at (5,-1.5) {Available at 12 h};
+\node[note,anchor=west] at (5,-6.4) {Inputs to both};
+\node[note,anchor=west] at (5,-10.2) {penalty functions};
+
+\node[font=\fontsize{8.5}{10}\selectfont\bfseries] at (61,4.1) {Reading count};
+\foreach \index in {1,...,\countA}{
+  \pgfmathtruncatemacro{\column}{mod(\index-1,4)}
+  \pgfmathtruncatemacro{\row}{floor((\index-1)/4)}
+  \fill[teal] (49+2*\column,-.5-1.8*\row) circle (.42);
+}
+\foreach \index in {1,...,\countB}{
+  \pgfmathtruncatemacro{\column}{mod(\index-1,5)}
+  \pgfmathtruncatemacro{\row}{floor((\index-1)/5)}
+  \path[fill=rust] (66+1.9*\column,-1.3-3.5*\row)
+    -- (65.5+1.9*\column,-2.2-3.5*\row)
+    -- (66.5+1.9*\column,-2.2-3.5*\row) -- cycle;
+}
+\node[text=teal,anchor=west,font=\fontsize{8.5}{10}\selectfont\bfseries] at (49,-10.6) {A};
+\node[text=teal,anchor=east,font=\fontsize{8.5}{10}\selectfont\bfseries] at (56,-10.6) {\featuretext{0}{count}};
+\node[text=rust,anchor=west,font=\fontsize{8.5}{10}\selectfont\bfseries] at (66.2,-10.6) {B};
+\node[text=rust,anchor=east,font=\fontsize{8.5}{10}\selectfont\bfseries] at (74.3,-10.6) {\featuretext{1}{count}};
+
+\node[font=\fontsize{8.5}{10}\selectfont\bfseries] at (103,4.1) {Time variance};
+\node[note,anchor=east] at (126.8,4.1) {h²};
+\draw[rule,line width=.6pt] (90.5,-1.5) -- (113.5,-1.5);
+\draw[rule,line width=.6pt] (90.5,-7) -- (113.5,-7);
+\node[text=teal,font=\fontsize{8.5}{10}\selectfont\bfseries,anchor=west] at (87.3,-1.5) {A};
+\node[text=rust,font=\fontsize{8.5}{10}\selectfont\bfseries,anchor=west] at (87.3,-7) {B};
+\begin{axis}[
+  at={(90.5mm,-2.2mm)},anchor=south west,width=23mm,height=1.4mm,scale only axis,
+  xmin=0,xmax=12,ymin=-.5,ymax=.5,hide axis,name=featureTimeA,clip=false,
+]
+\addplot[teal,only marks,mark=|,mark size=1.8pt,line width=.55pt] table[x=time,y expr={0},col sep=comma] {introduction_A_early.csv};
+\end{axis}
+\begin{axis}[
+  at={(90.5mm,-7.7mm)},anchor=south west,width=23mm,height=1.4mm,scale only axis,
+  xmin=0,xmax=12,ymin=-.5,ymax=.5,hide axis,name=featureTimeB,clip=false,
+]
+\addplot[rust,only marks,mark=|,mark size=1.8pt,line width=.55pt] table[x=time,y expr={0},col sep=comma] {introduction_B_early.csv};
+\end{axis}
+\node[text=teal,anchor=east] at (126.8,-1.5) {\featuretext{0}{variance_label}};
+\node[text=rust,anchor=east] at (126.8,-7) {\featuretext{1}{variance_label}};
+\node[note,anchor=west] at (90.5,-11.1) {0 h};
+\node[note,anchor=east] at (113.5,-11.1) {12 h};
+
+\node[anchor=west,font=\fontsize{8.5}{10}\selectfont\bfseries] at (134,4.1) {Residual q10 change};
+\node[note,anchor=east] at (178.5,4.1) {mmHg};
+\node[note] at (143,.3) {Earlier};
+\node[note] at (158,.3) {Recent};
+\node[note] at (174,.3) {Change};
+\node[text=teal,font=\fontsize{8.5}{10}\selectfont\bfseries] at (134.2,-4.5) {A};
+\node[text=rust,font=\fontsize{8.5}{10}\selectfont\bfseries] at (134.2,-10) {B};
+\node[text=teal] at (143,-4.5) {\featuretext{0}{q10_earlier_label}};
+\node[text=teal] at (158,-4.5) {\featuretext{0}{q10_recent_label}};
+\node[text=teal,font=\fontsize{8.5}{10}\selectfont\bfseries] at (174,-4.5) {\featuretext{0}{q10_delta_label}};
+\node[text=rust] at (143,-10) {\featuretext{1}{q10_earlier_label}};
+\node[text=rust] at (158,-10) {\featuretext{1}{q10_recent_label}};
+\node[text=rust,font=\fontsize{8.5}{10}\selectfont\bfseries] at (174,-10) {\featuretext{1}{q10_delta_label}};
+\draw[-{Stealth[length=1.1mm,width=.8mm]},teal,line width=.6pt] (148.5,-4.5) -- (153,-4.5);
+\draw[-{Stealth[length=1.1mm,width=.8mm]},rust,line width=.6pt] (148.5,-10) -- (153,-10);
+
+\draw[rule,line width=.5pt] (3,-16.7) -- (180,-16.7);
+\node[anchor=west,font=\fontsize{8.5}{10}\selectfont\bfseries] at (3,-20.8) {Shared learning};
+\node[note,anchor=west] at (31,-20.8) {$\mathcal F$: population quantile};
+\node[note,anchor=west] at (79,-20.8) {$\mathcal T$: 3-fold CV selects learned or constant penalties};
+\foreach \plotname in {monitorRecord,earlyA,earlyB,futureQuantiles,featureTimeA,featureTimeB}{
+  \path let \p1=(\plotname.south west),\p2=(\plotname.north east) in
+    \pgfextra{\immediate\write\geometryfile{\plotname,\x1,\y1,\x2,\y2}};
+}
+\immediate\closeout\geometryfile
+\end{tikzpicture}
+\end{document}

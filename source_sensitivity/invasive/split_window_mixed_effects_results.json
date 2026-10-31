@@ -1,0 +1,816 @@
+{
+  "analysis_type": "split_window_mixed_effects_analysis",
+  "status": "complete",
+  "runtime_seconds": 34.18421196937561,
+  "data_summary": {
+    "fit_stays_requested": 0,
+    "fit_stays": 20963,
+    "age_definition": "icu_proxy",
+    "qualification_index_hours": 12.0,
+    "minimum_index_observations": 4,
+    "minimum_later_observations": 1,
+    "minimum_total_observations": 8,
+    "fit_observations": 547351,
+    "obs_per_stay_median": 25.0,
+    "obs_per_stay_iqr": [
+      22.0,
+      29.0
+    ],
+    "index_obs_per_stay_median": 13.0,
+    "late_obs_per_stay_median": 12.0,
+    "stay_fraction_with_any_map_below_65": 0.6797214139197634,
+    "map_below_65_observation_fraction": 0.14340341024315292
+  },
+  "split": {
+    "seed": 20260522,
+    "train_fraction": 0.6,
+    "tuning_fraction": 0.2,
+    "train_stays": 12578,
+    "tuning_stays": 4193,
+    "assessment_stays": 4192
+  },
+  "age_standardization": {
+    "age_mean_training_split": 64.76029575449196,
+    "age_sd_training_split": 14.798490872055405
+  },
+  "age_definition": "icu_proxy",
+  "cohort_summary": {
+    "eligible_adult_first_icu_stays": 65355,
+    "excluded_before_analytic_cohort": 42021,
+    "analytic_icu_stays": 23334,
+    "unique_subjects": 23334,
+    "total_map_observations": 579088,
+    "excluded_by_split_window_rule": 2371,
+    "split_window_eligible_stays": 20963,
+    "not_included_in_analysis_subset": 0,
+    "full_map_below65_count": 83636,
+    "full_map_below65_percent": 14.442709916282155,
+    "eligible_map_below65_count": 78492,
+    "eligible_map_below65_percent": 14.340341024315293
+  },
+  "basis": {
+    "Tmax": 24.0,
+    "knots": [
+      8.0,
+      16.0
+    ],
+    "basis_dimension": 5,
+    "include_intercept": false,
+    "center_basis": true,
+    "scale_basis": true
+  },
+  "settings": {
+    "lambda_grid": [
+      0.0,
+      0.03,
+      0.1,
+      0.3,
+      1.0,
+      3.0,
+      10.0
+    ],
+    "tau_values": [
+      0.05,
+      0.1,
+      0.2
+    ],
+    "index_windows_tau_010": [
+      6.0,
+      12.0,
+      18.0
+    ],
+    "common_fit": "ordinary quantile regression via quantreg::rq.fit(method='fn') on the training split",
+    "stay_offset": "ordinary check loss profiled intercept from index observations",
+    "selected_lambda_baseline_update": 0.1,
+    "selected_lambda_spline_update": 0.1
+  },
+  "model_comparison_rows": [
+    {
+      "model": "Baseline covariates quantile",
+      "index_information": "none",
+      "assessment_loss": 1.876622896411238,
+      "assessment_loss_se": 0.023128835458389157,
+      "n_stays": 4192
+    },
+    {
+      "model": "Admission window q10 carry forward",
+      "index_information": "raw admission window q10",
+      "assessment_loss": 2.001814097136111,
+      "assessment_loss_se": 0.027195888762667306,
+      "n_stays": 4192
+    },
+    {
+      "model": "Population spline quantile",
+      "index_information": "none",
+      "assessment_loss": 1.877519808466716,
+      "assessment_loss_se": 0.023016274550455587,
+      "n_stays": 4192
+    },
+    {
+      "model": "Spline + unpenalized update",
+      "index_information": "index residual q10",
+      "assessment_loss": 1.9874860289148164,
+      "assessment_loss_se": 0.026662106330143442,
+      "n_stays": 4192
+    },
+    {
+      "model": "Spline + penalized random-intercept update",
+      "index_information": "profiled intercept",
+      "assessment_loss": 1.72162908439425,
+      "assessment_loss_se": 0.01931492358501953,
+      "n_stays": 4192
+    },
+    {
+      "model": "Selected baseline-adjusted random-intercept update",
+      "index_information": "profiled intercept",
+      "assessment_loss": 1.7230950369765274,
+      "assessment_loss_se": 0.019511165132432895,
+      "n_stays": 4192
+    }
+  ],
+  "selected_vs_baseline_paired_loss_reduction": {
+    "mean": 0.15352785943471028,
+    "se": 0.011522897835294215,
+    "ci95": [
+      0.13094297967753363,
+      0.17611273919188694
+    ]
+  },
+  "sensitivity_rows": [
+    {
+      "tau": 0.05,
+      "index_hours": 12.0,
+      "lambda_b": 0.1,
+      "population_assessment_loss": 1.1157190715165957,
+      "population_assessment_loss_se": 0.01879155915259597,
+      "updated_assessment_loss": 1.044464956456598,
+      "updated_assessment_loss_se": 0.015379934261975285,
+      "n_stays": 4192,
+      "loss_reduction_percent": 6.386384967242878
+    },
+    {
+      "tau": 0.1,
+      "index_hours": 6.0,
+      "lambda_b": 0.1,
+      "population_assessment_loss": 1.8536335350057105,
+      "population_assessment_loss_se": 0.018155746337628596,
+      "updated_assessment_loss": 1.7699955798900535,
+      "updated_assessment_loss_se": 0.016219881390134146,
+      "n_stays": 3408,
+      "loss_reduction_percent": 4.512108436546996
+    },
+    {
+      "tau": 0.1,
+      "index_hours": 12.0,
+      "lambda_b": 0.1,
+      "population_assessment_loss": 1.876622896411238,
+      "population_assessment_loss_se": 0.023128835458389157,
+      "updated_assessment_loss": 1.7230950369765274,
+      "updated_assessment_loss_se": 0.019511165132432895,
+      "n_stays": 4192,
+      "loss_reduction_percent": 8.18107141974606
+    },
+    {
+      "tau": 0.1,
+      "index_hours": 18.0,
+      "lambda_b": 0.1,
+      "population_assessment_loss": 1.8409395829592448,
+      "population_assessment_loss_se": 0.022204716625533635,
+      "updated_assessment_loss": 1.6366758655574607,
+      "updated_assessment_loss_se": 0.019908062455859347,
+      "n_stays": 3717,
+      "loss_reduction_percent": 11.095623087936293
+    },
+    {
+      "tau": 0.2,
+      "index_hours": 12.0,
+      "lambda_b": 0.1,
+      "population_assessment_loss": 3.0622807586086256,
+      "population_assessment_loss_se": 0.03035614744345594,
+      "updated_assessment_loss": 2.751493406713835,
+      "updated_assessment_loss_se": 0.025362329684378147,
+      "n_stays": 4192,
+      "loss_reduction_percent": 10.148884978005725
+    }
+  ],
+  "lambda_grids": {
+    "baseline_tau_0.10_index_12": [
+      {
+        "tau": 0.1,
+        "index_hours": 12.0,
+        "lambda_b": 0.0,
+        "tuning_loss": 2.0018966912466993,
+        "tuning_loss_se": 0.031130250756684043,
+        "n_stays": 4193
+      },
+      {
+        "tau": 0.1,
+        "index_hours": 12.0,
+        "lambda_b": 0.03,
+        "tuning_loss": 1.8038835940974043,
+        "tuning_loss_se": 0.024193350235696773,
+        "n_stays": 4193
+      },
+      {
+        "tau": 0.1,
+        "index_hours": 12.0,
+        "lambda_b": 0.1,
+        "tuning_loss": 1.7507644355616094,
+        "tuning_loss_se": 0.0219125288864385,
+        "n_stays": 4193
+      },
+      {
+        "tau": 0.1,
+        "index_hours": 12.0,
+        "lambda_b": 0.3,
+        "tuning_loss": 1.7946998056744579,
+        "tuning_loss_se": 0.022073545769422078,
+        "n_stays": 4193
+      },
+      {
+        "tau": 0.1,
+        "index_hours": 12.0,
+        "lambda_b": 1.0,
+        "tuning_loss": 1.852701905717979,
+        "tuning_loss_se": 0.023157475073317408,
+        "n_stays": 4193
+      },
+      {
+        "tau": 0.1,
+        "index_hours": 12.0,
+        "lambda_b": 3.0,
+        "tuning_loss": 1.8862130198523062,
+        "tuning_loss_se": 0.02388988028177086,
+        "n_stays": 4193
+      },
+      {
+        "tau": 0.1,
+        "index_hours": 12.0,
+        "lambda_b": 10.0,
+        "tuning_loss": 1.9033201356758331,
+        "tuning_loss_se": 0.02428633633464626,
+        "n_stays": 4193
+      }
+    ],
+    "spline_tau_0.10_index_12": [
+      {
+        "tau": 0.1,
+        "index_hours": 12.0,
+        "lambda_b": 0.0,
+        "tuning_loss": 1.9843857813279222,
+        "tuning_loss_se": 0.030660731105334748,
+        "n_stays": 4193
+      },
+      {
+        "tau": 0.1,
+        "index_hours": 12.0,
+        "lambda_b": 0.03,
+        "tuning_loss": 1.7968354228655115,
+        "tuning_loss_se": 0.023821916200999025,
+        "n_stays": 4193
+      },
+      {
+        "tau": 0.1,
+        "index_hours": 12.0,
+        "lambda_b": 0.1,
+        "tuning_loss": 1.7513710673768863,
+        "tuning_loss_se": 0.02177354417788863,
+        "n_stays": 4193
+      },
+      {
+        "tau": 0.1,
+        "index_hours": 12.0,
+        "lambda_b": 0.3,
+        "tuning_loss": 1.796178095549398,
+        "tuning_loss_se": 0.021962808050749634,
+        "n_stays": 4193
+      },
+      {
+        "tau": 0.1,
+        "index_hours": 12.0,
+        "lambda_b": 1.0,
+        "tuning_loss": 1.8542501463731875,
+        "tuning_loss_se": 0.023047087834016135,
+        "n_stays": 4193
+      },
+      {
+        "tau": 0.1,
+        "index_hours": 12.0,
+        "lambda_b": 3.0,
+        "tuning_loss": 1.8874241391167212,
+        "tuning_loss_se": 0.023779984190244997,
+        "n_stays": 4193
+      },
+      {
+        "tau": 0.1,
+        "index_hours": 12.0,
+        "lambda_b": 10.0,
+        "tuning_loss": 1.9043244000995505,
+        "tuning_loss_se": 0.024180393337408908,
+        "n_stays": 4193
+      }
+    ],
+    "tau_0.05_index_12": [
+      {
+        "tau": 0.05,
+        "index_hours": 12.0,
+        "lambda_b": 0.0,
+        "tuning_loss": 1.301074706881725,
+        "tuning_loss_se": 0.0276487117484578,
+        "n_stays": 4193
+      },
+      {
+        "tau": 0.05,
+        "index_hours": 12.0,
+        "lambda_b": 0.03,
+        "tuning_loss": 1.0987289896949906,
+        "tuning_loss_se": 0.01995395563885952,
+        "n_stays": 4193
+      },
+      {
+        "tau": 0.05,
+        "index_hours": 12.0,
+        "lambda_b": 0.1,
+        "tuning_loss": 1.06159751598824,
+        "tuning_loss_se": 0.017863178672041877,
+        "n_stays": 4193
+      },
+      {
+        "tau": 0.05,
+        "index_hours": 12.0,
+        "lambda_b": 0.3,
+        "tuning_loss": 1.0852010362647728,
+        "tuning_loss_se": 0.018213153022959373,
+        "n_stays": 4193
+      },
+      {
+        "tau": 0.05,
+        "index_hours": 12.0,
+        "lambda_b": 1.0,
+        "tuning_loss": 1.1084463675082363,
+        "tuning_loss_se": 0.01898710266687465,
+        "n_stays": 4193
+      },
+      {
+        "tau": 0.05,
+        "index_hours": 12.0,
+        "lambda_b": 3.0,
+        "tuning_loss": 1.1233361090658327,
+        "tuning_loss_se": 0.019636976478407515,
+        "n_stays": 4193
+      },
+      {
+        "tau": 0.05,
+        "index_hours": 12.0,
+        "lambda_b": 10.0,
+        "tuning_loss": 1.1302164666888521,
+        "tuning_loss_se": 0.0199033770646757,
+        "n_stays": 4193
+      }
+    ],
+    "tau_0.10_index_6": [
+      {
+        "tau": 0.1,
+        "index_hours": 6.0,
+        "lambda_b": 0.0,
+        "tuning_loss": 2.4373896412710057,
+        "tuning_loss_se": 0.03836744261807916,
+        "n_stays": 3368
+      },
+      {
+        "tau": 0.1,
+        "index_hours": 6.0,
+        "lambda_b": 0.03,
+        "tuning_loss": 1.9424348036448118,
+        "tuning_loss_se": 0.021766086777783286,
+        "n_stays": 3368
+      },
+      {
+        "tau": 0.1,
+        "index_hours": 6.0,
+        "lambda_b": 0.1,
+        "tuning_loss": 1.7886115927273047,
+        "tuning_loss_se": 0.016371214238615935,
+        "n_stays": 3368
+      },
+      {
+        "tau": 0.1,
+        "index_hours": 6.0,
+        "lambda_b": 0.3,
+        "tuning_loss": 1.805972972716569,
+        "tuning_loss_se": 0.016379991035117596,
+        "n_stays": 3368
+      },
+      {
+        "tau": 0.1,
+        "index_hours": 6.0,
+        "lambda_b": 1.0,
+        "tuning_loss": 1.8399134614304808,
+        "tuning_loss_se": 0.01691020930921006,
+        "n_stays": 3368
+      },
+      {
+        "tau": 0.1,
+        "index_hours": 6.0,
+        "lambda_b": 3.0,
+        "tuning_loss": 1.86017111526973,
+        "tuning_loss_se": 0.017301475265064415,
+        "n_stays": 3368
+      },
+      {
+        "tau": 0.1,
+        "index_hours": 6.0,
+        "lambda_b": 10.0,
+        "tuning_loss": 1.86970991081616,
+        "tuning_loss_se": 0.017500764841363304,
+        "n_stays": 3368
+      }
+    ],
+    "tau_0.10_index_12": [
+      {
+        "tau": 0.1,
+        "index_hours": 12.0,
+        "lambda_b": 0.0,
+        "tuning_loss": 2.0018966912466993,
+        "tuning_loss_se": 0.031130250756684043,
+        "n_stays": 4193
+      },
+      {
+        "tau": 0.1,
+        "index_hours": 12.0,
+        "lambda_b": 0.03,
+        "tuning_loss": 1.8038835940974043,
+        "tuning_loss_se": 0.024193350235696773,
+        "n_stays": 4193
+      },
+      {
+        "tau": 0.1,
+        "index_hours": 12.0,
+        "lambda_b": 0.1,
+        "tuning_loss": 1.7507644355616094,
+        "tuning_loss_se": 0.0219125288864385,
+        "n_stays": 4193
+      },
+      {
+        "tau": 0.1,
+        "index_hours": 12.0,
+        "lambda_b": 0.3,
+        "tuning_loss": 1.7946998056744579,
+        "tuning_loss_se": 0.022073545769422078,
+        "n_stays": 4193
+      },
+      {
+        "tau": 0.1,
+        "index_hours": 12.0,
+        "lambda_b": 1.0,
+        "tuning_loss": 1.852701905717979,
+        "tuning_loss_se": 0.023157475073317408,
+        "n_stays": 4193
+      },
+      {
+        "tau": 0.1,
+        "index_hours": 12.0,
+        "lambda_b": 3.0,
+        "tuning_loss": 1.8862130198523062,
+        "tuning_loss_se": 0.02388988028177086,
+        "n_stays": 4193
+      },
+      {
+        "tau": 0.1,
+        "index_hours": 12.0,
+        "lambda_b": 10.0,
+        "tuning_loss": 1.9033201356758331,
+        "tuning_loss_se": 0.02428633633464626,
+        "n_stays": 4193
+      }
+    ],
+    "tau_0.10_index_18": [
+      {
+        "tau": 0.1,
+        "index_hours": 18.0,
+        "lambda_b": 0.0,
+        "tuning_loss": 1.7518809313053263,
+        "tuning_loss_se": 0.026375546390499712,
+        "n_stays": 3706
+      },
+      {
+        "tau": 0.1,
+        "index_hours": 18.0,
+        "lambda_b": 0.03,
+        "tuning_loss": 1.7022280999630988,
+        "tuning_loss_se": 0.024201333832236632,
+        "n_stays": 3706
+      },
+      {
+        "tau": 0.1,
+        "index_hours": 18.0,
+        "lambda_b": 0.1,
+        "tuning_loss": 1.6856057131617355,
+        "tuning_loss_se": 0.023025532620931533,
+        "n_stays": 3706
+      },
+      {
+        "tau": 0.1,
+        "index_hours": 18.0,
+        "lambda_b": 0.3,
+        "tuning_loss": 1.7558042895523016,
+        "tuning_loss_se": 0.024101026513832446,
+        "n_stays": 3706
+      },
+      {
+        "tau": 0.1,
+        "index_hours": 18.0,
+        "lambda_b": 1.0,
+        "tuning_loss": 1.8324937525323972,
+        "tuning_loss_se": 0.025485978335583564,
+        "n_stays": 3706
+      },
+      {
+        "tau": 0.1,
+        "index_hours": 18.0,
+        "lambda_b": 3.0,
+        "tuning_loss": 1.8807097498966336,
+        "tuning_loss_se": 0.0264141171291953,
+        "n_stays": 3706
+      },
+      {
+        "tau": 0.1,
+        "index_hours": 18.0,
+        "lambda_b": 10.0,
+        "tuning_loss": 1.906496061136371,
+        "tuning_loss_se": 0.02694551858026976,
+        "n_stays": 3706
+      }
+    ],
+    "tau_0.20_index_12": [
+      {
+        "tau": 0.2,
+        "index_hours": 12.0,
+        "lambda_b": 0.0,
+        "tuning_loss": 2.99988483743838,
+        "tuning_loss_se": 0.03475409716053237,
+        "n_stays": 4193
+      },
+      {
+        "tau": 0.2,
+        "index_hours": 12.0,
+        "lambda_b": 0.03,
+        "tuning_loss": 2.8668001688292777,
+        "tuning_loss_se": 0.03122298246331009,
+        "n_stays": 4193
+      },
+      {
+        "tau": 0.2,
+        "index_hours": 12.0,
+        "lambda_b": 0.1,
+        "tuning_loss": 2.779511230752322,
+        "tuning_loss_se": 0.0282328580814569,
+        "n_stays": 4193
+      },
+      {
+        "tau": 0.2,
+        "index_hours": 12.0,
+        "lambda_b": 0.3,
+        "tuning_loss": 2.8489529521579735,
+        "tuning_loss_se": 0.02893208999921506,
+        "n_stays": 4193
+      },
+      {
+        "tau": 0.2,
+        "index_hours": 12.0,
+        "lambda_b": 1.0,
+        "tuning_loss": 2.9767645194060446,
+        "tuning_loss_se": 0.030583423086694102,
+        "n_stays": 4193
+      },
+      {
+        "tau": 0.2,
+        "index_hours": 12.0,
+        "lambda_b": 3.0,
+        "tuning_loss": 3.0581662942328545,
+        "tuning_loss_se": 0.03157927123479809,
+        "n_stays": 4193
+      },
+      {
+        "tau": 0.2,
+        "index_hours": 12.0,
+        "lambda_b": 10.0,
+        "tuning_loss": 3.0976872925494674,
+        "tuning_loss_se": 0.032074508081303035,
+        "n_stays": 4193
+      }
+    ]
+  },
+  "admission_window_q10_strata": [
+    {
+      "stratum": "Lowest quintile",
+      "stays": 768,
+      "admission_window_q10_median": 56.0,
+      "later_q10_median": 61.0,
+      "later_map_below65_fraction": 0.31820550093850725,
+      "any_later_map_below65": 0.7786458333333334
+    },
+    {
+      "stratum": "Second quintile",
+      "stays": 715,
+      "admission_window_q10_median": 62.0,
+      "later_q10_median": 64.0,
+      "later_map_below65_fraction": 0.21184963380538152,
+      "any_later_map_below65": 0.6713286713286714
+    },
+    {
+      "stratum": "Third quintile",
+      "stays": 859,
+      "admission_window_q10_median": 65.0,
+      "later_q10_median": 66.0,
+      "later_map_below65_fraction": 0.12256678070382403,
+      "any_later_map_below65": 0.5238649592549476
+    },
+    {
+      "stratum": "Fourth quintile",
+      "stays": 933,
+      "admission_window_q10_median": 70.0,
+      "later_q10_median": 69.0,
+      "later_map_below65_fraction": 0.07657588075720001,
+      "any_later_map_below65": 0.3987138263665595
+    },
+    {
+      "stratum": "Highest quintile",
+      "stays": 917,
+      "admission_window_q10_median": 79.0,
+      "later_q10_median": 77.0,
+      "later_map_below65_fraction": 0.02051996779273792,
+      "any_later_map_below65": 0.13849509269356597
+    }
+  ],
+  "auc": {
+    "admission_window_q10_low_is_risk": 0.7630434856914335,
+    "admission_window_low_fraction": 0.7265566127486781,
+    "age": 0.6401725664271366,
+    "male": 0.5120266699783864,
+    "emergency_or_urgent": 0.5080152354302369,
+    "index_later_q10_correlation": 0.570465043302787,
+    "index_later_low_fraction_correlation": 0.5287804235857763,
+    "index_later_slope_correlation": -0.04323255328189017
+  },
+  "diagnostic_correlations": {
+    "admission_window_q10_vs_later_q10": 0.5691174067693976,
+    "admission_window_low_fraction_vs_later_low_fraction": 0.5293786270487886,
+    "index_slope_vs_later_slope": -0.04331601446705407
+  },
+  "clinical_outcome_strata": [
+    {
+      "stratum": "Lowest vulnerability",
+      "stays": 811,
+      "updated_offset_median": 6.000000000000001,
+      "admission_window_q10_median": 80.0,
+      "later_map_below65_fraction": 0.018099313841192278,
+      "any_later_map_below65": 0.12453760789149199,
+      "hospital_mortality": 0.07398273736128237,
+      "icu_mortality": 0.055487053020961775,
+      "icu_los_median": 2.1976851851851853,
+      "icu_los_iqr_low": 1.2522974537037037,
+      "icu_los_iqr_high": 4.607934027777778,
+      "icu_los_ge3_days": 0.3933415536374846
+    },
+    {
+      "stratum": "Second",
+      "stays": 840,
+      "updated_offset_median": 4.6774193548387615,
+      "admission_window_q10_median": 71.0,
+      "later_map_below65_fraction": 0.0644546798352036,
+      "any_later_map_below65": 0.3464285714285714,
+      "hospital_mortality": 0.07976190476190476,
+      "icu_mortality": 0.06190476190476191,
+      "icu_los_median": 2.2816261574074073,
+      "icu_los_iqr_low": 1.2616377314814813,
+      "icu_los_iqr_high": 4.684250578703704,
+      "icu_los_ge3_days": 0.40714285714285714
+    },
+    {
+      "stratum": "Third",
+      "stays": 845,
+      "updated_offset_median": 2.5,
+      "admission_window_q10_median": 66.0,
+      "later_map_below65_fraction": 0.11440335338046671,
+      "any_later_map_below65": 0.514792899408284,
+      "hospital_mortality": 0.08520710059171598,
+      "icu_mortality": 0.05680473372781065,
+      "icu_los_median": 2.2302199074074074,
+      "icu_los_iqr_low": 1.2912037037037036,
+      "icu_los_iqr_high": 4.255034722222222,
+      "icu_los_ge3_days": 0.39171597633136096
+    },
+    {
+      "stratum": "Fourth",
+      "stays": 785,
+      "updated_offset_median": 0.16129032258063347,
+      "admission_window_q10_median": 63.0,
+      "later_map_below65_fraction": 0.1859142743954439,
+      "any_later_map_below65": 0.6343949044585987,
+      "hospital_mortality": 0.09554140127388536,
+      "icu_mortality": 0.07898089171974522,
+      "icu_los_median": 2.328240740740741,
+      "icu_los_iqr_low": 1.3031944444444443,
+      "icu_los_iqr_high": 4.927581018518518,
+      "icu_los_ge3_days": 0.42929936305732486
+    },
+    {
+      "stratum": "Highest vulnerability",
+      "stays": 911,
+      "updated_offset_median": -3.290322580645139,
+      "admission_window_q10_median": 57.0,
+      "later_map_below65_fraction": 0.3073186291272433,
+      "any_later_map_below65": 0.7705817782656421,
+      "hospital_mortality": 0.13172338090010977,
+      "icu_mortality": 0.10867178924259056,
+      "icu_los_median": 2.4814467592592595,
+      "icu_los_iqr_low": 1.3592592592592592,
+      "icu_los_iqr_high": 4.942262731481481,
+      "icu_los_ge3_days": 0.44127332601536773
+    }
+  ],
+  "outcome_metrics": {
+    "hospital_mortality_rate": 0.09398854961832061,
+    "icu_mortality_rate": 0.07299618320610687,
+    "icu_los_median": 2.287771990740741,
+    "hospital_mortality_auc_admission_window_q10_low_is_risk": 0.5666815021531504,
+    "hospital_mortality_auc_updated_vulnerability": 0.5679050956554745,
+    "adjusted_or_hospital_mortality_per_10mmhg_lower_admission_window_q10": {
+      "odds_ratio_per_10": 1.1779964665688114,
+      "ci_low": 1.0584180653896216,
+      "ci_high": 1.3110846466304198,
+      "log_or": 0.1638150857077583,
+      "se": 0.05461208339312118
+    },
+    "adjusted_or_hospital_mortality_per_10mmhg_higher_updated_vulnerability": {
+      "odds_ratio_per_10": 1.8637710641042324,
+      "ci_low": 1.4681905525708487,
+      "ci_high": 2.3659344308610106,
+      "log_or": 0.6226018890338736,
+      "se": 0.12171998115398519
+    }
+  },
+  "coefficients": {
+    "baseline_tau_0.05": [
+      59.9049630306893,
+      -1.84981135900229,
+      -0.374999999991188,
+      -0.500000000003557
+    ],
+    "baseline_tau_0.10": [
+      63.3212521607107,
+      -1.90948269316842,
+      -0.645161290322568,
+      -0.225806451612925
+    ],
+    "baseline_tau_0.20": [
+      67.5332922563205,
+      -2.05534595445202,
+      -1.05555555555573,
+      0.0833333333335477
+    ],
+    "spline_tau_0.05": [
+      59.9541894165826,
+      -1.8192008575474,
+      -0.322710077314804,
+      -0.533285147389503,
+      -11.4969102702599,
+      35.6030115436038,
+      -34.4339899469783,
+      9.54083396093147,
+      -0.051189324926947
+    ],
+    "spline_tau_0.10": [
+      63.3877802057147,
+      -1.90061518944193,
+      -0.646549304275118,
+      -0.240606632627131,
+      -18.3458297448485,
+      51.5053837505705,
+      -49.010085035613,
+      13.7847260907785,
+      -0.208992851875592
+    ],
+    "spline_tau_0.20": [
+      67.6165334310425,
+      -2.07575190078516,
+      -1.00211655394961,
+      0.098650273759364,
+      -28.3502268848332,
+      78.1354109320545,
+      -75.7303988488744,
+      22.494551114034,
+      -0.713183236769584
+    ]
+  },
+  "artifacts": {
+    "model_comparison_tex": "recovery_20260822/gate1_approved_run/source_sensitivity/invasive/empirical/model_comparison.tex",
+    "sensitivity_tex": "recovery_20260822/gate1_approved_run/source_sensitivity/invasive/empirical/sensitivity_analysis.tex",
+    "admission_q10_strata_tex": "recovery_20260822/gate1_approved_run/source_sensitivity/invasive/empirical/admission_window_q10_strata.tex",
+    "clinical_outcome_strata_tex": "recovery_20260822/gate1_approved_run/source_sensitivity/invasive/empirical/clinical_outcome_strata.tex",
+    "model_comparison_csv": "recovery_20260822/gate1_approved_run/source_sensitivity/invasive/empirical/model_comparison.csv",
+    "sensitivity_csv": "recovery_20260822/gate1_approved_run/source_sensitivity/invasive/empirical/sensitivity_analysis.csv",
+    "admission_q10_strata_csv": "recovery_20260822/gate1_approved_run/source_sensitivity/invasive/empirical/admission_window_q10_strata.csv"
+  }
+}

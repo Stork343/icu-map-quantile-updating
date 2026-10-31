@@ -1,21 +1,19 @@
 \begin{table}[!htbp]
-\caption{Assessment loss for the profiled offset and comparator rules.}
+\caption{Split-window assessment of the primary stay-specific level update and comparator rules.}
 \label{tab:model_comparison}
 \centering
-\resizebox{\textwidth}{!}{%
 \begin{tabular}{llrr}
 \hline
 Model & Index window information used & Assessment loss & SE\\
 \hline
-Baseline covariates quantile & none & 2.2247 & 0.0128\\
+Baseline covariates quantile & none & 2.2256 & 0.0128\\
 Admission window q10 carry forward & raw admission window q10 & 2.1439 & 0.0160\\
-Population spline quantile & none & 2.2238 & 0.0128\\
-Spline + unpenalized offset & index residual q10 & 2.1659 & 0.0162\\
-Spline + penalized stay specific offset & profiled level offset & 1.9678 & 0.0117\\
-Primary baseline adjusted offset & profiled level offset & 1.9570 & 0.0115\\
+Population spline quantile & none & 2.2248 & 0.0128\\
+Spline + unpenalized update & index residual q10 & 2.1657 & 0.0162\\
+Spline + penalized stay-specific level update & profiled level offset & 1.9681 & 0.0117\\
+Primary baseline-adjusted level update & profiled level offset & 1.9575 & 0.0115\\
 \hline
-\end{tabular}%
-}
+\end{tabular}
 \par\smallskip
-\footnotesize{Assessment loss is ordinary check loss averaged within stays at $\tau=0.10$. Training stays estimate population components, and tuning stays select quadratic penalties. The primary offset reduced mean loss by 0.2676 relative to the baseline covariate model, with SE 0.0121 and interval 0.2439 to 0.2914.}
+\footnotesize{Assessment loss is the mean within-stay ordinary check loss on later observations at $\tau=0.10$, averaged across assessment stays. Population components are fitted on training stays and quadratic penalties are selected on tuning stays. Because the assessment outcomes had been examined during earlier work, these values are internal evaluations rather than an untouched external validation. The paired mean loss reduction for the primary baseline-adjusted level update versus the baseline covariate quantile model was 0.2681 (SE 0.0121; descriptive interval 0.2443--0.2919).}
 \end{table}

@@ -1,0 +1,749 @@
+{
+  "prespecified_protocol": {
+    "version": "prespecified_20261021_v1",
+    "master_seed": 20261021,
+    "tau": 0.1,
+    "n_stays": 600,
+    "replicates_per_setting": 200,
+    "reference_stays": 2000,
+    "fit_tune_assessment_fractions": [
+      0.6,
+      0.2,
+      0.2
+    ],
+    "landmark_hours": 12,
+    "horizons_hours": [
+      4.0,
+      8.0,
+      12.0
+    ],
+    "settings": [
+      "informative_recovery",
+      "weaker_recovery",
+      "information_limit",
+      "serial_integer_stress"
+    ],
+    "latent_type_names": [
+      "persistent_level",
+      "transient_recovering",
+      "persistent_shape"
+    ],
+    "latent_type_probabilities": [
+      0.35,
+      0.35,
+      0.3
+    ],
+    "baseline_beta": [
+      72.0,
+      -2.0,
+      1.0,
+      -1.8
+    ],
+    "male_probability": 0.55,
+    "urgent_probability": 0.65,
+    "age_distribution": "standard_normal",
+    "residual_scale": "4.5+0.5*abs(age_z)+0.9*urgent",
+    "residual_marginal": "normal minus its 0.10 quantile",
+    "latent_grid_hours": 0.25,
+    "persistent_level": {
+      "level_sd": 5.5,
+      "slope": 0
+    },
+    "persistent_shape": {
+      "level_sd": 3.5,
+      "slope_sd": 5
+    },
+    "transient_recovering": {
+      "index_level": "-5-abs(N(0,3^2))",
+      "slope_mean": 8,
+      "slope_sd": 2,
+      "later_signal": 0
+    },
+    "weaker_recovery_change": {
+      "transient_slope_mean": 3,
+      "transient_slope_sd": 4
+    },
+    "information_limit": {
+      "shared_index_level_sd": 5.5,
+      "shared_index_slope_sd": 4,
+      "later_signals_by_type": [
+        "b",
+        "0",
+        "b+s*u"
+      ]
+    },
+    "serial_integer_stress": {
+      "ar1_rho_per_15_minutes": 0.82,
+      "round_outcomes_to_integer": true
+    },
+    "index_count_values": [
+      6,
+      10,
+      16
+    ],
+    "index_count_probabilities": [
+      0.3,
+      0.4,
+      0.3
+    ],
+    "index_coverage_hours": [
+      4,
+      8,
+      12
+    ],
+    "index_coverage_probabilities": [
+      0.3,
+      0.4,
+      0.3
+    ],
+    "index_sampling": "distinct uniform grid positions in coverage interval, always including 12h",
+    "later_sampling": "four distinct uniform grid positions in each of (12,16],(16,20],(20,24]",
+    "generated_outcome_bounds": [
+      20,
+      200
+    ],
+    "forecast_clipping": false,
+    "calibration": "ordinary stay-weighted affine check loss, unrestricted intercept and slope",
+    "fitting": "ordinary observation-weighted R quantreg br with primal-dual certificate",
+    "original_base_candidates": [
+      {
+        "key": "population",
+        "basis": "none",
+        "lambda_level": null,
+        "lambda_slope": null
+      },
+      {
+        "key": "scalar_0",
+        "basis": "level",
+        "lambda_level": 0.0,
+        "lambda_slope": null
+      },
+      {
+        "key": "scalar_1",
+        "basis": "level",
+        "lambda_level": 0.03,
+        "lambda_slope": null
+      },
+      {
+        "key": "scalar_2",
+        "basis": "level",
+        "lambda_level": 0.1,
+        "lambda_slope": null
+      },
+      {
+        "key": "scalar_3",
+        "basis": "level",
+        "lambda_level": 0.3,
+        "lambda_slope": null
+      },
+      {
+        "key": "scalar_4",
+        "basis": "level",
+        "lambda_level": 1.0,
+        "lambda_slope": null
+      },
+      {
+        "key": "scalar_5",
+        "basis": "level",
+        "lambda_level": 3.0,
+        "lambda_slope": null
+      },
+      {
+        "key": "scalar_6",
+        "basis": "level",
+        "lambda_level": 10.0,
+        "lambda_slope": null
+      },
+      {
+        "key": "vector_0_0",
+        "basis": "level_slope",
+        "lambda_level": 0.03,
+        "lambda_slope": 0.03
+      },
+      {
+        "key": "vector_0_1",
+        "basis": "level_slope",
+        "lambda_level": 0.03,
+        "lambda_slope": 0.1
+      },
+      {
+        "key": "vector_0_2",
+        "basis": "level_slope",
+        "lambda_level": 0.03,
+        "lambda_slope": 0.3
+      },
+      {
+        "key": "vector_0_3",
+        "basis": "level_slope",
+        "lambda_level": 0.03,
+        "lambda_slope": 1.0
+      },
+      {
+        "key": "vector_0_4",
+        "basis": "level_slope",
+        "lambda_level": 0.03,
+        "lambda_slope": 3.0
+      },
+      {
+        "key": "vector_0_5",
+        "basis": "level_slope",
+        "lambda_level": 0.03,
+        "lambda_slope": 10.0
+      },
+      {
+        "key": "vector_0_6",
+        "basis": "level_slope",
+        "lambda_level": 0.03,
+        "lambda_slope": 30.0
+      },
+      {
+        "key": "vector_0_7",
+        "basis": "level_slope",
+        "lambda_level": 0.03,
+        "lambda_slope": 100.0
+      },
+      {
+        "key": "vector_1_0",
+        "basis": "level_slope",
+        "lambda_level": 0.1,
+        "lambda_slope": 0.03
+      },
+      {
+        "key": "vector_1_1",
+        "basis": "level_slope",
+        "lambda_level": 0.1,
+        "lambda_slope": 0.1
+      },
+      {
+        "key": "vector_1_2",
+        "basis": "level_slope",
+        "lambda_level": 0.1,
+        "lambda_slope": 0.3
+      },
+      {
+        "key": "vector_1_3",
+        "basis": "level_slope",
+        "lambda_level": 0.1,
+        "lambda_slope": 1.0
+      },
+      {
+        "key": "vector_1_4",
+        "basis": "level_slope",
+        "lambda_level": 0.1,
+        "lambda_slope": 3.0
+      },
+      {
+        "key": "vector_1_5",
+        "basis": "level_slope",
+        "lambda_level": 0.1,
+        "lambda_slope": 10.0
+      },
+      {
+        "key": "vector_1_6",
+        "basis": "level_slope",
+        "lambda_level": 0.1,
+        "lambda_slope": 30.0
+      },
+      {
+        "key": "vector_1_7",
+        "basis": "level_slope",
+        "lambda_level": 0.1,
+        "lambda_slope": 100.0
+      },
+      {
+        "key": "vector_2_0",
+        "basis": "level_slope",
+        "lambda_level": 0.3,
+        "lambda_slope": 0.03
+      },
+      {
+        "key": "vector_2_1",
+        "basis": "level_slope",
+        "lambda_level": 0.3,
+        "lambda_slope": 0.1
+      },
+      {
+        "key": "vector_2_2",
+        "basis": "level_slope",
+        "lambda_level": 0.3,
+        "lambda_slope": 0.3
+      },
+      {
+        "key": "vector_2_3",
+        "basis": "level_slope",
+        "lambda_level": 0.3,
+        "lambda_slope": 1.0
+      },
+      {
+        "key": "vector_2_4",
+        "basis": "level_slope",
+        "lambda_level": 0.3,
+        "lambda_slope": 3.0
+      },
+      {
+        "key": "vector_2_5",
+        "basis": "level_slope",
+        "lambda_level": 0.3,
+        "lambda_slope": 10.0
+      },
+      {
+        "key": "vector_2_6",
+        "basis": "level_slope",
+        "lambda_level": 0.3,
+        "lambda_slope": 30.0
+      },
+      {
+        "key": "vector_2_7",
+        "basis": "level_slope",
+        "lambda_level": 0.3,
+        "lambda_slope": 100.0
+      },
+      {
+        "key": "vector_3_0",
+        "basis": "level_slope",
+        "lambda_level": 1.0,
+        "lambda_slope": 0.03
+      },
+      {
+        "key": "vector_3_1",
+        "basis": "level_slope",
+        "lambda_level": 1.0,
+        "lambda_slope": 0.1
+      },
+      {
+        "key": "vector_3_2",
+        "basis": "level_slope",
+        "lambda_level": 1.0,
+        "lambda_slope": 0.3
+      },
+      {
+        "key": "vector_3_3",
+        "basis": "level_slope",
+        "lambda_level": 1.0,
+        "lambda_slope": 1.0
+      },
+      {
+        "key": "vector_3_4",
+        "basis": "level_slope",
+        "lambda_level": 1.0,
+        "lambda_slope": 3.0
+      },
+      {
+        "key": "vector_3_5",
+        "basis": "level_slope",
+        "lambda_level": 1.0,
+        "lambda_slope": 10.0
+      },
+      {
+        "key": "vector_3_6",
+        "basis": "level_slope",
+        "lambda_level": 1.0,
+        "lambda_slope": 30.0
+      },
+      {
+        "key": "vector_3_7",
+        "basis": "level_slope",
+        "lambda_level": 1.0,
+        "lambda_slope": 100.0
+      },
+      {
+        "key": "vector_4_0",
+        "basis": "level_slope",
+        "lambda_level": 3.0,
+        "lambda_slope": 0.03
+      },
+      {
+        "key": "vector_4_1",
+        "basis": "level_slope",
+        "lambda_level": 3.0,
+        "lambda_slope": 0.1
+      },
+      {
+        "key": "vector_4_2",
+        "basis": "level_slope",
+        "lambda_level": 3.0,
+        "lambda_slope": 0.3
+      },
+      {
+        "key": "vector_4_3",
+        "basis": "level_slope",
+        "lambda_level": 3.0,
+        "lambda_slope": 1.0
+      },
+      {
+        "key": "vector_4_4",
+        "basis": "level_slope",
+        "lambda_level": 3.0,
+        "lambda_slope": 3.0
+      },
+      {
+        "key": "vector_4_5",
+        "basis": "level_slope",
+        "lambda_level": 3.0,
+        "lambda_slope": 10.0
+      },
+      {
+        "key": "vector_4_6",
+        "basis": "level_slope",
+        "lambda_level": 3.0,
+        "lambda_slope": 30.0
+      },
+      {
+        "key": "vector_4_7",
+        "basis": "level_slope",
+        "lambda_level": 3.0,
+        "lambda_slope": 100.0
+      },
+      {
+        "key": "vector_5_0",
+        "basis": "level_slope",
+        "lambda_level": 10.0,
+        "lambda_slope": 0.03
+      },
+      {
+        "key": "vector_5_1",
+        "basis": "level_slope",
+        "lambda_level": 10.0,
+        "lambda_slope": 0.1
+      },
+      {
+        "key": "vector_5_2",
+        "basis": "level_slope",
+        "lambda_level": 10.0,
+        "lambda_slope": 0.3
+      },
+      {
+        "key": "vector_5_3",
+        "basis": "level_slope",
+        "lambda_level": 10.0,
+        "lambda_slope": 1.0
+      },
+      {
+        "key": "vector_5_4",
+        "basis": "level_slope",
+        "lambda_level": 10.0,
+        "lambda_slope": 3.0
+      },
+      {
+        "key": "vector_5_5",
+        "basis": "level_slope",
+        "lambda_level": 10.0,
+        "lambda_slope": 10.0
+      },
+      {
+        "key": "vector_5_6",
+        "basis": "level_slope",
+        "lambda_level": 10.0,
+        "lambda_slope": 30.0
+      },
+      {
+        "key": "vector_5_7",
+        "basis": "level_slope",
+        "lambda_level": 10.0,
+        "lambda_slope": 100.0
+      }
+    ],
+    "adaptive_base_candidates": [
+      {
+        "key": "adaptive_0_0_0",
+        "lambda_base": 0.03,
+        "gamma": 0.0,
+        "theta": 0.0
+      },
+      {
+        "key": "adaptive_0_1_0",
+        "lambda_base": 0.03,
+        "gamma": 0.3,
+        "theta": -2.0
+      },
+      {
+        "key": "adaptive_0_1_1",
+        "lambda_base": 0.03,
+        "gamma": 0.3,
+        "theta": 0.0
+      },
+      {
+        "key": "adaptive_0_1_2",
+        "lambda_base": 0.03,
+        "gamma": 0.3,
+        "theta": 2.0
+      },
+      {
+        "key": "adaptive_0_2_0",
+        "lambda_base": 0.03,
+        "gamma": 3.0,
+        "theta": -2.0
+      },
+      {
+        "key": "adaptive_0_2_1",
+        "lambda_base": 0.03,
+        "gamma": 3.0,
+        "theta": 0.0
+      },
+      {
+        "key": "adaptive_0_2_2",
+        "lambda_base": 0.03,
+        "gamma": 3.0,
+        "theta": 2.0
+      },
+      {
+        "key": "adaptive_1_0_0",
+        "lambda_base": 0.1,
+        "gamma": 0.0,
+        "theta": 0.0
+      },
+      {
+        "key": "adaptive_1_1_0",
+        "lambda_base": 0.1,
+        "gamma": 0.3,
+        "theta": -2.0
+      },
+      {
+        "key": "adaptive_1_1_1",
+        "lambda_base": 0.1,
+        "gamma": 0.3,
+        "theta": 0.0
+      },
+      {
+        "key": "adaptive_1_1_2",
+        "lambda_base": 0.1,
+        "gamma": 0.3,
+        "theta": 2.0
+      },
+      {
+        "key": "adaptive_1_2_0",
+        "lambda_base": 0.1,
+        "gamma": 3.0,
+        "theta": -2.0
+      },
+      {
+        "key": "adaptive_1_2_1",
+        "lambda_base": 0.1,
+        "gamma": 3.0,
+        "theta": 0.0
+      },
+      {
+        "key": "adaptive_1_2_2",
+        "lambda_base": 0.1,
+        "gamma": 3.0,
+        "theta": 2.0
+      },
+      {
+        "key": "adaptive_2_0_0",
+        "lambda_base": 0.3,
+        "gamma": 0.0,
+        "theta": 0.0
+      },
+      {
+        "key": "adaptive_2_1_0",
+        "lambda_base": 0.3,
+        "gamma": 0.3,
+        "theta": -2.0
+      },
+      {
+        "key": "adaptive_2_1_1",
+        "lambda_base": 0.3,
+        "gamma": 0.3,
+        "theta": 0.0
+      },
+      {
+        "key": "adaptive_2_1_2",
+        "lambda_base": 0.3,
+        "gamma": 0.3,
+        "theta": 2.0
+      },
+      {
+        "key": "adaptive_2_2_0",
+        "lambda_base": 0.3,
+        "gamma": 3.0,
+        "theta": -2.0
+      },
+      {
+        "key": "adaptive_2_2_1",
+        "lambda_base": 0.3,
+        "gamma": 3.0,
+        "theta": 0.0
+      },
+      {
+        "key": "adaptive_2_2_2",
+        "lambda_base": 0.3,
+        "gamma": 3.0,
+        "theta": 2.0
+      },
+      {
+        "key": "adaptive_3_0_0",
+        "lambda_base": 1.0,
+        "gamma": 0.0,
+        "theta": 0.0
+      },
+      {
+        "key": "adaptive_3_1_0",
+        "lambda_base": 1.0,
+        "gamma": 0.3,
+        "theta": -2.0
+      },
+      {
+        "key": "adaptive_3_1_1",
+        "lambda_base": 1.0,
+        "gamma": 0.3,
+        "theta": 0.0
+      },
+      {
+        "key": "adaptive_3_1_2",
+        "lambda_base": 1.0,
+        "gamma": 0.3,
+        "theta": 2.0
+      },
+      {
+        "key": "adaptive_3_2_0",
+        "lambda_base": 1.0,
+        "gamma": 3.0,
+        "theta": -2.0
+      },
+      {
+        "key": "adaptive_3_2_1",
+        "lambda_base": 1.0,
+        "gamma": 3.0,
+        "theta": 0.0
+      },
+      {
+        "key": "adaptive_3_2_2",
+        "lambda_base": 1.0,
+        "gamma": 3.0,
+        "theta": 2.0
+      },
+      {
+        "key": "adaptive_4_0_0",
+        "lambda_base": 3.0,
+        "gamma": 0.0,
+        "theta": 0.0
+      },
+      {
+        "key": "adaptive_4_1_0",
+        "lambda_base": 3.0,
+        "gamma": 0.3,
+        "theta": -2.0
+      },
+      {
+        "key": "adaptive_4_1_1",
+        "lambda_base": 3.0,
+        "gamma": 0.3,
+        "theta": 0.0
+      },
+      {
+        "key": "adaptive_4_1_2",
+        "lambda_base": 3.0,
+        "gamma": 0.3,
+        "theta": 2.0
+      },
+      {
+        "key": "adaptive_4_2_0",
+        "lambda_base": 3.0,
+        "gamma": 3.0,
+        "theta": -2.0
+      },
+      {
+        "key": "adaptive_4_2_1",
+        "lambda_base": 3.0,
+        "gamma": 3.0,
+        "theta": 0.0
+      },
+      {
+        "key": "adaptive_4_2_2",
+        "lambda_base": 3.0,
+        "gamma": 3.0,
+        "theta": 2.0
+      },
+      {
+        "key": "adaptive_5_0_0",
+        "lambda_base": 10.0,
+        "gamma": 0.0,
+        "theta": 0.0
+      },
+      {
+        "key": "adaptive_5_1_0",
+        "lambda_base": 10.0,
+        "gamma": 0.3,
+        "theta": -2.0
+      },
+      {
+        "key": "adaptive_5_1_1",
+        "lambda_base": 10.0,
+        "gamma": 0.3,
+        "theta": 0.0
+      },
+      {
+        "key": "adaptive_5_1_2",
+        "lambda_base": 10.0,
+        "gamma": 0.3,
+        "theta": 2.0
+      },
+      {
+        "key": "adaptive_5_2_0",
+        "lambda_base": 10.0,
+        "gamma": 3.0,
+        "theta": -2.0
+      },
+      {
+        "key": "adaptive_5_2_1",
+        "lambda_base": 10.0,
+        "gamma": 3.0,
+        "theta": 0.0
+      },
+      {
+        "key": "adaptive_5_2_2",
+        "lambda_base": 10.0,
+        "gamma": 3.0,
+        "theta": 2.0
+      }
+    ],
+    "additional_calibrated_summaries": [
+      "last",
+      "minimum",
+      "mean",
+      "below65"
+    ],
+    "q10_alias": "scalar_0 and scalar_0__affine represent raw and calibrated q10",
+    "kappa": 0.0625,
+    "qp_settings": {
+      "tol_gap_abs": 1e-14,
+      "tol_gap_rel": 1e-14,
+      "tol_feas": 1e-14,
+      "max_iter": 200,
+      "verbose": false,
+      "max_threads": 1,
+      "iterative_refinement_reltol": 1e-14,
+      "iterative_refinement_abstol": 1e-14
+    },
+    "profile_polish_settings": {
+      "residual_tolerance": 1e-05,
+      "dual_margin": 1e-08,
+      "lstsq_rcond": 1e-13
+    },
+    "stump_features": [
+      "rank-half q10 change",
+      "log index count",
+      "normalized time variance"
+    ],
+    "stump_cutpoints": "fitting-sample feature quartiles",
+    "stump_leaf_pool": "complete original family",
+    "reference_target": "risk of each selected frozen history-measurable rule; no oracle regret is reported"
+  },
+  "execution": {
+    "replicates": 200,
+    "n_stays": 600,
+    "reference_stays": 2000,
+    "settings": [
+      "informative_recovery",
+      "weaker_recovery",
+      "information_limit",
+      "serial_integer_stress"
+    ],
+    "horizons": [
+      4.0,
+      8.0,
+      12.0
+    ],
+    "seed": 20261021
+  }
+}

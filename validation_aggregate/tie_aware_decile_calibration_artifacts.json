@@ -1,0 +1,10 @@
+{
+  "source_csv": "recovery_20260822/gate1_approved_run/validation_extensions/tie_aware_decile_calibration_source.csv",
+  "full_pdf": "recovery_20260822/gate1_approved_run/validation_extensions/tie_aware_decile_calibration.pdf",
+  "full_svg": "recovery_20260822/gate1_approved_run/validation_extensions/tie_aware_decile_calibration.svg",
+  "full_png": "recovery_20260822/gate1_approved_run/validation_extensions/tie_aware_decile_calibration.png",
+  "main_pdf": "recovery_20260822/gate1_approved_run/validation_extensions/tie_aware_decile_calibration_main.pdf",
+  "main_svg": "recovery_20260822/gate1_approved_run/validation_extensions/tie_aware_decile_calibration_main.svg",
+  "main_png": "recovery_20260822/gate1_approved_run/validation_extensions/tie_aware_decile_calibration_main.png",
+  "manuscript_summary_tex": "recovery_20260822/gate1_approved_run/validation_extensions/tie_aware_calibration_summary.tex"
+}

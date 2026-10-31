@@ -1,0 +1,25 @@
+nodes_per_dimension,second,excluded_fraction,excluded_stays,excluded_side,n_retained_stays,retained_mean_difference,summary_scope
+31,random_slope_lqmm,0.001,23,most_favorable,21982,-0.0058451636620914715,outcome-ranked deletion diagnostic changes target composition
+31,random_slope_lqmm,0.001,23,least_favorable,21982,-0.02208482900178362,outcome-ranked deletion diagnostic changes target composition
+31,random_slope_lqmm,0.01,221,most_favorable,21784,0.0286565823037719,outcome-ranked deletion diagnostic changes target composition
+31,random_slope_lqmm,0.01,221,least_favorable,21784,-0.04433400913555244,outcome-ranked deletion diagnostic changes target composition
+31,random_slope_lqmm,0.05,1101,most_favorable,20904,0.07829666697322049,outcome-ranked deletion diagnostic changes target composition
+31,random_slope_lqmm,0.05,1101,least_favorable,20904,-0.10285089093919515,outcome-ranked deletion diagnostic changes target composition
+31,calibrated_random_slope_lqmm,0.001,23,most_favorable,21982,-0.02176615517547764,outcome-ranked deletion diagnostic changes target composition
+31,calibrated_random_slope_lqmm,0.001,23,least_favorable,21982,-0.03620291159386618,outcome-ranked deletion diagnostic changes target composition
+31,calibrated_random_slope_lqmm,0.01,221,most_favorable,21784,-0.0003240091114973642,outcome-ranked deletion diagnostic changes target composition
+31,calibrated_random_slope_lqmm,0.01,221,least_favorable,21784,-0.06097600220518636,outcome-ranked deletion diagnostic changes target composition
+31,calibrated_random_slope_lqmm,0.05,1101,most_favorable,20904,0.0377996848841833,outcome-ranked deletion diagnostic changes target composition
+31,calibrated_random_slope_lqmm,0.05,1101,least_favorable,20904,-0.11855063268823599,outcome-ranked deletion diagnostic changes target composition
+61,random_slope_lqmm,0.001,23,most_favorable,21982,-0.012553153082570639,outcome-ranked deletion diagnostic changes target composition
+61,random_slope_lqmm,0.001,23,least_favorable,21982,-0.029628021696780228,outcome-ranked deletion diagnostic changes target composition
+61,random_slope_lqmm,0.01,221,most_favorable,21784,0.02469693961099911,outcome-ranked deletion diagnostic changes target composition
+61,random_slope_lqmm,0.01,221,least_favorable,21784,-0.051890103448784995,outcome-ranked deletion diagnostic changes target composition
+61,random_slope_lqmm,0.05,1101,most_favorable,20904,0.0786122977490093,outcome-ranked deletion diagnostic changes target composition
+61,random_slope_lqmm,0.05,1101,least_favorable,20904,-0.11106850043166382,outcome-ranked deletion diagnostic changes target composition
+61,calibrated_random_slope_lqmm,0.001,23,most_favorable,21982,-0.027076883332467692,outcome-ranked deletion diagnostic changes target composition
+61,calibrated_random_slope_lqmm,0.001,23,least_favorable,21982,-0.04177968339312128,outcome-ranked deletion diagnostic changes target composition
+61,calibrated_random_slope_lqmm,0.01,221,most_favorable,21784,-0.005388500774968042,outcome-ranked deletion diagnostic changes target composition
+61,calibrated_random_slope_lqmm,0.01,221,least_favorable,21784,-0.06680399945418086,outcome-ranked deletion diagnostic changes target composition
+61,calibrated_random_slope_lqmm,0.05,1101,most_favorable,20904,0.033474256057357175,outcome-ranked deletion diagnostic changes target composition
+61,calibrated_random_slope_lqmm,0.05,1101,least_favorable,20904,-0.12464057788995331,outcome-ranked deletion diagnostic changes target composition

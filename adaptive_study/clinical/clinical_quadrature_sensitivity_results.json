@@ -1,0 +1,430 @@
+{
+  "design": {
+    "main_quadrature_nodes_per_dimension": 31,
+    "sensitivity_nodes_per_dimension": 61,
+    "tau": 0.1,
+    "landmark_hours": 12,
+    "horizon_hours": [
+      4,
+      8,
+      12
+    ],
+    "fixed_profile_penalty": [
+      0.03,
+      0.1
+    ],
+    "all_main_tuning_and_selections_unchanged": true,
+    "score_weighting": "mean within each stay, then equal weight across stays",
+    "tuning_precision_weighting": "mean observation change within each tuning stay, then equal weight across tuning stays"
+  },
+  "cohort_checks": [
+    {
+      "horizon_hours": 4.0,
+      "n_stays": 21843,
+      "n_later_observations": 88940,
+      "exact_identifiers_and_later_counts_match": true
+    },
+    {
+      "horizon_hours": 8.0,
+      "n_stays": 21976,
+      "n_later_observations": 172015,
+      "exact_identifiers_and_later_counts_match": true
+    },
+    {
+      "horizon_hours": 12.0,
+      "n_stays": 22005,
+      "n_later_observations": 250046,
+      "exact_identifiers_and_later_counts_match": true
+    }
+  ],
+  "fitting_validation": {
+    "n_fitting_stays": 20855,
+    "n_observations": 549234,
+    "tau": 0.1,
+    "nodes_per_dimension": 61,
+    "quadrature_nodes": 3721,
+    "maximum_outcome_difference": 0,
+    "maximum_covariate_difference": 0,
+    "maximum_random_design_difference": 0,
+    "maximum_relative_parameter_difference": 2.7460533709483803e-15,
+    "group_membership_matches": true,
+    "dimensions_match": true,
+    "lower_iterations": 189,
+    "upper_iterations": 4,
+    "log_likelihood": -2141310.06307065,
+    "validation_passed": true
+  },
+  "aggregate_tables": {
+    "clinical_quadrature61_temporal_model_summary": [
+      {
+        "scope": "temporal_2017_2022_sensitivity_61",
+        "horizon_hours": 4.0,
+        "model": "fixed_diagonal_profile",
+        "n_stays": 21843,
+        "mean_loss": 1.7786411131260078,
+        "p_lt": 0.09591659665888415,
+        "p_le": 0.09642921048525983,
+        "bracket_violation": 0.003570789514740172,
+        "profile_level_penalty": 0.03,
+        "profile_slope_penalty": 0.1
+      },
+      {
+        "scope": "temporal_2017_2022_sensitivity_61",
+        "horizon_hours": 4.0,
+        "model": "random_slope_lqmm_61",
+        "n_stays": 21843,
+        "mean_loss": 1.7568324662232884,
+        "p_lt": 0.07819043164178467,
+        "p_le": 0.07819043164178467,
+        "bracket_violation": 0.021809568358215334,
+        "profile_level_penalty": 0.03,
+        "profile_slope_penalty": 0.1
+      },
+      {
+        "scope": "temporal_2017_2022_sensitivity_61",
+        "horizon_hours": 4.0,
+        "model": "calibrated_random_slope_lqmm_61",
+        "n_stays": 21843,
+        "mean_loss": 1.7601984127820804,
+        "p_lt": 0.07580491847752491,
+        "p_le": 0.07580491847752491,
+        "bracket_violation": 0.024195081522475098,
+        "profile_level_penalty": 0.03,
+        "profile_slope_penalty": 0.1
+      },
+      {
+        "scope": "temporal_2017_2022_sensitivity_61",
+        "horizon_hours": 8.0,
+        "model": "fixed_diagonal_profile",
+        "n_stays": 21976,
+        "mean_loss": 1.845677610390879,
+        "p_lt": 0.0981348399590789,
+        "p_le": 0.09862359909245662,
+        "bracket_violation": 0.0013764009075433875,
+        "profile_level_penalty": 0.03,
+        "profile_slope_penalty": 0.1
+      },
+      {
+        "scope": "temporal_2017_2022_sensitivity_61",
+        "horizon_hours": 8.0,
+        "model": "random_slope_lqmm_61",
+        "n_stays": 21976,
+        "mean_loss": 1.8409835270064674,
+        "p_lt": 0.08327672761342306,
+        "p_le": 0.08327672761342306,
+        "bracket_violation": 0.01672327238657695,
+        "profile_level_penalty": 0.03,
+        "profile_slope_penalty": 0.1
+      },
+      {
+        "scope": "temporal_2017_2022_sensitivity_61",
+        "horizon_hours": 8.0,
+        "model": "calibrated_random_slope_lqmm_61",
+        "n_stays": 21976,
+        "mean_loss": 1.8504059969657602,
+        "p_lt": 0.07304949828671077,
+        "p_le": 0.07304949828671077,
+        "bracket_violation": 0.026950501713289235,
+        "profile_level_penalty": 0.03,
+        "profile_slope_penalty": 0.1
+      },
+      {
+        "scope": "temporal_2017_2022_sensitivity_61",
+        "horizon_hours": 12.0,
+        "model": "fixed_diagonal_profile",
+        "n_stays": 22005,
+        "mean_loss": 1.894963949594024,
+        "p_lt": 0.09895479664579483,
+        "p_le": 0.09947937806847026,
+        "bracket_violation": 0.0005206219315297411,
+        "profile_level_penalty": 0.03,
+        "profile_slope_penalty": 0.1
+      },
+      {
+        "scope": "temporal_2017_2022_sensitivity_61",
+        "horizon_hours": 12.0,
+        "model": "random_slope_lqmm_61",
+        "n_stays": 22005,
+        "mean_loss": 1.9194910462739077,
+        "p_lt": 0.08736279945632631,
+        "p_le": 0.08736279945632631,
+        "bracket_violation": 0.01263720054367369,
+        "profile_level_penalty": 0.03,
+        "profile_slope_penalty": 0.1
+      },
+      {
+        "scope": "temporal_2017_2022_sensitivity_61",
+        "horizon_hours": 12.0,
+        "model": "calibrated_random_slope_lqmm_61",
+        "n_stays": 22005,
+        "mean_loss": 1.9309284289381166,
+        "p_lt": 0.07032216485449377,
+        "p_le": 0.07032216485449377,
+        "bracket_violation": 0.02967783514550623,
+        "profile_level_penalty": 0.03,
+        "profile_slope_penalty": 0.1
+      }
+    ],
+    "clinical_quadrature61_temporal_paired_comparisons": [
+      {
+        "scope": "temporal_2017_2022_sensitivity_61",
+        "horizon_hours": 4.0,
+        "candidate": "fixed_diagonal_profile",
+        "reference": "random_slope_lqmm_61",
+        "profile_level_penalty": 0.03,
+        "profile_slope_penalty": 0.1,
+        "n_stays": 21843,
+        "mean_difference": 0.021808646902719272,
+        "se": 0.005670958635566701,
+        "ci95_low": 0.010693567977008538,
+        "ci95_high": 0.032923725828430006,
+        "candidate_better_fraction": 0.5339468021791879,
+        "interval_type": "pointwise paired normal 95 percent"
+      },
+      {
+        "scope": "temporal_2017_2022_sensitivity_61",
+        "horizon_hours": 4.0,
+        "candidate": "fixed_diagonal_profile",
+        "reference": "calibrated_random_slope_lqmm_61",
+        "profile_level_penalty": 0.03,
+        "profile_slope_penalty": 0.1,
+        "n_stays": 21843,
+        "mean_difference": 0.018442700343926956,
+        "se": 0.005202260280792525,
+        "ci95_low": 0.008246270193573607,
+        "ci95_high": 0.028639130494280303,
+        "candidate_better_fraction": 0.5382960216087533,
+        "interval_type": "pointwise paired normal 95 percent"
+      },
+      {
+        "scope": "temporal_2017_2022_sensitivity_61",
+        "horizon_hours": 8.0,
+        "candidate": "fixed_diagonal_profile",
+        "reference": "random_slope_lqmm_61",
+        "profile_level_penalty": 0.03,
+        "profile_slope_penalty": 0.1,
+        "n_stays": 21976,
+        "mean_difference": 0.004694083384411435,
+        "se": 0.005294387965507275,
+        "ci95_low": -0.0056829170279828235,
+        "ci95_high": 0.015071083796805693,
+        "candidate_better_fraction": 0.5331270476883874,
+        "interval_type": "pointwise paired normal 95 percent"
+      },
+      {
+        "scope": "temporal_2017_2022_sensitivity_61",
+        "horizon_hours": 8.0,
+        "candidate": "fixed_diagonal_profile",
+        "reference": "calibrated_random_slope_lqmm_61",
+        "profile_level_penalty": 0.03,
+        "profile_slope_penalty": 0.1,
+        "n_stays": 21976,
+        "mean_difference": -0.0047283865748816,
+        "se": 0.004670382975270128,
+        "ci95_low": -0.013882337206411051,
+        "ci95_high": 0.004425564056647851,
+        "candidate_better_fraction": 0.5549235529668729,
+        "interval_type": "pointwise paired normal 95 percent"
+      },
+      {
+        "scope": "temporal_2017_2022_sensitivity_61",
+        "horizon_hours": 12.0,
+        "candidate": "fixed_diagonal_profile",
+        "reference": "random_slope_lqmm_61",
+        "profile_level_penalty": 0.03,
+        "profile_slope_penalty": 0.1,
+        "n_stays": 22005,
+        "mean_difference": -0.02452709667988353,
+        "se": 0.0054632390413061295,
+        "ci95_low": -0.03523504520084354,
+        "ci95_high": -0.013819148158923517,
+        "candidate_better_fraction": 0.5445126107702795,
+        "interval_type": "pointwise paired normal 95 percent"
+      },
+      {
+        "scope": "temporal_2017_2022_sensitivity_61",
+        "horizon_hours": 12.0,
+        "candidate": "fixed_diagonal_profile",
+        "reference": "calibrated_random_slope_lqmm_61",
+        "profile_level_penalty": 0.03,
+        "profile_slope_penalty": 0.1,
+        "n_stays": 22005,
+        "mean_difference": -0.03596447934409237,
+        "se": 0.004566134117990443,
+        "ci95_low": -0.04491410221535364,
+        "ci95_high": -0.027014856472831104,
+        "candidate_better_fraction": 0.5840945239718246,
+        "interval_type": "pointwise paired normal 95 percent"
+      }
+    ],
+    "clinical_quadrature31_to61_tuning_precision": [
+      {
+        "partition": "temporal",
+        "horizon_hours": 4,
+        "method": "direct",
+        "nodes_first": 31,
+        "nodes_second": 61,
+        "n_tuning_stays": 10560,
+        "mean_absolute_change": 0.2139835946069901,
+        "mean_change": 0.0436455785987086,
+        "mean_paired_loss_change": 0.0017394482661314,
+        "maximum_observation_prediction_change": 1.5241271185582406,
+        "prediction_information": "tuning index histories and tuning calibration outcomes"
+      },
+      {
+        "partition": "temporal",
+        "horizon_hours": 4,
+        "method": "affine",
+        "nodes_first": 31,
+        "nodes_second": 61,
+        "n_tuning_stays": 10560,
+        "mean_absolute_change": 0.1573881855698982,
+        "mean_change": -0.0040580323000886,
+        "mean_paired_loss_change": -0.0003929404336789,
+        "maximum_observation_prediction_change": 1.0925972679546447,
+        "prediction_information": "tuning index histories and tuning calibration outcomes"
+      },
+      {
+        "partition": "temporal",
+        "horizon_hours": 8,
+        "method": "direct",
+        "nodes_first": 31,
+        "nodes_second": 61,
+        "n_tuning_stays": 10602,
+        "mean_absolute_change": 0.2439492385970431,
+        "mean_change": 0.0435481733878452,
+        "mean_paired_loss_change": 0.0068919449875332,
+        "maximum_observation_prediction_change": 1.912403246160551,
+        "prediction_information": "tuning index histories and tuning calibration outcomes"
+      },
+      {
+        "partition": "temporal",
+        "horizon_hours": 8,
+        "method": "affine",
+        "nodes_first": 31,
+        "nodes_second": 61,
+        "n_tuning_stays": 10602,
+        "mean_absolute_change": 0.1746905061881373,
+        "mean_change": -0.0337061747078617,
+        "mean_paired_loss_change": 0.0023703984620495,
+        "maximum_observation_prediction_change": 1.3262241042024885,
+        "prediction_information": "tuning index histories and tuning calibration outcomes"
+      },
+      {
+        "partition": "temporal",
+        "horizon_hours": 12,
+        "method": "direct",
+        "nodes_first": 31,
+        "nodes_second": 61,
+        "n_tuning_stays": 10612,
+        "mean_absolute_change": 0.2749368187401984,
+        "mean_change": 0.0439098359365505,
+        "mean_paired_loss_change": 0.013422929792882,
+        "maximum_observation_prediction_change": 2.3006793737628612,
+        "prediction_information": "tuning index histories and tuning calibration outcomes"
+      },
+      {
+        "partition": "temporal",
+        "horizon_hours": 12,
+        "method": "affine",
+        "nodes_first": 31,
+        "nodes_second": 61,
+        "n_tuning_stays": 10612,
+        "mean_absolute_change": 0.1962176708757126,
+        "mean_change": -0.0600545414935242,
+        "mean_paired_loss_change": 0.0049384186688438,
+        "maximum_observation_prediction_change": 1.4218985472576833,
+        "prediction_information": "tuning index histories and tuning calibration outcomes"
+      }
+    ],
+    "clinical_quadrature61_parameters": [
+      {
+        "term": "x_intercept",
+        "estimate": 65.6200785447473
+      },
+      {
+        "term": "age_z",
+        "estimate": -3.18699975391436
+      },
+      {
+        "term": "male",
+        "estimate": 2.42043755097061
+      },
+      {
+        "term": "emergency_or_urgent",
+        "estimate": -0.45520992254957
+      },
+      {
+        "term": "time_u",
+        "estimate": 0.133391643014317
+      },
+      {
+        "term": "variance_level",
+        "estimate": 89.1349929899761
+      },
+      {
+        "term": "covariance_level_slope",
+        "estimate": 9.09870092582087
+      },
+      {
+        "term": "variance_slope",
+        "estimate": 67.8941480479031
+      },
+      {
+        "term": "residual_scale",
+        "estimate": 1.45547167106597
+      },
+      {
+        "term": "residual_mean",
+        "estimate": 12.9375259650308
+      },
+      {
+        "term": "residual_variance",
+        "estimate": 214.455084435303
+      },
+      {
+        "term": "log_likelihood",
+        "estimate": -2141310.06307065
+      },
+      {
+        "term": "lower_iterations",
+        "estimate": 189.0
+      },
+      {
+        "term": "upper_iterations",
+        "estimate": 4.0
+      },
+      {
+        "term": "nodes_per_dimension",
+        "estimate": 61.0
+      },
+      {
+        "term": "quadrature_nodes",
+        "estimate": 3721.0
+      }
+    ],
+    "clinical_quadrature61_calibrations": [
+      {
+        "horizon_hours": 4.0,
+        "intercept": 7.95451653334275,
+        "slope": 0.877655580178105,
+        "stationarity": 8.768710103558359e-11,
+        "relative_gap": 1.58770281660908e-15
+      },
+      {
+        "horizon_hours": 8.0,
+        "intercept": 11.7390389886838,
+        "slope": 0.812990856552317,
+        "stationarity": 3.61819865735136e-10,
+        "relative_gap": 1.88505520137379e-13
+      },
+      {
+        "horizon_hours": 12.0,
+        "intercept": 15.5754358771361,
+        "slope": 0.747916086193053,
+        "stationarity": 8.45668813217089e-10,
+        "relative_gap": 7.20169945534208e-13
+      }
+    ]
+  }
+}

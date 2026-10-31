@@ -1,0 +1,98 @@
+{
+  "csv_fields": {
+    "clinical_model_summary.csv": [
+      "scope",
+      "horizon_hours",
+      "model",
+      "n_stays",
+      "mean_loss",
+      "p_lt",
+      "p_le",
+      "bracket_violation"
+    ],
+    "clinical_temporal_paired.csv": [
+      "scope",
+      "horizon_hours",
+      "first",
+      "second",
+      "n_stays",
+      "interval_type",
+      "mean_difference",
+      "se",
+      "ci95_low",
+      "ci95_high",
+      "candidate_better_fraction"
+    ],
+    "clinical_function_parameters.csv": [
+      "partition",
+      "component",
+      "feature",
+      "estimate",
+      "best_continuous_eta",
+      "selected_kind"
+    ],
+    "clinical_cv_scores.csv": [
+      "partition",
+      "candidate",
+      "validation_loss",
+      "ridge_eta"
+    ],
+    "clinical_affine_coefficients.csv": [
+      "partition",
+      "horizon_hours",
+      "model",
+      "intercept",
+      "slope",
+      "stationarity",
+      "relative_gap"
+    ],
+    "clinical_penalty_summary.csv": [
+      "horizon_hours",
+      "model",
+      "component",
+      "mean",
+      "minimum",
+      "q10",
+      "median",
+      "q90",
+      "maximum",
+      "partition"
+    ],
+    "clinical_optimization_diagnostics.csv": [
+      "partition",
+      "phase",
+      "ridge_eta",
+      "optimizer_success",
+      "objective",
+      "empirical_loss",
+      "gradient_norm",
+      "projected_gradient_norm",
+      "evaluations",
+      "seconds"
+    ],
+    "clinical_solver_diagnostics.csv": [
+      "partition",
+      "phase",
+      "model",
+      "profiles",
+      "all_certified",
+      "max_duality_gap",
+      "max_relative_duality_gap",
+      "minimum_relative_duality_gap",
+      "max_projected_kkt_violation",
+      "max_stationarity_violation",
+      "max_sweeps",
+      "mean_sweeps"
+    ]
+  },
+  "nullable_fields": {
+    "clinical_cv_scores.csv": [
+      "ridge_eta"
+    ]
+  },
+  "public_json": [
+    "clinical_learning_fits.json",
+    "clinical_verification.json",
+    "clinical_public_schema.json"
+  ]
+}

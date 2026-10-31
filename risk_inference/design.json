@@ -1,0 +1,280 @@
+{
+  "configuration": {
+    "out_dir": "local_runs/risk_inference",
+    "n_rep": 200,
+    "reference_n": 10000,
+    "sample_sizes": [
+      240,
+      600,
+      1800
+    ],
+    "seed": 20261015,
+    "tau": 0.1,
+    "common_solver": "quantreg::rq.fit(method='br'); primal/dual certificate checked"
+  },
+  "scenarios": {
+    "ideal_large_dense": {
+      "label": "Ideal: large, dense",
+      "description": "Correct common component, independent errors, persistent level, and dense non-informative observation.",
+      "n_stays": 600,
+      "level_sd": 5.5,
+      "index_count_range": [
+        8,
+        16
+      ],
+      "late_count_range": [
+        8,
+        16
+      ]
+    },
+    "ideal_small_dense": {
+      "label": "Ideal: small, dense",
+      "description": "The ideal mechanism with 240 stays to isolate sample-size sensitivity.",
+      "n_stays": 240,
+      "level_sd": 5.5,
+      "index_count_range": [
+        8,
+        16
+      ],
+      "late_count_range": [
+        8,
+        16
+      ]
+    },
+    "ideal_large_sparse": {
+      "label": "Ideal: large, sparse",
+      "description": "The ideal mechanism with only two to five index observations to isolate observation sparsity.",
+      "n_stays": 600,
+      "level_sd": 5.5,
+      "index_count_range": [
+        2,
+        5
+      ],
+      "late_count_range": [
+        4,
+        8
+      ]
+    },
+    "serial_dependence": {
+      "label": "Serial dependence",
+      "description": "A persistent level is observed with a Gaussian-copula AR(1) residual process on a 15-minute latent grid.",
+      "n_stays": 600,
+      "level_sd": 5.5,
+      "serial_rho_15min": 0.82,
+      "index_count_range": [
+        6,
+        14
+      ],
+      "late_count_range": [
+        6,
+        14
+      ]
+    },
+    "discrete_map_rounding": {
+      "label": "Integer MAP rounding",
+      "description": "Observed and oracle MAP quantiles are rounded to integer mmHg, creating ties that require interval calibration.",
+      "n_stays": 600,
+      "level_sd": 5.5,
+      "serial_rho_15min": 0.55,
+      "rounding_increment": 1.0,
+      "index_count_range": [
+        6,
+        14
+      ],
+      "late_count_range": [
+        6,
+        14
+      ]
+    },
+    "informative_monitoring": {
+      "label": "Informative monitoring",
+      "description": "Observation probability increases for lower latent levels and after a recently observed low MAP.",
+      "n_stays": 600,
+      "level_sd": 5.5,
+      "serial_rho_15min": 0.72,
+      "sampling": "informative_grid",
+      "index_sampling_probability": 0.12,
+      "late_sampling_probability": 0.12,
+      "measurement_level_strength": 0.6,
+      "measurement_recent_strength": 0.85,
+      "index_count_range": [
+        4,
+        22
+      ],
+      "late_count_range": [
+        4,
+        22
+      ]
+    },
+    "cluster_size_informative": {
+      "label": "Association of cluster size with level",
+      "description": "Cluster size is associated with the latent stay level even though observation times are otherwise non-informative.",
+      "n_stays": 600,
+      "level_sd": 5.5,
+      "count_level_strength": 1.05,
+      "index_count_range": [
+        3,
+        20
+      ],
+      "late_count_range": [
+        3,
+        20
+      ]
+    },
+    "common_time_misspecified": {
+      "label": "Misspecified common time",
+      "description": "The true common quantile contains nonlinear circadian and quadratic time structure omitted from the fitted common component.",
+      "n_stays": 600,
+      "level_sd": 5.5,
+      "common_time_amplitude": 5.0,
+      "serial_rho_15min": 0.55,
+      "index_count_range": [
+        6,
+        14
+      ],
+      "late_count_range": [
+        6,
+        14
+      ]
+    },
+    "level_plus_shape": {
+      "label": "Persistent level plus shape",
+      "description": "Persistent random intercepts coexist with stay-specific linear time shape, favoring a correctly targeted level-plus-slope rule.",
+      "n_stays": 600,
+      "level_sd": 3.0,
+      "slope_sd": 5.0,
+      "serial_rho_15min": 0.55,
+      "index_count_range": [
+        8,
+        16
+      ],
+      "late_count_range": [
+        8,
+        16
+      ]
+    },
+    "treatment_feedback": {
+      "label": "Treatment feedback",
+      "description": "An early low lower tail triggers a later MAP-raising intervention whose effect decays over time.",
+      "n_stays": 600,
+      "level_sd": 5.5,
+      "serial_rho_15min": 0.6,
+      "treatment_threshold": 68.0,
+      "treatment_gain": 8.0,
+      "treatment_decay_hours": 7.0,
+      "index_count_range": [
+        6,
+        14
+      ],
+      "late_count_range": [
+        6,
+        14
+      ]
+    },
+    "transient_nonpersistent": {
+      "label": "Transient displacement",
+      "description": "A large index-only shift disappears later, providing a negative control under serial residual dependence.",
+      "n_stays": 600,
+      "level_sd": 0.0,
+      "index_shift_sd": 6.0,
+      "serial_rho_15min": 0.6,
+      "index_count_range": [
+        6,
+        14
+      ],
+      "late_count_range": [
+        6,
+        14
+      ]
+    },
+    "null_serial": {
+      "label": "Pure null with serial dependence",
+      "description": "No persistent level, index shift, or random shape is present; serial residual dependence tests whether tuning suppresses noise-only offsets.",
+      "n_stays": 600,
+      "level_sd": 0.0,
+      "index_shift_sd": 0.0,
+      "slope_sd": 0.0,
+      "serial_rho_15min": 0.82,
+      "index_count_range": [
+        6,
+        14
+      ],
+      "late_count_range": [
+        6,
+        14
+      ]
+    },
+    "weak_level": {
+      "label": "Weak persistent level",
+      "description": "A small but persistent stay-specific lower-tail level tests power and shrinkage under a weak signal.",
+      "n_stays": 600,
+      "level_sd": 2.5,
+      "index_count_range": [
+        8,
+        16
+      ],
+      "late_count_range": [
+        8,
+        16
+      ]
+    },
+    "heavy_tail_t3": {
+      "label": "Heavy tailed t3 residual",
+      "description": "A persistent level is observed with independent Student-t3 marginal residuals centered at their exact 0.10 quantile.",
+      "n_stays": 600,
+      "level_sd": 5.5,
+      "noise": "student_t",
+      "noise_df": 3.0,
+      "noise_scale": 0.85,
+      "index_count_range": [
+        8,
+        16
+      ],
+      "late_count_range": [
+        8,
+        16
+      ]
+    }
+  },
+  "methods": [
+    "population",
+    "tuned_level",
+    "affine_calibrated_q10"
+  ],
+  "contrasts": [
+    [
+      "tuned_level",
+      "population"
+    ],
+    [
+      "affine_calibrated_q10",
+      "population"
+    ],
+    [
+      "tuned_level",
+      "affine_calibrated_q10"
+    ]
+  ],
+  "lambda_grid": [
+    0.0,
+    0.03,
+    0.1,
+    0.3,
+    1.0,
+    3.0,
+    10.0
+  ],
+  "evaluation_unit": "Independent ICU stay, averaging check loss over later records within stay",
+  "independent_target": "Conditional paired risk difference of rules frozen after fitting and tuning",
+  "reference": "An independent generated cohort in every replicate, reused within that replicate across rules and sample sizes",
+  "cross_fitted_target": "Fold-size-weighted conditional risk of the five frozen fold-specific rules",
+  "cross_fitted_measure": "OOF mean loss minus the corresponding independent reference estimate; no CLT interval is claimed",
+  "coverage_reference_uncertainty": "Coverage at the reference estimate, plus proportions containing or intersecting its 95% Monte Carlo interval as sensitivity measures, not deterministic bounds on true coverage",
+  "environment": {
+    "python": "3.12.1",
+    "numpy": "1.26.4",
+    "pandas": "2.2.2",
+    "scipy": "1.14.0",
+    "R": "Rscript (R) version 4.3.2 (2023-10-31)"
+  }
+}

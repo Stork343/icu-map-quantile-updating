@@ -1,0 +1,33 @@
+{
+  "status": "complete",
+  "version": "continuous_constant_clinical_20261031_v1",
+  "partitions": [
+    "fold_1",
+    "fold_2",
+    "fold_3",
+    "fold_4",
+    "fold_5",
+    "temporal"
+  ],
+  "forecast_horizons": [
+    4.0,
+    8.0,
+    12.0
+  ],
+  "temporal_contrasts": 24,
+  "public_identifier_columns": 0,
+  "nested_uncertainty": "descriptive fold means and saved-forecast omissions",
+  "files": [
+    "clinical_model_summary.csv",
+    "clinical_temporal_paired.csv",
+    "clinical_nested_pairs.csv",
+    "clinical_nested_omission.csv",
+    "clinical_penalty_summary.csv",
+    "clinical_history_parameters.csv",
+    "clinical_affine_coefficients.csv",
+    "clinical_optimizer_diagnostics.csv",
+    "clinical_solver_diagnostics.csv",
+    "clinical_validation_scores.csv",
+    "clinical_fits.json"
+  ]
+}

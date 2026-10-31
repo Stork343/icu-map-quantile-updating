@@ -1,0 +1,29 @@
+{
+  "status": "passed",
+  "numerical_files": 19,
+  "personal_paths": 0,
+  "files": [
+    "budget_cv_control_risks.csv",
+    "budget_cv_controls.csv",
+    "budget_execution_manifest.json",
+    "budget_objective_changes.csv",
+    "budget_paired_summary.csv",
+    "budget_risk_changes.csv",
+    "budget_sensitivity_report.json",
+    "frozen_selection_replay.csv",
+    "geometry_assessment_reference.csv",
+    "geometry_seed_blocks.csv",
+    "geometry_stability.csv",
+    "learning_assessment_reference.csv",
+    "learning_seed_blocks.csv",
+    "learning_stability.csv",
+    "optimization_budget_inventory.csv",
+    "optimization_budget_jobs.csv",
+    "optimization_budget_plan.json",
+    "optimization_status.csv",
+    "stability_report.json"
+  ],
+  "fullfit_budget_comparisons": 422,
+  "full_cv_budget_comparisons": 30,
+  "calculation": "Original portable programs rerun on the saved simulation datasets using the original declared package versions."
+}

@@ -1505,6 +1505,14 @@ def collect_scope_outputs(
     }
 
 
+def validate_age_definition(stays: pd.DataFrame, expected: str) -> None:
+    stored = sorted(set(stays.get("age_definition", pd.Series(dtype=object)).dropna().astype(str)))
+    if stored and stored != [expected]:
+        raise RuntimeError(
+            f"Requested age definition {expected!r} does not match the cache definition {stored}."
+        )
+
+
 def main() -> None:
     script_dir = Path(__file__).resolve().parent
     paper_root = script_dir.parent
@@ -1529,6 +1537,7 @@ def main() -> None:
     parser.add_argument("--work-dir", type=Path, default=None)
     parser.add_argument("--fit-stays", type=int, default=0)
     parser.add_argument("--seed", type=int, default=20260522)
+    parser.add_argument("--age-definition", choices=data_utils.AGE_DEFINITION_CHOICES, default="icu_proxy")
     parser.add_argument("--tau", type=float, default=0.10)
     parser.add_argument("--index-hours", type=float, default=12.0)
     parser.add_argument("--lambda-grid", type=parse_float_grid, default=parse_float_grid("0,0.03,0.10,0.30,1,3,10"))
@@ -1553,6 +1562,7 @@ def main() -> None:
         print("Loading analytic cache and frozen nested OOF predictions", flush=True)
         obs = _safe_read_frame(args.obs_cache)
         stays = _safe_read_frame(args.stays_cache)
+        validate_age_definition(stays, args.age_definition)
         dataset, data_summary, _ = build_dataset_from_cache(
             obs, stays, fit_stays=args.fit_stays, seed=args.seed, analysis_hours=24.0
         )
@@ -1702,6 +1712,7 @@ def main() -> None:
     print("Loading combined recovery cache", flush=True)
     obs = _safe_read_frame(args.obs_cache)
     stays = _safe_read_frame(args.stays_cache)
+    validate_age_definition(stays, args.age_definition)
     dataset, data_summary, _ = build_dataset_from_cache(
         obs, stays, fit_stays=args.fit_stays, seed=args.seed, analysis_hours=24.0
     )
@@ -1857,6 +1868,7 @@ def main() -> None:
         "data_summary": data_summary,
         "settings": {
             "seed": args.seed,
+            "age_definition": args.age_definition,
             "tau": args.tau,
             "index_hours": args.index_hours,
             "lambda_grid": args.lambda_grid,

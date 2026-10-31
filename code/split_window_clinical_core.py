@@ -45,7 +45,9 @@ def validation_losses_generic(
         y = y_all[start:end]
         t = t_all[start:end]
         fitted = fitted_all[start:end]
-        index_idx, late_idx = split_indices_for_hours(t, index_hours)
+        index_idx, late_idx = split_indices_for_hours(t, index_hours, min_index_obs=4, min_late_obs=1)
+        if index_idx.size == 0 or late_idx.size == 0:
+            continue
         if update == "none":
             late_resid = y[late_idx] - fitted[late_idx]
             b_hat = 0.0
@@ -90,6 +92,10 @@ def tune_lambda_generic(
             update="profiled",
             lambda_b=float(lam),
         )
+        if losses.size == 0:
+            raise RuntimeError(
+                f"No stays satisfy the strict clock qualification at {index_hours:g} hours."
+            )
         row = {
             "lambda_b": float(lam),
             "updated_validation_loss": float(np.mean(losses)),
@@ -126,7 +132,9 @@ def stay_level_features(
         stay_index = int(stay_index_all[start])
         y = y_all[start:end]
         t = t_all[start:end]
-        index_idx, late_idx = split_indices_for_hours(t, index_hours)
+        index_idx, late_idx = split_indices_for_hours(t, index_hours, min_index_obs=4, min_late_obs=1)
+        if index_idx.size == 0 or late_idx.size == 0:
+            continue
         fitted = fitted_all[start:end]
         residual = y - fitted
         offset = profiled_intercept(residual[index_idx], tau=tau, lambda_b=lambda_b)

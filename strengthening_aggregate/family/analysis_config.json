@@ -1,0 +1,69 @@
+{
+  "tau": 0.1,
+  "index_hours": 12.0,
+  "seed": 20260522,
+  "outer_folds": 5,
+  "age_definition": "icu_proxy",
+  "cache_schema_version": 4,
+  "qualification": [
+    8,
+    4,
+    1
+  ],
+  "scalar_penalty_grid": [
+    0.0,
+    0.03,
+    0.1,
+    0.3,
+    1.0,
+    3.0,
+    10.0
+  ],
+  "level_penalty_grid": [
+    0.03,
+    0.1,
+    0.3,
+    1.0,
+    3.0,
+    10.0
+  ],
+  "slope_penalty_grid": [
+    0.03,
+    0.1,
+    0.3,
+    1.0,
+    3.0,
+    10.0,
+    30.0,
+    100.0
+  ],
+  "matrix_grid": "all diagonal matrices from the Cartesian product of positive level and slope grids",
+  "affine_calibration": "a+c*q(t); equal total later-observation weight per tuning stay",
+  "selection": "minimum equal-stay tuning later check loss; parameters and candidate frozen before assessment",
+  "equivalent_candidates": {
+    "scalar_lambda_zero": "raw_q10",
+    "calibrated_scalar_lambda_zero": "calibrated_q10"
+  },
+  "family_tie_order": [
+    "population",
+    "calibrated_population",
+    "raw_q10",
+    "scalar_profile",
+    "calibrated_profile",
+    "level_with_slope",
+    "calibrated_level_with_slope",
+    "calibrated_last",
+    "calibrated_min",
+    "calibrated_mean",
+    "calibrated_q10",
+    "calibrated_below65_burden"
+  ],
+  "nested_inference": "pooled risk estimate and fold-specific risk; no pooled fixed-rule confidence intervals",
+  "temporal_assignment": "aligned_full_containment",
+  "temporal_periods": [
+    "2008 - 2013",
+    "2014 - 2016",
+    "2017 - 2022"
+  ],
+  "public_output_policy": "aggregate results only; local assessment metrics stay in ignored .review-work"
+}

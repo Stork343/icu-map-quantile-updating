@@ -1,0 +1,13 @@
+{
+  "status": "passed",
+  "partitions_checked": 6,
+  "zero_history_fits_checked": 24,
+  "temporal_contrasts_checked": 24,
+  "nested_comparisons_checked": 144,
+  "omission_summaries_checked": 120,
+  "penalty_summary_rows_checked": 180,
+  "affine_coefficient_rows_checked": 36,
+  "original_frozen_metric_maximum_error": 7.105427357601002e-15,
+  "holm_verified_by": "R stats::p.adjust(method='holm')",
+  "public_identifier_columns": 0
+}

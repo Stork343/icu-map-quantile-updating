@@ -1,0 +1,7 @@
+partition,n_fitting_stays,n_observations,tau,nodes_per_dimension,quadrature_nodes,maximum_outcome_difference,maximum_covariate_difference,maximum_random_design_difference,maximum_relative_parameter_difference,group_membership_matches,dimensions_match,lower_iterations,upper_iterations,log_likelihood,validation_passed
+fold_1,36186,930433,0.1,31,961,0,0,0,3.0876755091083802e-15,True,True,179,4,-3616133.55083157,True
+fold_2,36186,929834,0.1,31,961,0,0,0,3.3101168757467302e-15,True,True,209,2,-3612983.2555476,True
+fold_3,36186,930196,0.1,31,961,0,0,0,3.6166959124819904e-15,True,True,199,2,-3614667.92357442,True
+fold_4,36186,932371,0.1,31,961,0,0,0,4.50254707450555e-15,True,True,177,3,-3624741.14811654,True
+fold_5,36186,930671,0.1,31,961,0,0,0,3.6086445248941406e-15,True,True,185,2,-3618203.41434973,True
+temporal,20855,549234,0.1,31,961,0,0,0,2.1249636860182903e-15,True,True,195,3,-2142335.0693906,True

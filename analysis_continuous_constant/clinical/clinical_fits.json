@@ -1,0 +1,170 @@
+[
+  {
+    "partition": "fold_1",
+    "selected_kind": "continuous_constant",
+    "grid_validation_score": 1.8501363755111853,
+    "continuous_validation_score": 1.8437252315030213,
+    "continuous_parameters": [
+      [
+        -12.0,
+        -12.0,
+        -4.070470348562032,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        -2.750297195183085,
+        -2.4317912568134794,
+        -2.0340039832651757,
+        0.0,
+        0.0,
+        0.0
+      ]
+    ],
+    "optimizer_success": true,
+    "projected_gradient_norm": 4.131707652454963e-06,
+    "max_iter": 100,
+    "deterministic_starts": 2
+  },
+  {
+    "partition": "fold_2",
+    "selected_kind": "continuous_constant",
+    "grid_validation_score": 1.8438431678745766,
+    "continuous_validation_score": 1.8379857027269477,
+    "continuous_parameters": [
+      [
+        -12.0,
+        -12.0,
+        -4.117693123492097,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        -3.0154208884605165,
+        -2.4826617930256196,
+        -2.091898979195286,
+        0.0,
+        0.0,
+        0.0
+      ]
+    ],
+    "optimizer_success": true,
+    "projected_gradient_norm": 4.241872747723363e-06,
+    "max_iter": 100,
+    "deterministic_starts": 2
+  },
+  {
+    "partition": "fold_3",
+    "selected_kind": "continuous_constant",
+    "grid_validation_score": 1.8412214879302047,
+    "continuous_validation_score": 1.8348717804854735,
+    "continuous_parameters": [
+      [
+        -12.0,
+        -12.0,
+        -3.634554184763572,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        -3.0078623513547997,
+        -2.506821874833899,
+        -2.09364775437796,
+        0.0,
+        0.0,
+        0.0
+      ]
+    ],
+    "optimizer_success": true,
+    "projected_gradient_norm": 4.009556964668093e-06,
+    "max_iter": 100,
+    "deterministic_starts": 2
+  },
+  {
+    "partition": "fold_4",
+    "selected_kind": "continuous_constant",
+    "grid_validation_score": 1.8360731385626115,
+    "continuous_validation_score": 1.8300920645706336,
+    "continuous_parameters": [
+      [
+        -12.0,
+        -12.0,
+        -4.5085677277639515,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        -2.8663509874546413,
+        -2.348819170055678,
+        -2.085031522041866,
+        0.0,
+        0.0,
+        0.0
+      ]
+    ],
+    "optimizer_success": true,
+    "projected_gradient_norm": 1.953479279670489e-06,
+    "max_iter": 100,
+    "deterministic_starts": 2
+  },
+  {
+    "partition": "fold_5",
+    "selected_kind": "continuous_constant",
+    "grid_validation_score": 1.8584506148559052,
+    "continuous_validation_score": 1.852913466475148,
+    "continuous_parameters": [
+      [
+        -12.0,
+        -10.989574958167626,
+        -4.097243007745109,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        -2.866088042894517,
+        -2.3501979389386567,
+        -2.0100218611311025,
+        0.0,
+        0.0,
+        0.0
+      ]
+    ],
+    "optimizer_success": true,
+    "projected_gradient_norm": 3.5482662541497234e-06,
+    "max_iter": 100,
+    "deterministic_starts": 2
+  },
+  {
+    "partition": "temporal",
+    "selected_kind": "continuous_constant",
+    "grid_validation_score": 1.8046277051257942,
+    "continuous_validation_score": 1.7953229683442506,
+    "continuous_parameters": [
+      [
+        -12.0,
+        -3.9927115471011616,
+        -3.2444756231584324,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        -3.0111463257426374,
+        -2.5287062225472816,
+        -2.1263949696152884,
+        0.0,
+        0.0,
+        0.0
+      ]
+    ],
+    "optimizer_success": true,
+    "projected_gradient_norm": 1.6017986653515948e-05,
+    "max_iter": 100,
+    "deterministic_starts": 2
+  }
+]

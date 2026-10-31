@@ -1,0 +1,54 @@
+{
+  "version": "continuous_constant_control_20261031_v1",
+  "replicates_per_setting": 200,
+  "settings": [
+    "informative_recovery",
+    "weaker_recovery",
+    "information_limit",
+    "serial_integer_stress"
+  ],
+  "horizons": [
+    4.0,
+    8.0,
+    12.0
+  ],
+  "contrasts": [
+    [
+      "continuous_direct",
+      "continuous_constant_direct"
+    ],
+    [
+      "selected_direct",
+      "selected_constant_direct"
+    ],
+    [
+      "continuous_affine",
+      "continuous_constant_affine"
+    ],
+    [
+      "selected_affine",
+      "selected_constant_affine"
+    ],
+    [
+      "continuous_constant_direct",
+      "constant_direct"
+    ],
+    [
+      "selected_constant_direct",
+      "constant_direct"
+    ],
+    [
+      "continuous_constant_affine",
+      "constant_affine"
+    ],
+    [
+      "selected_constant_affine",
+      "constant_affine"
+    ]
+  ],
+  "comparison_count": 192,
+  "source": "component_learning/simulation",
+  "max_iter": 100,
+  "deterministic_starts": 2,
+  "protocol": "# Continuous constant component comparison\n\nThe comparison separates continuous penalty optimization from dependence on the early record. All choices below are fixed before assessment of the added rules.\n\n## Fitted rules\n\nThe continuous constant model uses the existing two component penalty functions with all six history coefficients fixed at zero. Its six horizon intercepts retain the original bounds of minus twelve to twelve. The penalty ranges remain 0.03 to 10 for level and 0.03 to 100 for slope. The original exact 48 matrix grid branch retains the endpoints of those ranges.\n\nThe zero history model uses the original L-BFGS-B options, a maximum of 100 iterations per start and the same two deterministic starts. Population fits, index records, tuning records and grouping of horizons within stay are retained. Individual profiles must pass the existing optimality checks. Optimizer stopping conditions and the numbers of objective and profile evaluations are recorded.\n\nGrouped threefold validation fits the continuous constant model inside each original inner training fold and assesses it on that fold's held out tuning stays. These validation scores select between the continuous constant model and the exact grid branch, with the grid branch retained in numerical ties. A final continuous constant fit uses all tuning stays and the retained branch decision. The history dependent procedure and its original validation choices remain frozen, permitting a direct comparison of the two fitted procedures.\n\nBoth the continuous constant model and its validation selected version are assessed. Each receives a separate horizon specific affine calibration estimated on tuning records by the original stay weighted objective. Direct forecasts and affine calibrated forecasts remain distinct comparisons.\n\n## Simulation comparisons\n\nReuse all four original settings and all 200 independent datasets per setting. Each dataset retains its original fitting and tuning allocation, 120 assessment stays and 2,000 independent reference stays. All three forecast horizons are evaluated. No replicate is removed on the basis of its result.\n\nThe eight paired contrasts are history continuous direct minus continuous constant direct; history selected direct minus selected constant direct; history continuous affine minus continuous constant affine; history selected affine minus selected constant affine; continuous constant direct minus grid constant direct; selected constant direct minus grid constant direct; continuous constant affine minus grid constant affine; and selected constant affine minus grid constant affine.\n\nThe new family contains 192 setting, horizon, population and contrast combinations. Simultaneous two sided 95 percent intervals use paired replicate means, their Monte Carlo standard errors and the Bonferroni adjusted Student t critical value with 199 degrees of freedom. Pointwise intervals and replicate gain frequencies are also supplied. Original comparison families retain their original results and multiplicity definitions.\n\n## Clinical comparisons\n\nUse the five original nested partitions and the original temporal partition, retaining the population coefficients and fitting only age standardization for each partition. Fit each added rule using the original tuning stays and grouped validation seed. The assessment observations and eligibility at four, eight and twelve hours remain unchanged.\n\nNested results report pooled out of fold losses, the five fold means and omission diagnostics. They do not use a pooled independent sample interval as inference for the retrained procedure. Temporal comparisons condition on the frozen rules and use paired stay differences. The eight temporal contrasts at three horizons form a family of 24 comparisons, with simultaneous normal intervals and Holm adjusted two sided tests. Calibration brackets, fitting choices and numerical diagnostics are retained.\n\n## Reproduction\n\nThe output records original seeds, source fitted rule identifiers, validation assignments, penalty bounds and solver configuration. Original history dependent predictions are replayed against their saved results before the new comparisons are interpreted. Public clinical exports contain aggregate quantities; individual clinical records remain in credentialed local storage.\n"
+}

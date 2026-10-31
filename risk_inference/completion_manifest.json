@@ -1,0 +1,11 @@
+{
+  "n_mechanisms": 14,
+  "n_replicates_per_mechanism": 200,
+  "n_complete_datasets": 2800,
+  "n_common_fits": 44800,
+  "n_independent_intervals": 8400,
+  "n_cross_fitted_risk_estimates": 25200,
+  "common_solver": "quantreg::rq.fit(method='br'); primal/dual certificate checked",
+  "max_dual_stationarity": 1.22353904785655e-10,
+  "max_relative_objective_gap": 2.5443761411750905e-14
+}

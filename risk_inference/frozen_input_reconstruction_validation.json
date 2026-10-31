@@ -1,0 +1,11 @@
+{
+  "status": "passed",
+  "fitted_rules": 600,
+  "original_interval_comparisons_verified": 1800,
+  "scenarios": [
+    "common_time_misspecified",
+    "ideal_large_dense",
+    "cluster_size_informative"
+  ],
+  "elapsed_seconds": 455.83740149997175
+}

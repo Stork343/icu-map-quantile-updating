@@ -1,0 +1,13 @@
+component,feature,estimate
+level,horizon_4,-1.7709146896781727
+level,horizon_8,-2.0877476016682075
+level,horizon_12,-2.087748540065001
+level,count,0.21696781854450134
+level,time_spread,0.1474629949159229
+level,q10_change,0.3323501755909254
+slope,horizon_4,-10.166276324484084
+slope,horizon_8,-12.0
+slope,horizon_12,-12.0
+slope,count,0.002599832849752476
+slope,time_spread,0.001705555337764474
+slope,q10_change,-0.005304742459365534

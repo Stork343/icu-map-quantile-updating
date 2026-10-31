@@ -1,0 +1,56 @@
+{
+  "analysis_type": "revised_mimic_map_cache",
+  "cache_schema_version": 4,
+  "seed": 20260522,
+  "candidate_stays": 100000,
+  "analysis_hours": 24.0,
+  "min_obs_per_stay": 8,
+  "duplicate_window_minutes": 5,
+  "map_source": "noninvasive",
+  "age_definition": "icu_proxy",
+  "source_files": {
+    "hosp/admissions.csv.gz": {
+      "bytes": 19928140,
+      "sha256_from_distribution_manifest": "a9584ed88e9ed664a2f66f86a5cf9fd175c8bb0af50e3b6115598b19e978384e"
+    },
+    "hosp/patients.csv.gz": {
+      "bytes": 2835586,
+      "sha256_from_distribution_manifest": "4c7507de7ecad8c5ba7647ea4d26018e88ff6672c5fc22ab59c2a5697d687cdd"
+    },
+    "icu/chartevents.csv.gz": {
+      "bytes": 3502392765,
+      "sha256_from_distribution_manifest": "fd0387653084e5b142756b98b74fdddc2e5e7eb0f496aa8bf5af3d4176e71098"
+    },
+    "icu/d_items.csv.gz": {
+      "bytes": 58741,
+      "sha256_from_distribution_manifest": "7f223a9570da9c02bd12f281b398cb4951d5a560a51836540f357bc247366b7f"
+    },
+    "icu/icustays.csv.gz": {
+      "bytes": 3342355,
+      "sha256_from_distribution_manifest": "3c590ed37f1fb7a77a128f2f6961f836001512ba81adcd0dfeced2702f96bc5f"
+    }
+  },
+  "algorithm_files": {
+    "build_revised_mimic_map_cache.py": "bc7089bed3e9b28ec4d712c3e910cd2959f8d5ac5dae9327b6fc1fbf30b59400",
+    "split_window_data.py": "4897a0c92db05f925f0a0d1a3ab31966b057a36860abf19439220168d25a3c61"
+  },
+  "data_root": "data/mimic-iv-3.1",
+  "cache_dir": "recovery_20260822/gate1_approved_run/source_sensitivity/noninvasive/cache",
+  "icu_window_rule": "intime <= charttime <= min(outtime, intime + analysis_hours)",
+  "bucket_source_rule": "invasive priority within bucket; otherwise noninvasive",
+  "bucket_aggregation": "arithmetic mean within selected source and bucket",
+  "retained_cache_stays": 47059,
+  "retained_cache_observations": 1014849,
+  "age_summary": {
+    "age_definition": "icu_proxy",
+    "high_age_coded_stays": 2274,
+    "age_proxy_available_stays": 47059,
+    "age_year_delta_min": 0,
+    "age_year_delta_max": 15,
+    "age_changed_stays": 13792
+  },
+  "split_window_eligible_stays_12h": 41481,
+  "map_below_65_observation_fraction": 0.16592222094124348,
+  "obs_cache": "recovery_20260822/gate1_approved_run/source_sensitivity/noninvasive/cache/mimic_map_observations.parquet",
+  "stays_cache": "recovery_20260822/gate1_approved_run/source_sensitivity/noninvasive/cache/mimic_map_stays.parquet"
+}

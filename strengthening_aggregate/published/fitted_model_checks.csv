@@ -1,0 +1,7 @@
+partition,n_fitting_stays,n_observations,quadrature_nodes,lower_iterations,upper_iterations,maximum_relative_serialization_error,fitted_parameters_finite,optimization_converged,fitting_outcomes_covariates_and_membership_match,model_dimensions_match,log_likelihood
+fold_1,36186,930433,321,152,3,2.20439830435319e-15,TRUE,TRUE,TRUE,TRUE,-3665041.18100419
+fold_2,36186,929834,321,130,3,4.80347046192744e-15,TRUE,TRUE,TRUE,TRUE,-3661145.18212127
+fold_3,36186,930196,321,149,3,3.50645092083486e-15,TRUE,TRUE,TRUE,TRUE,-3664149.18663048
+fold_4,36186,932371,321,117,3,2.65070943375858e-15,TRUE,TRUE,TRUE,TRUE,-3673641.19166621
+fold_5,36186,930671,321,115,3,2.95819912096121e-15,TRUE,TRUE,TRUE,TRUE,-3666548.34344357
+temporal,20855,549234,321,199,3,3.2149073595228e-15,TRUE,TRUE,TRUE,TRUE,-2173765.81894355

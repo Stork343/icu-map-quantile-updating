@@ -1,0 +1,7 @@
+partition,partition_counts_match,age_standardization_matches,calibration_optimality_check_passed
+fold_1,True,True,True
+fold_2,True,True,True
+fold_3,True,True,True
+fold_4,True,True,True
+fold_5,True,True,True
+temporal,True,True,True

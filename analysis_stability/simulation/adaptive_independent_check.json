@@ -1,0 +1,10 @@
+{
+  "status": "passed",
+  "replicates_checked": 800,
+  "qp_fits_checked": 27755560,
+  "maximum_relative_gap": 6.966992925464325e-14,
+  "maximum_projected_kkt": 8.43769498715119e-15,
+  "resolved_numerical_attempts": 1,
+  "source_result_files_modified": false,
+  "paired_cells": 168
+}

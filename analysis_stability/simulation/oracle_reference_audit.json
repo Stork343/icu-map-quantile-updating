@@ -1,0 +1,10 @@
+{
+  "rows_checked": 16800,
+  "negative_replicate_regrets": 218,
+  "negative_mean_regret_cells": [],
+  "regret_definition": "Realized stay-weighted loss minus the structural marginal reference loss.",
+  "generator_definition": "x beta plus common time and latent individual trajectory, with triggered feedback and rounding applied before retaining sampled times.",
+  "conditioning": "The reference does not condition the serial residual distribution on the realized early residual history.",
+  "informative_monitoring": "The retained time set is generated from preceding observed MAP and latent level, with lower and upper count enforcement.",
+  "method_comparison": "All published performance comparisons use paired losses of fitted forecasting rules; structural-reference regret is supplementary."
+}

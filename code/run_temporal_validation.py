@@ -3,13 +3,15 @@
 
 The analysis fits the population component in 2008--2013, selects the penalty
 and affine calibration in 2014--2016, and evaluates frozen prediction rules in
-2017--2022.  All periods use the MIMIC-IV ``anchor_year_group`` field.  Public
-outputs contain aggregate results only.
+2017--2022.  The default assignment uses MIMIC-IV ``anchor_year_group``; an
+optional aligned rule uses each stay's shifted year range. Public outputs
+contain aggregate results only.
 """
 
 from __future__ import annotations
 
 import argparse
+import re
 from pathlib import Path
 from statistics import NormalDist
 from typing import Dict, Mapping, Sequence, Tuple
@@ -40,6 +42,7 @@ from split_window_data import _safe_read_frame, build_dataset_from_cache
 DEFAULT_FIT_PERIODS = ("2008 - 2010", "2011 - 2013")
 DEFAULT_TUNING_PERIODS = ("2014 - 2016",)
 DEFAULT_ASSESSMENT_PERIODS = ("2017 - 2019", "2020 - 2022")
+TEMPORAL_ASSIGNMENT_CHOICES = ("anchor_group", "aligned_full_containment")
 DISPLAY_MODELS = ("population", "primary_level_update", "calibrated_q10")
 
 
@@ -50,6 +53,154 @@ def parse_periods(value: str) -> Tuple[str, ...]:
     return periods
 
 
+def parse_year_group(value: object) -> Tuple[int, int]:
+    """Parse one inclusive MIMIC year group such as ``2008 - 2010``."""
+    match = re.fullmatch(r"\s*(\d{4})\s*-\s*(\d{4})\s*", str(value))
+    if match is None:
+        raise ValueError(f"invalid anchor_year_group: {value!r}")
+    lower, upper = (int(item) for item in match.groups())
+    if upper < lower:
+        raise ValueError(f"anchor_year_group has descending bounds: {value!r}")
+    return lower, upper
+
+
+def _coerce_shifted_year(value: object) -> int:
+    try:
+        numeric = float(value)
+    except (TypeError, ValueError) as exc:
+        raise ValueError(f"anchor_year must be an integer, got {value!r}") from exc
+    if not np.isfinite(numeric) or numeric != np.floor(numeric):
+        raise ValueError(f"anchor_year must be an integer, got {value!r}")
+    year = int(numeric)
+    if year < 1900 or year > 2300:
+        raise ValueError(f"anchor_year is outside the supported shifted-year range: {year}")
+    return year
+
+
+def _intime_year_or_none(value: object) -> int | None:
+    try:
+        timestamp = pd.Timestamp(value)
+    except (TypeError, ValueError, OverflowError):
+        return None
+    if pd.isna(timestamp):
+        return None
+    return int(timestamp.year)
+
+
+def aligned_temporal_assignment(
+    anchor_year_group: object,
+    anchor_year: object,
+    intime: object,
+    fit_periods: Sequence[str],
+    tuning_periods: Sequence[str],
+    assessment_periods: Sequence[str],
+) -> Dict[str, object]:
+    """Assign a stay only when its shifted year range fits one phase."""
+    try:
+        group_lower, group_upper = parse_year_group(anchor_year_group)
+        shifted_anchor_year = _coerce_shifted_year(anchor_year)
+        timestamp = pd.Timestamp(intime)
+        if pd.isna(timestamp):
+            raise ValueError("intime is missing")
+        intake_year = int(timestamp.year)
+    except (TypeError, ValueError, OverflowError) as exc:
+        return {
+            "status": "missing_or_invalid",
+            "phase": None,
+            "reason": str(exc),
+            "year_delta": None,
+            "possible_year_lower": None,
+            "possible_year_upper": None,
+        }
+
+    year_delta = intake_year - shifted_anchor_year
+    possible_lower = group_lower + year_delta
+    possible_upper = group_upper + year_delta
+    phase_groups = {
+        "fit": tuple(parse_year_group(period) for period in fit_periods),
+        "tuning": tuple(parse_year_group(period) for period in tuning_periods),
+        "assessment": tuple(parse_year_group(period) for period in assessment_periods),
+    }
+    phase_bounds = {
+        name: (min(lower for lower, _ in groups), max(upper for _, upper in groups))
+        for name, groups in phase_groups.items()
+    }
+    matches = [
+        name
+        for name, (lower, upper) in phase_bounds.items()
+        if possible_lower >= lower and possible_upper <= upper
+    ]
+    research_lower = min(lower for lower, _ in phase_bounds.values())
+    research_upper = max(upper for _, upper in phase_bounds.values())
+    if len(matches) == 1:
+        status = "assigned"
+        phase = matches[0]
+        reason = "complete containment in one analysis phase"
+    elif possible_lower < research_lower or possible_upper > research_upper:
+        status = "out_of_range"
+        phase = None
+        reason = "shifted year range is outside the requested analysis range"
+    elif len(matches) > 1:
+        status = "ambiguous_phase"
+        phase = None
+        reason = "shifted year range is contained in overlapping phase definitions"
+    else:
+        status = "boundary_uncertain"
+        phase = None
+        reason = "shifted year range crosses an analysis-phase boundary"
+    return {
+        "status": status,
+        "phase": phase,
+        "reason": reason,
+        "year_delta": year_delta,
+        "possible_year_lower": possible_lower,
+        "possible_year_upper": possible_upper,
+    }
+
+
+def temporal_assignment_table(
+    stays: pd.DataFrame,
+    patients: pd.DataFrame,
+    fit_periods: Sequence[str],
+    tuning_periods: Sequence[str],
+    assessment_periods: Sequence[str],
+) -> pd.DataFrame:
+    """Return aggregate-ready alignment states without using MAP outcomes."""
+    required_stays = {"stay_id", "subject_id", "intime"}
+    required_patients = {"subject_id", "anchor_year", "anchor_year_group"}
+    if missing := required_stays.difference(stays.columns):
+        raise ValueError(f"stays is missing columns: {sorted(missing)}")
+    if missing := required_patients.difference(patients.columns):
+        raise ValueError(f"patients is missing columns: {sorted(missing)}")
+    merged = stays.loc[:, ["stay_id", "subject_id", "intime"]].merge(
+        patients.loc[:, ["subject_id", "anchor_year", "anchor_year_group"]],
+        on="subject_id",
+        how="left",
+        validate="many_to_one",
+    )
+    rows = []
+    for row in merged.itertuples(index=False):
+        assignment = aligned_temporal_assignment(
+            row.anchor_year_group,
+            row.anchor_year,
+            row.intime,
+            fit_periods,
+            tuning_periods,
+            assessment_periods,
+        )
+        rows.append(
+            {
+                "stay_id": int(row.stay_id),
+                "subject_id": int(row.subject_id),
+                "anchor_year_group": row.anchor_year_group,
+                "anchor_year": row.anchor_year,
+                "intime_year": _intime_year_or_none(row.intime),
+                **assignment,
+            }
+        )
+    return pd.DataFrame(rows)
+
+
 def temporal_indices(
     dataset: Mapping[str, object],
     stays: pd.DataFrame,
@@ -57,10 +208,61 @@ def temporal_indices(
     fit_periods: Sequence[str],
     tuning_periods: Sequence[str],
     assessment_periods: Sequence[str],
+    assignment_rule: str = "anchor_group",
 ) -> Tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
-    """Map analytic stays to disjoint MIMIC-IV calendar groups."""
+    """Map analytic stays to disjoint temporal analysis phases."""
+
+    if assignment_rule not in TEMPORAL_ASSIGNMENT_CHOICES:
+        raise ValueError(f"assignment_rule must be one of {TEMPORAL_ASSIGNMENT_CHOICES}")
 
     cluster_ids = np.asarray(dataset["cluster_ids"], dtype=np.int64)
+    if assignment_rule == "aligned_full_containment":
+        assignments = temporal_assignment_table(
+            stays,
+            patients,
+            fit_periods,
+            tuning_periods,
+            assessment_periods,
+        ).set_index("stay_id", drop=False).reindex(cluster_ids)
+        if assignments["stay_id"].isna().any():
+            raise RuntimeError("Every analytic stay must have one temporal assignment row")
+        phase_values = assignments["phase"].to_numpy(dtype=object)
+        possible_lower = assignments["possible_year_lower"].to_numpy(dtype=float)
+        possible_upper = assignments["possible_year_upper"].to_numpy(dtype=float)
+        # Keep the source group as an audit label for unassigned rows; only
+        # assigned rows are used in phase-specific assessment summaries.
+        period_values = assignments["anchor_year_group"].astype(str).to_numpy()
+        phase_periods = {
+            "fit": tuple(fit_periods),
+            "tuning": tuple(tuning_periods),
+            "assessment": tuple(assessment_periods),
+        }
+        for position, phase in enumerate(phase_values):
+            if phase not in phase_periods:
+                continue
+            matches = []
+            for period in phase_periods[phase]:
+                lower, upper = parse_year_group(period)
+                if possible_lower[position] >= lower and possible_upper[position] <= upper:
+                    matches.append(period)
+            if len(matches) == 1:
+                period_values[position] = matches[0]
+            elif len(phase_periods[phase]) == 1:
+                period_values[position] = phase_periods[phase][0]
+            else:
+                # The phase assignment remains valid, but no subperiod label
+                # is asserted when the shifted range spans multiple periods.
+                period_values[position] = phase
+        fit_idx = np.flatnonzero(phase_values == "fit")
+        tuning_idx = np.flatnonzero(phase_values == "tuning")
+        assessment_idx = np.flatnonzero(phase_values == "assessment")
+        all_idx = np.concatenate([fit_idx, tuning_idx, assessment_idx])
+        if np.unique(all_idx).size != all_idx.size:
+            raise RuntimeError("Temporal fit, tuning, and assessment periods overlap")
+        if min(fit_idx.size, tuning_idx.size, assessment_idx.size) == 0:
+            raise RuntimeError("Temporal allocation produced an empty sample")
+        return fit_idx, tuning_idx, assessment_idx, period_values
+
     stay_period = (
         stays.loc[:, ["stay_id", "subject_id"]]
         .merge(patients.loc[:, ["subject_id", "anchor_year_group"]], on="subject_id", how="left")
@@ -267,8 +469,11 @@ def write_supplement_tex(
         "Assessment period & Rule & Stays & Mean loss & Difference (95\\% CI)\\\\",
         "\\midrule",
     ]
-    period_labels = {"2017 - 2019": "2017 to 2019", "2020 - 2022": "2020 to 2022"}
-    for period in ("2017 - 2019", "2020 - 2022"):
+    available_periods = list(models["period"].drop_duplicates())
+    if not available_periods:
+        raise RuntimeError("Temporal validation produced no assessment periods")
+    period_labels = {period: str(period).replace(" - ", " to ") for period in available_periods}
+    for period in available_periods:
         period_models = models.loc[models["period"] == period].set_index("model")
         period_comparisons = comparisons.loc[
             (comparisons["period"] == period) & (comparisons["reference"] == "population")
@@ -346,6 +551,8 @@ def main() -> None:
     parser.add_argument("--fit-periods", type=parse_periods, default=DEFAULT_FIT_PERIODS)
     parser.add_argument("--tuning-periods", type=parse_periods, default=DEFAULT_TUNING_PERIODS)
     parser.add_argument("--assessment-periods", type=parse_periods, default=DEFAULT_ASSESSMENT_PERIODS)
+    parser.add_argument("--temporal-assignment", choices=TEMPORAL_ASSIGNMENT_CHOICES, default="anchor_group")
+    parser.add_argument("--age-definition", choices=data_utils.AGE_DEFINITION_CHOICES, default="icu_proxy")
     parser.add_argument("--tau", type=float, default=0.10)
     parser.add_argument("--index-hours", type=float, default=12.0)
     parser.add_argument(
@@ -363,10 +570,15 @@ def main() -> None:
     args.work_dir.mkdir(parents=True, exist_ok=True)
     obs = _safe_read_frame(args.obs_cache)
     stays = _safe_read_frame(args.stays_cache)
+    stored_age_definitions = sorted(set(stays.get("age_definition", pd.Series(dtype=object)).dropna().astype(str)))
+    if stored_age_definitions and stored_age_definitions != [args.age_definition]:
+        raise RuntimeError(
+            f"Requested age definition {args.age_definition!r} does not match the cache definition {stored_age_definitions}."
+        )
     patients = pd.read_csv(
         args.patients_file,
         compression="infer",
-        usecols=["subject_id", "anchor_year_group"],
+        usecols=["subject_id", "anchor_year", "anchor_year_group"],
     )
     dataset, data_summary, _ = build_dataset_from_cache(
         obs,
@@ -382,7 +594,21 @@ def main() -> None:
         args.fit_periods,
         args.tuning_periods,
         args.assessment_periods,
+        args.temporal_assignment,
     )
+    assignment_audit = None
+    if args.temporal_assignment == "aligned_full_containment":
+        assignment_frame = temporal_assignment_table(
+            stays,
+            patients,
+            args.fit_periods,
+            args.tuning_periods,
+            args.assessment_periods,
+        )
+        assignment_audit = {
+            "status_counts": assignment_frame["status"].value_counts(dropna=False).to_dict(),
+            "phase_counts": assignment_frame["phase"].value_counts(dropna=False).to_dict(),
+        }
     if min(fit_idx.size, tuning_idx.size, assessment_idx.size) < 20:
         raise RuntimeError("Temporal allocation produced too few stays for estimation")
 
@@ -450,6 +676,9 @@ def main() -> None:
     comparison_frames = [overall_comparisons]
     assessment_period_values = period_values[assessment_idx]
     for offset, period in enumerate(args.assessment_periods, start=1):
+        period_label = str(period).replace(" - ", " to ")
+        if period_label == "2017 to 2022":
+            continue
         mask = assessment_period_values == period
         period_models, period_comparisons = summarize_models(
             assessment_records.loc[mask].reset_index(drop=True),
@@ -480,6 +709,9 @@ def main() -> None:
             "fit_periods": list(args.fit_periods),
             "tuning_periods": list(args.tuning_periods),
             "assessment_periods": list(args.assessment_periods),
+            "assignment_rule": args.temporal_assignment,
+            "age_definition": args.age_definition,
+            "assignment_audit": assignment_audit,
             "fit_stays": int(fit_idx.size),
             "tuning_stays": int(tuning_idx.size),
             "assessment_stays": int(assessment_idx.size),

@@ -1,5 +1,6 @@
 import csv
 import gzip
+import math
 from dataclasses import dataclass
 from datetime import datetime, timedelta
 from pathlib import Path
@@ -7,6 +8,75 @@ from typing import Any, Dict, List, Optional, Sequence, Tuple
 
 import numpy as np
 import pandas as pd
+
+
+AGE_DEFINITION_CHOICES = ("anchor_age", "icu_proxy")
+
+
+def _parse_optional_anchor_year(value: Any) -> Optional[int]:
+    if value is None or (isinstance(value, str) and not value.strip()):
+        return None
+    try:
+        numeric = float(value)
+    except (TypeError, ValueError) as exc:
+        raise ValueError(f"anchor_year must be an integer, got {value!r}") from exc
+    if not math.isfinite(numeric) or numeric != math.floor(numeric):
+        raise ValueError(f"anchor_year must be an integer, got {value!r}")
+    year = int(numeric)
+    if year < 1900 or year > 2300:
+        raise ValueError(f"anchor_year is outside the supported shifted-year range: {year}")
+    return year
+
+
+def _parse_anchor_age(value: Any) -> float:
+    if value is None or (isinstance(value, str) and not value.strip()):
+        raise ValueError("anchor_age is missing")
+    try:
+        age = float(value)
+    except (TypeError, ValueError) as exc:
+        raise ValueError(f"anchor_age must be numeric, got {value!r}") from exc
+    if not math.isfinite(age) or age < 0.0:
+        raise ValueError(f"anchor_age must be a finite nonnegative value, got {value!r}")
+    return age
+
+
+def derive_age_fields(
+    anchor_age: Any,
+    anchor_year: Any,
+    intime: datetime | str,
+    age_definition: str = "anchor_age",
+) -> Dict[str, Any]:
+    """Return recorded anchor age and an optional ICU-time age proxy.
+
+    ``anchor_age`` remains the default until the age definition is approved at
+    design gate 1. The proxy follows the MIMIC convention of adding the shifted
+    ICU admission year difference to the age in the anchor year. A value of 91
+    remains a high-age code and is never interpreted as a recovered true age.
+    """
+    if age_definition not in AGE_DEFINITION_CHOICES:
+        raise ValueError(f"age_definition must be one of {AGE_DEFINITION_CHOICES}")
+    age = _parse_anchor_age(anchor_age)
+    parsed_anchor_year = _parse_optional_anchor_year(anchor_year)
+    parsed_intime = _parse_time(intime) if isinstance(intime, str) else intime
+    if parsed_intime is None:
+        raise ValueError("intime is required to construct ICU admission age")
+    proxy = None
+    year_delta = None
+    if parsed_anchor_year is not None:
+        year_delta = int(parsed_intime.year - parsed_anchor_year)
+        proxy = float(age + year_delta)
+    elif age_definition == "icu_proxy":
+        raise ValueError("anchor_year is required when age_definition='icu_proxy'")
+    selected_age = age if age_definition == "anchor_age" else float(proxy)
+    return {
+        "anchor_age": age,
+        "anchor_year": parsed_anchor_year,
+        "age_at_icu_proxy": proxy,
+        "age_year_delta": year_delta,
+        "high_age_coded": bool(age == 91.0),
+        "age": selected_age,
+        "age_definition": age_definition,
+    }
 
 
 @dataclass
@@ -99,9 +169,16 @@ def _load_patients(patients_path: str | Path) -> Dict[int, Dict[str, Any]]:
         reader = csv.DictReader(handle)
         for row in reader:
             subject_id = int(row["subject_id"])
+            try:
+                anchor_age = _parse_anchor_age(row.get("anchor_age"))
+                anchor_year = _parse_optional_anchor_year(row.get("anchor_year"))
+            except ValueError as exc:
+                raise ValueError(f"Invalid age provenance for subject_id={subject_id}: {exc}") from exc
             patients[subject_id] = {
                 "gender": row.get("gender", ""),
-                "anchor_age": float(row.get("anchor_age") or 0.0),
+                "anchor_age": anchor_age,
+                "anchor_year": anchor_year,
+                "anchor_year_group": row.get("anchor_year_group", ""),
             }
     return patients
 
@@ -126,7 +203,10 @@ def _load_icu_stays(
     admissions: Dict[int, Dict[str, Any]],
     analysis_hours: float,
     keep_one_stay_per_subject: bool,
+    age_definition: str = "anchor_age",
 ) -> Dict[int, Dict[str, Any]]:
+    if age_definition not in AGE_DEFINITION_CHOICES:
+        raise ValueError(f"age_definition must be one of {AGE_DEFINITION_CHOICES}")
     candidate_stays: List[Dict[str, Any]] = []
     with gzip.open(icustays_path, "rt", encoding="utf-8", newline="") as handle:
         reader = csv.DictReader(handle)
@@ -138,11 +218,20 @@ def _load_icu_stays(
             admission = admissions.get(hadm_id)
             if patient is None or admission is None:
                 continue
-            if patient["anchor_age"] < 18:
-                continue
             intime = _parse_time(row["intime"])
             outtime = _parse_time(row["outtime"])
             if intime is None or outtime is None or outtime <= intime:
+                continue
+            try:
+                age_fields = derive_age_fields(
+                    patient.get("anchor_age"),
+                    patient.get("anchor_year"),
+                    intime,
+                    age_definition=age_definition,
+                )
+            except ValueError as exc:
+                raise ValueError(f"Invalid age provenance for stay_id={stay_id}: {exc}") from exc
+            if age_fields["age"] < 18:
                 continue
             window_end = min(outtime, intime + timedelta(hours=analysis_hours))
             if window_end <= intime:
@@ -156,7 +245,7 @@ def _load_icu_stays(
                     "outtime": outtime,
                     "window_end": window_end,
                     "gender": patient["gender"],
-                    "age": patient["anchor_age"],
+                    **age_fields,
                     "admission_type": admission["admission_type"],
                 }
             )
@@ -338,30 +427,61 @@ def subset_cluster_data(data: Dict[str, object], cluster_index: Sequence[int]) -
     )
 
 
+def clock_split_indices(
+    t_i: np.ndarray,
+    index_hours: float,
+    min_index_obs: int = 0,
+    min_late_obs: int = 1,
+) -> Tuple[np.ndarray, np.ndarray]:
+    """Split one stay strictly by clock time at ``index_hours``.
+
+    Observations at the landmark belong to the index window. A failed minimum
+    count returns two empty arrays so callers cannot silently substitute a
+    count split.
+    """
+    times = np.asarray(t_i, dtype=float).reshape(-1)
+    if not np.all(np.isfinite(times)):
+        raise ValueError("clock_split_indices requires finite times")
+    if not np.isfinite(float(index_hours)):
+        raise ValueError("index_hours must be finite")
+    if min_index_obs < 0 or min_late_obs < 0:
+        raise ValueError("minimum observation counts must be nonnegative")
+    index_idx = np.flatnonzero(times <= float(index_hours)).astype(int)
+    late_idx = np.flatnonzero(times > float(index_hours)).astype(int)
+    if index_idx.size < int(min_index_obs) or late_idx.size < int(min_late_obs):
+        return np.array([], dtype=int), np.array([], dtype=int)
+    return index_idx, late_idx
+
+
+def count_split_indices(
+    t_i: np.ndarray,
+    index_fraction: float,
+) -> Tuple[np.ndarray, np.ndarray]:
+    """Split a nonempty ordered stay by observation count.
+
+    This function is explicit because it is a different estimand from a
+    clock-time landmark. A stay with one record cannot supply both windows.
+    """
+    times = np.asarray(t_i, dtype=float).reshape(-1)
+    if not np.all(np.isfinite(times)):
+        raise ValueError("count_split_indices requires finite times")
+    n_i = int(times.size)
+    if n_i <= 1:
+        return np.array([], dtype=int), np.array([], dtype=int)
+    half_n = int(np.ceil(max(min(index_fraction, 0.95), 0.05) * n_i))
+    half_n = int(np.clip(half_n, 1, n_i - 1))
+    return np.arange(half_n, dtype=int), np.arange(half_n, n_i, dtype=int)
+
+
 def _within_stay_split_indices(
     t_i: np.ndarray,
     index_fraction: float,
     index_hours: float,
     min_index_obs: int,
 ) -> Tuple[np.ndarray, np.ndarray]:
-    n_i = int(t_i.size)
-    if n_i <= 1:
-        return np.array([0], dtype=int), np.array([0], dtype=int)
-    half_n = int(np.ceil(max(min(index_fraction, 0.95), 0.05) * n_i))
-    half_n = int(np.clip(half_n, 1, n_i - 1))
-    idx_half = np.arange(half_n, dtype=int)
-    idx_time = np.where(t_i <= index_hours)[0]
-    if idx_time.size >= min_index_obs and idx_time.size < n_i:
-        index_idx = idx_time.astype(int)
-    else:
-        index_idx = idx_half
-    if index_idx.size >= n_i:
-        index_idx = np.arange(n_i - 1, dtype=int)
-    late_idx = np.setdiff1d(np.arange(n_i, dtype=int), index_idx, assume_unique=True)
-    if late_idx.size == 0:
-        late_idx = np.array([n_i - 1], dtype=int)
-        index_idx = np.arange(n_i - 1, dtype=int)
-    return index_idx, late_idx
+    """Backward-compatible name for the explicit count split."""
+    del index_hours, min_index_obs
+    return count_split_indices(t_i, index_fraction=index_fraction)
 
 
 def build_dataset_from_cache(
@@ -370,16 +490,47 @@ def build_dataset_from_cache(
     fit_stays: int,
     seed: int,
     analysis_hours: float,
+    qualification_index_hours: Optional[float] = 12.0,
+    min_total_obs: int = 8,
+    min_index_obs: int = 4,
+    min_late_obs: int = 1,
 ) -> Tuple[Dict[str, object], Dict[str, object], BasisSpec]:
     obs = obs.copy()
     stays = stays.copy()
+    required_age_columns = {"anchor_age", "anchor_year", "age_at_icu_proxy", "high_age_coded", "age_definition"}
+    missing_age_columns = required_age_columns.difference(stays.columns)
+    if missing_age_columns:
+        raise RuntimeError(
+            "Cached stay data lack the age provenance fields "
+            f"{sorted(missing_age_columns)}. Rebuild the cache with build_revised_mimic_map_cache.py."
+        )
+    age_definitions = sorted(set(stays["age_definition"].dropna().astype(str)))
+    if age_definitions != ["anchor_age"] and age_definitions != ["icu_proxy"]:
+        raise RuntimeError(f"Cached stay data contain inconsistent age definitions: {age_definitions}")
+    if qualification_index_hours is not None and not np.isfinite(float(qualification_index_hours)):
+        raise ValueError("qualification_index_hours must be finite or None")
+    if min_total_obs < 0 or min_index_obs < 0 or min_late_obs < 0:
+        raise ValueError("minimum observation counts must be nonnegative")
     counts = obs.groupby("stay_id").agg(
         obs_count=("map_value", "size"),
-        index_count=("time_hours", lambda x: int(np.sum(np.asarray(x) <= 12.0))),
-        late_count=("time_hours", lambda x: int(np.sum(np.asarray(x) > 12.0))),
         any_low=("map_value", lambda x: bool(np.any(np.asarray(x) < 65.0))),
     )
-    usable_ids = counts[(counts["index_count"] >= 4) & (counts["late_count"] >= 1)].index.to_numpy(dtype=np.int64)
+    if qualification_index_hours is None:
+        counts["index_count"] = counts["obs_count"]
+        counts["late_count"] = 0
+        usable_ids = counts[counts["obs_count"] >= int(min_total_obs)].index.to_numpy(dtype=np.int64)
+    else:
+        counts["index_count"] = obs.groupby("stay_id")["time_hours"].apply(
+            lambda x: int(np.sum(np.asarray(x) <= float(qualification_index_hours)))
+        )
+        counts["late_count"] = obs.groupby("stay_id")["time_hours"].apply(
+            lambda x: int(np.sum(np.asarray(x) > float(qualification_index_hours)))
+        )
+        usable_ids = counts[
+            (counts["obs_count"] >= int(min_total_obs))
+            & (counts["index_count"] >= int(min_index_obs))
+            & (counts["late_count"] >= int(min_late_obs))
+        ].index.to_numpy(dtype=np.int64)
     rng = np.random.default_rng(seed + 17)
     if fit_stays > 0 and usable_ids.size > fit_stays:
         selected_ids = np.asarray(sorted(rng.choice(usable_ids, size=fit_stays, replace=False).tolist()), dtype=np.int64)
@@ -417,6 +568,13 @@ def build_dataset_from_cache(
     summary = {
         "fit_stays_requested": int(fit_stays),
         "fit_stays": int(selected_ids.size),
+        "age_definition": age_definitions[0],
+        "qualification_index_hours": (
+            None if qualification_index_hours is None else float(qualification_index_hours)
+        ),
+        "minimum_index_observations": int(min_index_obs),
+        "minimum_later_observations": int(min_late_obs),
+        "minimum_total_observations": int(min_total_obs),
         "fit_observations": int(obs_sel.shape[0]),
         "obs_per_stay_median": float(np.median(selected_counts["obs_count"])),
         "obs_per_stay_iqr": [

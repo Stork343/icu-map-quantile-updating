@@ -1,0 +1,12 @@
+{
+  "python": "3.12.1",
+  "python_executable": "/Library/Frameworks/Python.framework/Versions/3.12/bin/python3",
+  "numpy": "1.26.4",
+  "pandas": "2.2.2",
+  "scipy": "1.14.0",
+  "R": "4.3.2",
+  "lqmm": "1.5.8",
+  "quantreg": "6.1",
+  "data.table": "1.17.8",
+  "quadrature_nodes": 321
+}

@@ -106,6 +106,7 @@ def cohort_summary_from_inputs(
     obs: pd.DataFrame,
     stays: pd.DataFrame,
     data_summary: Dict[str, object],
+    age_definition: str = "anchor_age",
 ) -> Dict[str, object]:
     paths = data_utils.MimicPaths.from_root(data_root)
     patients = data_utils._load_patients(paths.patients_path)
@@ -116,6 +117,7 @@ def cohort_summary_from_inputs(
         admissions,
         analysis_hours=24.0,
         keep_one_stay_per_subject=True,
+        age_definition=age_definition,
     )
     total_obs = int(obs.shape[0])
     full_low = int(np.sum(obs["map_value"].to_numpy(dtype=float) < 65.0))
@@ -603,11 +605,17 @@ def main() -> None:
     parser.add_argument("--train-fraction", type=float, default=0.60)
     parser.add_argument("--tuning-fraction", type=float, default=0.20)
     parser.add_argument("--force-refit", action="store_true")
+    parser.add_argument("--age-definition", choices=data_utils.AGE_DEFINITION_CHOICES, default="anchor_age")
     args = parser.parse_args()
 
     t0 = time.time()
     obs = _safe_read_frame(args.obs_cache)
     stays = _safe_read_frame(args.stays_cache)
+    stored_age_definitions = sorted(set(stays.get("age_definition", pd.Series(dtype=object)).dropna().astype(str)))
+    if stored_age_definitions and stored_age_definitions != [args.age_definition]:
+        raise RuntimeError(
+            f"Requested age definition {args.age_definition!r} does not match the cache definition {stored_age_definitions}."
+        )
     dataset, data_summary, basis_spec = build_dataset_from_cache(
         obs,
         stays,
@@ -623,7 +631,7 @@ def main() -> None:
         tuning_fraction=args.tuning_fraction,
     )
     dataset, age_standardization = apply_training_age_standardization(dataset, stays, train_idx)
-    cohort_summary = cohort_summary_from_inputs(args.data_root, obs, stays, data_summary)
+    cohort_summary = cohort_summary_from_inputs(args.data_root, obs, stays, data_summary, args.age_definition)
     train_data = data_utils.subset_cluster_data(dataset, train_idx)
     tuning_data = data_utils.subset_cluster_data(dataset, tuning_idx)
     assessment_data = data_utils.subset_cluster_data(dataset, assessment_idx)
@@ -829,6 +837,7 @@ def main() -> None:
             "assessment_stays": int(assessment_idx.size),
         },
         "age_standardization": age_standardization,
+        "age_definition": args.age_definition,
         "cohort_summary": cohort_summary,
         "basis": {
             "Tmax": basis_spec.Tmax,

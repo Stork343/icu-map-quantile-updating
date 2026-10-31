@@ -300,6 +300,11 @@ class SplitArithmeticTests(unittest.TestCase):
         stays = pd.DataFrame(
             {
                 "stay_id": stay_ids,
+                "anchor_age": np.linspace(30.0, 70.0, stay_ids.size),
+                "anchor_year": np.full(stay_ids.size, 2153),
+                "age_at_icu_proxy": np.linspace(30.0, 70.0, stay_ids.size),
+                "high_age_coded": np.zeros(stay_ids.size, dtype=bool),
+                "age_definition": ["anchor_age"] * stay_ids.size,
                 "age": np.linspace(30.0, 70.0, stay_ids.size),
                 "male": np.tile([0.0, 1.0], stay_ids.size // 2),
                 "emergency_or_urgent": np.ones(stay_ids.size),
@@ -307,7 +312,10 @@ class SplitArithmeticTests(unittest.TestCase):
         )
         rows = []
         for stay_id in stay_ids:
-            for time_hours, map_value in zip([1.0, 4.0, 8.0, 12.0, 18.0], [70.0, 69.0, 68.0, 67.0, 66.0]):
+            for time_hours, map_value in zip(
+                [1.0, 4.0, 8.0, 12.0, 13.0, 18.0, 20.0, 24.0],
+                [70.0, 69.0, 68.0, 67.0, 66.0, 65.0, 64.0, 63.0],
+            ):
                 rows.append({"stay_id": stay_id, "time_hours": time_hours, "map_value": map_value})
         obs = pd.DataFrame(rows)
         _, summary, _ = build_dataset_from_cache(obs, stays, fit_stays=0, seed=20260522, analysis_hours=24.0)

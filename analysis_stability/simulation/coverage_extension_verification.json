@@ -1,0 +1,53 @@
+{
+  "status": "passed",
+  "frozen_models_checked": 600,
+  "intervals_checked": 16200,
+  "coverage_cells_checked": 81,
+  "distinct_derived_seeds": 8400,
+  "reference_blocks_checked": 6000,
+  "normal_intervals_recomputed": 5400,
+  "independent_bootstrap_interval_checks": 54,
+  "reference_mcse_over_assessment_se_mean_range": [
+    0.0357464158891871,
+    0.1347478278852582
+  ],
+  "reference_mcse_over_assessment_se_max": 0.1655822383727413,
+  "coverage_range_by_n": {
+    "120": [
+      0.885,
+      0.935
+    ],
+    "600": [
+      0.92,
+      0.965
+    ],
+    "1800": [
+      0.93,
+      0.965
+    ]
+  },
+  "holm_p_below_005": [
+    {
+      "scenario_key": "common_time_misspecified",
+      "n_evaluation": 120,
+      "contrast": "affine_calibrated_q10_minus_population",
+      "interval_method": "percentile_bootstrap",
+      "n_replicates": 200,
+      "covered": 177,
+      "coverage": 0.885,
+      "coverage_mcse": 0.0225582579114611,
+      "exact_ci95_lower": 0.8324530555177461,
+      "exact_ci95_upper": 0.925686626307703,
+      "binomial_pvalue_at_nominal95": 0.0002254799310432,
+      "mean_interval_length": 0.2904156430453156,
+      "mean_reference_mcse": 0.0027124332759203,
+      "mean_reference_mcse_over_evaluation_se": 0.0382283036234328,
+      "maximum_reference_mcse_over_evaluation_se": 0.0662726723152079,
+      "reference_interval_contained_rate": 0.88,
+      "reference_interval_intersects_rate": 0.92,
+      "miss_below_reference": 6,
+      "miss_above_reference": 17,
+      "holm_adjusted_binomial_pvalue": 0.0182638744145011
+    }
+  ]
+}

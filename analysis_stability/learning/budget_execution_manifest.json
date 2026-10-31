@@ -1,0 +1,16 @@
+{
+  "status": "complete",
+  "all_jobs": 211,
+  "launched_jobs": 211,
+  "complete_cv_controls": 15,
+  "workers": 4,
+  "budgets": [
+    300,
+    500
+  ],
+  "assessment_or_reference_used_for_job_selection": false,
+  "cv_control_rule": "First replicate in each setting, original fullfit termination status, and originally selected branch stratum.",
+  "interpretation": "Optimization budget sensitivity on the original fitting/tuning/evaluation records; no additional independent simulation datasets.",
+  "completed_fullfit_budget_comparisons": 422,
+  "completed_full_cv_budget_comparisons": 30
+}

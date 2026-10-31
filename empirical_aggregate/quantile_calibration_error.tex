@@ -1,0 +1,17 @@
+\begin{table}[!htbp]
+\caption{Decile-level later-window quantile calibration error in the assessment split.}
+\label{tab:calibration_error}
+\centering
+\begin{tabular}{lrr}
+\hline
+Model & ACE & WCE\\
+\hline
+Population QR & 0.009 & 0.009\\
+Primary level update & 0.044 & 0.043\\
+Calibrated update & 0.012 & 0.012\\
+Calibrated q10 & 0.006 & 0.006\\
+\hline
+\end{tabular}
+\par\smallskip
+\footnotesize{ACE is the unweighted mean absolute deviation between the observed below-prediction fraction and the nominal $\tau=0.10$ target across deciles of predicted q10. WCE weights the same absolute deviations by the number of later observations in each decile.}
+\end{table}

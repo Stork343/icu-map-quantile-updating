@@ -1,0 +1,67 @@
+{
+  "date": "2026-10-15",
+  "manuscript_title": "Quantile Profiling for Lower Tail Persistence in ICU Mean Arterial Pressure",
+  "published_comparator": {
+    "method": "Gaussian random intercept linear quantile mixed model",
+    "implementation": "lqmm 1.5.8",
+    "tau": 0.1,
+    "gauss_hermite_nodes": 321,
+    "nested_folds": 5,
+    "temporal_fitting_stays": 20855,
+    "temporal_tuning_stays": 10612,
+    "temporal_assessment_stays": 22005,
+    "nested_calibrated_loss": 1.921539006547706,
+    "temporal_calibrated_loss": 1.9243079415872282,
+    "aggregate_directory": "strengthening_aggregate/published"
+  },
+  "complete_family": {
+    "nested_assessment_stays": 60310,
+    "scalar_penalties": [0, 0.03, 0.1, 0.3, 1, 3, 10],
+    "level_penalties": [0.03, 0.1, 0.3, 1, 3, 10],
+    "slope_penalties": [0.03, 0.1, 0.3, 1, 3, 10, 30, 100],
+    "tuning_matrix_stay_fits": 3404256,
+    "nested_selected_loss": 1.889350999967148,
+    "nested_calibrated_q10_selections": 4,
+    "nested_calibrated_level_with_slope_selections": 1,
+    "temporal_selected_rule": "calibrated_level_with_slope",
+    "temporal_selected_loss": 1.9186584629088657,
+    "temporal_direct_level_with_slope_loss": 1.8949639495940176,
+    "temporal_direct_level_with_slope_mass_violation": 0.0007128914084262167,
+    "aggregate_directory": "strengthening_aggregate/family",
+    "combined_comparison_directory": "strengthening_aggregate/comparisons"
+  },
+  "risk_inference": {
+    "seed": 20261015,
+    "mechanisms": 14,
+    "replicates_per_mechanism": 200,
+    "reference_stays_per_replicate": 10000,
+    "normal_paired_intervals": 8400,
+    "bootstrap_paired_intervals": 8400,
+    "bootstrap_resamples": 2000,
+    "bootstrap_seed": 20261016,
+    "normal_coverage_range": [0.885, 0.975],
+    "bootstrap_coverage_range": [0.895, 0.975],
+    "cross_fitted_sample_sizes": [240, 600, 1800],
+    "cross_fitted_risk_estimates": 25200,
+    "mechanism_rule_combinations_with_monotone_mae_decrease": 42,
+    "aggregate_directory": "risk_inference"
+  },
+  "validation_commands": [
+    "python -m unittest discover -s code/tests -v",
+    "python code/verify_public_package.py"
+  ],
+  "completed_validation": {
+    "python_versions": ["3.12.1", "3.12.9"],
+    "tests_passed_per_environment": 70,
+    "aggregate_reconstructions": 2,
+    "tables_matched_per_reconstruction": 7,
+    "figure_pairs_generated_per_reconstruction": 2,
+    "complete_model_summary_rows_checked": 105,
+    "temporal_paired_contrasts_checked": 42,
+    "selected_family_bootstrap_contrasts_checked": 3,
+    "tuning_rows_checked": 366
+  },
+  "runtime_manifests": "environments",
+  "empirical_public_contents": "Aggregate results and source code",
+  "synthetic_public_contents": "Generated risk records and aggregate simulation results"
+}

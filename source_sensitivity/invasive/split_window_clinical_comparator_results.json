@@ -1,0 +1,238 @@
+{
+  "analysis_type": "split_window_clinical_comparator_analysis",
+  "status": "complete",
+  "settings": {
+    "lambda_grid": [
+      0.0,
+      0.03,
+      0.1,
+      0.3,
+      1.0,
+      3.0,
+      10.0
+    ],
+    "tau_values": [
+      0.05,
+      0.1,
+      0.2
+    ],
+    "index_windows_tau_010": [
+      6.0,
+      12.0,
+      18.0
+    ],
+    "common_fit": "ordinary quantile regression via quantreg::rq.fit(method='fn') on the training split",
+    "stay_offset": "ordinary check loss profiled intercept from index observations",
+    "selected_lambda_baseline_update": 0.1,
+    "selected_lambda_spline_update": 0.1,
+    "seed": 20260522,
+    "train_fraction": 0.6,
+    "tuning_fraction": 0.2,
+    "train_stays": 12578,
+    "tuning_stays": 4193,
+    "assessment_stays": 4192
+  },
+  "comparator_rows": [
+    {
+      "model": "Baseline covariates quantile",
+      "index_information": "none",
+      "assessment_loss": 1.876622896411238,
+      "assessment_loss_se": 0.023128835458389157,
+      "n_stays": 4192
+    },
+    {
+      "model": "Admission window q10 carry forward",
+      "index_information": "raw admission window q10",
+      "assessment_loss": 2.001814097136111,
+      "assessment_loss_se": 0.027195888762667306,
+      "n_stays": 4192
+    },
+    {
+      "model": "Population spline quantile",
+      "index_information": "none",
+      "assessment_loss": 1.877519808466716,
+      "assessment_loss_se": 0.023016274550455587,
+      "n_stays": 4192
+    },
+    {
+      "model": "Spline + unpenalized update",
+      "index_information": "index residual q10",
+      "assessment_loss": 1.9874860289148164,
+      "assessment_loss_se": 0.026662106330143442,
+      "n_stays": 4192
+    },
+    {
+      "model": "Spline + penalized random-intercept update",
+      "index_information": "profiled intercept",
+      "assessment_loss": 1.72162908439425,
+      "assessment_loss_se": 0.01931492358501953,
+      "n_stays": 4192
+    },
+    {
+      "model": "Selected baseline-adjusted random-intercept update",
+      "index_information": "profiled intercept",
+      "assessment_loss": 1.7230950369765274,
+      "assessment_loss_se": 0.019511165132432895,
+      "n_stays": 4192
+    }
+  ],
+  "sensitivity_rows": [
+    {
+      "tau": 0.05,
+      "index_hours": 12.0,
+      "lambda_b": 0.1,
+      "population_assessment_loss": 1.1157190715165957,
+      "population_assessment_loss_se": 0.01879155915259597,
+      "updated_assessment_loss": 1.044464956456598,
+      "updated_assessment_loss_se": 0.015379934261975285,
+      "n_stays": 4192,
+      "loss_reduction_percent": 6.386384967242878
+    },
+    {
+      "tau": 0.1,
+      "index_hours": 6.0,
+      "lambda_b": 0.1,
+      "population_assessment_loss": 1.8536335350057105,
+      "population_assessment_loss_se": 0.018155746337628596,
+      "updated_assessment_loss": 1.7699955798900535,
+      "updated_assessment_loss_se": 0.016219881390134146,
+      "n_stays": 3408,
+      "loss_reduction_percent": 4.512108436546996
+    },
+    {
+      "tau": 0.1,
+      "index_hours": 12.0,
+      "lambda_b": 0.1,
+      "population_assessment_loss": 1.876622896411238,
+      "population_assessment_loss_se": 0.023128835458389157,
+      "updated_assessment_loss": 1.7230950369765274,
+      "updated_assessment_loss_se": 0.019511165132432895,
+      "n_stays": 4192,
+      "loss_reduction_percent": 8.18107141974606
+    },
+    {
+      "tau": 0.1,
+      "index_hours": 18.0,
+      "lambda_b": 0.1,
+      "population_assessment_loss": 1.8409395829592448,
+      "population_assessment_loss_se": 0.022204716625533635,
+      "updated_assessment_loss": 1.6366758655574607,
+      "updated_assessment_loss_se": 0.019908062455859347,
+      "n_stays": 3717,
+      "loss_reduction_percent": 11.095623087936293
+    },
+    {
+      "tau": 0.2,
+      "index_hours": 12.0,
+      "lambda_b": 0.1,
+      "population_assessment_loss": 3.0622807586086256,
+      "population_assessment_loss_se": 0.03035614744345594,
+      "updated_assessment_loss": 2.751493406713835,
+      "updated_assessment_loss_se": 0.025362329684378147,
+      "n_stays": 4192,
+      "loss_reduction_percent": 10.148884978005725
+    }
+  ],
+  "clinical_outcome_strata": [
+    {
+      "stratum": "Lowest vulnerability",
+      "stays": 811,
+      "updated_offset_median": 6.000000000000001,
+      "admission_window_q10_median": 80.0,
+      "later_map_below65_fraction": 0.018099313841192278,
+      "any_later_map_below65": 0.12453760789149199,
+      "hospital_mortality": 0.07398273736128237,
+      "icu_mortality": 0.055487053020961775,
+      "icu_los_median": 2.1976851851851853,
+      "icu_los_iqr_low": 1.2522974537037037,
+      "icu_los_iqr_high": 4.607934027777778,
+      "icu_los_ge3_days": 0.3933415536374846
+    },
+    {
+      "stratum": "Second",
+      "stays": 840,
+      "updated_offset_median": 4.6774193548387615,
+      "admission_window_q10_median": 71.0,
+      "later_map_below65_fraction": 0.0644546798352036,
+      "any_later_map_below65": 0.3464285714285714,
+      "hospital_mortality": 0.07976190476190476,
+      "icu_mortality": 0.06190476190476191,
+      "icu_los_median": 2.2816261574074073,
+      "icu_los_iqr_low": 1.2616377314814813,
+      "icu_los_iqr_high": 4.684250578703704,
+      "icu_los_ge3_days": 0.40714285714285714
+    },
+    {
+      "stratum": "Third",
+      "stays": 845,
+      "updated_offset_median": 2.5,
+      "admission_window_q10_median": 66.0,
+      "later_map_below65_fraction": 0.11440335338046671,
+      "any_later_map_below65": 0.514792899408284,
+      "hospital_mortality": 0.08520710059171598,
+      "icu_mortality": 0.05680473372781065,
+      "icu_los_median": 2.2302199074074074,
+      "icu_los_iqr_low": 1.2912037037037036,
+      "icu_los_iqr_high": 4.255034722222222,
+      "icu_los_ge3_days": 0.39171597633136096
+    },
+    {
+      "stratum": "Fourth",
+      "stays": 785,
+      "updated_offset_median": 0.16129032258063347,
+      "admission_window_q10_median": 63.0,
+      "later_map_below65_fraction": 0.1859142743954439,
+      "any_later_map_below65": 0.6343949044585987,
+      "hospital_mortality": 0.09554140127388536,
+      "icu_mortality": 0.07898089171974522,
+      "icu_los_median": 2.328240740740741,
+      "icu_los_iqr_low": 1.3031944444444443,
+      "icu_los_iqr_high": 4.927581018518518,
+      "icu_los_ge3_days": 0.42929936305732486
+    },
+    {
+      "stratum": "Highest vulnerability",
+      "stays": 911,
+      "updated_offset_median": -3.290322580645139,
+      "admission_window_q10_median": 57.0,
+      "later_map_below65_fraction": 0.3073186291272433,
+      "any_later_map_below65": 0.7705817782656421,
+      "hospital_mortality": 0.13172338090010977,
+      "icu_mortality": 0.10867178924259056,
+      "icu_los_median": 2.4814467592592595,
+      "icu_los_iqr_low": 1.3592592592592592,
+      "icu_los_iqr_high": 4.942262731481481,
+      "icu_los_ge3_days": 0.44127332601536773
+    }
+  ],
+  "outcome_metrics": {
+    "hospital_mortality_rate": 0.09398854961832061,
+    "icu_mortality_rate": 0.07299618320610687,
+    "icu_los_median": 2.287771990740741,
+    "hospital_mortality_auc_admission_window_q10_low_is_risk": 0.5666815021531504,
+    "hospital_mortality_auc_updated_vulnerability": 0.5679050956554745,
+    "adjusted_or_hospital_mortality_per_10mmhg_lower_admission_window_q10": {
+      "odds_ratio_per_10": 1.1779964665688114,
+      "ci_low": 1.0584180653896216,
+      "ci_high": 1.3110846466304198,
+      "log_or": 0.1638150857077583,
+      "se": 0.05461208339312118
+    },
+    "adjusted_or_hospital_mortality_per_10mmhg_higher_updated_vulnerability": {
+      "odds_ratio_per_10": 1.8637710641042324,
+      "ci_low": 1.4681905525708487,
+      "ci_high": 2.3659344308610106,
+      "log_or": 0.6226018890338736,
+      "se": 0.12171998115398519
+    }
+  },
+  "artifacts": {
+    "model_comparison_tex": "recovery_20260822/gate1_approved_run/source_sensitivity/invasive/empirical/model_comparison.tex",
+    "sensitivity_tex": "recovery_20260822/gate1_approved_run/source_sensitivity/invasive/empirical/sensitivity_analysis.tex",
+    "admission_q10_strata_tex": "recovery_20260822/gate1_approved_run/source_sensitivity/invasive/empirical/admission_window_q10_strata.tex",
+    "clinical_outcome_strata_tex": "recovery_20260822/gate1_approved_run/source_sensitivity/invasive/empirical/clinical_outcome_strata.tex",
+    "model_comparison_csv": "recovery_20260822/gate1_approved_run/source_sensitivity/invasive/empirical/model_comparison.csv",
+    "sensitivity_csv": "recovery_20260822/gate1_approved_run/source_sensitivity/invasive/empirical/sensitivity_analysis.csv",
+    "admission_q10_strata_csv": "recovery_20260822/gate1_approved_run/source_sensitivity/invasive/empirical/admission_window_q10_strata.csv"
+  }
+}

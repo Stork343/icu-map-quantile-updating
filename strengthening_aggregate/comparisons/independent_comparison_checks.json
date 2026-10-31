@@ -1,0 +1,13 @@
+{
+  "independent_model_summary_rows": 105,
+  "maximum_absolute_differences": {
+    "mean_stay_level_check_loss": 0.0,
+    "p_lt": 0.0,
+    "p_le": 0.0,
+    "calibration_bracket_violation": 0.0
+  },
+  "independent_temporal_paired_rows": 13,
+  "paired_normal_intervals_verified": true,
+  "selected_family_bootstrap_intervals_verified": true,
+  "bootstrap_seed": 20261015
+}

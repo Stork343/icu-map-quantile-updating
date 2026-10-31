@@ -1,0 +1,298 @@
+{
+  "method": "Gaussian random-intercept linear quantile mixed model; lqmm 1.5.8",
+  "references": [
+    "https://doi.org/10.18637/jss.v057.i13",
+    "https://doi.org/10.1007/s11222-013-9381-9"
+  ],
+  "fixed_predictors": [
+    "x_intercept",
+    "age_z",
+    "male",
+    "emergency_or_urgent"
+  ],
+  "tau": 0.1,
+  "quadrature_nodes": 321,
+  "new_stay_prediction": "JSS Equation 7 estimated BLP using index observations and fitting parameters; later records used for assessment only",
+  "calibration": "Stay-equal affine check-loss calibration fitted on inner tuning stays",
+  "data_summary": {
+    "fit_stays_requested": 0,
+    "fit_stays": 60310,
+    "age_definition": "icu_proxy",
+    "qualification_index_hours": 12.0,
+    "minimum_index_observations": 4,
+    "minimum_later_observations": 1,
+    "minimum_total_observations": 8,
+    "fit_observations": 1551170,
+    "obs_per_stay_median": 25.0,
+    "obs_per_stay_iqr": [
+      22.0,
+      28.0
+    ],
+    "index_obs_per_stay_median": 13.0,
+    "late_obs_per_stay_median": 12.0,
+    "stay_fraction_with_any_map_below_65": 0.6386668877466424,
+    "map_below_65_observation_fraction": 0.155835272729617
+  },
+  "nested_partitions": [
+    {
+      "fit_stays": 36186,
+      "tuning_stays": 12062,
+      "assessment_stays": 12062,
+      "tuning_raw_mean_loss": 1.9911202231830079,
+      "runtime_seconds": 18.47561733284965,
+      "age_standardization": {
+        "age_mean_training_split": 64.61001492289836,
+        "age_sd_training_split": 16.918872275234204
+      },
+      "parameters": {
+        "x_intercept": 67.4534977477435,
+        "age_z": -2.41747170086143,
+        "male": 1.62910368941679,
+        "emergency_or_urgent": -0.912861900761188,
+        "random_intercept_variance": 102.159643614415,
+        "residual_scale": 1.58128706327408,
+        "residual_mean": 14.0558850068807,
+        "residual_variance": 253.133876137275,
+        "log_likelihood": -3665041.18100419,
+        "lower_iterations": 152.0,
+        "upper_iterations": 3.0,
+        "quadrature_nodes": 321.0
+      },
+      "calibration": {
+        "predictor_column": "prediction_published_lqmm",
+        "tau": 0.1,
+        "intercept": 18.1070624666249,
+        "slope": 0.716380514031123,
+        "objective_weighting": "equal total weight per tuning stay",
+        "solver": "br",
+        "dual_stationarity": 1.6192934220356702e-09,
+        "relative_objective_gap": 1.2873219544751e-12,
+        "tuning_mean_stay_level_check_loss": 1.9293777604945777,
+        "tuning_se_stay_level_check_loss": 0.012031152691436247
+      }
+    },
+    {
+      "fit_stays": 36186,
+      "tuning_stays": 12062,
+      "assessment_stays": 12062,
+      "tuning_raw_mean_loss": 1.9777352866949482,
+      "runtime_seconds": 15.074834583327174,
+      "age_standardization": {
+        "age_mean_training_split": 64.6218427015973,
+        "age_sd_training_split": 16.9242003033507
+      },
+      "parameters": {
+        "x_intercept": 67.5349517908113,
+        "age_z": -2.45044354591516,
+        "male": 1.60143479746019,
+        "emergency_or_urgent": -1.01696915741844,
+        "random_intercept_variance": 101.782631804422,
+        "residual_scale": 1.57864221241551,
+        "residual_mean": 14.0323752214712,
+        "residual_variance": 252.28780401883,
+        "log_likelihood": -3661145.18212127,
+        "lower_iterations": 130.0,
+        "upper_iterations": 3.0,
+        "quadrature_nodes": 321.0
+      },
+      "calibration": {
+        "predictor_column": "prediction_published_lqmm",
+        "tau": 0.1,
+        "intercept": 17.8626664726111,
+        "slope": 0.720350701853994,
+        "objective_weighting": "equal total weight per tuning stay",
+        "solver": "br",
+        "dual_stationarity": 1.7451054442585402e-09,
+        "relative_objective_gap": 1.38217389532515e-12,
+        "tuning_mean_stay_level_check_loss": 1.916553897613366,
+        "tuning_se_stay_level_check_loss": 0.011469566730163335
+      }
+    },
+    {
+      "fit_stays": 36186,
+      "tuning_stays": 12062,
+      "assessment_stays": 12062,
+      "tuning_raw_mean_loss": 1.9865713180841729,
+      "runtime_seconds": 12.508721583057195,
+      "age_standardization": {
+        "age_mean_training_split": 64.69734151329243,
+        "age_sd_training_split": 16.94013166761771
+      },
+      "parameters": {
+        "x_intercept": 67.5538902163534,
+        "age_z": -2.42265548048007,
+        "male": 1.59469921667538,
+        "emergency_or_urgent": -1.20316741594978,
+        "random_intercept_variance": 105.264610168831,
+        "residual_scale": 1.58122368297451,
+        "residual_mean": 14.0553216264401,
+        "residual_variance": 253.113584591551,
+        "log_likelihood": -3664149.18663048,
+        "lower_iterations": 149.0,
+        "upper_iterations": 3.0,
+        "quadrature_nodes": 321.0
+      },
+      "calibration": {
+        "predictor_column": "prediction_published_lqmm",
+        "tau": 0.1,
+        "intercept": 18.2591120412698,
+        "slope": 0.711001809908701,
+        "objective_weighting": "equal total weight per tuning stay",
+        "solver": "br",
+        "dual_stationarity": 1.56787707816797e-09,
+        "relative_objective_gap": 1.3217575280322299e-12,
+        "tuning_mean_stay_level_check_loss": 1.9190444924541121,
+        "tuning_se_stay_level_check_loss": 0.011298225739066166
+      }
+    },
+    {
+      "fit_stays": 36186,
+      "tuning_stays": 12062,
+      "assessment_stays": 12062,
+      "tuning_raw_mean_loss": 1.978825407692486,
+      "runtime_seconds": 12.691603417042643,
+      "age_standardization": {
+        "age_mean_training_split": 64.60432211352457,
+        "age_sd_training_split": 16.981649447678425
+      },
+      "parameters": {
+        "x_intercept": 67.4467344622913,
+        "age_z": -2.48971793583515,
+        "male": 1.66831356011447,
+        "emergency_or_urgent": -1.02556673526203,
+        "random_intercept_variance": 102.658496918295,
+        "residual_scale": 1.58321503656191,
+        "residual_mean": 14.073022547217,
+        "residual_variance": 253.751515881049,
+        "log_likelihood": -3673641.19166621,
+        "lower_iterations": 117.0,
+        "upper_iterations": 3.0,
+        "quadrature_nodes": 321.0
+      },
+      "calibration": {
+        "predictor_column": "prediction_published_lqmm",
+        "tau": 0.1,
+        "intercept": 18.1950101342515,
+        "slope": 0.715300289505939,
+        "objective_weighting": "equal total weight per tuning stay",
+        "solver": "br",
+        "dual_stationarity": 1.6833220859128401e-09,
+        "relative_objective_gap": 1.37677415752763e-12,
+        "tuning_mean_stay_level_check_loss": 1.9181558381455532,
+        "tuning_se_stay_level_check_loss": 0.011885172075170907
+      }
+    },
+    {
+      "fit_stays": 36186,
+      "tuning_stays": 12062,
+      "assessment_stays": 12062,
+      "tuning_raw_mean_loss": 2.00590701416782,
+      "runtime_seconds": 12.60595166683197,
+      "age_standardization": {
+        "age_mean_training_split": 64.6316254905212,
+        "age_sd_training_split": 16.86989740277725
+      },
+      "parameters": {
+        "x_intercept": 67.4347316903817,
+        "age_z": -2.4217965857996,
+        "male": 1.57627546786321,
+        "emergency_or_urgent": -0.896296506711928,
+        "random_intercept_variance": 102.672171511077,
+        "residual_scale": 1.58202174809822,
+        "residual_mean": 14.0624155386508,
+        "residual_variance": 253.369148814037,
+        "log_likelihood": -3666548.34344357,
+        "lower_iterations": 115.0,
+        "upper_iterations": 3.0,
+        "quadrature_nodes": 321.0
+      },
+      "calibration": {
+        "predictor_column": "prediction_published_lqmm",
+        "tau": 0.1,
+        "intercept": 18.6482204746474,
+        "slope": 0.706582526243794,
+        "objective_weighting": "equal total weight per tuning stay",
+        "solver": "br",
+        "dual_stationarity": 2.2324045984261603e-09,
+        "relative_objective_gap": 1.2466650764632798e-12,
+        "tuning_mean_stay_level_check_loss": 1.9368974745413594,
+        "tuning_se_stay_level_check_loss": 0.01229926387462067
+      }
+    }
+  ],
+  "temporal_partition": {
+    "fit_stays": 20855,
+    "tuning_stays": 10612,
+    "assessment_stays": 22005,
+    "tuning_raw_mean_loss": 1.9364721151100441,
+    "runtime_seconds": 10.852147500030696,
+    "age_standardization": {
+      "age_mean_training_split": 64.05988971469671,
+      "age_sd_training_split": 17.47182608952416
+    },
+    "parameters": {
+      "x_intercept": 63.5784017578955,
+      "age_z": -3.08538231688974,
+      "male": 2.17868124459855,
+      "emergency_or_urgent": 1.17665591621258,
+      "random_intercept_variance": 94.8085839443156,
+      "residual_scale": 1.6161721549628,
+      "residual_mean": 14.3659747107804,
+      "residual_variance": 264.425950156941,
+      "log_likelihood": -2173765.81894355,
+      "lower_iterations": 199.0,
+      "upper_iterations": 3.0,
+      "quadrature_nodes": 321.0
+    },
+    "calibration": {
+      "predictor_column": "prediction_published_lqmm",
+      "tau": 0.1,
+      "intercept": 19.2803713975524,
+      "slope": 0.695399779342748,
+      "objective_weighting": "equal total weight per tuning stay",
+      "solver": "br",
+      "dual_stationarity": 1.7116017436417702e-09,
+      "relative_objective_gap": 8.363666452511099e-13,
+      "tuning_mean_stay_level_check_loss": 1.8723727594969874,
+      "tuning_se_stay_level_check_loss": 0.012520240065578675
+    }
+  },
+  "model_summary": [
+    {
+      "scope": "nested_5fold_internal_crossfit",
+      "model": "published_lqmm",
+      "n_stays": 60310,
+      "mean_stay_level_check_loss": 1.9823763281603215,
+      "se_stay_level_check_loss": 0.006043001223217681,
+      "p_lt": 0.11147549481415574,
+      "p_le": 0.11147549481415574
+    },
+    {
+      "scope": "nested_5fold_internal_crossfit",
+      "model": "calibrated_published_lqmm",
+      "n_stays": 60310,
+      "mean_stay_level_check_loss": 1.921539006547706,
+      "se_stay_level_check_loss": 0.005202189363787677,
+      "p_lt": 0.1000307765070903,
+      "p_le": 0.1000307765070903
+    },
+    {
+      "scope": "temporal_assessment",
+      "model": "published_lqmm",
+      "n_stays": 22005,
+      "mean_stay_level_check_loss": 1.9457127871362876,
+      "se_stay_level_check_loss": 0.008554720235766698,
+      "p_lt": 0.0873981173862957,
+      "p_le": 0.0873981173862957
+    },
+    {
+      "scope": "temporal_assessment",
+      "model": "calibrated_published_lqmm",
+      "n_stays": 22005,
+      "mean_stay_level_check_loss": 1.9243079415872282,
+      "se_stay_level_check_loss": 0.007507532493508096,
+      "p_lt": 0.07145005953553606,
+      "p_le": 0.07145005953553606
+    }
+  ]
+}

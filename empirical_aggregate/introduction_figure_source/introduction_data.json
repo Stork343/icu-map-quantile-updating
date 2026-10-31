@@ -1,0 +1,268 @@
+{
+  "illustration_type": "Simulation mechanism illustration",
+  "setting": "informative_recovery",
+  "replicate": 4,
+  "master_seed": 20261022,
+  "seed_sequence_tuple": [
+    20261022,
+    0,
+    4
+  ],
+  "derived_seeds": [
+    3388782700,
+    995668086,
+    2471267195,
+    1440116209
+  ],
+  "source_directory": "/Users/houjian/Library/CloudStorage/OneDrive-\u4e2a\u4eba/paper/Quantile-Adaptive Basis Mixed-Effects Model for ICU Blood Pressure Trajectories/.review-work/recovery_latest_20261029/original_replication/reproducibility_code/component_learning/simulation/replicates/informative_recovery/rep_0004",
+  "tau": 0.1,
+  "landmark_hours": 12.0,
+  "horizons_hours": [
+    4.0,
+    8.0,
+    12.0
+  ],
+  "allocation_counts": {
+    "F": 360,
+    "T": 120,
+    "A": 120
+  },
+  "replicate_selection_rule": "First continuous frozen replicate in numerical order whose two penalty functions each have maximum/minimum ratio greater than 2 over tuning early histories at D=12",
+  "replicate_selection_inputs": [
+    "frozen function parameters",
+    "tuning early history features"
+  ],
+  "replicate_selection_audit": [
+    {
+      "replicate": 1,
+      "selected_kind": "continuous",
+      "tuning_penalty_minima": [
+        0.04379104672584801,
+        0.030001484024887514
+      ],
+      "tuning_penalty_maxima": [
+        0.07424758966212211,
+        0.03000150265229357
+      ],
+      "tuning_penalty_maximum_to_minimum_ratios": [
+        1.6954970299510308,
+        1.0000006208828216
+      ]
+    },
+    {
+      "replicate": 2,
+      "selected_kind": "continuous",
+      "tuning_penalty_minima": [
+        0.05359632400384884,
+        0.030002275989271444
+      ],
+      "tuning_penalty_maxima": [
+        0.054282333771737426,
+        0.030002282073170475
+      ],
+      "tuning_penalty_maximum_to_minimum_ratios": [
+        1.0127995675195807,
+        1.00000020278125
+      ]
+    },
+    {
+      "replicate": 3,
+      "selected_kind": "continuous",
+      "tuning_penalty_minima": [
+        0.04717928939637402,
+        0.031583534527424705
+      ],
+      "tuning_penalty_maxima": [
+        0.04773735721736769,
+        0.031616253328138264
+      ],
+      "tuning_penalty_maximum_to_minimum_ratios": [
+        1.0118286610106628,
+        1.0010359448745405
+      ]
+    },
+    {
+      "replicate": 4,
+      "selected_kind": "continuous",
+      "tuning_penalty_minima": [
+        0.035391885222664364,
+        0.0324430118937289
+      ],
+      "tuning_penalty_maxima": [
+        0.12135530555888861,
+        0.15790417306660465
+      ],
+      "tuning_penalty_maximum_to_minimum_ratios": [
+        3.4289019868649078,
+        4.867124346649421
+      ]
+    }
+  ],
+  "record_selection_rule": "Assessment histories with minimum and maximum lambda_slope/lambda_level at D=12; numerical ties choose the smallest synthetic stay index",
+  "record_selection_inputs": [
+    "assessment membership",
+    "early history",
+    "frozen function parameters"
+  ],
+  "population_coefficients": [
+    66.2094845387783,
+    -1.66319192047471,
+    0.880729221802112,
+    -0.351458715966558
+  ],
+  "component_parameters": [
+    [
+      -2.3642670759222657,
+      -2.362470570115108,
+      -2.365944403357344,
+      0.40871849647221936,
+      -0.9250355434308865,
+      0.3641449734138914
+    ],
+    [
+      -3.5666614881190934,
+      -2.7992484787134466,
+      -2.466032698950139,
+      0.2824422250844008,
+      0.7710412221599029,
+      -1.5490740507042098
+    ]
+  ],
+  "selected_kind": "continuous",
+  "best_continuous_eta": 0.001,
+  "examples": [
+    {
+      "example": "A",
+      "synthetic_stay_index": 597,
+      "index_count": 16,
+      "index_coverage_hours": 4.0,
+      "index_observed_span_hours": 4.0,
+      "population_mmhg": 63.78603100716237,
+      "index_q10_mmhg": 65.75952030767797,
+      "selection_penalty_ratio_at_12_hours": 0.31062932223090395,
+      "x": [
+        1.0,
+        1.245794180540498,
+        0.0,
+        1.0
+      ],
+      "index_time": [
+        8.0,
+        8.25,
+        8.5,
+        8.75,
+        9.0,
+        9.25,
+        9.5,
+        9.75,
+        10.0,
+        10.25,
+        10.5,
+        10.75,
+        11.0,
+        11.25,
+        11.5,
+        12.0
+      ],
+      "index_y": [
+        65.75952030767797,
+        81.42455449548748,
+        75.29618723982965,
+        65.94765357688837,
+        67.9647082407721,
+        64.61987329903309,
+        72.0981750432078,
+        74.04789161825443,
+        79.28898019633192,
+        73.27098452844902,
+        70.85113522042838,
+        70.9452447669159,
+        74.65639696524278,
+        72.59807576000354,
+        83.55905362246699,
+        77.71575333705695
+      ]
+    },
+    {
+      "example": "B",
+      "synthetic_stay_index": 148,
+      "index_count": 10,
+      "index_coverage_hours": 12.0,
+      "index_observed_span_hours": 11.75,
+      "population_mmhg": 67.69461004182726,
+      "index_q10_mmhg": 73.91275811729813,
+      "selection_penalty_ratio_at_12_hours": 8.21033558074076,
+      "x": [
+        1.0,
+        -1.1042527301908212,
+        0.0,
+        1.0
+      ],
+      "index_time": [
+        0.25,
+        0.5,
+        1.5,
+        2.0,
+        5.75,
+        7.75,
+        8.25,
+        11.25,
+        11.75,
+        12.0
+      ],
+      "index_y": [
+        81.12602556388683,
+        81.65367223736749,
+        80.62863326065597,
+        84.8571474428369,
+        84.91716255885899,
+        73.91275811729813,
+        82.89787924813103,
+        83.307387068963,
+        82.71885058515039,
+        77.13190401934847
+      ]
+    }
+  ],
+  "profile_diagnostics": {
+    "profiles": 6,
+    "all_certified": true,
+    "max_duality_gap": 1.7763568394002505e-15,
+    "max_relative_duality_gap": 1.329381897563939e-16,
+    "minimum_relative_duality_gap": -2.0771861606193588e-16,
+    "max_projected_kkt_violation": 2.942091015256665e-15,
+    "max_stationarity_violation": 5.551115123125783e-17,
+    "max_sweeps": 5,
+    "mean_sweeps": 5.0
+  },
+  "assessment_replay_maximum_errors": {
+    "continuous_loss": 0.0,
+    "continuous_p_lt": 0.0,
+    "continuous_p_le": 0.0,
+    "constant_loss": 0.0,
+    "constant_p_lt": 0.0,
+    "constant_p_le": 0.0,
+    "selected_loss": 0.0,
+    "selected_p_lt": 0.0,
+    "selected_p_le": 0.0
+  },
+  "example_curve_replay_maximum_error": 1.4210854715202004e-14,
+  "contour_definition": "lambda_level*u_level^2+lambda_slope*u_slope^2=1",
+  "contour_semantics": "Unit level sets of the quadratic penalty in the individual check loss objective",
+  "contour_level": 1.0,
+  "curve_definition": "At fixed requested horizon D, q(t;D)=x beta+u0(D)+u1(D)*(t-12)/12 for 12<=t<=12+D",
+  "forecast_performance_claim": "none",
+  "table_row_counts": {
+    "introduction_observations.csv": 50,
+    "introduction_profiles.csv": 6,
+    "introduction_forecast.csv": 198,
+    "introduction_contours.csv": 1086
+  },
+  "plot_table_names": [
+    "introduction_observations.csv",
+    "introduction_profiles.csv",
+    "introduction_forecast.csv",
+    "introduction_contours.csv",
+    "introduction_parameters.csv"
+  ]
+}

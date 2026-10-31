@@ -1,0 +1,226 @@
+{
+  "status": "passed",
+  "study_role": "Theorem verification on synthetic mathematical examples, separate from the 800 replicate simulation study",
+  "seed": 20261031,
+  "fixed_index_cases": 8,
+  "random_generic_cases": 64,
+  "directional_profile_comparisons": 144,
+  "objective_expansion_checks": 1152,
+  "production_profile_solves": 1368,
+  "future_tie_derivative_checks": [
+    {
+      "residual": -0.8,
+      "forecast_direction": -1.4,
+      "expected": -1.26,
+      "difference_quotient": -1.2600000000029254
+    },
+    {
+      "residual": -0.8,
+      "forecast_direction": -0.3,
+      "expected": -0.27,
+      "difference_quotient": -0.2700000000022129
+    },
+    {
+      "residual": -0.8,
+      "forecast_direction": 0.0,
+      "expected": 0.0,
+      "difference_quotient": 0.0
+    },
+    {
+      "residual": -0.8,
+      "forecast_direction": 0.4,
+      "expected": 0.36000000000000004,
+      "difference_quotient": 0.35999999999924975
+    },
+    {
+      "residual": -0.8,
+      "forecast_direction": 1.7,
+      "expected": 1.53,
+      "difference_quotient": 1.5300000000051381
+    },
+    {
+      "residual": 0.0,
+      "forecast_direction": -1.4,
+      "expected": 0.13999999999999999,
+      "difference_quotient": 0.14
+    },
+    {
+      "residual": 0.0,
+      "forecast_direction": -0.3,
+      "expected": 0.03,
+      "difference_quotient": 0.030000000000000002
+    },
+    {
+      "residual": 0.0,
+      "forecast_direction": 0.0,
+      "expected": 0.0,
+      "difference_quotient": 0.0
+    },
+    {
+      "residual": 0.0,
+      "forecast_direction": 0.4,
+      "expected": 0.36,
+      "difference_quotient": 0.36000000000000004
+    },
+    {
+      "residual": 0.0,
+      "forecast_direction": 1.7,
+      "expected": 1.53,
+      "difference_quotient": 1.5299999999999998
+    },
+    {
+      "residual": 0.7,
+      "forecast_direction": -1.4,
+      "expected": 0.13999999999999999,
+      "difference_quotient": 0.13999999999986246
+    },
+    {
+      "residual": 0.7,
+      "forecast_direction": -0.3,
+      "expected": 0.03,
+      "difference_quotient": 0.030000000000862666
+    },
+    {
+      "residual": 0.7,
+      "forecast_direction": 0.0,
+      "expected": 0.0,
+      "difference_quotient": 0.0
+    },
+    {
+      "residual": 0.7,
+      "forecast_direction": 0.4,
+      "expected": -0.04000000000000001,
+      "difference_quotient": -0.03999999999976245
+    },
+    {
+      "residual": 0.7,
+      "forecast_direction": 1.7,
+      "expected": -0.17,
+      "difference_quotient": -0.16999999999933732
+    }
+  ],
+  "maxima": {
+    "profile_base_error": 1.1102230246251565e-16,
+    "smallest_step_derivative_error": 4.093314129002659e-05,
+    "objective_expansion_error": 7.522261429488585e-15,
+    "certificate_gap": 1.0658141036401503e-14
+  },
+  "history_path": {
+    "n_stays": 12,
+    "horizons": [
+      4,
+      8,
+      12
+    ],
+    "n_later_ties_per_stay": 2,
+    "history_counts": [
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      6,
+      8,
+      12,
+      16
+    ],
+    "history_feature_ranges": [
+      1.0,
+      1.7875,
+      0.15538577330423547
+    ],
+    "base_risk": 0.17222222222222217,
+    "gamma": 1.6494932711033956,
+    "rows": [
+      {
+        "step": 0.01,
+        "gamma": 1.6494932711033956,
+        "difference_quotient": 1.6447458644550188,
+        "absolute_error": 0.004747406648376806
+      },
+      {
+        "step": 0.003,
+        "gamma": 1.6494932711033956,
+        "difference_quotient": 1.6480708790617786,
+        "absolute_error": 0.0014223920416169822
+      },
+      {
+        "step": 0.001,
+        "gamma": 1.6494932711033956,
+        "difference_quotient": 1.6490193159157673,
+        "absolute_error": 0.00047395518762827216
+      },
+      {
+        "step": 0.0003,
+        "gamma": 1.6494932711033956,
+        "difference_quotient": 1.649351103011343,
+        "absolute_error": 0.00014216809205258585
+      },
+      {
+        "step": 0.0001,
+        "gamma": 1.6494932711033956,
+        "difference_quotient": 1.6494458834989678,
+        "absolute_error": 4.738760442779544e-05
+      },
+      {
+        "step": 1e-05,
+        "gamma": 1.6494932711033956,
+        "difference_quotient": 1.649488532431964,
+        "absolute_error": 4.738671431692154e-06
+      }
+    ],
+    "negative_direction": {
+      "gamma": -0.5162319695131266,
+      "kappa": 0.2581159847565633,
+      "n_later_ties_per_stay": 6,
+      "rows": [
+        {
+          "step": 0.01,
+          "gamma": -0.5162319695131266,
+          "difference_quotient": -0.516231274713419,
+          "absolute_error": 6.947997075457124e-07,
+          "descent_margin": 0.0025811528995685618
+        },
+        {
+          "step": 0.003,
+          "gamma": -0.5162319695131266,
+          "difference_quotient": -0.5162317947102942,
+          "absolute_error": 1.7480283232007565e-07,
+          "descent_margin": 0.0007743474298612107
+        },
+        {
+          "step": 0.001,
+          "gamma": -0.5162319695131266,
+          "difference_quotient": -0.516231914468146,
+          "absolute_error": 5.504498057362639e-08,
+          "descent_margin": 0.0002581159297115887
+        },
+        {
+          "step": 0.0003,
+          "gamma": -0.5162319695131266,
+          "difference_quotient": -0.5162319533384234,
+          "absolute_error": 1.6174703132421087e-08,
+          "descent_margin": 7.743479057453762e-05
+        },
+        {
+          "step": 0.0001,
+          "gamma": -0.5162319695131266,
+          "difference_quotient": -0.5162319641516255,
+          "absolute_error": 5.361501020928472e-09,
+          "descent_margin": 2.5811597939517927e-05
+        },
+        {
+          "step": 1e-05,
+          "gamma": -0.5162319695131266,
+          "difference_quotient": -0.5162319689611117,
+          "absolute_error": 5.520148782522938e-10,
+          "descent_margin": 2.581159842030001e-06
+        }
+      ]
+    }
+  },
+  "scope": "Finite numerical checks support the stated formulas for these mathematical examples; theorem validity is assessed by proof review."
+}

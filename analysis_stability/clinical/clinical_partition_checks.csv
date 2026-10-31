@@ -1,0 +1,7 @@
+partition,fitting_stays,tuning_stays,assessment_stays,disjoint_allocations,fitting_only_age_standardization_replayed,same_assignments_across_horizons
+fold_1,36186,12062,12062,True,True,True
+fold_2,36186,12062,12062,True,True,True
+fold_3,36186,12062,12062,True,True,True
+fold_4,36186,12062,12062,True,True,True
+fold_5,36186,12062,12062,True,True,True
+temporal,20855,10612,22005,True,True,True

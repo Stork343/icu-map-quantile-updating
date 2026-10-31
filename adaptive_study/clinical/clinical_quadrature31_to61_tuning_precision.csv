@@ -1,0 +1,7 @@
+partition,horizon_hours,method,nodes_first,nodes_second,n_tuning_stays,mean_absolute_change,mean_change,mean_paired_loss_change,maximum_observation_prediction_change,prediction_information
+temporal,4,direct,31,61,10560,0.2139835946069901,0.0436455785987086,0.0017394482661314,1.5241271185582406,tuning index histories and tuning calibration outcomes
+temporal,4,affine,31,61,10560,0.1573881855698982,-0.0040580323000886,-0.0003929404336789,1.0925972679546447,tuning index histories and tuning calibration outcomes
+temporal,8,direct,31,61,10602,0.2439492385970431,0.0435481733878452,0.0068919449875332,1.912403246160551,tuning index histories and tuning calibration outcomes
+temporal,8,affine,31,61,10602,0.1746905061881373,-0.0337061747078617,0.0023703984620495,1.3262241042024885,tuning index histories and tuning calibration outcomes
+temporal,12,direct,31,61,10612,0.2749368187401984,0.0439098359365505,0.013422929792882,2.3006793737628612,tuning index histories and tuning calibration outcomes
+temporal,12,affine,31,61,10612,0.1962176708757126,-0.0600545414935242,0.0049384186688438,1.4218985472576833,tuning index histories and tuning calibration outcomes

@@ -1,0 +1,58 @@
+{
+  "config_name": "gate1_approved_aligned_proxy",
+  "config_version": 1,
+  "approved_at": "2026-09-07",
+  "source_data_version": "MIMIC-IV 3.1",
+  "age": {
+    "age_definition": "icu_proxy",
+    "formula": "age_at_icu_proxy = anchor_age + year(intime) - anchor_year",
+    "analysis_timepoint": "ICU intime",
+    "adult_threshold_years": 18,
+    "uses_for": ["adult qualification", "age covariate", "age grouping", "training-only standardization"],
+    "retain_fields": ["anchor_age", "anchor_year", "age_at_icu_proxy", "age_year_delta", "high_age_coded"],
+    "high_age_policy": "retain source coding flag; do not interpret 91 as a recovered true age and do not fit a separate high-age model",
+    "standardization": "estimate mean and standard deviation within each fitting population only"
+  },
+  "temporal_assignment": {
+    "rule": "aligned_full_containment",
+    "fit_periods": ["2008 - 2013"],
+    "tuning_periods": ["2014 - 2016"],
+    "assessment_periods": ["2017 - 2022"],
+    "overall_bounds": [2008, 2022],
+    "mapping": "possible_year_range = anchor_year_group + (year(intime) - anchor_year)",
+    "boundary_policy": "exclude only from strict temporal analysis and retain in other analysis queues",
+    "allocation_basis": "complete containment in one phase; no midpoint allocation and no anchor_group fallback"
+  },
+  "landmark": {
+    "horizons_hours": [6, 12, 18],
+    "split": "t <= h is index and t > h is later; observations exactly at h belong to index",
+    "minimum_total_observations": 8,
+    "minimum_index_observations": 4,
+    "minimum_later_observations": 1,
+    "queue": "construct each horizon-specific eligible queue from the same upstream base queue",
+    "assignment": "preserve existing random/nested assignments for existing stays; assign newly eligible stays once by a fixed outcome-independent rule",
+    "pairing": "candidate models are paired by stay_id on the same eligible assessment sample; empty windows are excluded, never scored as zero",
+    "table_7": "refit population component and select penalty separately for each horizon using its corresponding fitting and tuning groups",
+    "figure_3": {
+      "specification": "retain audited independent descriptive specification",
+      "penalty": "freeze the primary 12-hour penalty selected within the approved fitting/tuning design"
+    },
+    "count_split": "explicitly separate from fixed-clock split and not used as a fallback"
+  },
+  "split": {
+    "seed": 20260522,
+    "train_fraction": 0.6,
+    "tuning_fraction": 0.2,
+    "assessment_fraction": 0.2,
+    "preserve_existing_assignment": true
+  },
+  "cache": {
+    "schema_version": 4,
+    "analysis_hours": 24.0,
+    "min_observations_per_stay": 8,
+    "duplicate_window_minutes": 5,
+    "map_source": "combined",
+    "candidate_stays": 100000
+  },
+  "simulation_policy": "reuse existing simulation outputs unless the shared strict-clock code audit demonstrates a dependent result; do not change mechanisms, seeds, repetitions, candidate menu, or theory targets"
+}

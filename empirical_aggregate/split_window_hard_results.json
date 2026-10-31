@@ -1,0 +1,387 @@
+{
+  "status": "complete",
+  "tau": 0.1,
+  "index_hours": 12.0,
+  "lambda_b": 0.03,
+  "metadata": {
+    "data_summary": {
+      "fit_stays_requested": 0,
+      "fit_stays": 60310,
+      "age_definition": "icu_proxy",
+      "qualification_index_hours": 12.0,
+      "minimum_index_observations": 4,
+      "minimum_later_observations": 1,
+      "minimum_total_observations": 8,
+      "fit_observations": 1551170,
+      "obs_per_stay_median": 25.0,
+      "obs_per_stay_iqr": [
+        22.0,
+        28.0
+      ],
+      "index_obs_per_stay_median": 13.0,
+      "late_obs_per_stay_median": 12.0,
+      "stay_fraction_with_any_map_below_65": 0.6386668877466424,
+      "map_below_65_observation_fraction": 0.155835272729617
+    },
+    "age_standardization": {
+      "age_mean_training_split": 64.66931962637484,
+      "age_sd_training_split": 16.92628522881111
+    },
+    "split": {
+      "train_stays": 36186,
+      "tuning_stays": 12062,
+      "assessment_stays": 12062
+    }
+  },
+  "calibrated_admission_q10": {
+    "predictor_column": "admission_window_q10",
+    "intercept": 19.66666666667661,
+    "slope": 0.6666666666664972,
+    "tuning_loss": 1.890895546270806,
+    "success": true,
+    "message": "Optimization terminated successfully."
+  },
+  "calibrated_updated_q10": {
+    "predictor_column": "updated_q10_median",
+    "intercept": 10.545450707637524,
+    "slope": 0.8181818738023107,
+    "tuning_loss": 1.9068603684554166,
+    "success": true,
+    "message": "Optimization terminated successfully."
+  },
+  "hybrid_calibrations": [
+    {
+      "model": "Hybrid q10 + level offset",
+      "index_information": "q10 and profiled level offset",
+      "prefix": "calibrated_hybrid_q10_offset",
+      "predictor_columns": [
+        "admission_window_q10",
+        "updated_offset"
+      ],
+      "coefficients": [
+        19.666664808010236,
+        0.6666666946010568,
+        -3.075586843035964e-08
+      ],
+      "tuning_loss": 1.8908955465585682,
+      "success": true,
+      "message": "Optimization terminated successfully."
+    },
+    {
+      "model": "Hybrid q10 + level offset + count",
+      "index_information": "q10, profiled level offset, log index count",
+      "prefix": "calibrated_hybrid_q10_offset_count",
+      "predictor_columns": [
+        "admission_window_q10",
+        "updated_offset",
+        "log_index_obs"
+      ],
+      "coefficients": [
+        19.670906380336316,
+        0.6666851161867721,
+        -4.360072211218933e-05,
+        -0.0021137766353885447
+      ],
+      "tuning_loss": 1.890895555098468,
+      "success": true,
+      "message": "Optimization terminated successfully."
+    },
+    {
+      "model": "q10 + index MAP<65 burden",
+      "index_information": "q10 and index MAP<65 fraction",
+      "prefix": "calibrated_q10_lowburden",
+      "predictor_columns": [
+        "admission_window_q10",
+        "index_map_below65_fraction"
+      ],
+      "coefficients": [
+        24.24942298486372,
+        0.6067143538430531,
+        -3.4628516925416917
+      ],
+      "tuning_loss": 1.8884112743759909,
+      "success": true,
+      "message": "Optimization terminated successfully."
+    }
+  ],
+  "quantile_calibration": [
+    {
+      "stratum": "Overall",
+      "stays": 12062,
+      "later_observations": 139691,
+      "updated_q10_median": 66.0,
+      "population_below_fraction_observation": 0.09773714842044226,
+      "updated_below_fraction_observation": 0.13092468376631278,
+      "population_below_fraction_stay_mean": 0.09149382287885814,
+      "updated_below_fraction_stay_mean": 0.12523241125752166,
+      "later_map_below65_fraction": 0.1459482186015477,
+      "target": 0.1
+    },
+    {
+      "stratum": "Lowest updated q10",
+      "stays": 2413,
+      "later_observations": 29745,
+      "updated_q10_median": 56.0,
+      "population_below_fraction_observation": 0.23993948562783662,
+      "updated_below_fraction_observation": 0.07133972096150613,
+      "population_below_fraction_stay_mean": 0.24119580306572197,
+      "updated_below_fraction_stay_mean": 0.07504799805352717,
+      "later_map_below65_fraction": 0.36588990565570684,
+      "target": 0.1
+    },
+    {
+      "stratum": "Second",
+      "stays": 2412,
+      "later_observations": 28901,
+      "updated_q10_median": 62.0,
+      "population_below_fraction_observation": 0.11387149233590534,
+      "updated_below_fraction_observation": 0.11241825542368776,
+      "population_below_fraction_stay_mean": 0.10868000896446381,
+      "updated_below_fraction_stay_mean": 0.10779046484130579,
+      "later_map_below65_fraction": 0.18992221484974095,
+      "target": 0.1
+    },
+    {
+      "stratum": "Third",
+      "stays": 2412,
+      "later_observations": 28461,
+      "updated_q10_median": 66.0,
+      "population_below_fraction_observation": 0.06535258775166017,
+      "updated_below_fraction_observation": 0.13720529847861987,
+      "population_below_fraction_stay_mean": 0.06090615700458159,
+      "updated_below_fraction_stay_mean": 0.12866591301041858,
+      "later_map_below65_fraction": 0.10170471848097278,
+      "target": 0.1
+    },
+    {
+      "stratum": "Fourth",
+      "stays": 2412,
+      "later_observations": 26858,
+      "updated_q10_median": 71.0,
+      "population_below_fraction_observation": 0.038647702732891503,
+      "updated_below_fraction_observation": 0.17168069104177527,
+      "population_below_fraction_stay_mean": 0.03520693914973977,
+      "updated_below_fraction_stay_mean": 0.15630766767803012,
+      "later_map_below65_fraction": 0.05566227217842957,
+      "target": 0.1
+    },
+    {
+      "stratum": "Highest updated q10",
+      "stays": 2413,
+      "later_observations": 25726,
+      "updated_q10_median": 79.0,
+      "population_below_fraction_observation": 0.012710876156417632,
+      "updated_below_fraction_observation": 0.17111093835030708,
+      "population_below_fraction_stay_mean": 0.011451325827057613,
+      "updated_below_fraction_stay_mean": 0.1583570855645659,
+      "later_map_below65_fraction": 0.016524453682798937,
+      "target": 0.1
+    }
+  ],
+  "quantile_calibration_error": [
+    {
+      "model": "Population QR",
+      "groups": 10,
+      "ace": 0.009307188240719941,
+      "wce": 0.00928692614413241
+    },
+    {
+      "model": "Primary level update",
+      "groups": 10,
+      "ace": 0.04422611089496057,
+      "wce": 0.04313019450071944
+    },
+    {
+      "model": "Calibrated update",
+      "groups": 10,
+      "ace": 0.01217563705060136,
+      "wce": 0.012118890980807638
+    },
+    {
+      "model": "Calibrated q10",
+      "groups": 10,
+      "ace": 0.005861359221021182,
+      "wce": 0.005866519675569648
+    }
+  ],
+  "calibrated_comparator": [
+    {
+      "model": "Baseline covariates quantile",
+      "index_information": "none",
+      "assessment_loss": 2.225601245187547,
+      "assessment_loss_se": 0.012758030658640401,
+      "n_stays": 12062,
+      "paired_diff_vs_calibrated_q10": 0.33780101879996066,
+      "paired_diff_vs_calibrated_q10_se": 0.010135071538072844,
+      "paired_diff_vs_calibrated_q10_ci_lower": 0.3179362785853379,
+      "paired_diff_vs_calibrated_q10_ci_upper": 0.3576657590145834
+    },
+    {
+      "model": "Admission window q10 carry forward",
+      "index_information": "raw admission window q10",
+      "assessment_loss": 2.1438683887743557,
+      "assessment_loss_se": 0.016009102320534256,
+      "n_stays": 12062,
+      "paired_diff_vs_calibrated_q10": 0.25606816238676916,
+      "paired_diff_vs_calibrated_q10_se": 0.010370113842796867,
+      "paired_diff_vs_calibrated_q10_ci_lower": 0.2357427392548873,
+      "paired_diff_vs_calibrated_q10_ci_upper": 0.276393585518651
+    },
+    {
+      "model": "Primary penalized stay-specific level update",
+      "index_information": "profiled level offset",
+      "assessment_loss": 1.9574808752475301,
+      "assessment_loss_se": 0.011545749587244847,
+      "n_stays": 12062,
+      "paired_diff_vs_calibrated_q10": 0.06968064885994395,
+      "paired_diff_vs_calibrated_q10_se": 0.005297017327148625,
+      "paired_diff_vs_calibrated_q10_ci_lower": 0.059298494898732644,
+      "paired_diff_vs_calibrated_q10_ci_upper": 0.08006280282115526
+    },
+    {
+      "model": "Calibrated admission window q10",
+      "index_information": "tuning-calibrated affine q10",
+      "assessment_loss": 1.8878002263875862,
+      "assessment_loss_se": 0.010300650528296743,
+      "n_stays": 12062,
+      "calibration_intercept": 19.66666666667661,
+      "calibration_slope": 0.6666666666664972,
+      "calibration_tuning_loss": 1.890895546270806
+    },
+    {
+      "model": "Calibrated primary level update",
+      "index_information": "tuning-calibrated level-updated q10",
+      "assessment_loss": 1.9093288989370272,
+      "assessment_loss_se": 0.010153076418382489,
+      "n_stays": 12062,
+      "paired_diff_vs_calibrated_q10": 0.021528672549441,
+      "paired_diff_vs_calibrated_q10_se": 0.00356689602312434,
+      "paired_diff_vs_calibrated_q10_ci_lower": 0.014537556344117292,
+      "paired_diff_vs_calibrated_q10_ci_upper": 0.028519788754764706,
+      "calibration_intercept": 10.545450707637524,
+      "calibration_slope": 0.8181818738023107,
+      "calibration_tuning_loss": 1.9068603684554166
+    },
+    {
+      "model": "Hybrid q10 + level offset",
+      "index_information": "q10 and profiled level offset",
+      "assessment_loss": 1.8878002262260831,
+      "assessment_loss_se": 0.010300650492952746,
+      "n_stays": 12062,
+      "paired_diff_vs_calibrated_q10": -1.6150327380200675e-10,
+      "paired_diff_vs_calibrated_q10_se": 2.5468988802448017e-10,
+      "paired_diff_vs_calibrated_q10_ci_lower": -6.606954543299879e-10,
+      "paired_diff_vs_calibrated_q10_ci_upper": 3.3768890672597437e-10,
+      "calibration_tuning_loss": 1.8908955465585682,
+      "calibration_coefficients": "19.6667;0.666667;-3.07559e-08"
+    },
+    {
+      "model": "Hybrid q10 + level offset + count",
+      "index_information": "q10, profiled level offset, log index count",
+      "assessment_loss": 1.8877997550181498,
+      "assessment_loss_se": 0.01030052196957387,
+      "n_stays": 12062,
+      "paired_diff_vs_calibrated_q10": -4.713694367138262e-07,
+      "paired_diff_vs_calibrated_q10_se": 1.0379739316902199e-06,
+      "paired_diff_vs_calibrated_q10_ci_lower": -2.505798342826657e-06,
+      "paired_diff_vs_calibrated_q10_ci_upper": 1.5630594693990046e-06,
+      "calibration_tuning_loss": 1.890895555098468,
+      "calibration_coefficients": "19.6709;0.666685;-4.36007e-05;-0.00211378"
+    },
+    {
+      "model": "q10 + index MAP<65 burden",
+      "index_information": "q10 and index MAP<65 fraction",
+      "assessment_loss": 1.8860685647156525,
+      "assessment_loss_se": 0.010164938009453338,
+      "n_stays": 12062,
+      "paired_diff_vs_calibrated_q10": -0.00173166167193385,
+      "paired_diff_vs_calibrated_q10_se": 0.0008872733720273434,
+      "paired_diff_vs_calibrated_q10_ci_lower": -0.003470717481107443,
+      "paired_diff_vs_calibrated_q10_ci_upper": 7.394137239743201e-06,
+      "calibration_tuning_loss": 1.8884112743759909,
+      "calibration_coefficients": "24.2494;0.606714;-3.46285"
+    }
+  ],
+  "measurement_density_sensitivity": [
+    {
+      "density_measure": "Index observations",
+      "stratum": "Low",
+      "stays": 4920,
+      "median_index_obs": 11.0,
+      "median_late_obs": 12.0,
+      "any_later_map_below65": 0.41727642276422766,
+      "population_assessment_loss": 2.310675391787462,
+      "updated_assessment_loss": 1.9681268983355098,
+      "loss_reduction_percent": 14.824604731128758,
+      "updated_below_fraction_observation": 0.12428290842619062
+    },
+    {
+      "density_measure": "Index observations",
+      "stratum": "Middle",
+      "stays": 3612,
+      "median_index_obs": 13.0,
+      "median_late_obs": 12.0,
+      "any_later_map_below65": 0.4659468438538206,
+      "population_assessment_loss": 2.2511404986874037,
+      "updated_assessment_loss": 1.9603811898038677,
+      "loss_reduction_percent": 12.916088935944787,
+      "updated_below_fraction_observation": 0.13292677000826084
+    },
+    {
+      "density_measure": "Index observations",
+      "stratum": "High",
+      "stays": 3530,
+      "median_index_obs": 18.0,
+      "median_late_obs": 12.0,
+      "any_later_map_below65": 0.5620396600566572,
+      "population_assessment_loss": 2.0808951304812964,
+      "updated_assessment_loss": 1.9396751047743441,
+      "loss_reduction_percent": 6.7865037328569775,
+      "updated_below_fraction_observation": 0.13642538739121204
+    },
+    {
+      "density_measure": "Later observations",
+      "stratum": "Low",
+      "stays": 4122,
+      "median_index_obs": 12.0,
+      "median_late_obs": 9.0,
+      "any_later_map_below65": 0.32654051431344006,
+      "population_assessment_loss": 2.5032185775685236,
+      "updated_assessment_loss": 2.0701908936028084,
+      "loss_reduction_percent": 17.298836300037863,
+      "updated_below_fraction_observation": 0.11340627554549457
+    },
+    {
+      "density_measure": "Later observations",
+      "stratum": "Middle",
+      "stays": 4670,
+      "median_index_obs": 13.0,
+      "median_late_obs": 12.0,
+      "any_later_map_below65": 0.4809421841541756,
+      "population_assessment_loss": 2.1334368164444766,
+      "updated_assessment_loss": 1.8471651959429896,
+      "loss_reduction_percent": 13.418331318505084,
+      "updated_below_fraction_observation": 0.12110992148465381
+    },
+    {
+      "density_measure": "Later observations",
+      "stratum": "High",
+      "stays": 3270,
+      "median_index_obs": 14.0,
+      "median_late_obs": 14.0,
+      "any_later_map_below65": 0.6507645259938838,
+      "population_assessment_loss": 2.007273795082273,
+      "updated_assessment_loss": 1.9729498436547925,
+      "loss_reduction_percent": 1.7099785545734985,
+      "updated_below_fraction_observation": 0.15228083711061818
+    }
+  ],
+  "artifacts": {
+    "stay_level_predictions_csv": "recovery_20260822/gate1_approved_run/empirical/hard_result_stay_level_predictions.csv",
+    "quantile_calibration_tex": "recovery_20260822/gate1_approved_run/empirical/quantile_calibration.tex",
+    "quantile_calibration_error_tex": "recovery_20260822/gate1_approved_run/empirical/quantile_calibration_error.tex",
+    "quantile_calibration_plot": "recovery_20260822/gate1_approved_run/empirical/quantile_calibration_plot.pdf",
+    "calibrated_comparator_tex": "recovery_20260822/gate1_approved_run/empirical/calibrated_comparator.tex",
+    "measurement_density_sensitivity_tex": "recovery_20260822/gate1_approved_run/empirical/measurement_density_sensitivity.tex"
+  }
+}

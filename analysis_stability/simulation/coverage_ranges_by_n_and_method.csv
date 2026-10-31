@@ -1,0 +1,10 @@
+n_evaluation,interval_method,coverage_min,coverage_max,coverage_cells,reference_se_ratio_max
+120,normal,0.9,0.935,9,0.073145566491849
+120,percentile_bootstrap,0.885,0.93,9,0.073145566491849
+120,studentized_bootstrap,0.895,0.93,9,0.073145566491849
+600,normal,0.93,0.965,9,0.1163687294049541
+600,percentile_bootstrap,0.92,0.965,9,0.1163687294049541
+600,studentized_bootstrap,0.92,0.965,9,0.1163687294049541
+1800,normal,0.94,0.965,9,0.1655822383727413
+1800,percentile_bootstrap,0.93,0.965,9,0.1655822383727413
+1800,studentized_bootstrap,0.935,0.965,9,0.1655822383727413

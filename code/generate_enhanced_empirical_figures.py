@@ -12,6 +12,7 @@ from matplotlib.colors import TwoSlopeNorm
 import numpy as np
 import pandas as pd
 
+from manuscript_plot_style import HORIZONTAL_GRID, SERIES_STYLES, add_panel_label, set_plot_style
 import split_window_data as data_utils
 from split_window_analysis_core import auc_score, check_loss, design_frame, empirical_check_quantile, profiled_intercept
 from split_window_clinical_core import logistic_or_per_10
@@ -25,28 +26,6 @@ DIRECT_IDENTIFIER_COLUMNS = ("subject_id", "hadm_id", "stay_id")
 
 def public_export_frame(df: pd.DataFrame) -> pd.DataFrame:
     return df.drop(columns=[col for col in DIRECT_IDENTIFIER_COLUMNS if col in df.columns])
-
-
-def set_plot_style() -> None:
-    plt.rcParams.update(
-        {
-            "font.family": "sans-serif",
-            "font.sans-serif": ["Arial", "Helvetica", "Liberation Sans"],
-            "font.size": 9,
-            "axes.titlesize": 10,
-            "axes.labelsize": 9,
-            "xtick.labelsize": 8,
-            "ytick.labelsize": 8,
-            "legend.fontsize": 8,
-            "axes.spines.top": False,
-            "axes.spines.right": False,
-            "axes.grid": False,
-            "figure.dpi": 140,
-            "pdf.fonttype": 42,
-            "svg.fonttype": "none",
-            "savefig.dpi": 600,
-        }
-    )
 
 
 def strict_split_indices(
@@ -332,20 +311,6 @@ def save_figure(fig: plt.Figure, output_stem: Path) -> None:
     plt.close(fig)
 
 
-def add_panel_label(ax: plt.Axes, label: str) -> None:
-    ax.text(
-        0.015,
-        0.975,
-        label,
-        transform=ax.transAxes,
-        fontsize=11,
-        fontweight="bold",
-        va="top",
-        ha="left",
-        bbox={"boxstyle": "round,pad=0.12", "facecolor": "white", "edgecolor": "none", "alpha": 0.82},
-    )
-
-
 def plot_dynamic_signal(dynamic: pd.DataFrame, output_stem: Path) -> None:
     hours = dynamic["index_hours"].to_numpy(dtype=float)
     fig, axes = plt.subplots(1, 3, figsize=(10.9, 3.25))
@@ -354,24 +319,20 @@ def plot_dynamic_signal(dynamic: pd.DataFrame, output_stem: Path) -> None:
     ax.plot(
         hours,
         dynamic["auc_admission_window_q10_low_is_risk"],
-        color="#20639B",
-        marker="o",
-        linewidth=1.8,
+        **SERIES_STYLES["blue"],
         label="Admission window q10",
     )
     ax.plot(
         hours,
         dynamic["auc_updated_vulnerability"],
-        color="#D1495B",
-        marker="s",
-        linewidth=1.8,
+        **SERIES_STYLES["red"],
         label="Profiled offset",
     )
     ax.set_xlabel("Index window end (hours)")
     ax.set_ylabel("AUC for any later MAP <65")
     ax.set_ylim(0.55, 0.90)
     ax.set_xticks(hours)
-    ax.grid(axis="y", color="0.88", linewidth=0.7)
+    ax.grid(**HORIZONTAL_GRID)
     ax.legend(frameon=False, loc="lower right")
     add_panel_label(ax, "A")
 
@@ -379,7 +340,7 @@ def plot_dynamic_signal(dynamic: pd.DataFrame, output_stem: Path) -> None:
     ax.plot(
         hours,
         100.0 * dynamic["vulnerable_quintile_any_later_map_below65"],
-        color="#D1495B",
+        color=SERIES_STYLES["red"]["color"],
         marker="o",
         linewidth=1.9,
         label="Lowest admission window q10 quintile",
@@ -387,7 +348,7 @@ def plot_dynamic_signal(dynamic: pd.DataFrame, output_stem: Path) -> None:
     ax.plot(
         hours,
         100.0 * dynamic["resilient_quintile_any_later_map_below65"],
-        color="#2A9D8F",
+        color=SERIES_STYLES["green"]["color"],
         marker="o",
         linewidth=1.9,
         label="Highest admission window q10 quintile",
@@ -396,14 +357,14 @@ def plot_dynamic_signal(dynamic: pd.DataFrame, output_stem: Path) -> None:
         hours,
         100.0 * dynamic["resilient_quintile_any_later_map_below65"],
         100.0 * dynamic["vulnerable_quintile_any_later_map_below65"],
-        color="#D1495B",
+        color=SERIES_STYLES["red"]["color"],
         alpha=0.08,
     )
     ax.set_xlabel("Index window end (hours)")
     ax.set_ylabel("Any later MAP <65 (%)")
     ax.set_xticks(hours)
     ax.set_ylim(0, 100)
-    ax.grid(axis="y", color="0.88", linewidth=0.7)
+    ax.grid(**HORIZONTAL_GRID)
     ax.legend(frameon=False, loc="center right")
     add_panel_label(ax, "B")
 
@@ -421,9 +382,7 @@ def plot_dynamic_signal(dynamic: pd.DataFrame, output_stem: Path) -> None:
     ax.plot(
         hours,
         dynamic["loss_reduction_percent"],
-        color="#2F4858",
-        marker="D",
-        linewidth=1.9,
+        **SERIES_STYLES["slate"],
         label="Profiled offset",
         zorder=3,
     )
@@ -431,8 +390,14 @@ def plot_dynamic_signal(dynamic: pd.DataFrame, output_stem: Path) -> None:
     ax.set_ylabel("Check loss reduction (%)")
     ax2.set_ylabel("Usable stays (thousands)")
     ax.set_xticks(hours)
-    ax.grid(axis="y", color="0.88", linewidth=0.7)
-    ax.set_ylim(0, max(15.0, 1.15 * float(dynamic["loss_reduction_percent"].max())))
+    ax.grid(**HORIZONTAL_GRID)
+    reduction = dynamic["loss_reduction_percent"].to_numpy(dtype=float)
+    padding = max(1.0, 0.08 * float(np.ptp(reduction)))
+    ax.set_ylim(min(0.0, float(reduction.min())) - padding,
+                max(0.0, float(reduction.max())) + padding)
+    ax.axhline(0.0, color="0.35", linewidth=0.8, linestyle="--")
+    ax.set_zorder(ax2.get_zorder() + 1)
+    ax.patch.set_visible(False)
     ax2.set_ylim(0, 1.2 * float(dynamic["n_stays"].max()) / 1000.0)
     ax.legend(frameon=False, loc="upper left")
     add_panel_label(ax, "C")
@@ -494,31 +459,29 @@ def plot_risk_surface(surface: pd.DataFrame, deciles: pd.DataFrame, output_stem:
             "Later MAP <65 burden",
             100.0 * deciles["later_map_below65_fraction"].to_numpy(dtype=float),
             100.0 * deciles["later_map_below65_fraction_se"].to_numpy(dtype=float),
-            "#20639B",
-            "o",
+            SERIES_STYLES["blue"],
         ),
         (
             "Hospital mortality",
             100.0 * deciles["hospital_mortality"].to_numpy(dtype=float),
             100.0 * deciles["hospital_mortality_se"].to_numpy(dtype=float),
-            "#D1495B",
-            "s",
+            SERIES_STYLES["red"],
         ),
         (
             "ICU LOS >=3 days",
             100.0 * deciles["icu_los_ge3_days"].to_numpy(dtype=float),
             100.0 * deciles["icu_los_ge3_days_se"].to_numpy(dtype=float),
-            "#2A9D8F",
-            "^",
+            SERIES_STYLES["green"],
         ),
     ]
-    for label, values, se, color, marker in series:
-        ax.plot(x, values, color=color, marker=marker, linewidth=1.8, label=label)
-        ax.fill_between(x, values - 1.96 * se, values + 1.96 * se, color=color, alpha=0.10, linewidth=0)
+    for label, values, se, style in series:
+        ax.plot(x, values, **style, label=label)
+        ax.fill_between(x, values - 1.96 * se, values + 1.96 * se,
+                        color=style["color"], alpha=0.10, linewidth=0)
     ax.set_xlabel("Median admission window MAP q10 by decile (mmHg)")
     ax.set_ylabel("Assessment rate or burden (%)")
     ax.set_ylim(0, 50)
-    ax.grid(axis="y", color="0.88", linewidth=0.7)
+    ax.grid(**HORIZONTAL_GRID)
     ax.legend(frameon=False, loc="upper right")
     ax.set_title("Clinical gradient across admission window q10 deciles")
     add_panel_label(ax, "B")

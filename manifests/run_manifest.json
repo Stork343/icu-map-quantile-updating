@@ -1,0 +1,326 @@
+{
+  "run_name": "gate1_approved_aligned_proxy",
+  "config": "recovery_20260822/gate1_approved_run/analysis_config.json",
+  "config_sha256": "0d923ee78735b0f875ca5fbd2a8cf5ee7f9b3fc5768a809be7b89528ad454d68",
+  "source_data_version": "MIMIC-IV 3.1",
+  "source_manifest": {
+    "hosp/admissions.csv.gz": {
+      "bytes": 19928140,
+      "sha256_from_distribution_manifest": "a9584ed88e9ed664a2f66f86a5cf9fd175c8bb0af50e3b6115598b19e978384e"
+    },
+    "hosp/patients.csv.gz": {
+      "bytes": 2835586,
+      "sha256_from_distribution_manifest": "4c7507de7ecad8c5ba7647ea4d26018e88ff6672c5fc22ab59c2a5697d687cdd"
+    },
+    "icu/chartevents.csv.gz": {
+      "bytes": 3502392765,
+      "sha256_from_distribution_manifest": "fd0387653084e5b142756b98b74fdddc2e5e7eb0f496aa8bf5af3d4176e71098"
+    },
+    "icu/d_items.csv.gz": {
+      "bytes": 58741,
+      "sha256_from_distribution_manifest": "7f223a9570da9c02bd12f281b398cb4951d5a560a51836540f357bc247366b7f"
+    },
+    "icu/icustays.csv.gz": {
+      "bytes": 3342355,
+      "sha256_from_distribution_manifest": "3c590ed37f1fb7a77a128f2f6961f836001512ba81adcd0dfeced2702f96bc5f"
+    }
+  },
+  "code_repository": "recovery_20260822/github_release/icu-map-quantile-updating",
+  "code_commit": "9ae92ca",
+  "tag_unchanged": "v1.0.0",
+  "remote_push": false,
+  "data_boundary": "raw MIMIC records and row-level derived files remain in the approved local environment; this manifest contains aggregate paths only",
+  "commands": [
+    {
+      "name": "preflight_source_aggregate",
+      "command": "PYTHONPATH=... python - << aggregate preflight",
+      "status": "complete",
+      "exit_code": 0,
+      "output": "manifests/preflight_source_aggregate.json"
+    },
+    {
+      "name": "schema4_combined_cache",
+      "command": "build_revised_mimic_map_cache.py --map-source combined --age-definition icu_proxy --analysis-hours 24 --min-obs 8 --duplicate-minutes 5 --seed 20260522",
+      "status": "complete",
+      "exit_code": 0,
+      "output": "cache/mimic_map_full_cache_metadata.json"
+    },
+    {
+      "name": "cache_queue_aggregate",
+      "command": "aggregate schema4 age, queue, temporal status, and MAP digest checks",
+      "status": "complete",
+      "exit_code": 0,
+      "output": "manifests/cache_queue_aggregate.json"
+    },
+    {
+      "name": "primary_empirical",
+      "command": "run_split_window_mixed_effects_analysis.py --age-definition icu_proxy --fit-stays 0 --seed 20260522",
+      "status": "complete",
+      "exit_code": 0,
+      "output": "empirical/split_window_mixed_effects_results.json"
+    },
+    {
+      "name": "landmark_table7",
+      "command": "run_landmark_table7.py with fixed assignment preservation and strict 8/4/1 queues",
+      "status": "complete",
+      "exit_code": 0,
+      "output": "empirical/table7/landmark_table7_results.json"
+    },
+    {
+      "name": "temporal_validation",
+      "command": "run_temporal_validation.py --temporal-assignment aligned_full_containment --fit-periods 2008 - 2013 --tuning-periods 2014 - 2016 --assessment-periods 2017 - 2022 --age-definition icu_proxy",
+      "status": "complete",
+      "exit_code": 0,
+      "output": "temporal/temporal_validation_results.json"
+    },
+    {
+      "name": "validation_extensions",
+      "command": "run_submission_validation_extensions.py --age-definition icu_proxy --outer-folds 5 --no-resume",
+      "status": "complete",
+      "exit_code": 0,
+      "output": "validation_extensions/submission_validation_extensions_results.json"
+    },
+    {
+      "name": "source_sensitivity",
+      "command": "rebuild invasive and noninvasive schema4 caches and rerun empirical branches",
+      "status": "complete",
+      "exit_code": 0,
+      "output": "source_sensitivity/map_source_sensitivity.json"
+    },
+    {
+      "name": "figure_and_table_generation",
+      "command": "generate updated empirical and supplement aggregate tables and figures",
+      "status": "complete",
+      "exit_code": 0,
+      "output": "figures/ and supplement_tables/"
+    },
+    {
+      "name": "simulation_policy",
+      "command": "no full simulation rerun; retained existing aggregates after 55-test shared-clock audit",
+      "status": "reused",
+      "exit_code": 0,
+      "output": "retained public simulation_ademp_v2 aggregates"
+    }
+  ],
+  "tests": [
+    {
+      "command": "python -m unittest discover -s code/tests -v",
+      "status": "56 passed"
+    },
+    {
+      "command": "PYTHONPATH=code python -m unittest discover -s code/tests -v",
+      "status": "53 passed"
+    },
+    {
+      "command": "latexmk -xelatex -interaction=nonstopmode -halt-on-error manuscript.tex",
+      "status": "complete; 20-page PDF"
+    },
+    {
+      "command": "latexmk -xelatex -interaction=nonstopmode -halt-on-error supplementary_material.tex",
+      "status": "complete; 24-page PDF"
+    },
+    {
+      "command": "pdftoppm rendering of both PDFs for visual inspection",
+      "status": "complete; 44 pages rendered"
+    }
+  ],
+  "outputs": {
+    "primary_loss": {
+      "assessment_stays": 12062,
+      "population": 2.225601245187547,
+      "profiled": 1.9574808752475301,
+      "calibrated_q10": 1.8878002263875977
+    },
+    "nested_loss": {
+      "stays": 60310,
+      "population": 2.2222423500911117,
+      "profiled": 1.9530643636107288,
+      "calibrated_q10": 1.8895867705905027
+    },
+    "temporal_aligned": {
+      "fit_stays": 20855,
+      "tuning_stays": 10612,
+      "assessment_stays": 22005,
+      "population": 2.322027447448153,
+      "profiled": 2.0483706754730067,
+      "calibrated_q10": 1.8904149806611874
+    },
+    "landmark_table7": [
+      {
+        "tau": 0.05,
+        "index_hours": 12,
+        "lambda_b": 0.03,
+        "population_assessment_loss": 1.297740833563306,
+        "population_assessment_loss_se": 0.009026336190212836,
+        "updated_assessment_loss": 1.184323773229086,
+        "updated_assessment_loss_se": 0.00781687394505588,
+        "loss_reduction_percent": 8.739577071240184,
+        "n_base_stays": 62957,
+        "n_eligible_stays": 60310,
+        "train_stays": 36186,
+        "tuning_stays": 12062,
+        "assessment_stays": 12062,
+        "minimum_total_observations": 8,
+        "minimum_index_observations": 4,
+        "minimum_later_observations": 1,
+        "split_rule": "t<=h index; t>h later",
+        "age_definition": "icu_proxy"
+      },
+      {
+        "tau": 0.1,
+        "index_hours": 6,
+        "lambda_b": 0.1,
+        "population_assessment_loss": 2.268437087821077,
+        "population_assessment_loss_se": 0.012822307108168784,
+        "updated_assessment_loss": 2.0921318707267345,
+        "updated_assessment_loss_se": 0.010750242029078035,
+        "loss_reduction_percent": 7.772100801953064,
+        "n_base_stays": 62957,
+        "n_eligible_stays": 58995,
+        "train_stays": 35391,
+        "tuning_stays": 11826,
+        "assessment_stays": 11778,
+        "minimum_total_observations": 8,
+        "minimum_index_observations": 4,
+        "minimum_later_observations": 1,
+        "split_rule": "t<=h index; t>h later",
+        "age_definition": "icu_proxy"
+      },
+      {
+        "tau": 0.1,
+        "index_hours": 12,
+        "lambda_b": 0.03,
+        "population_assessment_loss": 2.225601245187547,
+        "population_assessment_loss_se": 0.012758030658640401,
+        "updated_assessment_loss": 1.9574808752475301,
+        "updated_assessment_loss_se": 0.011545749587244847,
+        "loss_reduction_percent": 12.047098307469845,
+        "n_base_stays": 62957,
+        "n_eligible_stays": 60310,
+        "train_stays": 36186,
+        "tuning_stays": 12062,
+        "assessment_stays": 12062,
+        "minimum_total_observations": 8,
+        "minimum_index_observations": 4,
+        "minimum_later_observations": 1,
+        "split_rule": "t<=h index; t>h later",
+        "age_definition": "icu_proxy"
+      },
+      {
+        "tau": 0.1,
+        "index_hours": 18,
+        "lambda_b": 0.03,
+        "population_assessment_loss": 2.206205186074922,
+        "population_assessment_loss_se": 0.013699617380505404,
+        "updated_assessment_loss": 1.866991855644322,
+        "updated_assessment_loss_se": 0.013182943818365734,
+        "loss_reduction_percent": 15.37542077099806,
+        "n_base_stays": 62957,
+        "n_eligible_stays": 55230,
+        "train_stays": 33105,
+        "tuning_stays": 11042,
+        "assessment_stays": 11083,
+        "minimum_total_observations": 8,
+        "minimum_index_observations": 4,
+        "minimum_later_observations": 1,
+        "split_rule": "t<=h index; t>h later",
+        "age_definition": "icu_proxy"
+      },
+      {
+        "tau": 0.2,
+        "index_hours": 12,
+        "lambda_b": 0.03,
+        "population_assessment_loss": 3.6558710904961313,
+        "population_assessment_loss_se": 0.01899496352467202,
+        "updated_assessment_loss": 3.0750795526778747,
+        "updated_assessment_loss_se": 0.016261055740731768,
+        "loss_reduction_percent": 15.88654313682156,
+        "n_base_stays": 62957,
+        "n_eligible_stays": 60310,
+        "train_stays": 36186,
+        "tuning_stays": 12062,
+        "assessment_stays": 12062,
+        "minimum_total_observations": 8,
+        "minimum_index_observations": 4,
+        "minimum_later_observations": 1,
+        "split_rule": "t<=h index; t>h later",
+        "age_definition": "icu_proxy"
+      }
+    ],
+    "source_sensitivity": [
+      {
+        "source": "invasive",
+        "source_label": "Invasive MAP only",
+        "cache_schema_version": 4,
+        "analytic_stays": 23334,
+        "map_observations": 579088,
+        "split_window_eligible_stays": 20963,
+        "train_stays": 12578,
+        "tuning_stays": 4193,
+        "assessment_stays": 4192,
+        "selected_lambda": 0.1,
+        "population_loss": 1.876622896411238,
+        "updated_loss": 1.7230950369765274,
+        "paired_reduction": 0.15352785943471028,
+        "paired_reduction_se": 0.011522897835294215,
+        "paired_reduction_ci_low": 0.13094297967753363,
+        "paired_reduction_ci_high": 0.17611273919188694,
+        "relative_loss_reduction_percent": 8.18107141974606,
+        "raw_q10_loss": 2.001814097136111,
+        "admission_q10_auc_later_map_below65": 0.7630434856914335,
+        "admission_later_q10_correlation": 0.5691174067693976
+      },
+      {
+        "source": "noninvasive",
+        "source_label": "Non-invasive MAP only",
+        "cache_schema_version": 4,
+        "analytic_stays": 47059,
+        "map_observations": 1014849,
+        "split_window_eligible_stays": 41481,
+        "train_stays": 24889,
+        "tuning_stays": 8296,
+        "assessment_stays": 8296,
+        "selected_lambda": 0.03,
+        "population_loss": 2.378693511707439,
+        "updated_loss": 1.993398200675887,
+        "paired_reduction": 0.3852953110315514,
+        "paired_reduction_se": 0.014921475752956158,
+        "paired_reduction_ci_low": 0.35604921855575733,
+        "paired_reduction_ci_high": 0.4145414035073455,
+        "relative_loss_reduction_percent": 16.197770294290027,
+        "raw_q10_loss": 2.1854110449014406,
+        "admission_q10_auc_later_map_below65": 0.8204831543763196,
+        "admission_later_q10_correlation": 0.7031106195848241
+      }
+    ]
+  },
+  "comparison_manifest": "manifests/results_before_after.csv",
+  "unfinished": [
+    "independent author/theory acceptance gate 2",
+    "author authorization for remote push or new release",
+    "final author confirmation of ethics, funding, ORCID, and AI-use wording"
+  ],
+  "submission_package": {
+    "note": "Prior hashes refer to the pre-correction delivery; current hashes are in gate2_package_sha256.txt."
+  },
+  "gate2_corrections": {
+    "code_commit": "a760375",
+    "status": "local corrections completed; independent author acceptance pending",
+    "model_reruns": 0,
+    "simulation_reruns": 0,
+    "checks": [
+      "Assumption 4 explicitly invokes Assumptions 2 and 3 per fold",
+      "unrounded stratum weighted-mean identity passed",
+      "12 negative simulation means; 11 MC intervals entirely below zero",
+      "60310 = 53472 + 5681 + 1157",
+      "Figure 3: all 10 points visible and zero reference present",
+      "both PDFs compiled and corrected pages visually inspected"
+    ],
+    "sources": [
+      "manifests/temporal_status_by_12h.csv",
+      "manifests/simulation_count_audit.csv",
+      "temporal/temporal_validation_q10_profile_strata.csv",
+      "figures/enhanced_dynamic_signal_metrics.csv"
+    ]
+  }
+}

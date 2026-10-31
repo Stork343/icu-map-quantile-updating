@@ -1,0 +1,20 @@
+\begin{table}[!htbp]
+\caption{Sensitivity of the profiled stay specific level update under horizon specific fitting and tuning.}
+\label{tab:robustness_summary}
+\centering
+\small
+\setlength{\tabcolsep}{5pt}
+\begin{tabular}{llrrrr}
+\toprule
+Analysis & Setting & $\lambda_b$ & Population loss & Offset rule loss & Reduction, \%\\
+\midrule
+Quantile and window & $\tau=0.05$, 12 h & 0.03 & 1.2977 & 1.1843 & 8.7\%\\
+Quantile and window & $\tau=0.10$, 6 h & 0.1 & 2.2684 & 2.0921 & 7.8\%\\
+Quantile and window & $\tau=0.10$, 12 h & 0.03 & 2.2256 & 1.9575 & 12.0\%\\
+Quantile and window & $\tau=0.10$, 18 h & 0.03 & 2.2062 & 1.8670 & 15.4\%\\
+Quantile and window & $\tau=0.20$, 12 h & 0.03 & 3.6559 & 3.0751 & 15.9\%\\
+\bottomrule
+\end{tabular}
+\par\smallskip
+\footnotesize{Each row uses the same upstream cache and one fixed stay-level partition. Eligibility is horizon specific: at least 8 total observations, 4 observations at or before the landmark, and 1 observation after it. The population component and penalty are re-fitted and selected within the corresponding horizon-specific training and tuning groups; assessment losses are paired by stay on the corresponding horizon-specific assessment group.}
+\end{table}

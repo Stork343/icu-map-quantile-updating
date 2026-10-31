@@ -1,0 +1,25 @@
+{
+  "panels": 12,
+  "source_rows_checked": 432,
+  "plotted_rows": 72,
+  "plotted_estimates_and_interval_endpoints_checked": 216,
+  "replicates_per_cell": 200,
+  "figure_size_inches": [
+    7.0,
+    7.1
+  ],
+  "uncertainty": "supplied pointwise 95 percent intervals",
+  "font_family": "Times New Roman",
+  "visual_inspection": false,
+  "source_filename": "paired_summary.csv",
+  "selection_mode": "direct",
+  "scope": "reference",
+  "text_items_checked": 84,
+  "minimum_font_points": 9.0,
+  "all_panel_y_limits": [
+    -0.011089921747740471,
+    0.1343112745004124
+  ],
+  "text_outside_canvas": 0,
+  "text_overlaps": 0
+}

@@ -1,0 +1,74 @@
+{
+  "revision": "2026-09-16",
+  "scope": "Manuscript completeness corrections and public package reproducibility",
+  "code_base_commit": "a760375",
+  "public_release_retained": "v1.0.0",
+  "remote_published": false,
+  "changes": [
+    "Correct public association CSV path",
+    "Use flat supplement_aggregate layout matching public commands",
+    "Preserve authoritative fold CSV during public regeneration",
+    "Include approved analysis configuration and editable workflow sources",
+    "Add isolated public artifact regeneration verification",
+    "Qualify level/slope conclusions and affine coefficient interpretation",
+    "Expand limitations and AI disclosure",
+    "Clarify duplicate candidate uniqueness and fold-specific conditioning in proof",
+    "Clarify Table 6 confidence interval coverage"
+  ],
+  "validation": {
+    "unit_tests": {
+      "passed": 56,
+      "command": "python3 -m unittest discover -s code/tests -v"
+    },
+    "public_regeneration": {
+      "tables_identical": 7,
+      "figures_regenerated": 2,
+      "figure_pngs_pixel_identical_to_previous_delivery": true
+    },
+    "synthetic_smoke": {
+      "scenario": "ideal_large_dense",
+      "n_stays": 60,
+      "replicates": 1,
+      "exit_code": 0
+    },
+    "scientific_data_files_unchanged": 81,
+    "full_clinical_rerun": false,
+    "full_simulation_rerun": false,
+    "pdf_pages": {
+      "main": 20,
+      "supplement": 23
+    },
+    "unresolved_latex_references": 0
+  },
+  "author_confirmation": "pending",
+  "independent_theory_acceptance": "pending; assistant review is not independent author acceptance",
+  "provenance": "Earlier run_manifest.json describes the retained empirical run. This manifest supersedes its packaging status for the current local delivery.",
+  "source_sha256": {
+    "code/build_revised_mimic_map_cache.py": "bc7089bed3e9b28ec4d712c3e910cd2959f8d5ac5dae9327b6fc1fbf30b59400",
+    "code/fit_grouped_quantile_common.R": "f2fc1b20d37f2b50f94bb88400c78cb26789ef815fb2a8e8b32c89007b823d60",
+    "code/fit_quantile_common.R": "6b6efe7e57890e28c52a5140579ba601a8259e55a5160eafe551a9b068ab1abc",
+    "code/generate_enhanced_empirical_figures.py": "6c7d11a1c34740b085adbaa80e5dde3af03bba12426099d63aead34889fa7ed8",
+    "code/generate_expanded_supplement_tables.py": "0883d652d52c5db1d2b691e474653ffdc66d3653be00042e3ffa1416ae986268",
+    "code/generate_random_effect_structure_comparison.py": "aa0b83735d795631cb8a64f4903db7cae9469369550e383fa5057a597d41575f",
+    "code/generate_split_window_hard_result_tables.py": "d7fdceef270f40dfad818f436a25a216064f75717054db7f4269f140ae32f175",
+    "code/generate_stay_weighted_population_sensitivity.py": "04bd506b943486025a043b21365139abf0685ed6352beeb8e373e095302abb1b",
+    "code/plot_expanded_supplement_figures.py": "c22585d74a7ee27722a6d3c4cdcf0db6b8bfeaa58f1319b7936c78131deb973c",
+    "code/plot_tie_aware_calibration_heatmap.py": "cc592579c0ea1b0f7b89296d94abf873ae0f5bff12187a10ee8a864b279554f0",
+    "code/polish_submission_figures.py": "81abb507a83dd65d0ab0ee823058a0821a846767ad0e76fabe5e643e8afa85b4",
+    "code/run_landmark_table7.py": "d9ec2b25c1fb2cf74963cabbfadb5cc3c553894b7fa8008004bb296764131187",
+    "code/run_split_window_mixed_effects_analysis.py": "9e9e11c8a4dd4d33a3649daed4c33846d97f940858d92679d66816c0b5ed27fa",
+    "code/run_split_window_simulation.py": "1618605526042c6f7afe3aac5622810a5fc76d2334aaa4a81c8bf1cc058b0c95",
+    "code/run_submission_validation_extensions.py": "c2b9c3875d967e83eb373e7e53668415039321d583400e04d0b15b3e166ae167",
+    "code/run_temporal_validation.py": "ba003fef60762725f19e2c6957bca5c6620698e93c789d8a8328faa6e928d2ca",
+    "code/split_window_analysis_core.py": "d38fee5530b8f1faa79c9646640ac4576b3032b41f33a51d6432779c6f415891",
+    "code/split_window_clinical_core.py": "52118a500f9b642eb5901498613060de58478070acfbd7563219fc6621d55315",
+    "code/split_window_data.py": "4897a0c92db05f925f0a0d1a3ab31966b057a36860abf19439220168d25a3c61",
+    "code/summarize_source_sensitivities.py": "94c3c00f5f84b035b5bd97bfc78f5208222eefec4d021662812639aa4bf4f63e",
+    "code/tests/test_luna_revision_contracts.py": "8c9cf3f5017645ddf6d68ed962fab1c8c101111f2f3c1ea02662ac20b65d4ab7",
+    "code/tests/test_recovery_invariants.py": "54957c8924444013c6266a6513f6d55d071fbafdbbe18a06d0f19d507cf46532",
+    "code/tests/test_split_window_simulation_ademp_v2.py": "4aee96978abbb5f247f47e869f087c0ec80fb1d1bc2131b13257f873b8015cac",
+    "code/tests/test_submission_validation_extensions.py": "85fde3063e2101b2c64de7e88bfb05e3ac7bc11e0832c99e50be7fdfa9be64a8",
+    "code/tests/test_temporal_validation.py": "e267129bf59e8410ce65d806eb007fbb4a222a65af4afb4f9a7acbf0d48b92a8",
+    "code/verify_public_package.py": "e8b85813b730fd17f63e23913d5a25d6f886be3d8133eb34fff05fb2e1b5d2c7"
+  }
+}

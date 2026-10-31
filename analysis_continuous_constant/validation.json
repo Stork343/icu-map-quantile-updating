@@ -1,0 +1,18 @@
+{
+  "status": "passed",
+  "simulation_datasets": 800,
+  "simulation_zero_history_fits_checked": 3200,
+  "simulation_paired_summary_cells": 192,
+  "independent_R_summary_values": 1536,
+  "independent_R_summary_maximum_difference": 4.09676632895373e-15,
+  "clinical_partitions": 6,
+  "clinical_zero_history_fits": 24,
+  "independent_R_temporal_contrasts": 24,
+  "independent_R_nested_summaries": 144,
+  "independent_R_clinical_maximum_difference": 1.28022592527088e-15,
+  "original_simulation_loss_replay_maximum_difference": 2.220446049250313e-16,
+  "original_clinical_replay_maximum_difference": 7.105427357601002e-15,
+  "simulation_source": "component_learning/simulation",
+  "clinical_exports_contain_individual_identifiers": false,
+  "interval_definitions": "Simulation Student t with 199 degrees of freedom and 192 comparisons; temporal normal intervals with 24 comparisons and separate Holm tests"
+}

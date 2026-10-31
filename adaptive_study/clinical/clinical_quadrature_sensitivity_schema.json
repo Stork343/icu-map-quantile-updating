@@ -1,0 +1,72 @@
+{
+  "csv_fields": {
+    "clinical_quadrature61_temporal_model_summary.csv": [
+      "scope",
+      "horizon_hours",
+      "model",
+      "n_stays",
+      "mean_loss",
+      "p_lt",
+      "p_le",
+      "bracket_violation",
+      "profile_level_penalty",
+      "profile_slope_penalty"
+    ],
+    "clinical_quadrature61_temporal_paired_comparisons.csv": [
+      "scope",
+      "horizon_hours",
+      "candidate",
+      "reference",
+      "profile_level_penalty",
+      "profile_slope_penalty",
+      "n_stays",
+      "mean_difference",
+      "se",
+      "ci95_low",
+      "ci95_high",
+      "candidate_better_fraction",
+      "interval_type"
+    ],
+    "clinical_quadrature31_to61_tuning_precision.csv": [
+      "partition",
+      "horizon_hours",
+      "method",
+      "nodes_first",
+      "nodes_second",
+      "n_tuning_stays",
+      "mean_absolute_change",
+      "mean_change",
+      "mean_paired_loss_change",
+      "maximum_observation_prediction_change",
+      "prediction_information"
+    ],
+    "clinical_quadrature61_parameters.csv": [
+      "term",
+      "estimate"
+    ],
+    "clinical_quadrature61_calibrations.csv": [
+      "horizon_hours",
+      "intercept",
+      "slope",
+      "stationarity",
+      "relative_gap"
+    ]
+  },
+  "json_top_level_fields": [
+    "design",
+    "cohort_checks",
+    "fitting_validation",
+    "aggregate_tables"
+  ],
+  "json_design_fields": [
+    "main_quadrature_nodes_per_dimension",
+    "sensitivity_nodes_per_dimension",
+    "tau",
+    "landmark_hours",
+    "horizon_hours",
+    "fixed_profile_penalty",
+    "all_main_tuning_and_selections_unchanged",
+    "score_weighting",
+    "tuning_precision_weighting"
+  ]
+}

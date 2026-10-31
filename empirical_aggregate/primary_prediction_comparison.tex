@@ -1,0 +1,30 @@
+\begin{table}[!htbp]
+\caption{Prediction family loss under fixed, nested, and aligned temporal assessment.}
+\label{tab:primary_prediction_comparison}
+\centering
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{llrrl}
+\toprule
+Assessment & Rule & Stays & Mean loss & Difference from population\\
+\midrule
+Historical split & Population component & 12,062 & 2.2256 & Reference\\
+ & Raw admission window q10 & 12,062 & 2.1439 & $-0.0817$\\
+ & Profiled offset & 12,062 & 1.9575 & $-0.2681$\\
+ & Affine calibrated offset & 12,062 & 1.9093 & $-0.3163$\\
+ & Calibrated q10 & 12,062 & 1.8878 & $-0.3378$\\
+ & Level with slope & 12,062 & 1.9065 & $-0.3191$\\
+\addlinespace
+Nested fivefold & Population component & 60,310 & 2.2222 & Reference\\
+ & Raw admission window q10 & 60,310 & 2.1394 & $-0.0829$\\
+ & Profiled offset & 60,310 & 1.9531 & $-0.2692$\\
+ & Calibrated q10 & 60,310 & 1.8896 & $-0.3327$\\
+\addlinespace
+Aligned temporal & Population component & 22,005 & 2.3220 & Reference\\
+ & Profiled offset & 22,005 & 2.0484 & -0.2737 (-0.2818, -0.2655)\\
+ & Calibrated q10 & 22,005 & 1.8904 & -0.4316 (-0.4440, -0.4192)\\
+\bottomrule
+\end{tabular}
+\par\smallskip
+\footnotesize{Loss is later check loss averaged within stays at $\tau=0.10$. Differences are candidate minus population loss. Historical and nested rows report point estimates. The temporal rows use complete containment in the approved 2008 to 2013 fitting, 2014 to 2016 tuning, and 2017 to 2022 assessment phases and include paired stay-level 95\% confidence intervals.}
+\end{table}

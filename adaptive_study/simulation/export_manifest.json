@@ -1,0 +1,51 @@
+{
+  "status": "complete",
+  "replicates": 800,
+  "synthetic_records_included": false,
+  "restricted_clinical_records_included": false,
+  "absolute_filesystem_paths": 0,
+  "resolved_numerical_attempts": 1,
+  "unresolved_failures": 0,
+  "source_verification": {
+    "status": "passed",
+    "replicates_checked": 800,
+    "qp_fits_checked": 27755560,
+    "resolved_numerical_attempts": 1,
+    "unresolved_failures": 0,
+    "resolved_attempt_source_input_rechecks": 1,
+    "checks": [
+      "frozen configuration and seeds",
+      "complete candidate menu",
+      "actual R fitting certificates",
+      "profile certificates",
+      "probability mass brackets",
+      "stay-paired assessment calculations",
+      "all-replicate Monte Carlo summaries",
+      "selection frequency denominators",
+      "resolved numerical attempt provenance"
+    ],
+    "visual_inspection": false,
+    "forecast_clipping": false
+  },
+  "public_verification": {
+    "status": "passed",
+    "replicates_checked": 800,
+    "qp_fits_checked": 27755560,
+    "resolved_numerical_attempts": 1,
+    "unresolved_failures": 0,
+    "resolved_attempt_source_input_rechecks": 0,
+    "checks": [
+      "frozen configuration and seeds",
+      "complete candidate menu",
+      "actual R fitting certificates",
+      "profile certificates",
+      "probability mass brackets",
+      "stay-paired assessment calculations",
+      "all-replicate Monte Carlo summaries",
+      "selection frequency denominators",
+      "resolved numerical attempt provenance"
+    ],
+    "visual_inspection": false,
+    "forecast_clipping": false
+  }
+}

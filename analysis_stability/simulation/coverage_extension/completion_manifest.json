@@ -1,0 +1,39 @@
+{
+  "status": "complete",
+  "frozen_models": 600,
+  "intervals": 16200,
+  "coverage_cells": 81,
+  "configuration": {
+    "scenarios": [
+      "common_time_misspecified",
+      "ideal_large_dense",
+      "cluster_size_informative"
+    ],
+    "replicates_per_scenario": 200,
+    "assessment_sizes": [
+      120,
+      600,
+      1800
+    ],
+    "reference_size": 100000,
+    "reference_block_size": 10000,
+    "bootstrap_replicates": 2000,
+    "bootstrap_batch_size": 200,
+    "master_seed": 20261025,
+    "contrasts": [
+      "tuned_level_minus_population",
+      "affine_calibrated_q10_minus_population",
+      "tuned_level_minus_affine_calibrated_q10"
+    ],
+    "interval_methods": [
+      "normal",
+      "percentile_bootstrap",
+      "studentized_bootstrap"
+    ],
+    "selection_reason": "Common-time misspecification had undercoverage after Holm adjustment across the 84 existing coverage cells; informative cluster size had the lowest percentile-bootstrap coverage; large dense is the positive-control reference mechanism.",
+    "original_assessment": "Replay all original 120 assessment stays and frozen fitted rules exactly.",
+    "new_assessments": "A separately generated cohort of 1800 stays, with prefixes used for the smaller new assessments.",
+    "reference": "10 independent 10000-stay blocks, independent of all fitting, tuning and assessment records.",
+    "stopping_rule": "Complete all 600 prespecified frozen-rule replicates without outcome-dependent stopping."
+  }
+}

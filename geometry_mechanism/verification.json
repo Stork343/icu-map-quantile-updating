@@ -1,0 +1,11 @@
+{
+  "status": "complete",
+  "replicates_checked": 800,
+  "planned_comparisons": 432,
+  "qp_fits_checked": 13290280,
+  "maximum_original_replay_error": 2.1316282072803006e-14,
+  "visual_inspection": false,
+  "all_coverage_groups_reported": true,
+  "coverage_specific_tuning": false,
+  "source_simulation_seed": 20261021
+}

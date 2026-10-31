@@ -1,0 +1,48 @@
+{
+  "status": "complete",
+  "quadrature_nodes": 321,
+  "method": "Gaussian random-intercept linear quantile mixed model",
+  "package": "lqmm 1.5.8",
+  "fitted_artifact_validation": {
+    "status": "passed",
+    "partitions_checked": 6,
+    "checks": [
+      "fitting outcomes",
+      "fixed covariates",
+      "random design",
+      "group membership",
+      "model dimensions",
+      "parameters",
+      "log likelihood",
+      "quadrature nodes",
+      "optimization convergence"
+    ]
+  },
+  "final_output_validation": {
+    "status": "passed",
+    "age_standardization_absolute_tolerance": 1e-12
+  },
+  "resume_current_design_validation": {
+    "status": "passed",
+    "partitions_checked": 6,
+    "maximum_outcome_difference": 0.0,
+    "maximum_covariate_difference": 0.0
+  },
+  "resume_rejection_validation": {
+    "status": "passed",
+    "changed_settings_rejected": [
+      "seed",
+      "tau",
+      "index_hours",
+      "nodes"
+    ]
+  },
+  "quadrature_precision": {
+    "status": "complete",
+    "prediction_information": "tuning stays index records"
+  },
+  "tests": {
+    "exit_code": 0,
+    "tests_passed": 3
+  }
+}

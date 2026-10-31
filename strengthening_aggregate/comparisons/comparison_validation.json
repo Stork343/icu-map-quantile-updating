@@ -1,0 +1,30 @@
+{
+  "tau": 0.1,
+  "landmark_hours": 12,
+  "nested_stays": 60310,
+  "temporal_stays": 22005,
+  "same_stay_and_later_record_checks": "PASS",
+  "same_partition_and_age_transformation_checks": "PASS",
+  "models": [
+    "population",
+    "calibrated_population",
+    "raw_q10",
+    "scalar_profile",
+    "calibrated_profile",
+    "level_with_slope",
+    "calibrated_level_with_slope",
+    "calibrated_last",
+    "calibrated_min",
+    "calibrated_mean",
+    "calibrated_q10",
+    "calibrated_below65_burden",
+    "selected_family",
+    "published_lqmm",
+    "calibrated_published_lqmm"
+  ],
+  "published_comparator_quadrature_nodes": 321,
+  "nested_uncertainty": "Point estimates and individual fold results",
+  "temporal_uncertainty": "Paired independent-stay normal intervals; selected-family comparisons also use paired stay bootstrap",
+  "bootstrap_replicates": 2000,
+  "bootstrap_seed": 20261015
+}

@@ -1,0 +1,13 @@
+# Continuous constant clinical comparison
+
+The added control fixes the six history coefficients of the existing penalty functions at zero and estimates their six horizon intercepts. Its individual level and slope profiles still use each stay's complete early record. Penalty ranges, the three grouped validation folds, the two deterministic starts, and the 100 iteration limit per start match the frozen history dependent procedure. The exact 48 matrix branch remains available during validation.
+
+All six fitting partitions are retained. The five nested partitions contribute one assessment forecast per eligible stay, and the temporal partition evaluates frozen rules on its later cohort. Each new direct forecast receives a separately fitted affine map using tuning records. The source population coefficients and fitting only age standardization remain unchanged.
+
+`clinical_model_summary.csv` gives equal stay weighted loss and strict and weak tail probabilities. `clinical_temporal_paired.csv` contains the eight planned contrasts at three horizons. Its simultaneous intervals use a Bonferroni correction across all 24 contrasts. The Holm adjusted tests implement the separately stated testing procedure. Negative loss differences favor the first named rule.
+
+`clinical_nested_pairs.csv` and `clinical_nested_omission.csv` describe the saved outer fold forecasts and omission of each assessment fold. These summaries use descriptive fold aggregation. `clinical_penalty_summary.csv` supplies quantiles of the penalties and medians within the fixed early observation count groups. The profile objective sums the index losses, so the amount of regularization also depends on the number and timing of the observations. Each penalty coefficient controls regularization within that index-record objective.
+
+The remaining files provide the original history parameters, new constant parameters, affine coefficients, validation scores, optimization diagnostics, numerical certificates and independent verification. All clinical exports contain aggregate quantities.
+
+The clinical runner requires the credentialed clinical cache and the original six private configurations and assessment score files. The original history fits and affine coefficients are provided in the reproducibility package under `component_learning/clinical/clinical_learning_fits.json` and `clinical_affine_coefficients.csv`. Pass these files explicitly using `--source-fits` and `--source-affine`. Program entry points are `code/run_continuous_constant_clinical.py` and `code/verify_continuous_constant_clinical.py`. The registered comparison design is in `code/CONTINUOUS_CONSTANT_PROTOCOL.md`.

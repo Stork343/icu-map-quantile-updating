@@ -1,0 +1,18 @@
+{
+  "solver": "OSQP Fenchel dual convex quadratic program with polishing and primal-dual certificates",
+  "primal_dual_gap_absolute_tolerance": 1e-07,
+  "primal_dual_gap_relative_tolerance": 1e-08,
+  "projected_kkt_absolute_tolerance": 5e-07,
+  "projected_kkt_definition": "infinity norm of a-clip(a+r-Xb,tau-1,tau)",
+  "coefficient_stationarity_absolute_tolerance": 1e-10,
+  "osqp_settings": {
+    "eps_abs": 1e-10,
+    "eps_rel": 1e-10,
+    "max_iter": 1000000,
+    "polishing": true,
+    "polish_refine_iter": 10,
+    "delta": 1e-10,
+    "adaptive_rho_interval": 50,
+    "verbose": false
+  }
+}

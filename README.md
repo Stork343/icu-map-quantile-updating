@@ -1,152 +1,99 @@
 # ICU MAP quantile profiling
 
-Reproducibility materials for the manuscript **Quantile Profiling for Lower Tail Persistence in ICU Mean Arterial Pressure**.
+Reproducibility materials for **Quantile Profiling for Lower Tail Persistence in ICU Mean Arterial Pressure** by Jian Hou and Maozai Tian. Version 1.1.0 accompanies the manuscript prepared on 31 October 2026.
 
-Repository: <https://github.com/Stork343/icu-map-quantile-updating>
+The method profiles individual lower tail level and slope around a population component. Two positive penalty functions use the early record and requested horizon. Later check loss, with equal weight per ICU stay, trains the functions. Matched continuously tuned constants distinguish history modulation from the resolution of penalty search.
 
-Submission release: `v1.0.0`
+## Results and inputs
 
-Development changes are recorded in Git history. A new release is created only for a distinct manuscript submission milestone.
+`component_learning/` supplies the 800 independent component learning simulation replicates and aggregate nested and temporal MIMIC-IV results. `analysis_continuous_constant/` supplies the matched constant controls on all 800 replicates and six clinical fitting partitions. Its simulation family has 192 paired contrasts; its temporal clinical family has 24. All original history dependent fits and selections remain fixed in this comparison. The protocol and independent R checks are included.
 
-## What is included
+Continuously tuned constants attained lower mean reference risk than history dependent candidates in the mixed population simulations. Nested clinical direct losses favored history modulation in all 15 fold and horizon comparisons after matching continuous tuning. Temporal direct comparisons favored history modulation at eight and twelve hours and shared continuous penalties at four hours. Direct and affine calibrated results are supplied separately.
 
-- `code/`: cohort construction, primary analysis, nested cross fitting, calibration, sensitivity analyses, figure generation, simulation, and regression tests.
-- `simulation_ademp_v2/`: complete synthetic results for the 14 mechanism ADEMP simulation with 200 replicates per mechanism.
-- `transient_grid_sensitivity/`: synthetic penalty range sensitivity for the transient mechanism.
-- `empirical_aggregate/`: aggregate CSV, JSON, TeX, and figure artifacts used in the MIMIC-IV application.
-- `validation_aggregate/`: aggregate nested cross fitting, temporal assessment, fixed observation opportunity, comparator, and calibration outputs.
-- `source_sensitivity/`: aggregate invasive and noninvasive results.
-- `supplement_aggregate/`: source tables, source CSV files, and figures for the expanded mathematical, simulation, and MIMIC-IV supplement.
+`adaptive_study/` retains the finite family mixed population study. `geometry_mechanism/` evaluates how early observation coverage relates to forecast geometry. `analysis_stability/` contains replicate deletion, optimization budget and grouped clinical comparisons, with the frozen rule assessment size experiment. `risk_inference/` contains independent assessment and cross fitting outputs, including the retained fitted inputs for 600 frozen rule replicates. Their reconstruction and replay checks are documented in that directory.
 
-Figure 1 is supplied as an editable draw.io file, a standalone SVG, a vector PDF, and a 300 dpi PNG. Its Times New Roman typography matches the manuscript body. The training, tuning, and held-out assessment lanes use solid connectors for records or predictions and dashed connectors for fitted quantities frozen before assessment.
+The original 14 mechanism prediction study is in `simulation_ademp_v2/`. The `strengthening_aggregate/` directory supplies complete prediction family and published LQMM comparisons. Source and monitoring sensitivities are in `source_sensitivity/` and `validation_aggregate/`. Numerical files used by the supplementary tables are in `supplement_aggregate/`.
 
-## Data boundary
+## Software
 
-This repository contains no row-level MIMIC-IV data, patient identifiers, stay identifiers, row-level feature files, or row-level out-of-fold predictions. Reproducing the empirical analysis from source requires credentialed local access to [MIMIC-IV 3.1](https://physionet.org/content/mimiciv/3.1/) and acceptance of the PhysioNet data use agreement. All simulation data and replicate outputs in this repository are synthetic.
-
-## Software environment
-
-The archived analysis used Python 3.12.1 and R 4.3.2. Install the Python dependencies with
+Install the pinned Python packages from `requirements.txt`. The analysis uses R with `data.table`, `quantreg`, `lqmm` and `jsonlite`. The recorded study environments are in `environments/`. R scripts run through `Rscript`.
 
 ```bash
 python -m pip install -r requirements.txt
 ```
 
-Install the two R dependencies with
-
 ```r
-install.packages(c("data.table", "quantreg"))
+install.packages(c("data.table", "quantreg", "lqmm", "jsonlite"))
 ```
 
-The archived versions were `data.table` 1.17.8 and `quantreg` 6.1. A conda specification is also provided in `environment.yml`.
+Run commands from the extracted package root. Keep generated runs in the ignored `local_runs/` directory.
 
-## Verification tests
-
-From the repository root, run
+## Verification
 
 ```bash
 python -m unittest discover -s code/tests -v
+python code/verify_public_package.py
 ```
 
-The release was checked with 41 passing tests. They cover empirical quantile conventions, scalar and vector profiles, stable tie handling, sample separation, temporal allocation, q10 profile stratification, fixed observation opportunity, probability mass calibration, informative monitoring, and deidentified export.
+The integration command regenerates seven supplementary tables and two diagnostic figures from aggregate inputs. It checks that the tables reproduce exactly, input files remain unchanged, and editable sources for the two introductory figures are present.
 
-## Regenerate expanded supplement artifacts
+The continuous constant comparison has separate arithmetic checks in Python and R. The public `analysis_continuous_constant/validation.json` records the completed checks of 800 simulation datasets and six clinical partitions. Patient level clinical scores used for the independent verification require credentialed local access.
 
-The expanded supplemental tables and figures are generated from public aggregate files:
+## Component learning and continuous constant control
 
-```bash
-python code/generate_expanded_supplement_tables.py
-python code/plot_expanded_supplement_figures.py
-```
+`README_COMPONENT_LEARNING.md` gives the original simulation and clinical commands. `README_CONTINUOUS_CONSTANT.md` gives the matched constant commands and file descriptions. The exact study definitions are in:
 
-These commands write LaTeX tables, aggregate source CSV files, vector PDFs, and PNG previews to `supplement_aggregate/`. They do not require row-level MIMIC-IV data.
+- `code/COMPONENT_LEARNING_PROTOCOL.md`
+- `code/CONTINUOUS_CONSTANT_PROTOCOL.md`
+- `code/GEOMETRY_MECHANISM_PROTOCOL.md`
 
-## Reproduce a synthetic smoke run
+The constant control fixes six history coefficients at zero while retaining the six horizon intercepts. It uses the same penalty ranges, grouped validation assignments, initializations and optimizer budget. Each record still supplies its own individual quantile profile. The control selects between continuous constants and the original 48 matrix branch without changing the original history dependent procedure.
 
-The following command runs one small replicate of the primary simulation without MIMIC-IV data:
+Simulation reproduction uses `code/run_continuous_constant_simulation.py`; aggregate export uses `code/export_continuous_constant_simulation.py`. `code/verify_continuous_constant_summaries.R` independently checks paired numerical summaries. Clinical reproduction uses `code/run_continuous_constant_clinical.py` with the original fitted coefficient and affine coefficient exports. `code/verify_continuous_constant_clinical.py` checks the paired clinical outputs; `code/verify_continuous_constant_clinical_intervals.R` independently calculates the temporal intervals and nested fold summaries.
 
-```bash
-python code/run_split_window_simulation.py \
-  --design ademp-v2 \
-  --n-rep 1 \
-  --n-stays 60 \
-  --scenarios ideal_large_dense \
-  --out-dir local_runs/smoke/output \
-  --work-dir local_runs/smoke/work \
-  --progress-every 1
-```
+## Original prediction studies
 
-The complete archived design used seed `20260529`, all 14 mechanisms, and 200 replicates per mechanism:
+For the 14 mechanism prediction study, run:
 
 ```bash
 python code/run_split_window_simulation.py \
-  --design ademp-v2 \
-  --n-rep 200 \
-  --seed 20260529 \
+  --design ademp-v2 --n-rep 200 --seed 20260529 \
   --out-dir local_runs/ademp_v2/output \
   --work-dir local_runs/ademp_v2/work
 ```
 
-The simulation calls `Rscript code/fit_grouped_quantile_common.R` for common quantile fits.
+The finite family history and horizon study is documented in `README_ADAPTIVE.md`. Risk inference and paired bootstrap use `code/run_risk_inference_simulation.py` and `code/run_paired_bootstrap_validation.py`, respectively. Their run manifests retain the seeds and assessment sample sizes used for the supplied results.
 
-## Reproduce the empirical analysis
+## Clinical reproduction
 
-Assume `/path/to/mimiciv/3.1` contains the credentialed MIMIC-IV 3.1 files. Build the first-day MAP cache with
+MIMIC-IV 3.1 source data require PhysioNet credentialing and the data use agreement. This archive supplies aggregate clinical quantities. Individual clinical records and patient identifiers remain in the credentialed environment.
+
+Create the first day MAP cache using the admission age proxy:
 
 ```bash
 python code/build_revised_mimic_map_cache.py \
   --data-root /path/to/mimiciv/3.1 \
   --cache-dir local_runs/mimic_cache \
-  --metadata-output local_runs/mimic_cache/metadata.json \
-  --map-source combined
+  --metadata-output local_runs/mimic_cache/mimic_map_full_cache_metadata.json \
+  --map-source combined --age-definition icu_proxy
 ```
 
-Run the primary fit, tune, and assessment analysis with
+`code/run_split_window_mixed_effects_analysis.py` fits the population component, selects the scalar penalty and assesses prediction. `code/run_submission_validation_extensions.py` supplies nested fivefold assessment and fixed observation opportunity analyses. `code/run_temporal_validation.py` assigns stays by aligned complete containment in the 2008 to 2013 fitting period, 2014 to 2016 tuning period and 2017 to 2022 assessment period.
 
-```bash
-python code/run_split_window_mixed_effects_analysis.py \
-  --obs-cache local_runs/mimic_cache/mimic_map_observations.parquet \
-  --stays-cache local_runs/mimic_cache/mimic_map_stays.parquet \
-  --data-root /path/to/mimiciv/3.1 \
-  --artifact-dir local_runs/primary/artifacts \
-  --work-dir local_runs/primary/work \
-  --output local_runs/primary/results.json \
-  --clinical-output local_runs/primary/clinical_results.json \
-  --seed 20260522
-```
+The common clinical configuration is `config/analysis_config.json`. Every clock landmark requires at least eight total, four index and one later observation. Horizon specific evaluation retains the original stay partitions and tests later record availability separately for each horizon.
 
-Run nested fivefold assessment, calibrated scalar comparators, fixed observation opportunity analyses, and tie aware calibration with
+`code/run_expanded_family_validation.py` compares the complete prediction family. `code/run_published_quantile_comparator.py` fits Gaussian random intercept LQMM prediction. Random slope comparisons and their quadrature sensitivities are documented in the adaptive study materials. `code/summarize_strengthening_comparisons.py` combines only matching assessment records and fitting definitions.
 
-```bash
-python code/run_submission_validation_extensions.py \
-  --obs-cache local_runs/mimic_cache/mimic_map_observations.parquet \
-  --stays-cache local_runs/mimic_cache/mimic_map_stays.parquet \
-  --results-json local_runs/primary/results.json \
-  --output-dir local_runs/validation \
-  --work-dir local_runs/validation/work \
-  --seed 20260522 \
-  --outer-folds 5
-```
+## Figures
 
-The empirical analysis is computationally intensive. The aggregate outputs needed to inspect the reported manuscript results are already included in this repository.
+Figure 1 has an editable TikZ source at `code/figure_specs/introduction_overview.tex`. Figure 2 is generated by `code/plot_method_illustration.py`. Their numerical source records and fitted coordinates are in `empirical_aggregate/introduction_figure_source/` and `empirical_aggregate/method_figure_source/`.
 
-## Reproduce the temporal assessment
+Both figures include vector PDF, SVG and PNG exports. Figure 2 shares `code/manuscript_plot_style.py` with the later clinical figures. `code/figure_specs/README.md` supplies the reproduction commands and numerical layout checks.
 
-The temporal analysis fits the population component on the 2008 to 2013 anchor year groups, tunes the prediction family on 2014 to 2016, and assesses the frozen rules on 2017 to 2022. It writes aggregate loss summaries, paired confidence intervals, 2,000 replicate stay bootstrap intervals, and manuscript tables.
+## Uncertainty
 
-```bash
-python code/run_temporal_validation.py \
-  --obs-cache local_runs/mimic_cache/mimic_map_observations.parquet \
-  --stays-cache local_runs/mimic_cache/mimic_map_stays.parquet \
-  --patients-file /path/to/mimiciv/3.1/hosp/patients.csv.gz \
-  --output-dir local_runs/temporal_validation \
-  --work-dir local_runs/temporal_validation/work
-```
-
-## Reported uncertainty
-
-The historical and temporal assessment samples report conditional stay level uncertainty after fitting and tuning have frozen the prediction rules. Temporal comparisons include paired normal intervals and paired stay bootstrap intervals. Nested cross fitted losses estimate complete cohort prediction risk. Monte Carlo intervals quantify simulation error across independent replicates.
+Simulation intervals describe Monte Carlo uncertainty across independent datasets. Paired temporal clinical intervals condition on fitted and tuned rules. Nested clinical outputs report pooled losses, fold comparisons and fold omission summaries. The continuous constant comparison retains its separate 192 contrast simulation family and 24 contrast temporal family.
 
 ## Citation
 
-Please use the metadata in `CITATION.cff` and cite the accompanying manuscript when it becomes available.
+`CITATION.cff` records the software version and authors. Cite the accompanying manuscript together with this archive.

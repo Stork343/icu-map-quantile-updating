@@ -1,0 +1,387 @@
+{
+  "illustration_type": "Simulation illustration",
+  "setting": "informative_recovery",
+  "replicate": 1,
+  "master_seed": 20261022,
+  "seed_sequence_tuple": [
+    20261022,
+    0,
+    1
+  ],
+  "derived_seeds": [
+    1992612852,
+    42749901,
+    3509236604,
+    3299721435
+  ],
+  "source_directory": ".review-work/recovery_latest_20261029/original_replication/reproducibility_code/component_learning/simulation/replicates/informative_recovery/rep_0001",
+  "tau": 0.1,
+  "landmark_hours": 12.0,
+  "allocation_counts": {
+    "F": 360,
+    "T": 120,
+    "A": 120
+  },
+  "selection_rule": "Smallest assessment synthetic index with count=6 and coverage=4 hours for A; smallest assessment synthetic index with count=16 and coverage=12 hours for B",
+  "selection_inputs": [
+    "assessment membership",
+    "index count",
+    "index coverage",
+    "synthetic index"
+  ],
+  "population_coefficients": [
+    67.7339070544791,
+    -2.15246817147309,
+    0.175300111594443,
+    -1.67628660376445
+  ],
+  "component_parameters": [
+    [
+      -1.7709146896781727,
+      -2.0877476016682075,
+      -2.087748540065001,
+      0.21696781854450134,
+      0.1474629949159229,
+      0.3323501755909254
+    ],
+    [
+      -10.166276324484084,
+      -12.0,
+      -12.0,
+      0.002599832849752476,
+      0.001705555337764474,
+      -0.005304742459365534
+    ]
+  ],
+  "constant_penalties": [
+    [
+      0.03,
+      0.03
+    ],
+    [
+      0.03,
+      0.03
+    ],
+    [
+      0.03,
+      0.03
+    ]
+  ],
+  "selected_kind": "continuous",
+  "best_continuous_eta": 0.01,
+  "examples": [
+    {
+      "example": "A",
+      "synthetic_stay_index": 22,
+      "index_count": 6,
+      "index_coverage_hours": 4.0,
+      "eligible_examples": 15,
+      "x": [
+        1.0,
+        1.0074234005718439,
+        0.0,
+        1.0
+      ],
+      "population_mmhg": 63.88917364578658,
+      "index_q10_mmhg": 67.17427728995347,
+      "index_time": [
+        8.25,
+        8.5,
+        9.25,
+        10.75,
+        11.75,
+        12.0
+      ],
+      "index_y": [
+        76.90107578893638,
+        72.25005377312064,
+        74.40980319256215,
+        67.17427728995347,
+        71.81472566005593,
+        72.3143600646667
+      ],
+      "later_time": [
+        12.5,
+        13.5,
+        14.75,
+        15.25,
+        16.5,
+        17.0,
+        17.5,
+        18.75,
+        20.25,
+        20.75,
+        22.0,
+        23.5
+      ],
+      "later_y": [
+        70.22595429395126,
+        75.76436716958847,
+        62.5165378743716,
+        69.84426402818374,
+        76.24125739692815,
+        77.47190606855696,
+        64.80495850400001,
+        66.6371295039799,
+        69.31090420455581,
+        90.16003808987752,
+        73.2606667016674,
+        79.24800780821431
+      ],
+      "knots": [
+        {
+          "example": "A",
+          "synthetic_stay_index": 22,
+          "horizon_hours": 4.0,
+          "lambda_level": 0.05446592686023615,
+          "lambda_slope": 0.03000935686825665,
+          "level_coefficient": 3.164922509103339,
+          "slope_coefficient": -1.1537388966100668,
+          "horizon_4": 1.0,
+          "horizon_8": 0.0,
+          "horizon_12": 0.0,
+          "count": -0.5,
+          "time_spread": -0.8130787037037037,
+          "q10_change": -0.5075776483167175
+        },
+        {
+          "example": "A",
+          "synthetic_stay_index": 22,
+          "horizon_hours": 8.0,
+          "lambda_level": 0.046903326764599844,
+          "lambda_slope": 0.030001495242295288,
+          "level_coefficient": 3.1734037737448215,
+          "slope_coefficient": -1.0723187560518408,
+          "horizon_4": 0.0,
+          "horizon_8": 1.0,
+          "horizon_12": 0.0,
+          "count": -0.5,
+          "time_spread": -0.8130787037037037,
+          "q10_change": -0.5075776483167175
+        },
+        {
+          "example": "A",
+          "synthetic_stay_index": 22,
+          "horizon_hours": 12.0,
+          "lambda_level": 0.046903308608320045,
+          "lambda_slope": 0.030001495242295288,
+          "level_coefficient": 3.17340379423574,
+          "slope_coefficient": -1.0723185593390236,
+          "horizon_4": 0.0,
+          "horizon_8": 0.0,
+          "horizon_12": 1.0,
+          "count": -0.5,
+          "time_spread": -0.8130787037037037,
+          "q10_change": -0.5075776483167175
+        }
+      ],
+      "profile_diagnostics": {
+        "profiles": 81,
+        "all_certified": true,
+        "max_duality_gap": 2.220446049250313e-15,
+        "max_relative_duality_gap": 6.078490367084442e-16,
+        "minimum_relative_duality_gap": -1.2156980505982322e-16,
+        "max_projected_kkt_violation": 1.3322676295501878e-15,
+        "max_stationarity_violation": 1.3877787807814457e-17,
+        "max_sweeps": 5,
+        "mean_sweeps": 5.0
+      }
+    },
+    {
+      "example": "B",
+      "synthetic_stay_index": 27,
+      "index_count": 16,
+      "index_coverage_hours": 12.0,
+      "eligible_examples": 11,
+      "x": [
+        1.0,
+        0.12155839666128557,
+        0.0,
+        1.0
+      ],
+      "population_mmhg": 65.79596987092593,
+      "index_q10_mmhg": 57.875146117127315,
+      "index_time": [
+        0.75,
+        2.25,
+        2.5,
+        3.5,
+        4.75,
+        5.0,
+        6.25,
+        6.5,
+        8.0,
+        8.25,
+        8.5,
+        8.75,
+        9.5,
+        9.75,
+        10.0,
+        12.0
+      ],
+      "index_y": [
+        57.58562474713707,
+        62.571548956982554,
+        57.875146117127315,
+        68.66837503340787,
+        57.908336395454434,
+        62.010154648579956,
+        66.52938980857438,
+        60.55034985556623,
+        68.78422654534504,
+        68.39880688220572,
+        74.49080384439372,
+        66.12984943164938,
+        63.48533472092227,
+        74.87471509294247,
+        63.80385740727527,
+        81.70453802952662
+      ],
+      "later_time": [
+        13.25,
+        14.25,
+        15.25,
+        15.75,
+        17.75,
+        18.75,
+        19.0,
+        19.5,
+        20.75,
+        21.75,
+        22.25,
+        22.5
+      ],
+      "later_y": [
+        71.65788751553296,
+        75.31666750294391,
+        70.56050701462773,
+        74.09622888859664,
+        72.90290916004862,
+        72.09892031640551,
+        71.86083787487254,
+        81.40552888932959,
+        84.53953773160197,
+        76.01055748159179,
+        83.48087209522282,
+        74.08832552122112
+      ],
+      "knots": [
+        {
+          "example": "B",
+          "synthetic_stay_index": 27,
+          "horizon_hours": 4.0,
+          "lambda_level": 0.0825243017429937,
+          "lambda_slope": 0.030009329756194705,
+          "level_coefficient": -1.5672148748737638,
+          "slope_coefficient": 8.025611215605675,
+          "horizon_4": 1.0,
+          "horizon_8": 0.0,
+          "horizon_12": 0.0,
+          "count": 0.20751874963942185,
+          "time_spread": -0.17905680338541674,
+          "q10_change": 0.58997099737852
+        },
+        {
+          "example": "B",
+          "synthetic_stay_index": 27,
+          "horizon_hours": 8.0,
+          "lambda_level": 0.06503415067909875,
+          "lambda_slope": 0.030001490910171423,
+          "level_coefficient": -1.5672148749011394,
+          "slope_coefficient": 8.02561121554595,
+          "horizon_4": 0.0,
+          "horizon_8": 1.0,
+          "horizon_12": 0.0,
+          "count": 0.20751874963942185,
+          "time_spread": -0.17905680338541674,
+          "q10_change": 0.58997099737852
+        },
+        {
+          "example": "B",
+          "synthetic_stay_index": 27,
+          "horizon_hours": 12.0,
+          "lambda_level": 0.06503410974991244,
+          "lambda_slope": 0.030001490910171423,
+          "level_coefficient": -1.5672148749011399,
+          "slope_coefficient": 8.02561121554595,
+          "horizon_4": 0.0,
+          "horizon_8": 0.0,
+          "horizon_12": 1.0,
+          "count": 0.20751874963942185,
+          "time_spread": -0.17905680338541674,
+          "q10_change": 0.58997099737852
+        }
+      ],
+      "profile_diagnostics": {
+        "profiles": 81,
+        "all_certified": true,
+        "max_duality_gap": 5.736922048527049e-11,
+        "max_relative_duality_gap": 4.7360581361270895e-12,
+        "minimum_relative_duality_gap": 3.895440843116962e-12,
+        "max_projected_kkt_violation": 9.630785058334368e-11,
+        "max_stationarity_violation": 2.7755575615628914e-16,
+        "max_sweeps": 300,
+        "mean_sweeps": 300.0
+      }
+    }
+  ],
+  "assessment_replay_maximum_errors": {
+    "continuous_loss": 0.0,
+    "continuous_p_lt": 0.0,
+    "continuous_p_le": 0.0,
+    "constant_loss": 0.0,
+    "constant_p_lt": 0.0,
+    "constant_p_le": 0.0,
+    "selected_loss": 0.0,
+    "selected_p_lt": 0.0,
+    "selected_p_le": 0.0
+  },
+  "example_curve_replay_maximum_error": 1.4210854715202004e-14,
+  "assessment_profile_diagnostics": {
+    "continuous": {
+      "profiles": 360,
+      "all_certified": true,
+      "max_duality_gap": 7.02122804341343e-11,
+      "max_relative_duality_gap": 1.2770237865830962e-11,
+      "minimum_relative_duality_gap": -4.2643330790941674e-16,
+      "max_projected_kkt_violation": 9.85691528399002e-11,
+      "max_stationarity_violation": 2.7755575615628914e-16,
+      "max_sweeps": 300,
+      "mean_sweeps": 17.27777777777778
+    },
+    "constant": {
+      "profiles": 360,
+      "all_certified": true,
+      "max_duality_gap": 6.265388208248623e-11,
+      "max_relative_duality_gap": 1.0628911206385576e-11,
+      "minimum_relative_duality_gap": -5.675848856903874e-16,
+      "max_projected_kkt_violation": 9.831091496437239e-11,
+      "max_stationarity_violation": 2.220446049250313e-16,
+      "max_sweeps": 750,
+      "mean_sweeps": 36.708333333333336
+    },
+    "selected": {
+      "profiles": 360,
+      "all_certified": true,
+      "max_duality_gap": 7.02122804341343e-11,
+      "max_relative_duality_gap": 1.2770237865830962e-11,
+      "minimum_relative_duality_gap": -4.2643330790941674e-16,
+      "max_projected_kkt_violation": 9.85691528399002e-11,
+      "max_stationarity_violation": 2.7755575615628914e-16,
+      "max_sweeps": 300,
+      "mean_sweeps": 17.27777777777778
+    }
+  },
+  "curve_definition": "For each requested horizon D, q(t;D)=x beta+b0(D)+b1(D)(t-12)/12. The requested horizon is fixed along each curve.",
+  "horizon_grid": {
+    "start": 4.0,
+    "end": 12.0,
+    "step": 0.1
+  },
+  "plot_table_names": [
+    "method_figure_observations.csv",
+    "method_figure_horizon_profiles.csv",
+    "method_figure_quantile_curves.csv",
+    "method_figure_parameters.csv"
+  ]
+}

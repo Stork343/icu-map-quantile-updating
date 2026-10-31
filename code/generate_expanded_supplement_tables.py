@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import argparse
 from pathlib import Path
 
 import numpy as np
@@ -18,6 +19,12 @@ PUBLIC_ROOT = ARCHIVE_PUBLIC_ROOT if PRIVATE_LAYOUT else PAPER_ROOT
 MANUSCRIPT_ROOT = ARCHIVE_MANUSCRIPT_ROOT if PRIVATE_LAYOUT else PAPER_ROOT
 TABLE_ROOT = MANUSCRIPT_ROOT / "tables" if PRIVATE_LAYOUT else PAPER_ROOT / "supplement_aggregate"
 PRIVATE_VALIDATION = RECOVERY_ROOT / "validation_extensions" if PRIVATE_LAYOUT else None
+SIMULATION_ROOT = PUBLIC_ROOT
+EMPIRICAL_ROOT = PUBLIC_ROOT / "empirical_aggregate"
+SOURCE_ROOT = PUBLIC_ROOT / "source_sensitivity"
+VALIDATION_ROOT = PUBLIC_ROOT / "validation_aggregate"
+FIGURE_ROOT = EMPIRICAL_ROOT
+LANDMARK_ROOT = EMPIRICAL_ROOT / "table7"
 
 
 SCENARIO_ORDER = [
@@ -132,7 +139,7 @@ def write(name: str, lines: list[str]) -> None:
 
 
 def generate_design_table() -> None:
-    design = pd.read_csv(PUBLIC_ROOT / "simulation_ademp_v2" / "ademp_v2_design.csv").set_index(
+    design = pd.read_csv(SIMULATION_ROOT / "simulation_ademp_v2" / "ademp_v2_design.csv").set_index(
         "scenario_key"
     )
     lines = [
@@ -185,7 +192,7 @@ def diff_cell(row: pd.Series) -> str:
 
 def generate_performance_table() -> None:
     paired = pd.read_csv(
-        PUBLIC_ROOT / "simulation_ademp_v2" / "ademp_v2_paired_loss_comparisons.csv"
+        SIMULATION_ROOT / "simulation_ademp_v2" / "ademp_v2_paired_loss_comparisons.csv"
     )
     lines = [
         r"\begingroup",
@@ -234,12 +241,12 @@ def monte_carlo_mean_se(values: np.ndarray) -> tuple[float, float]:
 
 def generate_diagnostic_table() -> None:
     diagnostics = pd.read_csv(
-        PUBLIC_ROOT / "simulation_ademp_v2" / "ademp_v2_scenario_diagnostics.csv"
+        SIMULATION_ROOT / "simulation_ademp_v2" / "ademp_v2_scenario_diagnostics.csv"
     )
     penalties = pd.read_csv(
-        PUBLIC_ROOT / "simulation_ademp_v2" / "ademp_v2_penalty_summary.csv"
+        SIMULATION_ROOT / "simulation_ademp_v2" / "ademp_v2_penalty_summary.csv"
     )
-    summary = pd.read_csv(PUBLIC_ROOT / "simulation_ademp_v2" / "ademp_v2_summary.csv")
+    summary = pd.read_csv(SIMULATION_ROOT / "simulation_ademp_v2" / "ademp_v2_summary.csv")
     lines = [
         r"\begingroup",
         r"\scriptsize",
@@ -280,10 +287,10 @@ def generate_diagnostic_table() -> None:
         )
 
     primary = pd.read_csv(
-        PUBLIC_ROOT / "simulation_ademp_v2" / "ademp_v2_method_replicates.csv"
+        SIMULATION_ROOT / "simulation_ademp_v2" / "ademp_v2_method_replicates.csv"
     )
     extended = pd.read_csv(
-        PUBLIC_ROOT / "transient_grid_sensitivity" / "ademp_v2_method_replicates.csv"
+        SIMULATION_ROOT / "transient_grid_sensitivity" / "ademp_v2_method_replicates.csv"
     )
 
     def transient_differences(frame: pd.DataFrame) -> pd.Series:
@@ -318,9 +325,9 @@ def generate_diagnostic_table() -> None:
 
 
 def generate_clinical_table() -> None:
-    strata = pd.read_csv(PUBLIC_ROOT / "empirical_aggregate" / "clinical_outcome_strata.csv")
+    strata = pd.read_csv(EMPIRICAL_ROOT / "clinical_outcome_strata.csv")
     associations = pd.read_csv(
-        PUBLIC_ROOT / "empirical_aggregate" / "enhanced_outcome_associations.csv"
+        FIGURE_ROOT / "enhanced_outcome_associations.csv"
     )
     lines = [
         r"\begingroup",
@@ -377,13 +384,20 @@ def generate_clinical_table() -> None:
 
 
 def generate_empirical_sensitivity_table() -> None:
-    sensitivity = pd.read_csv(PUBLIC_ROOT / "empirical_aggregate" / "sensitivity_analysis.csv")
+    sensitivity_path = LANDMARK_ROOT / "landmark_table7.csv"
+    sensitivity = pd.read_csv(sensitivity_path if sensitivity_path.exists() else EMPIRICAL_ROOT / "sensitivity_analysis.csv")
+    if "n_stays" not in sensitivity.columns and "assessment_stays" in sensitivity.columns:
+        sensitivity["n_stays"] = sensitivity["assessment_stays"]
+    if "population_assessment_loss" not in sensitivity.columns and "population_validation_loss" in sensitivity.columns:
+        sensitivity["population_assessment_loss"] = sensitivity["population_validation_loss"]
+    if "updated_assessment_loss" not in sensitivity.columns and "updated_validation_loss" in sensitivity.columns:
+        sensitivity["updated_assessment_loss"] = sensitivity["updated_validation_loss"]
     weighted = pd.read_csv(
-        PUBLIC_ROOT / "empirical_aggregate" / "stay_weighted_population_sensitivity.csv"
+        EMPIRICAL_ROOT / "stay_weighted_population_sensitivity.csv"
     )
-    sources = pd.read_csv(PUBLIC_ROOT / "source_sensitivity" / "map_source_sensitivity.csv")
+    sources = pd.read_csv(SOURCE_ROOT / "map_source_sensitivity.csv")
     density = pd.read_csv(
-        PUBLIC_ROOT / "empirical_aggregate" / "measurement_density_sensitivity.csv"
+        EMPIRICAL_ROOT / "measurement_density_sensitivity.csv"
     )
     lines = [
         r"\begingroup",
@@ -444,10 +458,10 @@ def generate_empirical_sensitivity_table() -> None:
 
 def generate_candidate_table() -> None:
     random_effects = pd.read_csv(
-        PUBLIC_ROOT / "empirical_aggregate" / "random_effect_structure_comparison.csv"
+        EMPIRICAL_ROOT / "random_effect_structure_comparison.csv"
     )
-    model_loss = pd.read_csv(PUBLIC_ROOT / "validation_aggregate" / "model_loss_summary.csv")
-    paired = pd.read_csv(PUBLIC_ROOT / "validation_aggregate" / "paired_comparator_results.csv")
+    model_loss = pd.read_csv(VALIDATION_ROOT / "model_loss_summary.csv")
+    paired = pd.read_csv(VALIDATION_ROOT / "paired_comparator_results.csv")
     lines = [
         r"\begingroup",
         r"\scriptsize",
@@ -599,10 +613,42 @@ def generate_fold_table() -> None:
         ]
     )
     write("supp_fold_stability.tex", lines)
-    pd.DataFrame(aggregate_rows).to_csv(TABLE_ROOT / "supp_fold_stability_source.csv", index=False)
+    source_output = TABLE_ROOT / "supp_fold_stability_source.csv"
+    # Public regeneration must not rewrite its authoritative input through a
+    # floating-point CSV round trip. Private aggregation still creates it.
+    if not use_precomputed or source_output.resolve() != precomputed_source.resolve():
+        pd.DataFrame(aggregate_rows).to_csv(source_output, index=False)
 
 
 def main() -> None:
+    parser = argparse.ArgumentParser(description="Generate aggregate tables for the expanded Statistics in Medicine supplement.")
+    parser.add_argument(
+        "--run-root",
+        type=Path,
+        default=None,
+        help="Approved run root containing empirical, source_sensitivity, and validation_extensions outputs.",
+    )
+    parser.add_argument(
+        "--simulation-root",
+        type=Path,
+        default=None,
+        help="Root containing the retained simulation_ademp_v2 and transient_grid_sensitivity aggregates.",
+    )
+    parser.add_argument("--output-dir", type=Path, default=None)
+    args = parser.parse_args()
+    global TABLE_ROOT, PRIVATE_VALIDATION, SIMULATION_ROOT, EMPIRICAL_ROOT, SOURCE_ROOT, VALIDATION_ROOT, FIGURE_ROOT, LANDMARK_ROOT
+    if args.run_root is not None:
+        run_root = args.run_root
+        TABLE_ROOT = args.output_dir or (run_root / "supplement_tables")
+        PRIVATE_VALIDATION = run_root / "validation_extensions"
+        EMPIRICAL_ROOT = run_root / "empirical"
+        SOURCE_ROOT = run_root / "source_sensitivity"
+        VALIDATION_ROOT = run_root / "validation_extensions"
+        FIGURE_ROOT = run_root / "figures"
+        LANDMARK_ROOT = run_root / "empirical" / "table7"
+        SIMULATION_ROOT = args.simulation_root or ARCHIVE_PUBLIC_ROOT
+    elif args.output_dir is not None:
+        TABLE_ROOT = args.output_dir
     generate_design_table()
     generate_performance_table()
     generate_diagnostic_table()

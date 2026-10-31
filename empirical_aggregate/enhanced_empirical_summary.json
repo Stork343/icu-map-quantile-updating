@@ -4,6 +4,11 @@
     "data_summary": {
       "fit_stays_requested": 0,
       "fit_stays": 60310,
+      "age_definition": "icu_proxy",
+      "qualification_index_hours": 12.0,
+      "minimum_index_observations": 4,
+      "minimum_later_observations": 1,
+      "minimum_total_observations": 8,
       "fit_observations": 1551170,
       "obs_per_stay_median": 25.0,
       "obs_per_stay_iqr": [
@@ -18,8 +23,8 @@
     "basis_dimension": 5,
     "basis_Tmax": 24.0,
     "age_standardization": {
-      "age_mean_training_split": 63.56367103299618,
-      "age_sd_training_split": 16.880473581509797
+      "age_mean_training_split": 64.66931962637484,
+      "age_sd_training_split": 16.92628522881111
     },
     "assessment_stays": 12062
   },
@@ -27,9 +32,9 @@
   "lambda_b": 0.03,
   "metrics": {
     "dynamic_12h_auc_admission_window_q10": 0.802205327784798,
-    "dynamic_12h_auc_updated_vulnerability": 0.7800447069486804,
+    "dynamic_12h_auc_updated_vulnerability": 0.7801778657325015,
     "dynamic_12h_risk_difference_any_later_low_percent": 70.39529701153091,
-    "dynamic_12h_loss_reduction_percent": 12.030470325673129,
+    "dynamic_12h_loss_reduction_percent": 12.047098307469845,
     "most_vs_least_vulnerable_decile": {
       "admission_window_q10_medians": [
         52.0,
@@ -72,18 +77,18 @@
     }
   },
   "artifacts": {
-    "dynamic_signal_plot": "statistics-in-medicine-paper\\recovery_20260822\\empirical\\enhanced_dynamic_signal_plot.pdf",
-    "risk_surface_plot": "statistics-in-medicine-paper\\recovery_20260822\\empirical\\enhanced_risk_surface_plot.pdf",
-    "clinical_yield_plot": "statistics-in-medicine-paper\\recovery_20260822\\empirical\\enhanced_clinical_yield_plot.pdf",
-    "subgroup_signal_plot": "statistics-in-medicine-paper\\recovery_20260822\\empirical\\enhanced_subgroup_signal_plot.pdf",
-    "model_gain_plot": "statistics-in-medicine-paper\\recovery_20260822\\empirical\\enhanced_model_gain_plot.pdf",
-    "dynamic_signal_metrics_csv": "statistics-in-medicine-paper\\recovery_20260822\\empirical\\enhanced_dynamic_signal_metrics.csv",
-    "risk_surface_csv": "statistics-in-medicine-paper\\recovery_20260822\\empirical\\enhanced_risk_surface.csv",
-    "decile_summary_csv": "statistics-in-medicine-paper\\recovery_20260822\\empirical\\enhanced_admission_window_q10_decile_summary.csv",
-    "clinical_yield_curve_csv": "statistics-in-medicine-paper\\recovery_20260822\\empirical\\enhanced_clinical_yield_curve.csv",
-    "clinical_yield_thresholds_csv": "statistics-in-medicine-paper\\recovery_20260822\\empirical\\enhanced_clinical_yield_thresholds.csv",
-    "subgroup_signal_csv": "statistics-in-medicine-paper\\recovery_20260822\\empirical\\enhanced_subgroup_signal.csv",
-    "model_gain_deciles_csv": "statistics-in-medicine-paper\\recovery_20260822\\empirical\\enhanced_model_gain_deciles.csv",
-    "outcome_associations_csv": "statistics-in-medicine-paper\\recovery_20260822\\empirical\\enhanced_outcome_associations.csv"
+    "dynamic_signal_plot": "recovery_20260822/gate1_approved_run/figures/enhanced_dynamic_signal_plot.pdf",
+    "risk_surface_plot": "recovery_20260822/gate1_approved_run/figures/enhanced_risk_surface_plot.pdf",
+    "clinical_yield_plot": "recovery_20260822/gate1_approved_run/figures/enhanced_clinical_yield_plot.pdf",
+    "subgroup_signal_plot": "recovery_20260822/gate1_approved_run/figures/enhanced_subgroup_signal_plot.pdf",
+    "model_gain_plot": "recovery_20260822/gate1_approved_run/figures/enhanced_model_gain_plot.pdf",
+    "dynamic_signal_metrics_csv": "recovery_20260822/gate1_approved_run/figures/enhanced_dynamic_signal_metrics.csv",
+    "risk_surface_csv": "recovery_20260822/gate1_approved_run/figures/enhanced_risk_surface.csv",
+    "decile_summary_csv": "recovery_20260822/gate1_approved_run/figures/enhanced_admission_window_q10_decile_summary.csv",
+    "clinical_yield_curve_csv": "recovery_20260822/gate1_approved_run/figures/enhanced_clinical_yield_curve.csv",
+    "clinical_yield_thresholds_csv": "recovery_20260822/gate1_approved_run/figures/enhanced_clinical_yield_thresholds.csv",
+    "subgroup_signal_csv": "recovery_20260822/gate1_approved_run/figures/enhanced_subgroup_signal.csv",
+    "model_gain_deciles_csv": "recovery_20260822/gate1_approved_run/figures/enhanced_model_gain_deciles.csv",
+    "outcome_associations_csv": "recovery_20260822/gate1_approved_run/figures/enhanced_outcome_associations.csv"
   }
 }

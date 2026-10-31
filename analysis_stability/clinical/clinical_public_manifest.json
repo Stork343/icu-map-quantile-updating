@@ -1,0 +1,231 @@
+{
+  "status": "passed",
+  "files": {
+    "clinical_all_family_holm.csv": {
+      "aggregate_rows": 427,
+      "columns": [
+        "first",
+        "second",
+        "n_stays",
+        "mean_difference",
+        "se",
+        "ci95_low",
+        "ci95_high",
+        "candidate_better_fraction",
+        "bootstrap_ci95_low",
+        "bootstrap_ci95_high",
+        "bootstrap_replicates",
+        "horizon_hours",
+        "comparison_family",
+        "source_role",
+        "scope",
+        "interval_type",
+        "relative_loss_reduction_percent",
+        "profile_level_penalty",
+        "profile_slope_penalty",
+        "nodes_per_dimension",
+        "count_threshold",
+        "n_high_count_stays",
+        "n_low_count_stays",
+        "high_count_mean_difference",
+        "low_count_mean_difference",
+        "difference_definition",
+        "raw_p_value",
+        "holm_p_value",
+        "family_size",
+        "holm_reject_005"
+      ]
+    },
+    "clinical_all_family_pointwise.csv": {
+      "aggregate_rows": 427,
+      "columns": [
+        "first",
+        "second",
+        "n_stays",
+        "mean_difference",
+        "se",
+        "ci95_low",
+        "ci95_high",
+        "candidate_better_fraction",
+        "bootstrap_ci95_low",
+        "bootstrap_ci95_high",
+        "bootstrap_replicates",
+        "horizon_hours",
+        "comparison_family",
+        "source_role",
+        "scope",
+        "interval_type",
+        "relative_loss_reduction_percent",
+        "profile_level_penalty",
+        "profile_slope_penalty",
+        "nodes_per_dimension",
+        "count_threshold",
+        "n_high_count_stays",
+        "n_low_count_stays",
+        "high_count_mean_difference",
+        "low_count_mean_difference",
+        "difference_definition"
+      ]
+    },
+    "clinical_lqmm_count_interactions.csv": {
+      "aggregate_rows": 4,
+      "columns": [
+        "nodes_per_dimension",
+        "first",
+        "second",
+        "horizon_hours",
+        "count_threshold",
+        "n_high_count_stays",
+        "n_low_count_stays",
+        "high_count_mean_difference",
+        "low_count_mean_difference",
+        "mean_difference",
+        "se",
+        "ci95_low",
+        "ci95_high",
+        "comparison_family",
+        "difference_definition"
+      ]
+    },
+    "clinical_lqmm_influence.csv": {
+      "aggregate_rows": 4,
+      "columns": [
+        "nodes_per_dimension",
+        "first",
+        "second",
+        "horizon_hours",
+        "n_stays",
+        "mean_difference",
+        "se",
+        "pointwise_ci95_low",
+        "pointwise_ci95_high",
+        "candidate_better_fraction",
+        "median_difference",
+        "minimum_leave_one_stay_out_mean",
+        "maximum_leave_one_stay_out_mean"
+      ]
+    },
+    "clinical_lqmm_outcome_rank_deletions.csv": {
+      "aggregate_rows": 24,
+      "columns": [
+        "nodes_per_dimension",
+        "second",
+        "excluded_fraction",
+        "excluded_stays",
+        "excluded_side",
+        "n_retained_stays",
+        "retained_mean_difference",
+        "summary_scope"
+      ]
+    },
+    "clinical_lqmm_subgroups.csv": {
+      "aggregate_rows": 52,
+      "columns": [
+        "nodes_per_dimension",
+        "second",
+        "grouping",
+        "group",
+        "n_stays",
+        "mean_difference",
+        "se",
+        "pointwise_ci95_low",
+        "pointwise_ci95_high",
+        "candidate_better_fraction",
+        "median_difference",
+        "minimum_leave_one_stay_out_mean",
+        "maximum_leave_one_stay_out_mean",
+        "group_mean_difference",
+        "n_remaining_stays",
+        "mean_omitting_group",
+        "summary_scope"
+      ]
+    },
+    "clinical_nested_fold_pairs.csv": {
+      "aggregate_rows": 75,
+      "columns": [
+        "partition",
+        "horizon_hours",
+        "first",
+        "second",
+        "interval_scope",
+        "n_stays",
+        "mean_difference",
+        "se",
+        "pointwise_ci95_low",
+        "pointwise_ci95_high",
+        "candidate_better_fraction",
+        "median_difference",
+        "minimum_leave_one_stay_out_mean",
+        "maximum_leave_one_stay_out_mean"
+      ]
+    },
+    "clinical_nested_leave_one_fold_out.csv": {
+      "aggregate_rows": 75,
+      "columns": [
+        "omitted_assessment_fold",
+        "horizon_hours",
+        "first",
+        "second",
+        "n_retained_stays",
+        "mean_difference",
+        "summary_scope"
+      ]
+    },
+    "clinical_nested_stability_summary.csv": {
+      "aggregate_rows": 15,
+      "columns": [
+        "horizon_hours",
+        "first",
+        "second",
+        "n_stays",
+        "mean_difference",
+        "folds_with_negative_difference",
+        "minimum_fold_mean",
+        "maximum_fold_mean",
+        "minimum_omitting_fold_mean",
+        "maximum_omitting_fold_mean",
+        "summary_scope"
+      ]
+    },
+    "clinical_partition_checks.csv": {
+      "aggregate_rows": 6,
+      "columns": [
+        "partition",
+        "fitting_stays",
+        "tuning_stays",
+        "assessment_stays",
+        "disjoint_allocations",
+        "fitting_only_age_standardization_replayed",
+        "same_assignments_across_horizons"
+      ]
+    },
+    "clinical_temporal_joint_intervals.csv": {
+      "aggregate_rows": 15,
+      "columns": [
+        "horizon_hours",
+        "first",
+        "second",
+        "n_stays",
+        "mean_difference",
+        "se",
+        "pointwise_ci95_low",
+        "pointwise_ci95_high",
+        "candidate_better_fraction",
+        "median_difference",
+        "minimum_leave_one_stay_out_mean",
+        "maximum_leave_one_stay_out_mean",
+        "joint_ci95_low",
+        "joint_ci95_high",
+        "joint_family",
+        "joint_method",
+        "critical_value",
+        "interval_scope"
+      ]
+    }
+  },
+  "clinical_rows_exported": 0,
+  "protected_identifier_columns": 0,
+  "input_access": "credentialed clinical inputs supplied by command-line paths",
+  "independent_unit": "eligible first adult ICU stay",
+  "unique_subjects": 60310
+}
